@@ -1,0 +1,119 @@
+#+TITLE: RSS Feeds
+#+STARTUP: content
+#+STARTUP: fold
+
+* Feeds :elfeed:
+** News :news:
+*** [[https://monero.observer/feed.xml][Monero Observer]] :crypto:
+*** [[http://rss.slashdot.org/Slashdot/slashdotMain][Slashdot]] :tech:
+*** [[http://feeds.feedburner.com/zerohedge/feed][Zero Hedge]]
+*** [[https://www.rt.com/rss][RT]]
+*** [[https://www.sovereignman.com/feed/][Sovereign Man]]
+*** [[https://www.cbc.ca/webfeed/rss/rss-topstories][CBC]]
+*** [[https://feeds.bbci.co.uk/news/rss.xml][BBC]]
+
+** Blogs :blog:
+*** [[https://joshblais.com/index.xml][Josh Blais]]
+*** [[https://wrongthink.link/posts/index.xml][Wrong Think]]
+*** [[https://www.rousette.org.uk/index.xml][Rousette]]
+*** [[https://randomgeekery.org/index.xml][Random Geekery]]
+*** [[https://runxiyu.org/blog/index.xml][Runxiyu]]
+*** [[https://maggieappleton.com/rss.xml][Maggie Appleton]]
+*** [[https://drewdevault.com/blog/index.xml][Drew DeVault]] :tech:
+*** [[https://ounapuu.ee/index.xml][Ounapuu]]
+*** [[https://sive.rs/en.atom][Derek Sivers]]
+*** [[https://serhack.me/index.xml][Serhack]]
+*** [[https://lukesmith.xyz/rss.xml][Luke Smith]]
+*** [[https://notrelated.xyz/rss][Not Related]]
+*** [[https://levels.io/rss/][Levels.io]]
+*** [[https://feedpress.me/thetechnium][The Technium]]
+*** [[https://solar.lowtechmagazine.com/feeds/all-en.atom.xml][Low Tech Magazine]]
+*** [[https://feeds.feedburner.com/collabfund][Collab Fund]]
+*** [[https://www.lesswrong.com/feed.xml?view=curated-rss][Less Wrong]]
+*** [[http://www.geero.net/feed][Geero]]
+*** [[https://digdeeper.neocities.org/atom.xml][Dig Deeper]]
+*** [[https://sizeof.cat/index.xml][Sizeof Cat]] :tech:
+*** [[https://icyphox.sh/blog/feed.xml][Icyphox]]
+*** [[https://wiki.xxiivv.com/links/rss.xml][XXIIVV]]
+*** [[https://unixdigest.com/feed.rss][Unix Digest]] :tech:
+*** [[https://100r.co/links/rss.xml][100r]]
+*** [[https://12bytes.org/feed.xml][12bytes]]
+*** [[https://ar.al/index.xml][Aral Balkan]]
+*** [[https://ijver.me/en/index.xml][Ijver]]
+*** [[https://thomasorus.com/feed.xml][Thomasorus]]
+*** [[https://danluu.com/atom.xml][Dan Luu]] :tech:
+*** [[https://wolfmd.me/feed.xml][Wolf MD]]
+*** [[https://longest.voyage/index.xml][Longest Voyage]]
+*** [[https://palomakop.tv/rss.xml][Palomakop]]
+*** [[https://mrshll.com/feed.rss][Mrshll]]
+*** [[https://ameyama.com/blog/rss.xml][Ameyama]]
+*** [[https://tendigits.space/feed.xml][Ten Digits]]
+*** [[https://www.madewithtea.com/rss.xml][Made with Tea]]
+*** [[https://www.paritybit.ca/feed.xml][Parity Bit]]
+*** [[http://flower.codes/feed.xml][Flower Codes]]
+
+** YouTube :youtube:
+*** Technology :tech:
+**** [[https://www.youtube.com/feeds/videos.xml?channel_id=UC2eYFnH61tmytImy1mTYvhA][Luke Smith]]
+**** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCsnGwSIHyoYN0kiINAGUKxg][Wolfgang]]
+**** [[https://www.youtube.com/feeds/videos.xml?channel_id=UC7YOGHUfC1Tb6E4pudI9STA][MentalOutlaw]]
+**** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCVls1GmFKf6WlTraIb_IaJg][DT]]
+**** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCgTNupxATBfWmfehv21ym-g][Tech Channel]]
+**** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCTjPBE9BNsmv44wgxWEy2zw][Tech Channel]]
+**** [[https://www.youtube.com/feeds/videos.xml?channel_id=UC8ENHE5xdFSwx71u3fDH5Xw][Tech Channel]]
+**** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCOk-gHyjcWZNj3Br4oxwh0A][Tech Channel]]
+**** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCs6KfncB4OV6Vug4o_bzijg][Tech Channel]]
+**** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCfzlCWGWYyIQ0aLC5w48gBQ][Tech Channel]]
+**** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCcAy1o8VUCkdowxRYbc0XRw][Tech Channel]]
+**** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCRYOj4DmyxhBVrdvbsUwmAA][Tech Channel]]
+**** [[https://www.youtube.com/feeds/videos.xml?channel_id=UC9x0AN7BWHpCDHSm9NiJFJQ][Tech Channel]]
+**** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCWr0mx597DnSGLFk1WfvSkQ][Tech Channel]]
+**** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCsBjURrPoezykLs9EqgamOA][Tech Channel]]
+**** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCrUL8K81R4VBzm-KOYwrcxQ][Tech Channel]]
+**** [[https://www.youtube.com/feeds/videos.xml?channel_id=UC9-y-6csu5WGm29I7JiwpnA][Tech Channel]]
+**** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCYeiozh-4QwuC1sjgCmB92w][Tech Channel]]
+
+*** Cooking :cooking:
+**** [[https://www.youtube.com/feeds/videos.xml?channel_id=UC5qRAYQmCLx8hFGIiTWSQvA][Cooking Channel]]
+**** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCPzFLpOblZEaIx2lpym1l1A][Cooking Channel]]
+**** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCMb0O2CdPBNi-QqPk5T3gsQ][Cooking Channel]]
+**** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCDq5v10l4wkV5-ZBIJJFbzQ][Cooking Channel]]
+**** [[https://www.youtube.com/feeds/videos.xml?channel_id=UC9UVsA7HAL9OQekyxmu_Ctg][Cooking Channel]]
+
+*** F1 :f1:
+**** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCB_qr75-ydFVKSF9Dmo6izg][F1 Channel]]
+
+*** Chess :chess:
+**** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCvXxdkt1d8Uu08NAQP2IUTw][Chess Channel]]
+**** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCQHX6ViZmPsWiYSFAyS0a3Q][Chess Channel]]
+**** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCweCc7bSMX5J4jEH7HFImng][Chess Channel]]
+
+*** Fitness :fitness:
+**** [[https://www.youtube.com/feeds/videos.xml?channel_id=UC_7lEuEKvFt63jtvZYwlHMQ][Fitness Channel]]
+**** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCzGLDaTu81nJDtWK10MniGg][Fitness Channel]]
+**** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCoR7CHkMETs3ByOv74OAbFw][Fitness Channel]]
+**** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCtBw4N4-EiaAqK9TvZGlGDw][Fitness Channel]]
+
+*** Christianity :christianity:
+**** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCaMmTDOIoCnEywuR4attUGA][Christianity Channel]]
+**** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCcMjLgeWNwqL2LBGS-iPb1A][Christianity Channel]]
+**** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCz72pwrQRTXibU14NmHep8w][Christianity Channel]]
+**** [[https://www.youtube.com/feeds/videos.xml?channel_id=UC4ocopmnWmwViIHELoo1Gkg][Christianity Channel]]
+**** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCAu1DpqF65ZXfsi5ZzzEFMw][Christianity Channel]]
+**** [[https://www.youtube.com/feeds/videos.xml?channel_id=UC3puFf-lxwTWBFCfHHjCz2A][Christianity Channel]]
+
+*** Photography :photography:
+**** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCN1Ew9bj3uc59nwZ2M5beSw][Photography Channel]]
+**** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCknMR7NOY6ZKcVbyzOxQPhw][Photography Channel]]
+**** [[https://www.youtube.com/feeds/videos.xml?channel_id=UC3DkFux8Iv-aYnTRWzwaiBA][Photography Channel]]
+**** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCmRE4gvdeDkwf1oJrsabWWQ][Photography Channel]]
+**** [[https://www.youtube.com/feeds/videos.xml?channel_id=UC_ozVYyGkVQBaaXI9jrCFqQ][Photography Channel]]
+**** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCM6SJb18voXy12YI0WWvcWQ][Photography Channel]]
+
+*** Travel :travel:
+**** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCHL9bfHTxCMi-7vfxQ-AYtg][Travel Channel]]
+**** [[https://www.youtube.com/feeds/videos.xml?channel_id=UC0GmdVKZhMM3Rmielp4oVAA][Travel Channel]]
+
+*** Business :business:
+**** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCUyDOdBWhC1MCxEjC46d-zw][Business Channel]]
+**** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCoOae5nYA7VqaXzerajD0lg][Business Channel]]
