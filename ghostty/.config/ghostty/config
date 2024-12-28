@@ -4,3 +4,5 @@ cursor-style-blink = true
 confirm-close-surface = false
 command = tmux
 background-opacity = 0.95
+keybind=alt+shift+f=toggle_fullscreen
+cursor-style=bar
