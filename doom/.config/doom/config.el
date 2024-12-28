@@ -214,8 +214,8 @@
 (setq doom-themes-treemacs-theme "all-the-icons")
 
 ;; Transparency
-(set-frame-parameter (selected-frame) 'alpha '(92 . 92))
-(add-to-list 'default-frame-alist '(alpha . (92 . 92)))
+(set-frame-parameter (selected-frame) 'alpha '(96 . 97))
+(add-to-list 'default-frame-alist '(alpha . (96 . 97)))
 
 ;; Aggresssive Indent
 (require 'aggressive-indent)
