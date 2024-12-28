@@ -27,6 +27,11 @@
 (add-to-list 'custom-theme-load-path "~/.doom.d/themes/")
 (load-theme 'doom-nord t)
 
+;; Maintain terminal transparency in Doom Emacs
+(after! doom-themes
+  (unless (display-graphic-p)
+    (set-face-background 'default "undefined")))
+
 ;; remove top frame bar in emacs
 (add-to-list 'default-frame-alist '(undecorated . t))
 
@@ -209,8 +214,8 @@
 (setq doom-themes-treemacs-theme "all-the-icons")
 
 ;; Transparency
-(set-frame-parameter (selected-frame) 'alpha '(97 . 98))
-(add-to-list 'default-frame-alist '(alpha . (97 . 98)))
+(set-frame-parameter (selected-frame) 'alpha '(92 . 92))
+(add-to-list 'default-frame-alist '(alpha . (92 . 92)))
 
 ;; Aggresssive Indent
 (require 'aggressive-indent)

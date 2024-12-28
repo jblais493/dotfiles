@@ -1,4 +1,6 @@
 theme = dark:nord,light:nord-light
 window-decoration = false
-
+cursor-style-blink = true
+confirm-close-surface = false
 command = tmux
+background-opacity = 0.95
