@@ -9,7 +9,7 @@
  '(org-agenda-files
    '("~/org/roam/personal/Finances/bills.org" "/home/joshua/org/habits.org" "/home/joshua/org/todo.org" "/home/joshua/org/contacts.org" "/home/joshua/org/done.org" "/home/joshua/org/notes.org"))
  '(package-selected-packages
-   '(emacs-everywhere templ-ts-mode multi-vterm protobuf-mode jabber elpher org-roam-ui dart-mode lsp-mode lsp-dart lsp-treemacs flycheck company lsp-ui company hover))
+   '(org-gtasks emacs-everywhere templ-ts-mode multi-vterm protobuf-mode jabber elpher org-roam-ui dart-mode lsp-mode lsp-dart lsp-treemacs flycheck company lsp-ui company hover))
  '(warning-suppress-types
    '(((copilot copilot-no-mode-indent))
      ((copilot copilot-no-mode-indent))

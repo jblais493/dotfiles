@@ -35,6 +35,13 @@
 (package! define-word)
 (package! svelte-mode)
 
+;; trying to add org calendar sync
+;; (package! org-gcal)
+;; (package! org-gtasks
+;;   :recipe (:type git
+;;            :repo "https://git.sr.ht/~jmasson/org-gtasks"
+;;            :files ("*.el")))
+
 ;; (package! gptel)
 ;; (package! elysium)
 ;; TODO Trying to get mu4e nano working
