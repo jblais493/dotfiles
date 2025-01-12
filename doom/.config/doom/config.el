@@ -433,26 +433,26 @@
     (format "[[id:%s][%s]]" id contact)))
 
 ;; Set archive location to done.org under current date
-(defun my/archive-done-task ()
-  "Archive current task to done.org under today's date"
-  (interactive)
-  (let* ((date-header (format-time-string "%Y-%m-%d %A"))
-         (archive-file (expand-file-name "~/org/done.org"))
-         (location (format "%s::* %s" archive-file date-header)))
-    ;; Only archive if not a habit
-    (unless (org-is-habit-p)
-      ;; Add COMPLETED property if it doesn't exist
-      (org-set-property "COMPLETED" (format-time-string "[%Y-%m-%d %a %H:%M]"))
-      ;; Set archive location and archive
-      (setq org-archive-location location)
-      (org-archive-subtree))))
+;; (defun my/archive-done-task ()
+;;   "Archive current task to done.org under today's date"
+;;   (interactive)
+;;   (let* ((date-header (format-time-string "%Y-%m-%d %A"))
+;;          (archive-file (expand-file-name "~/org/done.org"))
+;;          (location (format "%s::* %s" archive-file date-header)))
+;;     ;; Only archive if not a habit
+;;     (unless (org-is-habit-p)
+;;       ;; Add COMPLETED property if it doesn't exist
+;;       (org-set-property "COMPLETED" (format-time-string "[%Y-%m-%d %a %H:%M]"))
+;;       ;; Set archive location and archive
+;;       (setq org-archive-location location)
+;;       (org-archive-subtree))))
 
 ;; Automatically archive when marked DONE, except for habits
-(add-hook 'org-after-todo-state-change-hook
-          (lambda ()
-            (when (and (string= org-state "DONE")
-                       (not (org-is-habit-p)))
-              (my/archive-done-task))))
+;; (add-hook 'org-after-todo-state-change-hook
+;;           (lambda ()
+;;             (when (and (string= org-state "DONE")
+;;                        (not (org-is-habit-p)))
+;;               (my/archive-done-task))))
 
 ;; Optional key binding if you ever need to archive manually
 (define-key org-mode-map (kbd "C-c C-x C-a") 'my/archive-done-task)

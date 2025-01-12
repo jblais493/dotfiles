@@ -1,0 +1,113 @@
+# -*- mode: snippet -*-
+# name: daily
+# key: daily
+# --
+
+#+title: `(file-name-base (buffer-file-name))`
+
+* Metrics
+** Sleep Quality: 8/10
+- Time to bed:
+- Wake time:
+- Total hours:
+- Quality notes:
+
+* Morning Foundation [0/8]
+** [ ] Wake up, drink water, cold water on face, teeth
+** [ ] [[https://traditionalcatholicprayers.com/2019/10/05/morning-prayers/][Morning Prayer]]
+** [ ] [[https://universalis.com/today.htm][Office of readings & Lauds]]
+** [ ] Scripture Study (15 mins)
+** [ ] Morning Movement (Cardio, bodyweight, yoga)
+** [ ] Shower, Groom, & Dressed
+** [ ] Vitamins, Magnesium, Vitamin D
+** [ ] Review day's battle plan
+
+* Work
+** [ ] System update
+** [ ] Financial/Systems Check
+
+** Deep Work Sessions [/]
+*** [ ] 90 minute Session 1 (Building)
+- Focus area:
+- Key outcomes:
+- Obstacles overcome:
+
+*** [ ] 90 minute Session 2 (Building)
+- Focus area:
+- Key outcomes:
+- Obstacles overcome:
+
+*** [ ] 90 minute Session 3 (Video)
+- Focus area:
+- Key outcomes:
+- Obstacles overcome:
+
+*** [ ] 90 minute Session 4 (Outreach)
+- Focus area:
+- Key outcomes:
+- Obstacles overcome:
+
+* Health Tracking
+** Water - 0/3500mL
+** Nutrition
+- Protein shake: [ ]
+- Meals:
+  + Breakfast:
+  + Lunch:
+  + Dinner:
+  + Snacks:
+** Movement
+- Cardio: [ ]
+- Strength: [ ]
+
+* Family Focus
+** Quality Time Minutes:
+** Meaningful Interactions:
+- With Aurelia:
+- With everyone:
+
+* Faith Journey
+** Daily Mass: [ ]
+** Rosary: [ ]
+** Spiritual Reading: [ ]
+** Evening Prayer: [ ]
+
+* Business/Finance
+** Outreach target: [0/100]
+** Calls completed: [0/20]
+** Revenue generated: $
+** Key wins:
+
+* Evening Review
+** Victories
+- What went exceptionally well:
+
+** Growth Areas
+- What could improve:
+
+** Gratitude
+- Three things I'm grateful for:
+  1.
+  2.
+  3.
+
+** Tomorrow's Preparation
+- Top 3 priorities:
+  1.
+  2.
+  3.
+- Schedule adjustments:
+- Potential obstacles:
+
+** Evening Routine
+*** [ ] Evening stretching
+*** [ ] Evening Groom
+*** [ ] [[https://traditionalcatholicprayers.com/2019/10/03/evening-prayers/][Evening Prayer]]
+
+* Daily Reflection
+** Focus Score [0-10]:
+** Energy Level [0-10]:
+** Most Impactful Moment:
+** Key Lesson:
+
+* Notes & Insights
