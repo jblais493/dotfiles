@@ -276,6 +276,7 @@ alias dcd="podman compose down"
 alias dcu="podman compose up -d"
 alias dcb='podman build -t forge.labrynth.org/josh/$(basename $PWD):latest .'
 alias dc="podman compose"
+alias dps="podman ps"
 alias tr="go-task run"
 alias tm="go-task migrate"
 alias tb="go-task templ"

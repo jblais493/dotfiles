@@ -58,7 +58,7 @@
 * Health Tracking
 ** Water - 0/3500mL
 ** Nutrition
-- Protein shake: [ ]
+- [ ] Protein shake
 - Meals:
   + Breakfast:
   + Lunch:
@@ -80,7 +80,7 @@
 ** [ ] Daily Mass
 ** [ ] Rosary
 ** [ ] Spiritual Reading
-** [ ] Hours
+** Hours [0/9]
 *** [ ] [[https://universalis.com/today.htm][About Today]]
 *** [ ] [[https://universalis.com/mass.htm][Mass]]
 *** [ ] [[https://universalis.com/readings.htm][Office of Readings]]
@@ -91,6 +91,8 @@
 *** [ ] [[https://universalis.com/vespers.htm][Vespers]]
 *** [ ] [[https://universalis.com/compline.htm][Compline]]
 
+* Learning
+** [X] Language
 
 * Evening Review
 ** Victories
