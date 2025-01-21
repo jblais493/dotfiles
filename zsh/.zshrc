@@ -206,6 +206,7 @@ alias dlp="nvim ~/.config/scripts/dlphone"
 alias eopn="~/.config/scripts/manage_encrypted_drives eopn"
 alias ecls="~/.config/scripts/manage_encrypted_drives ecls"
 alias rs="~/.config/scripts/gammastep.sh"
+alias gst="python ~/.config/scripts/GST.py"
 alias rsx="killall gammastep"
 alias pg="pass generate"
 alias v="nvim"
@@ -272,16 +273,25 @@ alias kmon="kmonad ~/.config/kmonad/config.kbd &"
 alias work="arttime --nolearn -a eye -t 'For I consider that the sufferings of this present time are not worth comparing with the glory that is going to be revealed to us - Romans 8:18' -g 4h"
 alias ci='~/.config/scripts/todotimer ci'
 alias co='~/.config/scripts/todotimer co'
+
+# Docker commands migrated to podman
 alias dcd="podman compose down"
 alias dcu="podman compose up -d"
 alias dcb='podman build -t forge.labrynth.org/josh/$(basename $PWD):latest .'
 alias dc="podman compose"
-alias dps="podman ps"
+alias dps="podman ps -a"
+alias dl="podman logs"
+
+# Generate API Key
+alias apigen="go run ~/.config/scripts/apikeygen.go -app"
+
+# Tasks for running htmx app
 alias tr="go-task run"
 alias tm="go-task migrate"
 alias tb="go-task templ"
 alias ttw="go-task tailwindcss"
 
+## Go documentation
 alias gdoc="stdsym | fzf --preview 'go doc {}' | xargs go doc"
 
 # Task Management
