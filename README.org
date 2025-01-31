@@ -1,3 +1,13 @@
 #+title: Readme
 
-Setup a new machine using GNU Stow and scripting.
+Setup a new machine using GNU Stow, Nix (nix-darwin on mac), and scripting.
+
+* Philosophy
+
+We want to have an entirely reproducible system across whatever underlying OS, so Nix and stow create a method for performing this setup
+
+* Installation:
+** Install nix:
+#+begin_src bash
+sh <(curl -L https://nixos.org/nix/install) --daemon
+#+end_src
