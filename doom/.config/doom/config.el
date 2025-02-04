@@ -392,7 +392,7 @@
          (file+headline "~/org/calendar.org" "Events")
          "* %^{Event}\n%^{SCHEDULED}T\n:PROPERTIES:\n:CREATED: %U\n:CAPTURED: %a\n:CONTACT: %(org-capture-ref-link \"~/org/contacts.org\")\n:END:\n%?")
         ("d" "Deadline" entry
-         (file+headline "~/org/todo.org" "Deadlines")
+         (file+headline "~/org/calendar.org" "Deadlines")
          "* TODO %^{Task}\nDEADLINE: %^{Deadline}T\n:PROPERTIES:\n:CREATED: %U\n:CAPTURED: %a\n:END:\n%?")
         ("p" "Project" entry
          (file+headline "~/org/todo.org" "Projects")
@@ -929,3 +929,6 @@
   (setq persp-reset-windows-on-nil-window-conf nil)
   ;; Load workspaces automatically on startup
   (setq persp-auto-resume-time -1))
+
+;; pomodoro timer
+(load! "lisp/pomodoro")
