@@ -397,6 +397,9 @@
         ("p" "Project" entry
          (file+headline "~/org/todo.org" "Projects")
          "* PROJ %^{Project name}\n:PROPERTIES:\n:CREATED: %U\n:CAPTURED: %a\n:END:\n** TODO %?")
+        ("i" "Idea" entry
+         (file+headline "~/org/ideas.org" "Ideas")
+         "** IDEA %^{Idea}\n:PROPERTIES:\n:CREATED: %U\n:CAPTURED: %a\n:END:\n%?")
         ("c" "Contact" entry
          (file+headline "~/org/contacts.org" "Inbox")
          "* %^{Name}
