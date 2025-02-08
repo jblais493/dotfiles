@@ -200,6 +200,7 @@ alias epray="nvim ~/Vaults/Personal/Prayers/Evening\ Prayers.md"
 
 # Scripts
 alias w2pdf="wkhtmltopdf"
+alias devwork="~/.config/scripts/devwork.sh"
 alias f2p="~/.config/scripts/file_2_phone.sh"
 alias twi="py ~/.config/scripts/tweet_cli.py"
 alias dlp="nvim ~/.config/scripts/dlphone"
@@ -273,6 +274,7 @@ alias kmon="kmonad ~/.config/kmonad/config.kbd &"
 alias work="arttime --nolearn -a eye -t 'For I consider that the sufferings of this present time are not worth comparing with the glory that is going to be revealed to us - Romans 8:18' -g 4h"
 alias ci='~/.config/scripts/todotimer ci'
 alias co='~/.config/scripts/todotimer co'
+alias search-email='~/.config/scripts/email_search'
 
 # Docker commands migrated to podman
 alias dcd="podman compose down"
