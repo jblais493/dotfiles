@@ -90,11 +90,25 @@
 (custom-set-faces!
   '(vterm :family "Source Code Pro"))
 
+;; open vterm in dired location
+(after! vterm
+  (setq vterm-buffer-name-string "vterm %s")
+  (defadvice! +vterm/buffer-name-from-dired (fn &rest args)
+    :around #'vterm
+    (let ((default-directory (if (eq major-mode 'dired-mode)
+                                 (dired-current-directory)
+                               default-directory)))
+      (apply fn args))))
+
 ;; Enable paste from system clipboard with C-v in insert mode
 (evil-define-key 'insert global-map (kbd "C-v") 'clipboard-yank)
 
 ;; set specific browser to open links
-(setq browse-url-browser-function 'browse-url-firefox)
+;;(setq browse-url-browser-function 'browse-url-firefox)
+;; set browser to zen-browser
+(setq browse-url-browser-function 'browse-url-generic)
+(setq browse-url-generic-program "zen-browser")  ; replace with actual executable name
+
 
 ;; Emmet remap
 (add-hook 'sgml-mode-hook 'emmet-mode) ;; Auto-start on any markup modes
