@@ -24,7 +24,7 @@
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
-(add-to-list 'custom-theme-load-path "~/.doom.d/themes/")
+(add-to-list 'custom-theme-load-path "~/.config/doom/themes/")
 (load-theme 'doom-nord t)
 
 ;; Maintain terminal transparency in Doom Emacs
