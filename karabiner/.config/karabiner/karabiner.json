@@ -16,7 +16,7 @@
                                 "from": {
                                     "key_code": "m",
                                     "modifiers": {
-                                        "mandatory": ["left_command"],
+                                        "mandatory": ["left_option"],
                                         "optional": ["any"]
                                     }
                                 },
@@ -27,7 +27,7 @@
                                 "from": {
                                     "key_code": "n",
                                     "modifiers": {
-                                        "mandatory": ["left_command"],
+                                        "mandatory": ["left_option"],
                                         "optional": ["any"]
                                     }
                                 },
@@ -38,7 +38,7 @@
                                 "from": {
                                     "key_code": "e",
                                     "modifiers": {
-                                        "mandatory": ["left_command"],
+                                        "mandatory": ["left_option"],
                                         "optional": ["any"]
                                     }
                                 },
@@ -49,7 +49,7 @@
                                 "from": {
                                     "key_code": "i",
                                     "modifiers": {
-                                        "mandatory": ["left_command"],
+                                        "mandatory": ["left_option"],
                                         "optional": ["any"]
                                     }
                                 },
