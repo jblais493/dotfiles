@@ -391,8 +391,8 @@
 ;; Remove any existing timer
 (cancel-function-timers 'my/send-daily-agenda)
 
-;; Schedule for 4:30 AM
-(run-at-time "04:30" 86400 #'my/send-daily-agenda)
+;; Schedule for 5:30 AM
+(run-at-time "05:30" 86400 #'my/send-daily-agenda)
 
 ;; Remove holidays from agenda
 (setq org-agenda-include-diary nil)

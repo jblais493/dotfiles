@@ -11,3 +11,9 @@ We want to have an entirely reproducible system across whatever underlying OS, s
 #+begin_src bash
 sh <(curl -L https://nixos.org/nix/install) --daemon
 #+end_src
+
+We will create setup scripts for the OS's we use (unix based)
+
+* Installation scripts:
+** Mac
+** Linux
