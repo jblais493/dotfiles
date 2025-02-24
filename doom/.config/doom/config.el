@@ -874,9 +874,12 @@
 (use-package! org-gcal
   :after org
   :config
-  (setq org-gcal-client-id "ORG_GCAL_CLIENT_ID"
-        org-gcal-client-secret "ORG_GCAL_CLIENT_SECRET"
-        org-gcal-file-alist '(("ORG_GCAL_EMAIL" . "~/org/calendar.org"))
+  (setq org-gcal-client-id (getenv "ORG_GCAL_CLIENT_ID")
+        org-gcal-client-secret (getenv "ORG_GCAL_CLIENT_SECRET")
+        org-gcal-file-alist `((,(getenv "ORG_GCAL_EMAIL") . "~/org/calendar.org"))
+        ;; Add these two lines to force account selection
+        org-gcal-request-ptx t
+        org-gcal-token-file nil
         ;; Only fetch events from today onward
         org-gcal-fetch-event-filters '((lambda (event)
                                          (let ((start (org-gcal--get-time-and-desc event 'start)))
