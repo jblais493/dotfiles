@@ -348,9 +348,6 @@
 ;; Remove Scheduled tag
 (setq org-agenda-scheduled-leaders '("" ""))
 
-;; Refile Targets
-(setq org-refile-targets '(("~/org/done.org" . (:level . 1))))
-
 ;; Send a daily email to myself with the days agenda:
 (defun my/send-daily-agenda ()
   "Send daily agenda email using mu4e"
@@ -947,5 +944,6 @@
   ;; Load workspaces automatically on startup
   (setq persp-auto-resume-time -1))
 
-;; pomodoro timer
+;; lisp functions
 (load! "lisp/pomodoro")
+(load! "lisp/done-refile")
