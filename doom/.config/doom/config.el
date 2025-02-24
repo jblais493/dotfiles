@@ -409,7 +409,7 @@
          (file+headline "~/org/calendar.org" "Deadlines")
          "* TODO %^{Task}\nDEADLINE: %^{Deadline}T\n:PROPERTIES:\n:CREATED: %U\n:CAPTURED: %a\n:END:\n%?")
         ("p" "Project" entry
-         (file+headline "~/org/todo.org" "Projects")
+         (file+headline "~/org/projects.org" "Projects")
          "* PROJ %^{Project name}\n:PROPERTIES:\n:CREATED: %U\n:CAPTURED: %a\n:END:\n** TODO %?")
         ("i" "Idea" entry
          (file+headline "~/org/ideas.org" "Ideas")
