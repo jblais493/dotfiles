@@ -870,69 +870,18 @@
 (setq evil-want-fine-undo t) ;; granular undo with evil mode
 (setq auto-save-default t) ;; autosave on
 
-;; Attempt to setup org-gcal and tasks
-;; Main calendar and tasks synchronization setup
-;; (after! org
-;;   ;; Configure org-gcal with enhanced security and error handling
-;;   (use-package! org-gcal
-;;     :config
-;;     ;; Set up dedicated directory for token storage and lock files
-;;     (setq org-gcal-token-directory (expand-file-name "org-gcal/" doom-etc-dir))
-;;     (unless (file-directory-p org-gcal-token-directory)
-;;       (make-directory org-gcal-token-directory t))
-
-;;     ;; Configure OAuth2 authentication and file paths
-;;     (setq org-gcal-client-id (my/get-env-or-warn "ORG_GCAL_CLIENT_ID")
-;;           org-gcal-client-secret (my/get-env-or-warn "ORG_GCAL_CLIENT_SECRET")
-;;           ;; Store tokens in the dedicated directory we created
-;;           org-gcal-token-file (expand-file-name ".org-gcal-token" org-gcal-token-directory)
-;;           org-gcal-file-alist
-;;           `((,(my/get-env-or-warn "ORG_GCAL_EMAIL") . "~/org/calendar.org"))
-;;           ;; Explicitly set OAuth2 as the authentication method
-;;           org-gcal-request-method 'oauth2
-;;           org-gcal-notify-p t
-;;           org-gcal-reminder-time 30)
-
-;;     ;; Enhanced synchronization function with improved lock file handling
-;;     (defun my/google-sync ()
-;;       "Synchronize with Google Calendar with comprehensive error handling.
-;; Manages sync locks and provides detailed feedback on the synchronization process."
-;;       (interactive)
-;;       (when (and org-gcal-client-id org-gcal-client-secret)
-;;         (condition-case err
-;;             (progn
-;;               ;; Check for lock file in our specified directory
-;;               (let ((lock-file (expand-file-name "org-gcal.lock" org-gcal-token-directory)))
-;;                 (when (file-exists-p lock-file)
-;;                   (delete-file lock-file)
-;;                   (message "Removed stale lock file")))
-;;               ;; Perform calendar synchronization
-;;               (org-gcal-sync)
-;;               ;; Attempt tasks synchronization if available
-;;               (when (featurep 'org-gtasks)
-;;                 (org-gtasks-sync))
-;;               (message "Google synchronization completed successfully"))
-;;           ;; Handle and report any errors while ensuring locks are cleaned up
-;;           (error
-;;            (message "Sync error: %s" (error-message-string err))
-;;            (let ((lock-file (expand-file-name "org-gcal.lock" org-gcal-token-directory)))
-;;              (when (file-exists-p lock-file)
-;;                (delete-file lock-file))))))))
-
-;;   ;; Set up automatic synchronization triggers
-;;   (run-with-timer 0 600 #'my/google-sync)  ; Sync every 10 minutes
-;;   (add-hook 'org-agenda-mode-hook #'my/google-sync)
-;;   (add-hook 'org-capture-after-finalize-hook #'my/google-sync)
-
-;; ;; Configure org-gtasks when available
-;; (after! org-gtasks
-;;   (setq org-gtasks-file "~/org/tasks.org")
-;;   ;; Add task capture template
-;;   (after! org-capture
-;;     (add-to-list 'org-capture-templates
-;;                  '("t" "Task" entry
-;;                    (file "~/org/tasks.org")
-;;                    "* TODO %?\nDEADLINE: %^t\n%i"))))
+;; Set up org-gcal with time filtering
+(use-package! org-gcal
+  :after org
+  :config
+  (setq org-gcal-client-id "ORG_GCAL_CLIENT_ID"
+        org-gcal-client-secret "ORG_GCAL_CLIENT_SECRET"
+        org-gcal-file-alist '(("ORG_GCAL_EMAIL" . "~/org/calendar.org"))
+        ;; Only fetch events from today onward
+        org-gcal-fetch-event-filters '((lambda (event)
+                                         (let ((start (org-gcal--get-time-and-desc event 'start)))
+                                           (time-less-p (current-time) (org-gcal--parse-date start)))))
+        org-gcal-notify-p t))
 
 ;; Trying to save workspaces
 (after! persp-mode
