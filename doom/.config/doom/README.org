@@ -105,6 +105,18 @@ The capture buffer provides quick capture options for various types of content:
 
 * Modes
 ** Org mode
+- TAB - Fold/unfold headings
+- Shift+TAB - Cycle through folding states
+- C-c C-c - Evaluate code blocks, toggle checkboxes
+- C-c C-t - Cycle TODO states
+- C-c C-s - Schedule item
+- C-c C-d - Set deadline
 ** Web mode
+- C-c C-n - New element
+- C-c C-f - Toggle folding
+- C-c C-i - Indent region
+- C-c C-e - Edit element
+- z o - open code fold
+- z c - close code fold
 ** REST client mode
 ** SQL mode
