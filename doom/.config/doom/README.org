@@ -6,73 +6,93 @@ A Doom emacs base configuration which I use as my OS everywhere.
 
 * Controls
 
-|-------------+---------------+---------------------------------------|
-| Category    | Hotkey        | Function                              |
-|-------------+---------------+---------------------------------------|
-| Navigation  | Ctrl tab      | Next tab (centaur tabs)               |
-|             | Ctrl shft tab | Previous tab (centaur tabs)           |
-|             | Ctrl shft tab | Previous tab (centaur tabs)           |
-|             | Ctrl arrows   | Move between windows                  |
-|-------------+---------------+---------------------------------------|
-| Bookmarking | SPC b m       | bookmark current buffer               |
-|             | SPC b P       | save current bookmarks                |
-|             | SPC b M       | delete bookmark                       |
-|             | SPC ret       | jump to bookmarks                     |
-|-------------+---------------+---------------------------------------|
-| Buffers     | SPC b N       | New empty buffer                      |
-|             | SPC b n       | Next buffer                           |
-|             | SPC b p       | Previous buffer                       |
-|             | SPC b i       | Intreactive buffer - show all buffers |
-|             | SPC ,         | Switch to buffer                      |
-|             |               |                                       |
-|-------------+---------------+---------------------------------------|
-| Windows     | SPC w d       | Kill window                           |
-|             |               |                                       |
-|-------------+---------------+---------------------------------------|
-| Workspaces  | SPC tab n     | New workspace                         |
-|             | SPC tab N     | New named workspace                   |
-|             | SPC tab .     | switch workspace                      |
-|             | SPC tab d     | delete workspace                      |
-|             | SPC tab l     | loads workspace                       |
-|             | SPC tab r     | rename workspace                      |
-|-------------+---------------+---------------------------------------|
-| Files       | SPC f c       | Copy file                             |
-|             | SPC f d       | Find directory                        |
-|             | SPC .         | Find files                            |
-|             |               |                                       |
-|-------------+---------------+---------------------------------------|
-| Media       | SPC e e       | Opens elfeed                          |
-|             | SPC e u       | Elfeed update                         |
-|             | SPC e w       | EWW browser                           |
-|             | SPC e p       | Opens pass buffer                     |
-|             | SPC e v       | Opens video elfeed                    |
-|             | SPC e l       | Opens Elpher (gopher/gemini browser)  |
-|-------------+---------------+---------------------------------------|
-| Magit       | SPC g z       | Quick stage/commit/push               |
-|             | SPC g g       | Magit status                          |
-|             | SPC g p       | Pull                                  |
-|             | SPC g t       | Git time machine                      |
+|------------------------+---------------+---------------------------------------|
+| Category               | Hotkey        | Function                              |
+|------------------------+---------------+---------------------------------------|
+| Navigation             | Ctrl tab      | Next tab (centaur tabs)               |
+|                        | Ctrl shft tab | Previous tab (centaur tabs)           |
+|                        | Ctrl shft tab | Previous tab (centaur tabs)           |
+|                        | Ctrl arrows   | Move between windows                  |
+|                        |               |                                       |
+|------------------------+---------------+---------------------------------------|
+| Bookmarking            | SPC b m       | bookmark current buffer               |
+|                        | SPC b P       | save current bookmarks                |
+|                        | SPC b M       | delete bookmark                       |
+|                        | SPC ret       | jump to bookmarks                     |
+|------------------------+---------------+---------------------------------------|
+| Buffers                | SPC b N       | New empty buffer                      |
+|                        | SPC b n       | Next buffer                           |
+|                        | SPC b p       | Previous buffer                       |
+|                        | SPC b i       | Intreactive buffer - show all buffers |
+|                        | SPC ,         | Switch to buffer                      |
+|                        |               |                                       |
+|------------------------+---------------+---------------------------------------|
+| Windows                | SPC w d       | Kill window                           |
+|                        |               |                                       |
+|------------------------+---------------+---------------------------------------|
+| Workspaces             | SPC tab n     | New workspace                         |
+|                        | SPC tab N     | New named workspace                   |
+|                        | SPC tab .     | switch workspace                      |
+|                        | SPC tab d     | delete workspace                      |
+|                        | SPC tab l     | loads workspace                       |
+|                        | SPC tab r     | rename workspace                      |
+|------------------------+---------------+---------------------------------------|
+| Files                  | SPC f c       | Copy file                             |
+|                        | SPC f d       | Find directory                        |
+|                        | SPC .         | Find files                            |
+|                        | SPC SPC       | Find file in project                  |
+|------------------------+---------------+---------------------------------------|
+| Media                  | SPC e e       | Opens elfeed                          |
+|                        | SPC e u       | Elfeed update                         |
+|                        | SPC e w       | EWW browser                           |
+|                        | SPC e p       | Opens pass buffer                     |
+|                        | SPC e v       | Opens video elfeed                    |
+|                        | SPC e l       | Opens Elpher (gopher/gemini browser)  |
+|------------------------+---------------+---------------------------------------|
+| Magit                  | SPC g z       | Quick stage/commit/push               |
+|                        | SPC g g       | Magit status                          |
+|                        | SPC g p       | Pull                                  |
+|                        | SPC g t       | Git time machine                      |
+|------------------------+---------------+---------------------------------------|
+| Search/Replace/ripgrep | SPC s s       | Goto line/word                        |
+|                        | SPC s p       | Search Project                        |
+|                        | SPC s d       | Search current directory              |
+|                        | SPC s r       | Search and replace                    |
+|                        | SPC s i       | Go to symbol                          |
+|                        |               |                                       |
+|------------------------+---------------+---------------------------------------|
+| Editing                | Alt d         | Deletes after cursor                  |
+|                        | Alt backspace | Deletes before cursor                 |
+|                        | SPC i s       | Insert snippet                        |
+|                        | SPC t z       | Writeroom mode                        |
+|                        | SPC t b       | Big mode (presentations)              |
+|                        |               |                                       |
+|------------------------+---------------+---------------------------------------|
+| Projects               | SPC p a       | Add new project                       |
+|                        | SPC p d       | Remove from known projects            |
+|                        | SPC p f       | Find file in project                  |
+|                        |               |                                       |
 
 * Org Mode
 
-|----------+-------------+---------------------|
-| Category | Hotkey      | Function            |
-|----------+-------------+---------------------|
-| Org mode | Ctrl Shft c | Open capture buffer |
+|----------+-------------+-----------------------------------|
+| Category | Hotkey      | Function                          |
+|----------+-------------+-----------------------------------|
+| Org mode | Ctrl Shft c | Open capture buffer               |
+|          | SPC m t     | Change org state (TODO/DONE/etc.) |
+|          |             |                                   |
+|----------+-------------+-----------------------------------|
 
-Control Shift c opens a capture buffer from anywhere in the system and allows quick capture of:
-- t: todos - inserted into ~/org/todo.org
-- e: events (scheduled to be somewhere or do something at a given time) - inserted into ~/org/calendar.org
-- d: deadlines (scheduled deadline for a task) - inserted into ~/org/calendar.org
-- p: projects (captures direct to projects) - inserted into ~/org/projects.org
-- i: ideas - inserted into ~/org/ideas.org
-- c: contacts - inserted into ~/org/contacts.org
-- n: notes - inserted into ~/org/notes.org
+*** Org Capture Templates (Ctrl+Shift+c)
 
-* Emacs specific controls
+The capture buffer provides quick capture options for various types of content:
 
-|----------+---------------+-----------------------|
-| Category | Hotkey        | Function              |
-|----------+---------------+-----------------------|
-| Editing  | Alt d         | Deletes after cursor  |
-|          | Alt backspace | Deletes before cursor |
+| Template | Type      | Destination File       | Description                                    |
+|----------|-----------|------------------------|------------------------------------------------|
+| t        | Todo      | ~/org/todo.org         | Tasks and todos for action                     |
+| e        | Event     | ~/org/calendar.org     | Scheduled events (appointments, meetings, etc.)|
+| d        | Deadline  | ~/org/calendar.org     | Tasks with specific deadlines                  |
+| p        | Project   | ~/org/projects.org     | Project-related information and tasks          |
+| i        | Idea      | ~/org/ideas.org        | Capture ideas and inspirations                 |
+| c        | Contact   | ~/org/contacts.org     | Contact information                            |
+| n        | Note      | ~/org/notes.org        | General notes and information                  |
