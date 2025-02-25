@@ -1,0 +1,55 @@
+# My Doom Emacs Configuration
+
+I have used doom emacs as a way to get up and running with emacs
+
+A Doom emacs base configuration which I use as my OS everywhere.
+
+* Controls
+
+|-------------+---------------+---------------------------------------|
+| Category    | Hotkey        | Function                              |
+|-------------+---------------+---------------------------------------|
+| Navigation  | Ctrl tab      | Next tab (centaur tabs)               |
+|             | Ctrl shft tab | Previous tab (centaur tabs)           |
+|             | Ctrl shft tab | Previous tab (centaur tabs)           |
+|             | Ctrl arrows   | Move between windows                  |
+|-------------+---------------+---------------------------------------|
+| Bookmarking | SPC b m       | bookmark current buffer               |
+|             | SPC b P       | save current bookmarks                |
+|             | SPC b M       | delete bookmark                       |
+|             | SPC ret       | jump to bookmarks                     |
+|-------------+---------------+---------------------------------------|
+| Buffers     | SPC b N       | New empty buffer                      |
+|             | SPC b n       | Next buffer                           |
+|             | SPC b p       | Previous buffer                       |
+|             | SPC b i       | Intreactive buffer - show all buffers |
+|             |               |                                       |
+|             |               |                                       |
+|-------------+---------------+---------------------------------------|
+| Windows     | SPC w d       | Kill window                           |
+|             |               |                                       |
+
+* Org Mode
+|----------+-------------+---------------------|
+| Category | Hotkey      | Function            |
+|----------+-------------+---------------------|
+| Org mode | Ctrl Shft c | Open capture buffer |
+|          |             |                     |
+
+Control Shift c opens a capture buffer from anywhere in the system and allows quick capture of:
+- t: todos - inserted into ~/org/todo.org
+- e: events (scheduled to be somewhere or do something at a given time) - inserted into ~/org/calendar.org
+- d: deadlines (scheduled deadline for a task) - inserted into ~/org/calendar.org
+- p:  (scheduled deadline for a task) - inserted into ~/org/calendar.org
+- n: notes - inserted into ~/org/notes.org
+-
+
+
+
+
+* Emacs specific controls
+|----------+--------+---------------------|
+| Category | Hotkey | Function            |
+|----------+--------+---------------------|
+| Editing  | Alt d  | Deletes after cursor |
+|   | Alt backspace | Deletes before cursor|
