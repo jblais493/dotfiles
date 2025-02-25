@@ -23,7 +23,7 @@ A Doom emacs base configuration which I use as my OS everywhere.
 |             | SPC b n       | Next buffer                           |
 |             | SPC b p       | Previous buffer                       |
 |             | SPC b i       | Intreactive buffer - show all buffers |
-|             |               |                                       |
+|             | SPC ,         | Switch to buffer                      |
 |             |               |                                       |
 |-------------+---------------+---------------------------------------|
 | Windows     | SPC w d       | Kill window                           |
@@ -35,6 +35,23 @@ A Doom emacs base configuration which I use as my OS everywhere.
 |             | SPC tab d     | delete workspace                      |
 |             | SPC tab l     | loads workspace                       |
 |             | SPC tab r     | rename workspace                      |
+|-------------+---------------+---------------------------------------|
+| Files       | SPC f c       | Copy file                             |
+|             | SPC f d       | Find directory                        |
+|             | SPC .         | Find files                            |
+|             |               |                                       |
+|-------------+---------------+---------------------------------------|
+| Media       | SPC e e       | Opens elfeed                          |
+|             | SPC e u       | Elfeed update                         |
+|             | SPC e w       | EWW browser                           |
+|             | SPC e p       | Opens pass buffer                     |
+|             | SPC e v       | Opens video elfeed                    |
+|             | SPC e l       | Opens Elpher (gopher/gemini browser)  |
+|-------------+---------------+---------------------------------------|
+| Magit       | SPC g z       | Quick stage/commit/push               |
+|             | SPC g g       | Magit status                          |
+|             | SPC g p       | Pull                                  |
+|             | SPC g t       | Git time machine                      |
 
 * Org Mode
 
@@ -51,9 +68,6 @@ Control Shift c opens a capture buffer from anywhere in the system and allows qu
 - i: ideas - inserted into ~/org/ideas.org
 - c: contacts - inserted into ~/org/contacts.org
 - n: notes - inserted into ~/org/notes.org
-
-
-
 
 * Emacs specific controls
 
