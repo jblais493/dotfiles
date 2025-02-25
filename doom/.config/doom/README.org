@@ -13,7 +13,14 @@ A Doom emacs base configuration which I use as my OS everywhere.
 |                        | Ctrl shft tab | Previous tab (centaur tabs)           |
 |                        | Ctrl shft tab | Previous tab (centaur tabs)           |
 |                        | Ctrl arrows   | Move between windows                  |
-|                        |               |                                       |
+|                        | Alt x         | Meta X emacs commands (legendary)     |
+|                        | SPC ,         | Switch to buffer                      |
+|                        | SPC .         | Find files                            |
+|                        | SPC SPC       | Find file in project                  |
+|                        | SPC /         | Search project                        |
+|                        | SPC <         | Switch buffer                         |
+|                        | SPC d         | Dirvish in current directory          |
+|                        | SPC x         | Scratch buffer                        |
 |------------------------+---------------+---------------------------------------|
 | Bookmarking            | SPC b m       | bookmark current buffer               |
 |                        | SPC b P       | save current bookmarks                |
@@ -24,7 +31,6 @@ A Doom emacs base configuration which I use as my OS everywhere.
 |                        | SPC b n       | Next buffer                           |
 |                        | SPC b p       | Previous buffer                       |
 |                        | SPC b i       | Intreactive buffer - show all buffers |
-|                        | SPC ,         | Switch to buffer                      |
 |                        |               |                                       |
 |------------------------+---------------+---------------------------------------|
 | Windows                | SPC w d       | Kill window                           |
@@ -39,8 +45,6 @@ A Doom emacs base configuration which I use as my OS everywhere.
 |------------------------+---------------+---------------------------------------|
 | Files                  | SPC f c       | Copy file                             |
 |                        | SPC f d       | Find directory                        |
-|                        | SPC .         | Find files                            |
-|                        | SPC SPC       | Find file in project                  |
 |------------------------+---------------+---------------------------------------|
 | Media                  | SPC e e       | Opens elfeed                          |
 |                        | SPC e u       | Elfeed update                         |
@@ -48,6 +52,8 @@ A Doom emacs base configuration which I use as my OS everywhere.
 |                        | SPC e p       | Opens pass buffer                     |
 |                        | SPC e v       | Opens video elfeed                    |
 |                        | SPC e l       | Opens Elpher (gopher/gemini browser)  |
+|                        | SPC m d       | Play music directory                  |
+|                        | SPC m h       | shuffle                               |
 |------------------------+---------------+---------------------------------------|
 | Magit                  | SPC g z       | Quick stage/commit/push               |
 |                        | SPC g g       | Magit status                          |
@@ -96,3 +102,9 @@ The capture buffer provides quick capture options for various types of content:
 | i        | Idea      | ~/org/ideas.org        | Capture ideas and inspirations                 |
 | c        | Contact   | ~/org/contacts.org     | Contact information                            |
 | n        | Note      | ~/org/notes.org        | General notes and information                  |
+
+* Modes
+** Org mode
+** Web mode
+** REST client mode
+** SQL mode
