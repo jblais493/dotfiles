@@ -28,28 +28,37 @@ A Doom emacs base configuration which I use as my OS everywhere.
 |-------------+---------------+---------------------------------------|
 | Windows     | SPC w d       | Kill window                           |
 |             |               |                                       |
+|-------------+---------------+---------------------------------------|
+| Workspaces  | SPC tab n     | New workspace                         |
+|             | SPC tab N     | New named workspace                   |
+|             | SPC tab .     | switch workspace                      |
+|             | SPC tab d     | delete workspace                      |
+|             | SPC tab l     | loads workspace                       |
+|             | SPC tab r     | rename workspace                      |
 
 * Org Mode
+
 |----------+-------------+---------------------|
 | Category | Hotkey      | Function            |
 |----------+-------------+---------------------|
 | Org mode | Ctrl Shft c | Open capture buffer |
-|          |             |                     |
 
 Control Shift c opens a capture buffer from anywhere in the system and allows quick capture of:
 - t: todos - inserted into ~/org/todo.org
 - e: events (scheduled to be somewhere or do something at a given time) - inserted into ~/org/calendar.org
 - d: deadlines (scheduled deadline for a task) - inserted into ~/org/calendar.org
-- p:  (scheduled deadline for a task) - inserted into ~/org/calendar.org
+- p: projects (captures direct to projects) - inserted into ~/org/projects.org
+- i: ideas - inserted into ~/org/ideas.org
+- c: contacts - inserted into ~/org/contacts.org
 - n: notes - inserted into ~/org/notes.org
--
 
 
 
 
 * Emacs specific controls
-|----------+--------+---------------------|
-| Category | Hotkey | Function            |
-|----------+--------+---------------------|
-| Editing  | Alt d  | Deletes after cursor |
-|   | Alt backspace | Deletes before cursor|
+
+|----------+---------------+-----------------------|
+| Category | Hotkey        | Function              |
+|----------+---------------+-----------------------|
+| Editing  | Alt d         | Deletes after cursor  |
+|          | Alt backspace | Deletes before cursor |
