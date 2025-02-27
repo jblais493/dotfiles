@@ -2,7 +2,7 @@
 
 I have used doom emacs as a way to get up and running with emacs
 
-A Doom emacs base configuration which I use as my OS everywhere.
+A Doom emacs base configuration which I use as my OS everywhere. Note some controls are customized with my own lisp functions.
 
 * Controls
 
@@ -86,7 +86,8 @@ A Doom emacs base configuration which I use as my OS everywhere.
 |----------+-------------+-----------------------------------|
 | Org mode | Ctrl Shft c | Open capture buffer               |
 |          | SPC m t     | Change org state (TODO/DONE/etc.) |
-|          |             |                                   |
+|          | Ctrl c d    | Moves task to done.org            |
+|          | Ctrl c TAB  | Insert image inline               |
 |----------+-------------+-----------------------------------|
 
 *** Org Capture Templates (Ctrl+Shift+c)
