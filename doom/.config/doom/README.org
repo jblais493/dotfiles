@@ -121,3 +121,6 @@ The capture buffer provides quick capture options for various types of content:
 - z c - close code fold
 ** REST client mode
 ** SQL mode
+
+** Evaluate sexp
+- SPC-u C-x C-e - evaluates and outputs math
