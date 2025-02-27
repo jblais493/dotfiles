@@ -397,7 +397,7 @@
 ;; Capture templates
 (setq org-capture-templates
       '(("t" "Todo" entry
-         (file+headline "~/org/todo.org" "Inbox")
+         (file+headline "~/org/inbox.org" "Inbox")
          "* TODO %^{Task}\n:PROPERTIES:\n:CREATED: %U\n:CAPTURED: %a\n:END:\n%?")
         ("e" "Event" entry
          (file+headline "~/org/calendar.org" "Events")
