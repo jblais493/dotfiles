@@ -896,6 +896,9 @@
   ;; Load workspaces automatically on startup
   (setq persp-auto-resume-time -1))
 
+;; Prevent clock from stopping when marking subtasks as done
+(setq org-clock-out-when-done nil)
+
 ;; lisp functions
 (load! "lisp/pomodoro")
 (load! "lisp/done-refile")
