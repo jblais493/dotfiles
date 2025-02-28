@@ -220,8 +220,6 @@ alias mntnas="sshfs joshua@172.18.250.13:/mnt/Vault /mnt/Logos"
 alias umountnas="fusermount -u /mnt/Logos"
 alias mntexternal="sudo mount /dev/sdb1 /mnt/External4TB"
 alias mntvault="sudo mount /dev/sda /mnt/Logos"
-alias doomsync="~/.emacs.d/bin/doom sync"
-alias doomrefresh="~/.emacs.d/bin/doom refresh"
 alias reverecalc="cd ~/Revere/Revere\ LATEST/Systems/Programs/Calculators && python ConveyancingOutput.py"
 alias buyercalc="cd ~/Revere/Revere\ LATEST/Systems/Programs/Calculators && python BuyerCommissionCalc.py"
 alias record="arecord -f cd output.wav"
@@ -234,6 +232,11 @@ alias acct="libreoffice /mnt/nomad/TrueNAS/Revere/Revere\ LATEST/Accounting/2022
 alias convey="nvim /mnt/nomad/TrueNAS/Revere/Revere\ LATEST/Brokerage/CONVEYANCING/Information\ for\ Conveyancing/Lawyers/Lawyer\ Contact\ Information"
 alias twit="gimp /mnt/Logos/TrueNAS/Personal/Twitter.xcf"
 alias strip="mogrify -strip"
+
+# Emacs
+alias emacs="GDK_BACKEND=x11 emacs"
+alias doomsync="~/.config/emacs/bin/doom sync"
+alias doomdoc="~/.config/emacs/bin/doom doctor"
 
 # Networking
 alias nmconnect="nmcli device wifi connect"
