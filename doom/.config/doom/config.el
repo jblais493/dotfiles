@@ -10,7 +10,7 @@
 
 ;; Doom exposes five (optional) variables for controlling fonts in Doom. Here
 ;; are the three important ones:
-(setq doom-font (font-spec :family "Source Code Pro" :size 15))
+(setq doom-font (font-spec :family "GeistMono Nerd Font" :size 15))
 ;; + `doom-font'
 ;; + `doom-variable-pitch-font'
 ;; + `doom-big-font' -- used for `doom-big-font-mode'; use this for
@@ -347,52 +347,52 @@
 
 ;; Remove Scheduled tag
 (setq org-agenda-scheduled-leaders '("" ""))
-
-;; Send a daily email to myself with the days agenda:
-(defun my/send-daily-agenda ()
-  "Send daily agenda email using mu4e"
-  (interactive)
-  (let* ((date-string (format-time-string "%Y-%m-%d"))
-         (subject (format "Daily Agenda: %s" (format-time-string "%A, %B %d")))
-         (tmp-file (make-temp-file "agenda")))
-
-    ;; Generate agenda and save to temp file
-    (save-window-excursion
-      (org-agenda nil "d")
-      (with-current-buffer org-agenda-buffer-name
-        (org-agenda-write tmp-file)))
-
-    ;; Read the agenda content
-    (let ((agenda-content
-           (with-temp-buffer
-             (insert-file-contents tmp-file)
-             (buffer-string))))
-
-      ;; Create and send email
-      (with-current-buffer (mu4e-compose-new)
-        (mu4e-compose-mode)
-        ;; Set up headers
-        (message-goto-to)
-        (insert "josh@joshblais.com")
-        (message-goto-subject)
-        (insert subject)
-        (message-goto-body)
-        ;; Insert the agenda content
-        (insert agenda-content)
-        ;; Send
-        (message-send-and-exit)))
-
-    ;; Cleanup
-    (delete-file tmp-file)))
-
-;; Remove any existing timer
-(cancel-function-timers 'my/send-daily-agenda)
-
-;; Schedule for 5:30 AM
-(run-at-time "05:30" 86400 #'my/send-daily-agenda)
-
 ;; Remove holidays from agenda
 (setq org-agenda-include-diary nil)
+
+;;;; Send a daily email to myself with the days agenda:
+;;(defun my/send-daily-agenda ()
+;;  "Send daily agenda email using mu4e"
+;;  (interactive)
+;;  (let* ((date-string (format-time-string "%Y-%m-%d"))
+;;         (subject (format "Daily Agenda: %s" (format-time-string "%A, %B %d")))
+;;         (tmp-file (make-temp-file "agenda")))
+;;
+;;    ;; Generate agenda and save to temp file
+;;    (save-window-excursion
+;;      (org-agenda nil "d")
+;;      (with-current-buffer org-agenda-buffer-name
+;;        (org-agenda-write tmp-file)))
+;;
+;;    ;; Read the agenda content
+;;    (let ((agenda-content
+;;           (with-temp-buffer
+;;             (insert-file-contents tmp-file)
+;;             (buffer-string))))
+;;
+;;      ;; Create and send email
+;;      (with-current-buffer (mu4e-compose-new)
+;;        (mu4e-compose-mode)
+;;        ;; Set up headers
+;;        (message-goto-to)
+;;        (insert "josh@joshblais.com")
+;;        (message-goto-subject)
+;;        (insert subject)
+;;        (message-goto-body)
+;;        ;; Insert the agenda content
+;;        (insert agenda-content)
+;;        ;; Send
+;;        (message-send-and-exit)))
+;;
+;;    ;; Cleanup
+;;    (delete-file tmp-file)))
+;;
+;;;; Remove any existing timer
+;;(cancel-function-timers 'my/send-daily-agenda)
+;;
+;;;; Schedule for 5:30 AM
+;;(run-at-time "05:30" 86400 #'my/send-daily-agenda)
+
 
 ;; Capture templates
 (setq org-capture-templates
@@ -537,14 +537,16 @@
       (concat dir (car cover-files)))))
 
 ;; MU4E
-(use-package mu4e
-  :ensure nil
-  :defer 20
-  :config
-
-  (load-file "~/.config/mu4e/mu4e-config.el")
+(after! mu4e
+  ;; Tell Doom where to find mu
+  (setq mu4e-mu-binary "/usr/bin/mu")
+  
+  ;; Set your update interval
   (setq mu4e-update-interval (* 10 60))
-  (mu4e t))
+  
+  ;; Load your custom configuration file
+  (load-file "~/.config/mu4e/mu4e-config.el")
+  )
 
 ;; Deft mode
 ;; (setq deft-extensions '("txt" "tex" "org"))
