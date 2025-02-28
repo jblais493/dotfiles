@@ -875,21 +875,10 @@
 (setq evil-want-fine-undo t) ;; granular undo with evil mode
 (setq auto-save-default t) ;; autosave on
 
-;; Set up org-gcal with time filtering
-(use-package! org-gcal
-  :after org
-  :config
-  (setq org-gcal-client-id (getenv "ORG_GCAL_CLIENT_ID")
-        org-gcal-client-secret (getenv "ORG_GCAL_CLIENT_SECRET")
-        org-gcal-file-alist `((,(getenv "ORG_GCAL_EMAIL") . "~/org/calendar.org"))
-        ;; Force account selection during authentication
-        org-gcal-request-ptbr t
-        org-gcal-token-file nil
-        ;; Only fetch events from today onward
-        org-gcal-fetch-event-filters '((lambda (event)
-                                         (let ((start (org-gcal--get-time-and-desc event 'start)))
-                                           (time-less-p (current-time) (org-gcal--parse-date start)))))
-        org-gcal-notify-p t))
+;; Load private org-gcal credentials if the file exists
+(let ((private-config (expand-file-name "private/org-gcal-credentials.el" doom-private-dir)))
+  (when (file-exists-p private-config)
+    (load private-config)))
 
 ;; Trying to save workspaces
 (after! persp-mode
