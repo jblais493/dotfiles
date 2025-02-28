@@ -13,6 +13,7 @@
 ;; (package! calfw)
 ;; (package! calfw-org)
 ;; (package! web-beautify)
+(package! sqlite3)
 (package! impatient-mode)
 ;; (package! ssh)
 ;; (package! multiple-cursors)
