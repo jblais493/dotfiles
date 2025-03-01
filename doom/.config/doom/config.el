@@ -393,7 +393,6 @@
 ;;;; Schedule for 5:30 AM
 ;;(run-at-time "05:30" 86400 #'my/send-daily-agenda)
 
-
 ;; Capture templates
 (setq org-capture-templates
       '(("t" "Todo" entry
@@ -730,7 +729,7 @@
 (load! "templates/writing-template")
 (load! "templates/note-template")
 
-;; Basic elfeed setup first
+;; =============== ELFEED =============== ;;
 (make-directory "~/.elfeed" t)
 
 ;; Force load elfeed-org
@@ -744,12 +743,6 @@
 (after! elfeed
   (setq elfeed-db-directory "~/.elfeed")
   (setq elfeed-search-filter "@1-week-ago +unread -4chan -Reddit"))
-
-;; Load extensions
-;; (use-package! elfeed-goodies
-;;   :after elfeed
-;;   :config
-;;   (elfeed-goodies/setup))
 
 (use-package! elfeed-tube
   :after elfeed
