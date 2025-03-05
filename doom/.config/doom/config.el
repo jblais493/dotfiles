@@ -127,6 +127,12 @@
         :n "<M-right>" #'org-do-demote)
   )
 
+;; =============== MODELINE =============== ;;
+(setq doom-modeline-icon t)
+(setq doom-modeline-major-mode-icon t)
+(setq doom-modeline-lsp-icon t)
+(setq doom-modeline-major-mode-color-icon t)
+
 ;; Auto-clock in when state changes to STRT
 (defun my/org-clock-in-if-starting ()
   "Clock in when the task state changes to STRT"
