@@ -897,6 +897,7 @@
 ;; lisp functions
 (load! "lisp/pomodoro")
 (load! "lisp/done-refile")
+(load! "lisp/mu4e-contact.el")
 
 ;; Speed of which-key popup
 (setq which-key-idle-delay 0.2)

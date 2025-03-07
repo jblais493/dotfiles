@@ -172,17 +172,9 @@ alias sshl="ssh_fzf"
 alias oo="cd ~/Vaults"
 alias bills="nvim ~/Vaults/Personal/bills.md"
 alias godir="cd ~/go/src/github.com/jblais493/"
-alias blog="tmuxp load ~/Development/Blog2024/blogsession.yaml"
-alias gop="tmuxp load ~/go/src/github.com/jblais493/EchoBoilerplate/echosession.yaml"
-alias htmx="tmuxp load ~/go/src/github.com/jblais493/HTMXFrontend/configs/htmxsession.yaml"
-alias hermes="tmuxp load ~/go/src/github.com/jblais493/Hermes/configs/hermessession.yaml"
-alias hometrova="tmuxp load ~/go/src/github.com/jblais493/Hometrovarevamp/configs/hometrova.yaml"
-alias login="tmuxp load ~/go/src/github.com/jblais493/go-login/gologin.yaml"
-alias writing="tmuxp load ~/Vaults/Writing/writing.yaml"
-alias ttitan="tmuxp load ~/Development/tasktitan/tasktitan.yaml"
 alias dev="cd ~/Development"
-alias photos="cd /mnt/nomad/TrueNAS/Photos"
-alias f="thunar . &"
+alias photos="cd ~/Photos"
+alias f="nautilus . &"
 alias revere="cd /mnt/nomad/TrueNAS/Revere"
 alias revereb="cd /mnt/nomad/TrueNAS/Revere/Revere\ LATEST/Brokerage"
 alias commer="cd /mnt/nomad/TrueNAS/Revere/Revere\ LATEST/Brokerage/Alberta/Edmonton/Deals/2024Commercial"
@@ -278,6 +270,7 @@ alias work="arttime --nolearn -a eye -t 'For I consider that the sufferings of t
 alias ci='~/.config/scripts/todotimer ci'
 alias co='~/.config/scripts/todotimer co'
 alias search-email='~/.config/scripts/email_search'
+alias blogdeploy="~/.config/scripts/Development/blogdeploy.sh"
 
 # Docker commands migrated to podman
 alias dcd="podman compose down"
