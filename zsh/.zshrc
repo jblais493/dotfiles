@@ -12,6 +12,9 @@ export PATH=$PATH:~/.local/bin/
 
 #scripts
 export PATH=$PATH:~/.config/scripts
+export PATH=$PATH:~/.config/scripts/Development
+export PATH=$PATH:~/.config/scripts/Media
+export PATH=$PATH:~/.config/scripts/Accounting
 export PATH=$PATH:~/.config/scripts/Dotfiles
 
 # Path to your oh-my-zsh installation.
@@ -199,7 +202,7 @@ alias dlp="nvim ~/.config/scripts/dlphone"
 alias eopn="~/.config/scripts/manage_encrypted_drives eopn"
 alias ecls="~/.config/scripts/manage_encrypted_drives ecls"
 alias rs="~/.config/scripts/gammastep.sh"
-alias gst="python ~/.config/scripts/GST.py"
+alias gst="python ~/.config/scripts/Accounting/GST.py"
 alias rsx="killall gammastep"
 alias pg="pass generate"
 alias v="nvim"
@@ -281,7 +284,7 @@ alias dps="podman ps -a"
 alias dl="podman logs"
 
 # Generate API Key
-alias apigen="go run ~/.config/scripts/apikeygen.go -app"
+alias apigen="go run ~/.config/scripts/Development/apikeygen.go -app"
 
 # Tasks for running htmx app
 alias tr="go-task run"
