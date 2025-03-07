@@ -552,8 +552,10 @@
   ;; Set your update interval
   (setq mu4e-update-interval (* 10 60))
 
-  ;; Load your custom configuration file
-  (load-file "~/.config/mu4e/mu4e-config.el")
+  ;; Load mu4e configuration if the file exists
+  (let ((mu4e-config (expand-file-name "private/mu4e-config.el" doom-private-dir)))
+    (when (file-exists-p mu4e-config)
+      (load mu4e-config)))
   )
 
 ;; Deft mode
