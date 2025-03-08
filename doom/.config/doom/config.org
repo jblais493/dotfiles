@@ -3,7 +3,7 @@
 * Literate configuration
 ** Initial Setup
 *** Included configuration
-#+begin_src lisp
+#+begin_src elisp
 ;;; $DOOMDIR/config.el -*- lexical-binding: t; -*-
 
 ;; Place your private configuration here! Remember, you do not need to run 'doom
@@ -15,6 +15,11 @@
       user-mail-address "josh@joshblais.com")
 #+end_src
 
+** Fonts
+I really like GeistMono as a replacement for SourceCode Pro I will look at adding in serif/alternate writeroom fonts
+- [ ] TODO: alternate fonts for writeroom
+
+#+begin_src elisp
 ;; Doom exposes five (optional) variables for controlling fonts in Doom. Here
 ;; are the three important ones:
 (setq doom-font (font-spec :family "GeistMono Nerd Font" :size 15))
@@ -27,7 +32,11 @@
 ;; font string. You generally only need these two:
 ;; (setq doom-font (font-spec :family "monospace" :size 12 :weight 'semi-light)
 ;;       doom-variable-pitch-font (font-spec :family "sans" :size 13))
+#+end_src
 
+** Theming
+
+#+begin_src elisp
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
@@ -41,6 +50,7 @@
 
 ;; remove top frame bar in emacs
 (add-to-list 'default-frame-alist '(undecorated . t))
+#+end_src
 
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
@@ -133,6 +143,12 @@
         :n "<M-left>" #'org-do-promote
         :n "<M-right>" #'org-do-demote)
   )
+
+;; =============== MODELINE =============== ;;
+(setq doom-modeline-icon t)
+(setq doom-modeline-major-mode-icon t)
+(setq doom-modeline-lsp-icon t)
+(setq doom-modeline-major-mode-color-icon t)
 
 ;; Auto-clock in when state changes to STRT
 (defun my/org-clock-in-if-starting ()
@@ -553,8 +569,10 @@
   ;; Set your update interval
   (setq mu4e-update-interval (* 10 60))
 
-  ;; Load your custom configuration file
-  (load-file "~/.config/mu4e/mu4e-config.el")
+  ;; Load mu4e configuration if the file exists
+  (let ((mu4e-config (expand-file-name "private/mu4e-config.el" doom-private-dir)))
+    (when (file-exists-p mu4e-config)
+      (load mu4e-config)))
   )
 
 ;; Deft mode
@@ -875,6 +893,104 @@
 (setq evil-want-fine-undo t) ;; granular undo with evil mode
 (setq auto-save-default t) ;; autosave on
 
+;; Setup writeroom width and appearance
+(after! writeroom-mode
+  ;; Set width for centered text
+  (setq writeroom-width 40)
+
+  ;; Ensure the text is truly centered horizontally
+  (setq writeroom-fringes-outside-margins nil)
+  (setq writeroom-center-text t)
+
+  ;; Add vertical spacing for better readability
+  (setq writeroom-extra-line-spacing 4)  ;; Adds space between lines
+
+  ;; Improve vertical centering with visual-fill-column integration
+  (add-hook! 'writeroom-mode-hook
+    (defun my-writeroom-settings ()
+      "Configure various settings when entering/exiting writeroom-mode."
+      (if writeroom-mode
+          (progn
+            ;; When entering writeroom mode
+            (display-line-numbers-mode -1)       ;; Turn off line numbers
+            (setq cursor-type 'bar)              ;; Change cursor to a thin bar for writing
+            (hl-line-mode -1)                    ;; Disable current line highlighting
+            (setq left-margin-width 0)           ;; Let writeroom handle margins
+            (setq right-margin-width 0)
+            (text-scale-set 1)                   ;; Slightly increase text size
+
+            ;; Improve vertical centering
+            (when (bound-and-true-p visual-fill-column-mode)
+              (visual-fill-column-mode -1))      ;; Temporarily disable if active
+            (setq visual-fill-column-width 40)   ;; Match writeroom width
+            (setq visual-fill-column-center-text t)
+            (setq visual-fill-column-extra-text-width '(0 . 0))
+
+            ;; Set top/bottom margins to improve vertical centering
+            ;; These larger margins push content toward vertical center
+            (setq-local writeroom-top-margin-size
+                        (max 10 (/ (- (window-height) 40) 3)))
+            (setq-local writeroom-bottom-margin-size
+                        (max 10 (/ (- (window-height) 40) 3)))
+
+            ;; Enable visual-fill-column for better text placement
+            (visual-fill-column-mode 1))
+
+        ;; When exiting writeroom mode
+        (progn
+          (display-line-numbers-mode +1)       ;; Restore line numbers
+          (setq cursor-type 'box)              ;; Restore default cursor
+          (hl-line-mode +1)                    ;; Restore line highlighting
+          (text-scale-set 0)                   ;; Restore normal text size
+          (when (bound-and-true-p visual-fill-column-mode)
+            (visual-fill-column-mode -1))))))  ;; Disable visual fill column mode
+
+  ;; Hide modeline for a cleaner look
+  (setq writeroom-mode-line nil)
+
+  ;; Add additional global effects for writeroom
+  (setq writeroom-global-effects
+        '(writeroom-set-fullscreen        ;; Enables fullscreen
+          writeroom-set-alpha             ;; Adjusts frame transparency
+          writeroom-set-menu-bar-lines
+          writeroom-set-tool-bar-lines
+          writeroom-set-vertical-scroll-bars
+          writeroom-set-bottom-divider-width))
+
+  ;; Set frame transparency
+  (setq writeroom-alpha 0.95))
+
+;; Open file manager in place dirvish/dired
+(defun open-nautilus-here ()
+  "Open nautilus in the current directory shown in dired/dirvish."
+  (interactive)
+  (let ((dir (cond
+              ;; If we're in dired mode
+              ((derived-mode-p 'dired-mode)
+               default-directory)
+              ;; If we're in dirvish mode (dirvish is derived from dired)
+              ((and (featurep 'dirvish)
+                    (derived-mode-p 'dired-mode)
+                    (bound-and-true-p dirvish-directory))
+               (or (bound-and-true-p dirvish-directory) default-directory))
+              ;; Fallback for any other mode
+              (t default-directory))))
+    (message "Opening nautilus in: %s" dir)  ; Helpful for debugging
+    (start-process "nautilus" nil "nautilus" dir)))
+
+;; Bind it to Ctrl+Alt+f in both dired and dirvish modes
+(with-eval-after-load 'dired
+  (define-key dired-mode-map (kbd "C-M-f") 'open-nautilus-here))
+
+;; For dirvish, we need to add our binding to its special keymap if it exists
+(with-eval-after-load 'dirvish
+  (if (boundp 'dirvish-mode-map)
+      (define-key dirvish-mode-map (kbd "C-M-f") 'open-nautilus-here)
+    ;; Alternative approach if dirvish uses a different keymap system
+    (add-hook 'dirvish-mode-hook
+              (lambda ()
+                (local-set-key (kbd "C-M-f") 'open-nautilus-here)))))
+
 ;; Load private org-gcal credentials if the file exists
 (let ((private-config (expand-file-name "private/org-gcal-credentials.el" doom-private-dir)))
   (when (file-exists-p private-config)
@@ -896,3 +1012,7 @@
 ;; lisp functions
 (load! "lisp/pomodoro")
 (load! "lisp/done-refile")
+(load! "lisp/mu4e-contact.el")
+
+;; Speed of which-key popup
+(setq which-key-idle-delay 0.2)
