@@ -244,19 +244,6 @@
 ;; Blink cursor
 (blink-cursor-mode 1)
 
-;; (require 'package)
-;; (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/") t)
-;; (package-initialize)
-
-;; (setq package-selected-packages
-;;       '(dart-mode lsp-mode lsp-dart lsp-treemacs flycheck company
-;;         ;; Optional packages
-;;         lsp-ui company hover))
-
-;; (when (cl-find-if-not #'package-installed-p package-selected-packages)
-;;   (package-refresh-contents)
-;;   (mapc #'package-install package-selected-packages))
-
 ;; Org-auto-tangle
 (use-package org-auto-tangle
   :defer t

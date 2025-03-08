@@ -149,6 +149,7 @@ We set the visual line wrapping and relative line numbers (then we can just go u
 #+end_src
 
 * Org mode setup
+** Initial setup
 #+begin_src elisp
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
@@ -196,6 +197,200 @@ We set the visual line wrapping and relative line numbers (then we can just go u
     (org-mode . org-fancy-priorities-mode)
     :config
     (setq org-fancy-priorities-list '("⚡" "⬆" "⬇" "☕"))))
+#+end_src
+
+** Org Tangle
+#+begin_src elisp
+;; Org-auto-tangle
+(use-package org-auto-tangle
+  :defer t
+  :hook (org-mode . org-auto-tangle-mode)
+  :config
+  (setq org-auto-tangle-default t))
+#+end_src
+
+** Org Agenda
+#+begin_src elisp
+;; Org Agenda
+;; Set days viewed to 3, set start day to today, create seperator, and Dashboard view
+(setq org-agenda-remove-tags t)
+(setq org-agenda-block-separator 32)
+(setq org-agenda-custom-commands
+      '(("d" "Dashboard"
+         (
+          (tags "PRIORITY=\"A\""
+                ((org-agenda-skip-function '(org-agenda-skip-entry-if 'todo 'done))
+                 (org-agenda-overriding-header "\n HIGHEST PRIORITY")
+                 (org-agenda-prefix-format "   %i %?-2 t%s")
+                 )
+                )
+          (agenda ""
+                  (
+                   (org-agenda-start-day "+0d")
+                   (org-agenda-span 1)
+                   (org-agenda-time)
+                   (org-agenda-remove-tags t)
+                   (org-agenda-todo-keyword-format "")
+                   (org-agenda-scheduled-leaders '("" ""))
+                   (org-agenda-current-time-string "ᐊ┈┈┈┈┈┈┈┈┈ NOW")
+                   (org-agenda-overriding-header "\n TODAY'S SCHEDULE")
+                   (org-agenda-prefix-format "   %i %?-2 t%s")
+                   )
+                  )
+          (tags-todo  "-STYLE=\"habit\""
+                      (
+                       (org-agenda-overriding-header "\n ALL TODO")
+                       (org-agenda-sorting-strategy '(priority-down))
+                       (org-agenda-remove-tags t)
+                       (org-agenda-prefix-format "   %i %?-2 t%s")
+                       )
+                      )))))
+
+;; Remove Scheduled tag
+(setq org-agenda-scheduled-leaders '("" ""))
+;; Remove holidays from agenda
+(setq org-agenda-include-diary nil)
+#+end_src
+
+** Org capture templates
+#+begin_src elisp
+;; Capture templates
+(setq org-capture-templates
+      '(("t" "Todo" entry
+         (file+headline "~/org/inbox.org" "Inbox")
+         "* TODO %^{Task}\n:PROPERTIES:\n:CREATED: %U\n:CAPTURED: %a\n:END:\n%?")
+        ("e" "Event" entry
+         (file+headline "~/org/calendar.org" "Events")
+         "* %^{Event}\n%^{SCHEDULED}T\n:PROPERTIES:\n:CREATED: %U\n:CAPTURED: %a\n:CONTACT: %(org-capture-ref-link \"~/org/contacts.org\")\n:END:\n%?")
+        ("d" "Deadline" entry
+         (file+headline "~/org/calendar.org" "Deadlines")
+         "* TODO %^{Task}\nDEADLINE: %^{Deadline}T\n:PROPERTIES:\n:CREATED: %U\n:CAPTURED: %a\n:END:\n%?")
+        ("p" "Project" entry
+         (file+headline "~/org/projects.org" "Projects")
+         "* PROJ %^{Project name}\n:PROPERTIES:\n:CREATED: %U\n:CAPTURED: %a\n:END:\n** TODO %?")
+        ("i" "Idea" entry
+         (file+headline "~/org/ideas.org" "Ideas")
+         "** IDEA %^{Idea}\n:PROPERTIES:\n:CREATED: %U\n:CAPTURED: %a\n:END:\n%?")
+        ("c" "Contact" entry
+         (file+headline "~/org/contacts.org" "Inbox")
+         "* %^{Name}
+
+:PROPERTIES:
+:CREATED: %U
+:CAPTURED: %a
+:EMAIL: %^{Email}
+:PHONE: %^{Phone}
+:BIRTHDAY: %^{Birthday +1y}u
+:LOCATION: %^{Address}
+:LAST_CONTACTED: %U
+:END:
+*** Communications
+*** Notes
+%?")
+        ("n" "Note" entry
+         (file+headline "~/org/notes.org" "Inbox")
+         "* [%<%Y-%m-%d %a>] %^{Title}\n:PROPERTIES:\n:CREATED: %U\n:CAPTURED: %a\n:END:\n%?"
+         :prepend t)))
+
+;; Helper function to select and link a contact
+(defun org-capture-ref-link (file)
+  "Create a link to a contact in contacts.org"
+  (let* ((headlines (org-map-entries
+                     (lambda ()
+                       (cons (org-get-heading t t t t)
+                             (org-id-get-create)))
+                     t
+                     (list file)))
+         (contact (completing-read "Contact: "
+                                   (mapcar #'car headlines)))
+         (id (cdr (assoc contact headlines))))
+    (format "[[id:%s][%s]]" id contact)))
+
+;; Set archive location to done.org under current date
+;; (defun my/archive-done-task ()
+;;   "Archive current task to done.org under today's date"
+;;   (interactive)
+;;   (let* ((date-header (format-time-string "%Y-%m-%d %A"))
+;;          (archive-file (expand-file-name "~/org/done.org"))
+;;          (location (format "%s::* %s" archive-file date-header)))
+;;     ;; Only archive if not a habit
+;;     (unless (org-is-habit-p)
+;;       ;; Add COMPLETED property if it doesn't exist
+;;       (org-set-property "COMPLETED" (format-time-string "[%Y-%m-%d %a %H:%M]"))
+;;       ;; Set archive location and archive
+;;       (setq org-archive-location location)
+;;       (org-archive-subtree))))
+
+;; Automatically archive when marked DONE, except for habits
+;; (add-hook 'org-after-todo-state-change-hook
+;;           (lambda ()
+;;             (when (and (string= org-state "DONE")
+;;                        (not (org-is-habit-p)))
+;;               (my/archive-done-task))))
+
+;; Optional key binding if you ever need to archive manually
+(define-key org-mode-map (kbd "C-c C-x C-a") 'my/archive-done-task)
+#+end_src
+
+** Org Roam
+#+begin_src elisp
+;;Org-Roam
+(setq org-roam-directory "~/org/roam")
+
+(use-package! websocket
+  :after org-roam)
+
+(use-package! org-roam-ui
+  :after org-roam ;; or :after org
+  ;;         normally we'd recommend hooking orui after org-roam, but since org-roam does not have
+  ;;         a hookable mode anymore, you're advised to pick something yourself
+  ;;         if you don't care about startup time, use
+  ;;  :hook (after-init . org-roam-ui-mode)
+  :config
+  (setq org-roam-ui-sync-theme t
+        org-roam-ui-follow t
+        org-roam-ui-update-on-save t
+        org-roam-ui-open-on-start t))
+
+;; org-download customizations
+(require 'org-download)
+(setq-default org-download-screenshot-method "scrot -s %s")
+#+end_src
+
+** Org keybinds
+#+begin_src elisp
+;; Keybinds for org mode
+(with-eval-after-load 'org
+  (define-key org-mode-map (kbd "C-c C-i") #'my/org-insert-image)
+  (define-key org-mode-map (kbd "C-c e") #'org-set-effort)
+  (define-key org-mode-map (kbd "C-c i") #'org-clock-in)
+  (define-key org-mode-map (kbd "C-c o") #'org-clock-out))
+#+end_src
+
+** Custom function for image insertion
+#+begin_src elisp
+;; Insert image into org from selection
+(defun my/org-insert-image ()
+  "Select and insert an image into org file."
+  (interactive)
+  (let ((selected-file (read-file-name "Select image: " "~/Pictures/" nil t)))
+    (when selected-file
+      (insert (format "[[file:%s]]\n" selected-file))
+      (org-display-inline-images))))
+#+end_src
+
+** Org Babel
+#+begin_src elisp
+(after! org
+  (org-babel-do-load-languages
+   'org-babel-load-languages
+   '((go . t)))
+
+  (setq org-src-fontify-natively t
+        org-src-preserve-indentation t
+        org-src-tab-acts-natively t
+        ;; Don't save source edits in temp files
+        org-src-window-setup 'current-window))
 #+end_src
 
 * Evil mode setup
@@ -327,35 +522,44 @@ This sets up k-j as an evil escape sequence. Not used anymore due to setting esc
 (setq doom-themes-treemacs-theme "all-the-icons")
 #+end_src
 
+** AI
+#+begin_src elisp
+;; (use-package! elysium
+;;   :custom
+;;   (elysium-window-size 0.33)
+;;   (elysium-window-style 'vertical))
 
-;; (require 'package)
-;; (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/") t)
-;; (package-initialize)
+;; (use-package! gptel
+;;   :custom
+;;   (gptel-model 'claude-3-5-sonnet-20241022)
+;;   :config
+;;   (defun gptel-api-key ()
+;;     "Read API key from file and ensure it's clean."
+;;     (string-trim
+;;      (with-temp-buffer
+;;        (insert-file-contents "~/secrets/claude_key")
+;;        (buffer-string))))
 
-;; (setq package-selected-packages
-;;       '(dart-mode lsp-mode lsp-dart lsp-treemacs flycheck company
-;;         ;; Optional packages
-;;         lsp-ui company hover))
+;;   (setq gptel-backend
+;;         (gptel-make-anthropic "Claude"
+;;                               :stream t
+;;                               :key (gptel-api-key))))  ; Call the function immediately
+#+end_src
 
-;; (when (cl-find-if-not #'package-installed-p package-selected-packages)
-;;   (package-refresh-contents)
-;;   (mapc #'package-install package-selected-packages))
+** Magit
+#+begin_src elisp
+(defun my/magit-stage-commit-push ()
+  "Stage all, commit with quick message, and push with no questions"
+  (interactive)
+  (magit-stage-modified)
+  (let ((msg (read-string "Commit message: ")))
+    (magit-commit-create (list "-m" msg))
+    (magit-run-git "push" "origin" (magit-get-current-branch))))
+#+end_src
 
-;; Org-auto-tangle
-(use-package org-auto-tangle
-  :defer t
-  :hook (org-mode . org-auto-tangle-mode)
-  :config
-  (setq org-auto-tangle-default t))
-
-;; ;; Trying to get pomodoro timer working
-;; (require 'org)
-;; (setq org-clock-sound "~/Downloads/Gong.wav")
-
-;; zoom in/out like we do everywhere else.
-(global-set-key (kbd "C-=") 'text-scale-increase)
-(global-set-key (kbd "C--") 'text-scale-decrease)
-
+* Writing
+** Spelling
+#+begin_src elisp
 ;; Spelling
 (setq ispell-program-name "aspell")
 (setq ispell-extra-args '("--sug-mode=ultra" "--lang=en_US"))
@@ -368,295 +572,88 @@ This sets up k-j as an evil escape sequence. Not used anymore due to setting esc
 ;;Snippets
 (yas-global-mode 1)
 (add-hook 'yas-minor-mode-hook (lambda () (yas-activate-extra-mode 'fundamental-mode)))
+#+end_src
 
-(after! projectile
-  (setq projectile-enable-caching t)
-  (setq projectile-indexing-method 'hybrid))
+** Writeroom/Zen modes
+#+begin_src elisp
+;; Setup writeroom width and appearance
+(after! writeroom-mode
+  ;; Set width for centered text
+  (setq writeroom-width 40)
 
-;; Path completion
-(projectile-add-known-project "~/Vaults/Writing")
-(projectile-add-known-project "~/Vaults")
-(projectile-add-known-project "~/go/src/github.com/jblais493/HTMXFrontend")
-(projectile-add-known-project "~/go/src/github.com/jblais493/Citadel")
-(projectile-add-known-project "~/Development/svelte-email")
+  ;; Ensure the text is truly centered horizontally
+  (setq writeroom-fringes-outside-margins nil)
+  (setq writeroom-center-text t)
 
-;; Add to your config.el
-(setq completing-read-function #'completing-read-default)
-(setq read-file-name-function #'read-file-name-default)
+  ;; Add vertical spacing for better readability
+  (setq writeroom-extra-line-spacing 4)  ;; Adds space between lines
 
-;; Makes path completion more like find-file everywhere
-(setq read-file-name-completion-ignore-case t
-      read-buffer-completion-ignore-case t
-      completion-ignore-case t)
+  ;; Improve vertical centering with visual-fill-column integration
+  (add-hook! 'writeroom-mode-hook
+    (defun my-writeroom-settings ()
+      "Configure various settings when entering/exiting writeroom-mode."
+      (if writeroom-mode
+          (progn
+            ;; When entering writeroom mode
+            (display-line-numbers-mode -1)       ;; Turn off line numbers
+            (setq cursor-type 'bar)              ;; Change cursor to a thin bar for writing
+            (hl-line-mode -1)                    ;; Disable current line highlighting
+            (setq left-margin-width 0)           ;; Let writeroom handle margins
+            (setq right-margin-width 0)
+            (text-scale-set 1)                   ;; Slightly increase text size
 
-;; Use the familiar C-x C-f interface for directory completion
-(map! :map minibuffer-mode-map
-      :when (featurep! :completion vertico)
-      "C-x C-f" #'find-file)
+            ;; Improve vertical centering
+            (when (bound-and-true-p visual-fill-column-mode)
+              (visual-fill-column-mode -1))      ;; Temporarily disable if active
+            (setq visual-fill-column-width 40)   ;; Match writeroom width
+            (setq visual-fill-column-center-text t)
+            (setq visual-fill-column-extra-text-width '(0 . 0))
 
-(after! vertico
-  ;; Add file preview
-  (add-hook 'rfn-eshadow-update-overlay-hook #'vertico-directory-tidy)
-  (define-key vertico-map (kbd "DEL") #'vertico-directory-delete-char)
-  (define-key vertico-map (kbd "M-DEL") #'vertico-directory-delete-word))
+            ;; Set top/bottom margins to improve vertical centering
+            ;; These larger margins push content toward vertical center
+            (setq-local writeroom-top-margin-size
+                        (max 10 (/ (- (window-height) 40) 3)))
+            (setq-local writeroom-bottom-margin-size
+                        (max 10 (/ (- (window-height) 40) 3)))
 
-;; Org Agenda
-;; Set days viewed to 3, set start day to today, create seperator, and Dashboard view
-(setq org-agenda-remove-tags t)
-(setq org-agenda-block-separator 32)
-(setq org-agenda-custom-commands
-      '(("d" "Dashboard"
-         (
-          (tags "PRIORITY=\"A\""
-                ((org-agenda-skip-function '(org-agenda-skip-entry-if 'todo 'done))
-                 (org-agenda-overriding-header "\n HIGHEST PRIORITY")
-                 (org-agenda-prefix-format "   %i %?-2 t%s")
-                 )
-                )
-          (agenda ""
-                  (
-                   (org-agenda-start-day "+0d")
-                   (org-agenda-span 1)
-                   (org-agenda-time)
-                   (org-agenda-remove-tags t)
-                   (org-agenda-todo-keyword-format "")
-                   (org-agenda-scheduled-leaders '("" ""))
-                   (org-agenda-current-time-string "ᐊ┈┈┈┈┈┈┈┈┈ NOW")
-                   (org-agenda-overriding-header "\n TODAY'S SCHEDULE")
-                   (org-agenda-prefix-format "   %i %?-2 t%s")
-                   )
-                  )
-          (tags-todo  "-STYLE=\"habit\""
-                      (
-                       (org-agenda-overriding-header "\n ALL TODO")
-                       (org-agenda-sorting-strategy '(priority-down))
-                       (org-agenda-remove-tags t)
-                       (org-agenda-prefix-format "   %i %?-2 t%s")
-                       )
-                      )))))
+            ;; Enable visual-fill-column for better text placement
+            (visual-fill-column-mode 1))
 
-;; Remove Scheduled tag
-(setq org-agenda-scheduled-leaders '("" ""))
-;; Remove holidays from agenda
-(setq org-agenda-include-diary nil)
+        ;; When exiting writeroom mode
+        (progn
+          (display-line-numbers-mode +1)       ;; Restore line numbers
+          (setq cursor-type 'box)              ;; Restore default cursor
+          (hl-line-mode +1)                    ;; Restore line highlighting
+          (text-scale-set 0)                   ;; Restore normal text size
+          (when (bound-and-true-p visual-fill-column-mode)
+            (visual-fill-column-mode -1))))))  ;; Disable visual fill column mode
 
-;;;; Send a daily email to myself with the days agenda:
-;;(defun my/send-daily-agenda ()
-;;  "Send daily agenda email using mu4e"
-;;  (interactive)
-;;  (let* ((date-string (format-time-string "%Y-%m-%d"))
-;;         (subject (format "Daily Agenda: %s" (format-time-string "%A, %B %d")))
-;;         (tmp-file (make-temp-file "agenda")))
-;;
-;;    ;; Generate agenda and save to temp file
-;;    (save-window-excursion
-;;      (org-agenda nil "d")
-;;      (with-current-buffer org-agenda-buffer-name
-;;        (org-agenda-write tmp-file)))
-;;
-;;    ;; Read the agenda content
-;;    (let ((agenda-content
-;;           (with-temp-buffer
-;;             (insert-file-contents tmp-file)
-;;             (buffer-string))))
-;;
-;;      ;; Create and send email
-;;      (with-current-buffer (mu4e-compose-new)
-;;        (mu4e-compose-mode)
-;;        ;; Set up headers
-;;        (message-goto-to)
-;;        (insert "josh@joshblais.com")
-;;        (message-goto-subject)
-;;        (insert subject)
-;;        (message-goto-body)
-;;        ;; Insert the agenda content
-;;        (insert agenda-content)
-;;        ;; Send
-;;        (message-send-and-exit)))
-;;
-;;    ;; Cleanup
-;;    (delete-file tmp-file)))
-;;
-;;;; Remove any existing timer
-;;(cancel-function-timers 'my/send-daily-agenda)
-;;
-;;;; Schedule for 5:30 AM
-;;(run-at-time "05:30" 86400 #'my/send-daily-agenda)
+  ;; Hide modeline for a cleaner look
+  (setq writeroom-mode-line nil)
 
-** Org capture templates
-;; Capture templates
-(setq org-capture-templates
-      '(("t" "Todo" entry
-         (file+headline "~/org/inbox.org" "Inbox")
-         "* TODO %^{Task}\n:PROPERTIES:\n:CREATED: %U\n:CAPTURED: %a\n:END:\n%?")
-        ("e" "Event" entry
-         (file+headline "~/org/calendar.org" "Events")
-         "* %^{Event}\n%^{SCHEDULED}T\n:PROPERTIES:\n:CREATED: %U\n:CAPTURED: %a\n:CONTACT: %(org-capture-ref-link \"~/org/contacts.org\")\n:END:\n%?")
-        ("d" "Deadline" entry
-         (file+headline "~/org/calendar.org" "Deadlines")
-         "* TODO %^{Task}\nDEADLINE: %^{Deadline}T\n:PROPERTIES:\n:CREATED: %U\n:CAPTURED: %a\n:END:\n%?")
-        ("p" "Project" entry
-         (file+headline "~/org/projects.org" "Projects")
-         "* PROJ %^{Project name}\n:PROPERTIES:\n:CREATED: %U\n:CAPTURED: %a\n:END:\n** TODO %?")
-        ("i" "Idea" entry
-         (file+headline "~/org/ideas.org" "Ideas")
-         "** IDEA %^{Idea}\n:PROPERTIES:\n:CREATED: %U\n:CAPTURED: %a\n:END:\n%?")
-        ("c" "Contact" entry
-         (file+headline "~/org/contacts.org" "Inbox")
-         "* %^{Name}
+  ;; Add additional global effects for writeroom
+  (setq writeroom-global-effects
+        '(writeroom-set-fullscreen        ;; Enables fullscreen
+          writeroom-set-alpha             ;; Adjusts frame transparency
+          writeroom-set-menu-bar-lines
+          writeroom-set-tool-bar-lines
+          writeroom-set-vertical-scroll-bars
+          writeroom-set-bottom-divider-width))
 
-:PROPERTIES:
-:CREATED: %U
-:CAPTURED: %a
-:EMAIL: %^{Email}
-:PHONE: %^{Phone}
-:BIRTHDAY: %^{Birthday +1y}u
-:LOCATION: %^{Address}
-:LAST_CONTACTED: %U
-:END:
-*** Communications
-*** Notes
-%?")
-        ("n" "Note" entry
-         (file+headline "~/org/notes.org" "Inbox")
-         "* [%<%Y-%m-%d %a>] %^{Title}\n:PROPERTIES:\n:CREATED: %U\n:CAPTURED: %a\n:END:\n%?"
-         :prepend t)))
+  ;; Set frame transparency
+  (setq writeroom-alpha 0.95))
+#+end_src
 
-;; Helper function to select and link a contact
-(defun org-capture-ref-link (file)
-  "Create a link to a contact in contacts.org"
-  (let* ((headlines (org-map-entries
-                     (lambda ()
-                       (cons (org-get-heading t t t t)
-                             (org-id-get-create)))
-                     t
-                     (list file)))
-         (contact (completing-read "Contact: "
-                                   (mapcar #'car headlines)))
-         (id (cdr (assoc contact headlines))))
-    (format "[[id:%s][%s]]" id contact)))
+* Keybindings
+** Zoom
+#+begin_src elisp
+;; zoom in/out like we do everywhere else.
+(global-set-key (kbd "C-=") 'text-scale-increase)
+(global-set-key (kbd "C--") 'text-scale-decrease)
+#+end_src
 
-;; Set archive location to done.org under current date
-;; (defun my/archive-done-task ()
-;;   "Archive current task to done.org under today's date"
-;;   (interactive)
-;;   (let* ((date-header (format-time-string "%Y-%m-%d %A"))
-;;          (archive-file (expand-file-name "~/org/done.org"))
-;;          (location (format "%s::* %s" archive-file date-header)))
-;;     ;; Only archive if not a habit
-;;     (unless (org-is-habit-p)
-;;       ;; Add COMPLETED property if it doesn't exist
-;;       (org-set-property "COMPLETED" (format-time-string "[%Y-%m-%d %a %H:%M]"))
-;;       ;; Set archive location and archive
-;;       (setq org-archive-location location)
-;;       (org-archive-subtree))))
-
-;; Automatically archive when marked DONE, except for habits
-;; (add-hook 'org-after-todo-state-change-hook
-;;           (lambda ()
-;;             (when (and (string= org-state "DONE")
-;;                        (not (org-is-habit-p)))
-;;               (my/archive-done-task))))
-
-;; Optional key binding if you ever need to archive manually
-(define-key org-mode-map (kbd "C-c C-x C-a") 'my/archive-done-task)
-
-;; Enable arrow keys in org-read-date calendar popup
-(define-key org-read-date-minibuffer-local-map (kbd "<left>") (lambda () (interactive) (org-eval-in-calendar '(calendar-backward-day 1))))
-(define-key org-read-date-minibuffer-local-map (kbd "<right>") (lambda () (interactive) (org-eval-in-calendar '(calendar-forward-day 1))))
-(define-key org-read-date-minibuffer-local-map (kbd "<up>") (lambda () (interactive) (org-eval-in-calendar '(calendar-backward-week 1))))
-(define-key org-read-date-minibuffer-local-map (kbd "<down>") (lambda () (interactive) (org-eval-in-calendar '(calendar-forward-week 1))))
-
-;;Org-Roam
-(setq org-roam-directory "~/org/roam")
-
-(use-package! websocket
-  :after org-roam)
-
-(use-package! org-roam-ui
-  :after org-roam ;; or :after org
-  ;;         normally we'd recommend hooking orui after org-roam, but since org-roam does not have
-  ;;         a hookable mode anymore, you're advised to pick something yourself
-  ;;         if you don't care about startup time, use
-  ;;  :hook (after-init . org-roam-ui-mode)
-  :config
-  (setq org-roam-ui-sync-theme t
-        org-roam-ui-follow t
-        org-roam-ui-update-on-save t
-        org-roam-ui-open-on-start t))
-
-;; org-download customizations
-(require 'org-download)
-(setq-default org-download-screenshot-method "scrot -s %s")
-
-;; Nov.el customizations and setup
-(setq nov-unzip-program (executable-find "bsdtar")
-      nov-unzip-args '("-xC" directory "-f" filename))
-(add-to-list 'auto-mode-alist '("\\.epub\\'" . nov-mode))
-
-;; EMMS
-(emms-all)
-(emms-default-players)
-(emms-mode-line-mode 1)
-(emms-playing-time-mode 1)
-(setq emms-source-file-default-directory "~/Music"
-      emms-browser-covers #'emms-browser-cache-thumbnail-async
-      emms-browser-thumbnail-small-size 64
-      emms-browser-thumbnail-medium-size 128
-      emms-playlist-buffer-name "*Music*"
-      emms-info-asynchronously t
-      emms-source-file-directory-tree-function 'emms-source-file-directory-tree-find)
-(map! :leader
-      (:prefix ("m" . "music/EMMS")  ;; Changed from 'a' to 'm' for music
-       :desc "Play at directory tree"   "d" #'emms-play-directory-tree
-       :desc "Go to emms playlist"      "p" #'emms-playlist-mode-go
-       :desc "Shuffle"                  "h" #'emms-shuffle
-       :desc "Emms pause track"         "x" #'emms-pause
-       :desc "Emms stop track"          "s" #'emms-stop
-       :desc "Emms play previous track" "b" #'emms-previous
-       :desc "Emms play next track"     "n" #'emms-next))
-
-;; Grab album artwork for dunst to display
-(defun emms-cover-art-path ()
-  "Return the path of the cover art for the current track."
-  (let* ((track (emms-playlist-current-selected-track))
-         (path (emms-track-get track 'name))
-         (dir (file-name-directory path))
-         (cover-files (directory-files dir nil ".*\\(jpg\\|png\\|jpeg\\)$")))
-    (when cover-files
-      (concat dir (car cover-files)))))
-
-;; Add mu4e to load path
-(add-to-list 'load-path "/usr/share/emacs/site-lisp/mu4e")
-
-;; MU4E configuration
-(after! mu4e
-  ;; Tell Doom where to find mu
-  (setq mu4e-mu-binary "/usr/bin/mu")
-
-  ;; Set your update interval
-  (setq mu4e-update-interval (* 10 60))
-
-  ;; Load mu4e configuration if the file exists
-  (let ((mu4e-config (expand-file-name "private/mu4e-config.el" doom-private-dir)))
-    (when (file-exists-p mu4e-config)
-      (load mu4e-config)))
-  )
-
-;; Deft mode
-;; (setq deft-extensions '("txt" "tex" "org"))
-;; (setq deft-directory "~/Vaults/org/roam")
-;; (setq deft-recursive t)
-;; (setq deft-use-filename-as-title t)
-
-(defun my/magit-stage-commit-push ()
-  "Stage all, commit with quick message, and push with no questions"
-  (interactive)
-  (magit-stage-modified)
-  (let ((msg (read-string "Commit message: ")))
-    (magit-commit-create (list "-m" msg))
-    (magit-run-git "push" "origin" (magit-get-current-branch))))
-
+** General
+#+begin_src elisp
 ;; Custom keymaps
 (map! :leader
       ;; Magit mode mappngs
@@ -734,35 +731,51 @@ This sets up k-j as an evil escape sequence. Not used anymore due to setting esc
 
 (define-key evil-normal-state-map "f" 'avy-goto-char-2)
 (define-key evil-normal-state-map "F" 'avy-goto-char-2)
+#+end_src
 
-;; Drag and drop:
-;; Function for mouse events
-(defun my/drag-file-mouse (event)
-  "Drag current file using dragon (mouse version)"
-  (interactive "e")
-  (let ((file (dired-get-filename nil t)))
-    (when file
-      (message "Click and drag the dragon window to your target location")
-      (start-process "dragon" nil "/usr/local/bin/dragon"
-                     "-x"          ; Send mode
-                     "--keep"      ; Keep the window open
-                     file))))
+** Projectile
+#+begin_src elisp
+(after! projectile
+  (setq projectile-enable-caching t)
+  (setq projectile-indexing-method 'hybrid))
 
-;; Function for keyboard shortcut with multiple files support
-(defun my/drag-file-keyboard ()
-  "Drag marked files (or current file) using dragon"
-  (interactive)
-  (let ((files (or (dired-get-marked-files)
-                   (list (dired-get-filename nil t)))))
-    (when files
-      (message "Click and drag the dragon window to your target location")
-      (apply 'start-process "dragon" nil "/usr/local/bin/dragon"
-             (append (list "-x" "--keep") files)))))
+;; Path completion
+(projectile-add-known-project "~/Vaults/Writing")
+(projectile-add-known-project "~/Vaults")
+(projectile-add-known-project "~/go/src/github.com/jblais493/HTMXFrontend")
+(projectile-add-known-project "~/go/src/github.com/jblais493/Citadel")
+(projectile-add-known-project "~/Development/svelte-email")
+#+end_src
 
-;; Bind both versions
-(after! dired
-  (define-key dired-mode-map [drag-mouse-1] 'my/drag-file-mouse)
-  (define-key dired-mode-map (kbd "C-c C-d") 'my/drag-file-keyboard))
+;; Add to your config.el
+(setq completing-read-function #'completing-read-default)
+(setq read-file-name-function #'read-file-name-default)
+
+;; Makes path completion more like find-file everywhere
+(setq read-file-name-completion-ignore-case t
+      read-buffer-completion-ignore-case t
+      completion-ignore-case t)
+
+;; Use the familiar C-x C-f interface for directory completion
+(map! :map minibuffer-mode-map
+      :when (featurep! :completion vertico)
+      "C-x C-f" #'find-file)
+
+(after! vertico
+  ;; Add file preview
+  (add-hook 'rfn-eshadow-update-overlay-hook #'vertico-directory-tidy)
+  (define-key vertico-map (kbd "DEL") #'vertico-directory-delete-char)
+  (define-key vertico-map (kbd "M-DEL") #'vertico-directory-delete-word))
+
+
+;; Enable arrow keys in org-read-date calendar popup
+(define-key org-read-date-minibuffer-local-map (kbd "<left>") (lambda () (interactive) (org-eval-in-calendar '(calendar-backward-day 1))))
+(define-key org-read-date-minibuffer-local-map (kbd "<right>") (lambda () (interactive) (org-eval-in-calendar '(calendar-forward-day 1))))
+(define-key org-read-date-minibuffer-local-map (kbd "<up>") (lambda () (interactive) (org-eval-in-calendar '(calendar-backward-week 1))))
+(define-key org-read-date-minibuffer-local-map (kbd "<down>") (lambda () (interactive) (org-eval-in-calendar '(calendar-forward-week 1))))
+
+
+
 
 ;; /path/to/project/.dir-locals.el
 ;; ((sql-mode . ((sql-postgres-login-params
@@ -822,52 +835,6 @@ This sets up k-j as an evil escape sequence. Not used anymore due to setting esc
 (load! "templates/writing-template")
 (load! "templates/note-template")
 
-;; =============== ELFEED =============== ;;
-(make-directory "~/.elfeed" t)
-
-;; Force load elfeed-org
-(require 'elfeed-org)
-(elfeed-org)
-
-;; Set org feed file
-(setq rmh-elfeed-org-files '("~/.config/doom/elfeed.org"))
-
-;; Configure elfeed
-(after! elfeed
-  (setq elfeed-db-directory "~/.elfeed")
-  (setq elfeed-search-filter "@1-week-ago +unread -4chan -Reddit"))
-
-(use-package! elfeed-tube
-  :after elfeed
-  :config
-  (elfeed-tube-setup)
-  :bind (:map elfeed-show-mode-map
-         ("F" . elfeed-tube-fetch)
-         ([remap save-buffer] . elfeed-tube-save)
-         :map elfeed-search-mode-map
-         ("F" . elfeed-tube-fetch)
-         ([remap save-buffer] . elfeed-tube-save)))
-
-;; (use-package! elysium
-;;   :custom
-;;   (elysium-window-size 0.33)
-;;   (elysium-window-style 'vertical))
-
-;; (use-package! gptel
-;;   :custom
-;;   (gptel-model 'claude-3-5-sonnet-20241022)
-;;   :config
-;;   (defun gptel-api-key ()
-;;     "Read API key from file and ensure it's clean."
-;;     (string-trim
-;;      (with-temp-buffer
-;;        (insert-file-contents "~/secrets/claude_key")
-;;        (buffer-string))))
-
-;;   (setq gptel-backend
-;;         (gptel-make-anthropic "Claude"
-;;                               :stream t
-;;                               :key (gptel-api-key))))  ; Call the function immediately
 
 ;;;; TRAMP optimizations
 (after! tramp
@@ -889,21 +856,6 @@ This sets up k-j as an evil escape sequence. Not used anymore due to setting esc
               vc-ignore-dir-regexp
               tramp-file-name-regexp))
 
-;; Insert image into org from selection
-(defun my/org-insert-image ()
-  "Select and insert an image into org file."
-  (interactive)
-  (let ((selected-file (read-file-name "Select image: " "~/Pictures/" nil t)))
-    (when selected-file
-      (insert (format "[[file:%s]]\n" selected-file))
-      (org-display-inline-images))))
-
-;; Keybinds for org mode
-(with-eval-after-load 'org
-  (define-key org-mode-map (kbd "C-c C-i") #'my/org-insert-image)
-  (define-key org-mode-map (kbd "C-c e") #'org-set-effort)
-  (define-key org-mode-map (kbd "C-c i") #'org-clock-in)
-  (define-key org-mode-map (kbd "C-c o") #'org-clock-out))
 
 ;; Emacs everywhere configuration
 (after! emacs-everywhere
@@ -939,16 +891,6 @@ This sets up k-j as an evil escape sequence. Not used anymore due to setting esc
       (setq-local buffer-file-name full-path)
       (lsp-deferred))))
 
-(after! org
-  (org-babel-do-load-languages
-   'org-babel-load-languages
-   '((go . t)))
-
-  (setq org-src-fontify-natively t
-        org-src-preserve-indentation t
-        org-src-tab-acts-natively t
-        ;; Don't save source edits in temp files
-        org-src-window-setup 'current-window))
 
 (after! dap-mode
   (require 'dap-dlv-go)
@@ -958,73 +900,126 @@ This sets up k-j as an evil escape sequence. Not used anymore due to setting esc
   (remove-hook 'dap-session-created-hook 'dap-ui-mode))
 
 
-;; Setup writeroom width and appearance
-(after! writeroom-mode
-  ;; Set width for centered text
-  (setq writeroom-width 40)
+;; Load private org-gcal credentials if the file exists
+(let ((private-config (expand-file-name "private/org-gcal-credentials.el" doom-private-dir)))
+  (when (file-exists-p private-config)
+    (load private-config)))
 
-  ;; Ensure the text is truly centered horizontally
-  (setq writeroom-fringes-outside-margins nil)
-  (setq writeroom-center-text t)
+;; Trying to save workspaces
+(after! persp-mode
+  ;; Auto-save workspaces when Emacs exits
+  (setq persp-auto-save-opt 1)
+  ;; Save all workspace info including window configurations
+  (setq persp-set-last-persp-for-new-frames nil)
+  (setq persp-reset-windows-on-nil-window-conf nil)
+  ;; Load workspaces automatically on startup
+  (setq persp-auto-resume-time -1))
 
-  ;; Add vertical spacing for better readability
-  (setq writeroom-extra-line-spacing 4)  ;; Adds space between lines
+;; Prevent clock from stopping when marking subtasks as done
+(setq org-clock-out-when-done nil)
 
-  ;; Improve vertical centering with visual-fill-column integration
-  (add-hook! 'writeroom-mode-hook
-    (defun my-writeroom-settings ()
-      "Configure various settings when entering/exiting writeroom-mode."
-      (if writeroom-mode
-          (progn
-            ;; When entering writeroom mode
-            (display-line-numbers-mode -1)       ;; Turn off line numbers
-            (setq cursor-type 'bar)              ;; Change cursor to a thin bar for writing
-            (hl-line-mode -1)                    ;; Disable current line highlighting
-            (setq left-margin-width 0)           ;; Let writeroom handle margins
-            (setq right-margin-width 0)
-            (text-scale-set 1)                   ;; Slightly increase text size
 
-            ;; Improve vertical centering
-            (when (bound-and-true-p visual-fill-column-mode)
-              (visual-fill-column-mode -1))      ;; Temporarily disable if active
-            (setq visual-fill-column-width 40)   ;; Match writeroom width
-            (setq visual-fill-column-center-text t)
-            (setq visual-fill-column-extra-text-width '(0 . 0))
+;; Speed of which-key popup
+(setq which-key-idle-delay 0.2)
 
-            ;; Set top/bottom margins to improve vertical centering
-            ;; These larger margins push content toward vertical center
-            (setq-local writeroom-top-margin-size
-                        (max 10 (/ (- (window-height) 40) 3)))
-            (setq-local writeroom-bottom-margin-size
-                        (max 10 (/ (- (window-height) 40) 3)))
+* Media and Communications
+** EMMS
+#+begin_src elisp
+;; EMMS
+(emms-all)
+(emms-default-players)
+(emms-mode-line-mode 1)
+(emms-playing-time-mode 1)
+(setq emms-source-file-default-directory "~/Music"
+      emms-browser-covers #'emms-browser-cache-thumbnail-async
+      emms-browser-thumbnail-small-size 64
+      emms-browser-thumbnail-medium-size 128
+      emms-playlist-buffer-name "*Music*"
+      emms-info-asynchronously t
+      emms-source-file-directory-tree-function 'emms-source-file-directory-tree-find)
+(map! :leader
+      (:prefix ("m" . "music/EMMS")  ;; Changed from 'a' to 'm' for music
+       :desc "Play at directory tree"   "d" #'emms-play-directory-tree
+       :desc "Go to emms playlist"      "p" #'emms-playlist-mode-go
+       :desc "Shuffle"                  "h" #'emms-shuffle
+       :desc "Emms pause track"         "x" #'emms-pause
+       :desc "Emms stop track"          "s" #'emms-stop
+       :desc "Emms play previous track" "b" #'emms-previous
+       :desc "Emms play next track"     "n" #'emms-next))
 
-            ;; Enable visual-fill-column for better text placement
-            (visual-fill-column-mode 1))
+;; Grab album artwork for dunst to display
+(defun emms-cover-art-path ()
+  "Return the path of the cover art for the current track."
+  (let* ((track (emms-playlist-current-selected-track))
+         (path (emms-track-get track 'name))
+         (dir (file-name-directory path))
+         (cover-files (directory-files dir nil ".*\\(jpg\\|png\\|jpeg\\)$")))
+    (when cover-files
+      (concat dir (car cover-files)))))
+#+end_src
 
-        ;; When exiting writeroom mode
-        (progn
-          (display-line-numbers-mode +1)       ;; Restore line numbers
-          (setq cursor-type 'box)              ;; Restore default cursor
-          (hl-line-mode +1)                    ;; Restore line highlighting
-          (text-scale-set 0)                   ;; Restore normal text size
-          (when (bound-and-true-p visual-fill-column-mode)
-            (visual-fill-column-mode -1))))))  ;; Disable visual fill column mode
+** Reading
+*** Nov.el
+#+begin_src elisp
+;; Nov.el customizations and setup
+(setq nov-unzip-program (executable-find "bsdtar")
+      nov-unzip-args '("-xC" directory "-f" filename))
+(add-to-list 'auto-mode-alist '("\\.epub\\'" . nov-mode))
 
-  ;; Hide modeline for a cleaner look
-  (setq writeroom-mode-line nil)
+#+end_src
 
-  ;; Add additional global effects for writeroom
-  (setq writeroom-global-effects
-        '(writeroom-set-fullscreen        ;; Enables fullscreen
-          writeroom-set-alpha             ;; Adjusts frame transparency
-          writeroom-set-menu-bar-lines
-          writeroom-set-tool-bar-lines
-          writeroom-set-vertical-scroll-bars
-          writeroom-set-bottom-divider-width))
+** Mu4e
+#+begin_src elisp
+;; Add mu4e to load path
+(add-to-list 'load-path "/usr/share/emacs/site-lisp/mu4e")
 
-  ;; Set frame transparency
-  (setq writeroom-alpha 0.95))
+;; MU4E configuration
+(after! mu4e
+  ;; Tell Doom where to find mu
+  (setq mu4e-mu-binary "/usr/bin/mu")
 
+  ;; Set your update interval
+  (setq mu4e-update-interval (* 10 60))
+
+  ;; Load mu4e configuration if the file exists
+  (let ((mu4e-config (expand-file-name "private/mu4e-config.el" doom-private-dir)))
+    (when (file-exists-p mu4e-config)
+      (load mu4e-config)))
+  )
+#+end_src
+
+** Elfeed
+#+begin_src elisp
+(make-directory "~/.elfeed" t)
+
+;; Force load elfeed-org
+(require 'elfeed-org)
+(elfeed-org)
+
+;; Set org feed file
+(setq rmh-elfeed-org-files '("~/.config/doom/elfeed.org"))
+
+;; Configure elfeed
+(after! elfeed
+  (setq elfeed-db-directory "~/.elfeed")
+  (setq elfeed-search-filter "@1-week-ago +unread -4chan -Reddit"))
+
+(use-package! elfeed-tube
+  :after elfeed
+  :config
+  (elfeed-tube-setup)
+  :bind (:map elfeed-show-mode-map
+         ("F" . elfeed-tube-fetch)
+         ([remap save-buffer] . elfeed-tube-save)
+         :map elfeed-search-mode-map
+         ("F" . elfeed-tube-fetch)
+         ([remap save-buffer] . elfeed-tube-save)))
+#+end_src
+
+** Graphical File management
+Sometimes, we need to drag and drop files to GUIs - I previously was using dragon for this, but instead setup a way to just open nautilus at the dired/dirvish location in emacs, which is a better experience
+
+#+begin_src elisp
 ;; Open file manager in place dirvish/dired
 (defun open-nautilus-here ()
   "Open nautilus in the current directory shown in dired/dirvish."
@@ -1055,29 +1050,102 @@ This sets up k-j as an evil escape sequence. Not used anymore due to setting esc
     (add-hook 'dirvish-mode-hook
               (lambda ()
                 (local-set-key (kbd "C-M-f") 'open-nautilus-here)))))
+#+end_src
 
-;; Load private org-gcal credentials if the file exists
-(let ((private-config (expand-file-name "private/org-gcal-credentials.el" doom-private-dir)))
-  (when (file-exists-p private-config)
-    (load private-config)))
+* Custom functions load
+I have various functions in my lisp directory for creating pomodoros, refiling done tasks to my global done.org file, and adding contacts to emails in mu4e
 
-;; Trying to save workspaces
-(after! persp-mode
-  ;; Auto-save workspaces when Emacs exits
-  (setq persp-auto-save-opt 1)
-  ;; Save all workspace info including window configurations
-  (setq persp-set-last-persp-for-new-frames nil)
-  (setq persp-reset-windows-on-nil-window-conf nil)
-  ;; Load workspaces automatically on startup
-  (setq persp-auto-resume-time -1))
-
-;; Prevent clock from stopping when marking subtasks as done
-(setq org-clock-out-when-done nil)
-
+#+begin_src elisp
 ;; lisp functions
 (load! "lisp/pomodoro")
 (load! "lisp/done-refile")
 (load! "lisp/mu4e-contact.el")
+#+end_src
 
-;; Speed of which-key popup
-(setq which-key-idle-delay 0.2)
+* Legacy
+** Email to self at beginning of day
+#+begin_src elisp
+;;;; Send a daily email to myself with the days agenda:
+;;(defun my/send-daily-agenda ()
+;;  "Send daily agenda email using mu4e"
+;;  (interactive)
+;;  (let* ((date-string (format-time-string "%Y-%m-%d"))
+;;         (subject (format "Daily Agenda: %s" (format-time-string "%A, %B %d")))
+;;         (tmp-file (make-temp-file "agenda")))
+;;
+;;    ;; Generate agenda and save to temp file
+;;    (save-window-excursion
+;;      (org-agenda nil "d")
+;;      (with-current-buffer org-agenda-buffer-name
+;;        (org-agenda-write tmp-file)))
+;;
+;;    ;; Read the agenda content
+;;    (let ((agenda-content
+;;           (with-temp-buffer
+;;             (insert-file-contents tmp-file)
+;;             (buffer-string))))
+;;
+;;      ;; Create and send email
+;;      (with-current-buffer (mu4e-compose-new)
+;;        (mu4e-compose-mode)
+;;        ;; Set up headers
+;;        (message-goto-to)
+;;        (insert "josh@joshblais.com")
+;;        (message-goto-subject)
+;;        (insert subject)
+;;        (message-goto-body)
+;;        ;; Insert the agenda content
+;;        (insert agenda-content)
+;;        ;; Send
+;;        (message-send-and-exit)))
+;;
+;;    ;; Cleanup
+;;    (delete-file tmp-file)))
+;;
+;;;; Remove any existing timer
+;;(cancel-function-timers 'my/send-daily-agenda)
+;;
+;;;; Schedule for 5:30 AM
+;;(run-at-time "05:30" 86400 #'my/send-daily-agenda)
+#+end_src
+
+** Deft
+#+begin_src elisp
+;; Deft mode
+;; (setq deft-extensions '("txt" "tex" "org"))
+;; (setq deft-directory "~/Vaults/org/roam")
+;; (setq deft-recursive t)
+;; (setq deft-use-filename-as-title t)
+#+end_src
+
+** Drag and drop
+#+begin_src elisp
+;; Drag and drop:
+;; Function for mouse events
+;;(defun my/drag-file-mouse (event)
+;;  "Drag current file using dragon (mouse version)"
+;;  (interactive "e")
+;;  (let ((file (dired-get-filename nil t)))
+;;    (when file
+;;      (message "Click and drag the dragon window to your target location")
+;;      (start-process "dragon" nil "/usr/local/bin/dragon"
+;;                     "-x"          ; Send mode
+;;                     "--keep"      ; Keep the window open
+;;                     file))))
+;;
+;;;; Function for keyboard shortcut with multiple files support
+;;(defun my/drag-file-keyboard ()
+;;  "Drag marked files (or current file) using dragon"
+;;  (interactive)
+;;  (let ((files (or (dired-get-marked-files)
+;;                   (list (dired-get-filename nil t)))))
+;;    (when files
+;;      (message "Click and drag the dragon window to your target location")
+;;      (apply 'start-process "dragon" nil "/usr/local/bin/dragon"
+;;             (append (list "-x" "--keep") files)))))
+;;
+;;;; Bind both versions
+;;(after! dired
+;;  (define-key dired-mode-map [drag-mouse-1] 'my/drag-file-mouse)
+;;  (define-key dired-mode-map (kbd "C-c C-d") 'my/drag-file-keyboard))
+#+end_src
