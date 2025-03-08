@@ -197,6 +197,9 @@ We set the visual line wrapping and relative line numbers (then we can just go u
     (org-mode . org-fancy-priorities-mode)
     :config
     (setq org-fancy-priorities-list '("⚡" "⬆" "⬇" "☕"))))
+
+;; Prevent clock from stopping when marking subtasks as done
+(setq org-clock-out-when-done nil)
 #+end_src
 
 ** Org Tangle
@@ -284,8 +287,8 @@ We set the visual line wrapping and relative line numbers (then we can just go u
 :LOCATION: %^{Address}
 :LAST_CONTACTED: %U
 :END:
-*** Communications
-*** Notes
+\\ *** Communications
+\\ *** Notes
 %?")
         ("n" "Note" entry
          (file+headline "~/org/notes.org" "Inbox")
@@ -391,6 +394,14 @@ We set the visual line wrapping and relative line numbers (then we can just go u
         org-src-tab-acts-natively t
         ;; Don't save source edits in temp files
         org-src-window-setup 'current-window))
+
+;; Specifically for go-mode literate programming
+(defun org-babel-edit-prep:go (babel-info)
+  (when-let ((tangled-file (->> babel-info caddr (alist-get :tangle))))
+    (let ((full-path (expand-file-name tangled-file)))
+      ;; Don't actually create/modify the tangled file
+      (setq-local buffer-file-name full-path)
+      (lsp-deferred))))
 #+end_src
 
 * Evil mode setup
@@ -480,6 +491,26 @@ This sets up k-j as an evil escape sequence. Not used anymore due to setting esc
         lsp-ui-peek-enable t))
 #+end_src
 
+** Svelte and JS
+#+begin_src elisp
+(use-package! svelte-mode
+  :mode "\\.svelte\\'"
+  :config
+  (setq svelte-basic-offset 2)
+  ;; Disable automatic reformatting
+  (setq svelte-format-on-save nil)
+  ;; Use prettier instead
+  (add-hook 'svelte-mode-hook 'prettier-js-mode))
+
+;; Configure prettier
+(use-package! prettier-js
+  :config
+  (setq prettier-js-args
+        '("--parser" "svelte"
+          "--tab-width" "2"
+          "--use-tabs" "true")))
+#+end_src
+
 ** Tailwind
 #+begin_src elisp
 ;; Tailwind CSS
@@ -555,6 +586,16 @@ This sets up k-j as an evil escape sequence. Not used anymore due to setting esc
   (let ((msg (read-string "Commit message: ")))
     (magit-commit-create (list "-m" msg))
     (magit-run-git "push" "origin" (magit-get-current-branch))))
+#+end_src
+
+** DAP
+#+begin_src elisp
+(after! dap-mode
+  (require 'dap-dlv-go)
+
+  ;; Remove problematic hooks
+  (remove-hook 'dap-stopped-hook 'dap-ui-repl-toggle)
+  (remove-hook 'dap-session-created-hook 'dap-ui-mode))
 #+end_src
 
 * Writing
@@ -733,6 +774,22 @@ This sets up k-j as an evil escape sequence. Not used anymore due to setting esc
 (define-key evil-normal-state-map "F" 'avy-goto-char-2)
 #+end_src
 
+** Misc
+#+begin_src elisp
+;; Enable arrow keys in org-read-date calendar popup
+(define-key org-read-date-minibuffer-local-map (kbd "<left>") (lambda () (interactive) (org-eval-in-calendar '(calendar-backward-day 1))))
+(define-key org-read-date-minibuffer-local-map (kbd "<right>") (lambda () (interactive) (org-eval-in-calendar '(calendar-forward-day 1))))
+(define-key org-read-date-minibuffer-local-map (kbd "<up>") (lambda () (interactive) (org-eval-in-calendar '(calendar-backward-week 1))))
+(define-key org-read-date-minibuffer-local-map (kbd "<down>") (lambda () (interactive) (org-eval-in-calendar '(calendar-forward-week 1))))
+
+;; Additional Consult bindings
+(map! :leader
+      (:prefix-map ("s" . "search")
+       :desc "Search project" "p" #'consult-ripgrep
+       :desc "Search buffer" "s" #'consult-line
+       :desc "Search project files" "f" #'consult-find))
+#+end_src
+
 ** Projectile
 #+begin_src elisp
 (after! projectile
@@ -768,28 +825,6 @@ This sets up k-j as an evil escape sequence. Not used anymore due to setting esc
   (define-key vertico-map (kbd "M-DEL") #'vertico-directory-delete-word))
 
 
-;; Enable arrow keys in org-read-date calendar popup
-(define-key org-read-date-minibuffer-local-map (kbd "<left>") (lambda () (interactive) (org-eval-in-calendar '(calendar-backward-day 1))))
-(define-key org-read-date-minibuffer-local-map (kbd "<right>") (lambda () (interactive) (org-eval-in-calendar '(calendar-forward-day 1))))
-(define-key org-read-date-minibuffer-local-map (kbd "<up>") (lambda () (interactive) (org-eval-in-calendar '(calendar-backward-week 1))))
-(define-key org-read-date-minibuffer-local-map (kbd "<down>") (lambda () (interactive) (org-eval-in-calendar '(calendar-forward-week 1))))
-
-
-
-
-;; /path/to/project/.dir-locals.el
-;; ((sql-mode . ((sql-postgres-login-params
-;;                '((user :default "postgres")
-;;                  (database :default "postgres")
-;;                  (server :default "localhost")
-;;                  (port :default 54322))))))
-
-;; Additional Consult bindings
-(map! :leader
-      (:prefix-map ("s" . "search")
-       :desc "Search project" "p" #'consult-ripgrep
-       :desc "Search buffer" "s" #'consult-line
-       :desc "Search project files" "f" #'consult-find))
 
 ;; Enhanced marginalia annotations
 (after! marginalia
@@ -814,22 +849,6 @@ This sets up k-j as an evil escape sequence. Not used anymore due to setting esc
 (map! :leader
       :desc "Dirvish in current dir" "d" #'dirvish)
 
-(use-package! svelte-mode
-  :mode "\\.svelte\\'"
-  :config
-  (setq svelte-basic-offset 2)
-  ;; Disable automatic reformatting
-  (setq svelte-format-on-save nil)
-  ;; Use prettier instead
-  (add-hook 'svelte-mode-hook 'prettier-js-mode))
-
-;; Configure prettier
-(use-package! prettier-js
-  :config
-  (setq prettier-js-args
-        '("--parser" "svelte"
-          "--tab-width" "2"
-          "--use-tabs" "true")))
 
 ;; Load various scripts and templates
 (load! "templates/writing-template")
@@ -884,27 +903,8 @@ This sets up k-j as an evil escape sequence. Not used anymore due to setting esc
   (require 'tree-sitter-langs)
   (add-to-list 'tree-sitter-major-mode-language-alist '(org-mode . go)))
 
-(defun org-babel-edit-prep:go (babel-info)
-  (when-let ((tangled-file (->> babel-info caddr (alist-get :tangle))))
-    (let ((full-path (expand-file-name tangled-file)))
-      ;; Don't actually create/modify the tangled file
-      (setq-local buffer-file-name full-path)
-      (lsp-deferred))))
-
-
-(after! dap-mode
-  (require 'dap-dlv-go)
-
-  ;; Remove problematic hooks
-  (remove-hook 'dap-stopped-hook 'dap-ui-repl-toggle)
-  (remove-hook 'dap-session-created-hook 'dap-ui-mode))
-
-
-;; Load private org-gcal credentials if the file exists
-(let ((private-config (expand-file-name "private/org-gcal-credentials.el" doom-private-dir)))
-  (when (file-exists-p private-config)
-    (load private-config)))
-
+** Workspaces
+#+begin_src elisp
 ;; Trying to save workspaces
 (after! persp-mode
   ;; Auto-save workspaces when Emacs exits
@@ -914,10 +914,7 @@ This sets up k-j as an evil escape sequence. Not used anymore due to setting esc
   (setq persp-reset-windows-on-nil-window-conf nil)
   ;; Load workspaces automatically on startup
   (setq persp-auto-resume-time -1))
-
-;; Prevent clock from stopping when marking subtasks as done
-(setq org-clock-out-when-done nil)
-
+#+end_src
 
 ;; Speed of which-key popup
 (setq which-key-idle-delay 0.2)
@@ -1014,6 +1011,17 @@ This sets up k-j as an evil escape sequence. Not used anymore due to setting esc
          :map elfeed-search-mode-map
          ("F" . elfeed-tube-fetch)
          ([remap save-buffer] . elfeed-tube-save)))
+#+end_src
+
+** Org-gcal
+I use org mode for calendaring, but I export and sync to my google calendar so I have reminders on my mobile device.
+
+#+begin_src elisp
+;; Load private org-gcal credentials if the file exists
+(let ((private-config (expand-file-name "private/org-gcal-credentials.el" doom-private-dir)))
+  (when (file-exists-p private-config)
+    (load private-config)))
+
 #+end_src
 
 ** Graphical File management
