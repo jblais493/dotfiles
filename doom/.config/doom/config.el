@@ -78,7 +78,7 @@
 
 ;; Setup custom splashscreen
 (remove-hook '+doom-dashboard-functions #'doom-dashboard-widget-shortmenu)
-(setq fancy-splash-image "~/Pictures/cath.jpg")
+(setq fancy-splash-image "~/Pictures/emacssplash.webp")
 (add-hook! '+doom-dashboard-functions :append
   (insert "\n" (+doom-dashboard--center +doom-dashboard--width "Welcome Home.")))
 
@@ -377,7 +377,7 @@
 (setq-default evil-escape-key-sequence "kj")
 (setq-default evil-escape-delay 0.1)
 
-                                        ; Don't move cursor back when exiting insert mode
+; Don't move cursor back when exiting insert mode
 (setq evil-move-cursor-back nil)
 ;; granular undo with evil mode
 (setq evil-want-fine-undo t)
