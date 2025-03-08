@@ -1,0 +1,29 @@
+#+title: Readme
+
+# Export all dconf settings to a file
+dconf dump / > complete-gnome-settings.conf
+
+# List all your currently installed extensions
+gnome-extensions list
+
+# Create a file with all enabled extensions
+gnome-extensions list --enabled > enabled-extensions.txt
+
+* Script to pull in dumps
+#+begin_src bash
+#!/bin/bash
+# GNOME Environment Restoration Script
+
+# First restore all dconf settings
+dconf load / < complete-gnome-settings.conf
+
+# Install necessary extensions
+while read extension; do
+  # Logic to install extension from extensions.gnome.org
+  # or from your backed up files
+  echo "Installing $extension..."
+done < enabled-extensions.txt
+
+# Restore application-specific configs if needed
+# tar -xzf gnome-config-dir.tar.gz -C ~/
+#+end_src
