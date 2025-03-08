@@ -78,9 +78,9 @@
 
 ;; Setup custom splashscreen
 (remove-hook '+doom-dashboard-functions #'doom-dashboard-widget-shortmenu)
-(setq fancy-splash-image "~/Pictures/emacssplash.webp")
+(setq fancy-splash-image "~/Pictures/gnu_color.png")
 (add-hook! '+doom-dashboard-functions :append
-  (insert "\n" (+doom-dashboard--center +doom-dashboard--width "Welcome Home.")))
+  (insert "\n" (+doom-dashboard--center +doom-dashboard--width "Welcome Home, Joshua.")))
 
 ;; Here are some additional functions/macros that could help you configure Doom:
 ;;

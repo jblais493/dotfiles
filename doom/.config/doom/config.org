@@ -121,9 +121,9 @@ We set the visual line wrapping and relative line numbers (then we can just go u
 #+begin_src elisp
 ;; Setup custom splashscreen
 (remove-hook '+doom-dashboard-functions #'doom-dashboard-widget-shortmenu)
-(setq fancy-splash-image "~/Pictures/emacssplash.webp")
+(setq fancy-splash-image "~/Pictures/gnu_color.png")
 (add-hook! '+doom-dashboard-functions :append
-  (insert "\n" (+doom-dashboard--center +doom-dashboard--width "Welcome Home.")))
+  (insert "\n" (+doom-dashboard--center +doom-dashboard--width "Welcome Home, Joshua.")))
 #+end_src
 
 ** Notes and misc
@@ -1181,3 +1181,6 @@ I have various functions in my lisp directory for creating pomodoros, refiling d
 ;;  (define-key dired-mode-map [drag-mouse-1] 'my/drag-file-mouse)
 ;;  (define-key dired-mode-map (kbd "C-c C-d") 'my/drag-file-keyboard))
 #+end_src
+
+* TODO
+- Addin video previews to dirvish
