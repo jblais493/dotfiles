@@ -148,6 +148,12 @@ We set the visual line wrapping and relative line numbers (then we can just go u
 (setq browse-url-generic-program "zen-browser")  ; replace with actual executable name
 #+end_src
 
+** Whichkey speedup
+#+begin_src elisp
+;; Speed of which-key popup
+(setq which-key-idle-delay 0.2)
+#+end_src
+
 * Org mode setup
 ** Initial setup
 #+begin_src elisp
@@ -824,8 +830,6 @@ This sets up k-j as an evil escape sequence. Not used anymore due to setting esc
   (define-key vertico-map (kbd "DEL") #'vertico-directory-delete-char)
   (define-key vertico-map (kbd "M-DEL") #'vertico-directory-delete-word))
 
-
-
 ;; Enhanced marginalia annotations
 (after! marginalia
   (setq marginalia-annotators '(marginalia-annotators-heavy marginalia-annotators-light nil)))
@@ -849,10 +853,6 @@ This sets up k-j as an evil escape sequence. Not used anymore due to setting esc
 (map! :leader
       :desc "Dirvish in current dir" "d" #'dirvish)
 
-
-;; Load various scripts and templates
-(load! "templates/writing-template")
-(load! "templates/note-template")
 
 
 ;;;; TRAMP optimizations
@@ -915,9 +915,6 @@ This sets up k-j as an evil escape sequence. Not used anymore due to setting esc
   ;; Load workspaces automatically on startup
   (setq persp-auto-resume-time -1))
 #+end_src
-
-;; Speed of which-key popup
-(setq which-key-idle-delay 0.2)
 
 * Media and Communications
 ** EMMS
@@ -1060,14 +1057,22 @@ Sometimes, we need to drag and drop files to GUIs - I previously was using drago
                 (local-set-key (kbd "C-M-f") 'open-nautilus-here)))))
 #+end_src
 
-* Custom functions load
+* Custom functions and templates
 I have various functions in my lisp directory for creating pomodoros, refiling done tasks to my global done.org file, and adding contacts to emails in mu4e
 
+** functions
 #+begin_src elisp
 ;; lisp functions
 (load! "lisp/pomodoro")
 (load! "lisp/done-refile")
 (load! "lisp/mu4e-contact.el")
+#+end_src
+
+** Templates
+#+begin_src elisp
+;; Load various scripts and templates
+(load! "templates/writing-template")
+(load! "templates/note-template")
 #+end_src
 
 * Legacy
