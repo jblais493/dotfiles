@@ -943,6 +943,37 @@
   ;; Set frame transparency
   (setq writeroom-alpha 0.95))
 
+;; Open file manager in place dirvish/dired
+(defun open-nautilus-here ()
+  "Open nautilus in the current directory shown in dired/dirvish."
+  (interactive)
+  (let ((dir (cond
+              ;; If we're in dired mode
+              ((derived-mode-p 'dired-mode)
+               default-directory)
+              ;; If we're in dirvish mode (dirvish is derived from dired)
+              ((and (featurep 'dirvish)
+                    (derived-mode-p 'dired-mode)
+                    (bound-and-true-p dirvish-directory))
+               (or (bound-and-true-p dirvish-directory) default-directory))
+              ;; Fallback for any other mode
+              (t default-directory))))
+    (message "Opening nautilus in: %s" dir)  ; Helpful for debugging
+    (start-process "nautilus" nil "nautilus" dir)))
+
+;; Bind it to Ctrl+Alt+f in both dired and dirvish modes
+(with-eval-after-load 'dired
+  (define-key dired-mode-map (kbd "C-M-f") 'open-nautilus-here))
+
+;; For dirvish, we need to add our binding to its special keymap if it exists
+(with-eval-after-load 'dirvish
+  (if (boundp 'dirvish-mode-map)
+      (define-key dirvish-mode-map (kbd "C-M-f") 'open-nautilus-here)
+    ;; Alternative approach if dirvish uses a different keymap system
+    (add-hook 'dirvish-mode-hook
+              (lambda ()
+                (local-set-key (kbd "C-M-f") 'open-nautilus-here)))))
+
 ;; Load private org-gcal credentials if the file exists
 (let ((private-config (expand-file-name "private/org-gcal-credentials.el" doom-private-dir)))
   (when (file-exists-p private-config)
