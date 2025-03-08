@@ -1,8 +1,7 @@
 #+title: Config
 
-* Literate configuration
-** Initial Setup
-*** Included configuration
+* Initial Setup
+** Included configuration
 #+begin_src elisp
 ;;; $DOOMDIR/config.el -*- lexical-binding: t; -*-
 
@@ -15,7 +14,7 @@
       user-mail-address "josh@joshblais.com")
 #+end_src
 
-*** Fonts
+** Fonts
 I really like GeistMono as a replacement for SourceCode Pro I will look at adding in serif/alternate writeroom fonts
 - [ ] TODO: alternate fonts for writeroom
 
@@ -34,7 +33,8 @@ I really like GeistMono as a replacement for SourceCode Pro I will look at addin
 ;;       doom-variable-pitch-font (font-spec :family "sans" :size 13))
 #+end_src
 
-*** Theming and base setup
+** Theming
+I like the nord theme that is packaged with doom, though I have done some customization in the past, which live in the themes directory. I also don't want a top bar, as I launch and close emacs with the keyboard, and it looks bad.
 
 #+begin_src elisp
 ;; There are two ways to load a theme. Both assume the theme is installed and
@@ -50,19 +50,57 @@ I really like GeistMono as a replacement for SourceCode Pro I will look at addin
 
 ;; remove top frame bar in emacs
 (add-to-list 'default-frame-alist '(undecorated . t))
+#+end_src
 
+*** Modeline setup
+#+begin_src elisp
+(setq doom-modeline-icon t)
+(setq doom-modeline-major-mode-icon t)
+(setq doom-modeline-lsp-icon t)
+(setq doom-modeline-major-mode-color-icon t)
+#+end_src
+
+** Transparency
+#+begin_src elisp
+;; Transparency
+(set-frame-parameter (selected-frame) 'alpha '(96 . 97))
+(add-to-list 'default-frame-alist '(alpha . (96 . 97)))
+#+end_src
+
+** Indenting
+#+begin_src elisp
+;; Aggresssive Indent
+(require 'aggressive-indent)
+(global-aggressive-indent-mode 1)
+#+end_src
+
+** Cursor blink
+#+begin_src elisp
+;; Blink cursor
+(blink-cursor-mode 1)
+#+end_src
+
+** Line wrapping and tweaks
+We set the visual line wrapping and relative line numbers (then we can just go up or down by X number of lines)
+
+#+begin_src elisp
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
 (setq display-line-numbers-type 'relative)
 
 ;; Line wrapping
 (global-visual-line-mode t)
-
-;; Send files to trash instead of fully deleting
-(setq delete-by-moving-to-trash t)
 #+end_src
 
-*** Optimizations
+** Setup trash and auto saving
+#+begin_src elisp
+;; Send files to trash instead of fully deleting
+(setq delete-by-moving-to-trash t)
+;; Save automatically
+(setq auto-save-default t)
+#+end_src
+
+** Optimizations
 #+begin_src elisp
 ;; Performance optimizations
 (setq gc-cons-threshold (* 256 1024 1024))
@@ -78,8 +116,7 @@ I really like GeistMono as a replacement for SourceCode Pro I will look at addin
 (setq vc-handled-backends '(Git))
 #+end_src
 
-
-*** Splash Screen
+** Splash Screen
 #+begin_src elisp
 ;; Setup custom splashscreen
 (remove-hook '+doom-dashboard-functions #'doom-dashboard-widget-shortmenu)
@@ -88,7 +125,7 @@ I really like GeistMono as a replacement for SourceCode Pro I will look at addin
   (insert "\n" (+doom-dashboard--center +doom-dashboard--width "Welcome Home.")))
 #+end_src
 
-*** Notes and misc
+** Notes and misc
 #+begin_src elisp
 ;; Here are some additional functions/macros that could help you configure Doom:
 ;;
@@ -102,72 +139,30 @@ I really like GeistMono as a replacement for SourceCode Pro I will look at addin
                                         ;(require 'org-mime)
 #+end_src
 
-** Org mode setup
+** Set Zen Browser as default
 #+begin_src elisp
-;; If you use `org' and don't want your org files in the default location below,
-;; change `org-directory'. It must be set before org loads!
-(setq org-directory "~/org")
-#+end_src
-
-** Evil mode setup
-This sets up k-j as an evil escape sequence. Not used anymore due to setting esc keys in firmware.
-
-#+begin_src elisp
-;; Evil-escape sequence
-(setq-default evil-escape-key-sequence "kj")
-(setq-default evil-escape-delay 0.1)
-#+end_src
-
-** Vterm
-;; Vterm adjustemts
-(setq vterm-environment '("TERM=xterm-256color"))
-(set-language-environment "UTF-8")
-(set-default-coding-systems 'utf-8)
-(custom-set-faces!
-  '(vterm :family "Geistmono Nerd Font"))
-
-;; open vterm in dired location
-(after! vterm
-  (setq vterm-buffer-name-string "vterm %s")
-  (defadvice! +vterm/buffer-name-from-dired (fn &rest args)
-    :around #'vterm
-    (let ((default-directory (if (eq major-mode 'dired-mode)
-                                 (dired-current-directory)
-                               default-directory)))
-      (apply fn args))))
-
-;; Enable paste from system clipboard with C-v in insert mode
-(evil-define-key 'insert global-map (kbd "C-v") 'clipboard-yank)
-
 ;; set specific browser to open links
 ;;(setq browse-url-browser-function 'browse-url-firefox)
 ;; set browser to zen-browser
 (setq browse-url-browser-function 'browse-url-generic)
 (setq browse-url-generic-program "zen-browser")  ; replace with actual executable name
+#+end_src
 
+* Org mode setup
+#+begin_src elisp
+;; If you use `org' and don't want your org files in the default location below,
+;; change `org-directory'. It must be set before org loads!
+(setq org-directory "~/org")
 
-;; Emmet remap
-(add-hook 'sgml-mode-hook 'emmet-mode) ;; Auto-start on any markup modes
-(add-hook 'css-mode-hook  'emmet-mode) ;; enable Emmet's css abbreviation.
-(map! :map emmet-mode-keymap
-      :n "<C-return>" #'emmet-expand-line)
-(setq emmet-expand-jsx-className? t) ;; default nil
-;;---------
 (use-package org
   :ensure nil
   :custom (org-modules '(org-habit)))
-;;---------
+
 (after! org
   (map! :map org-mode-map
         :n "<M-left>" #'org-do-promote
         :n "<M-right>" #'org-do-demote)
   )
-
-** Modeline setup
-(setq doom-modeline-icon t)
-(setq doom-modeline-major-mode-icon t)
-(setq doom-modeline-lsp-icon t)
-(setq doom-modeline-major-mode-color-icon t)
 
 ;; Auto-clock in when state changes to STRT
 (defun my/org-clock-in-if-starting ()
@@ -201,7 +196,57 @@ This sets up k-j as an evil escape sequence. Not used anymore due to setting esc
     (org-mode . org-fancy-priorities-mode)
     :config
     (setq org-fancy-priorities-list '("⚡" "⬆" "⬇" "☕"))))
+#+end_src
 
+* Evil mode setup
+This sets up k-j as an evil escape sequence. Not used anymore due to setting esc keys in firmware.
+
+#+begin_src elisp
+;; Evil-escape sequence
+(setq-default evil-escape-key-sequence "kj")
+(setq-default evil-escape-delay 0.1)
+
+; Don't move cursor back when exiting insert mode
+(setq evil-move-cursor-back nil)
+;; granular undo with evil mode
+(setq evil-want-fine-undo t)
+;; Enable paste from system clipboard with C-v in insert mode
+(evil-define-key 'insert global-map (kbd "C-v") 'clipboard-yank)
+#+end_src
+
+* Vterm
+#+begin_src elisp
+;; Vterm adjustemts
+(setq vterm-environment '("TERM=xterm-256color"))
+(set-language-environment "UTF-8")
+(set-default-coding-systems 'utf-8)
+(custom-set-faces!
+  '(vterm :family "Geistmono Nerd Font"))
+
+;; open vterm in dired location
+(after! vterm
+  (setq vterm-buffer-name-string "vterm %s")
+  (defadvice! +vterm/buffer-name-from-dired (fn &rest args)
+    :around #'vterm
+    (let ((default-directory (if (eq major-mode 'dired-mode)
+                                 (dired-current-directory)
+                               default-directory)))
+      (apply fn args))))
+#+end_src
+
+* Development
+** Emmet
+#+begin_src elisp
+;; Emmet remap
+(add-hook 'sgml-mode-hook 'emmet-mode) ;; Auto-start on any markup modes
+(add-hook 'css-mode-hook  'emmet-mode) ;; enable Emmet's css abbreviation.
+(map! :map emmet-mode-keymap
+      :n "<C-return>" #'emmet-expand-line)
+(setq emmet-expand-jsx-className? t) ;; default nil
+#+end_src
+
+** LSP
+#+begin_src elisp
 ;; LSP Performance optimizations and settings
 (after! lsp-mode
   (setq lsp-idle-delay 0.5
@@ -238,7 +283,16 @@ This sets up k-j as an evil escape sequence. Not used anymore due to setting esc
         lsp-ui-doc-delay 0.5
         lsp-ui-sideline-enable nil
         lsp-ui-peek-enable t))
+#+end_src
 
+** Tailwind
+#+begin_src elisp
+;; Tailwind CSS
+(use-package! lsp-tailwindcss)
+#+end_src
+
+** Company
+#+begin_src elisp
 ;; Company mode tweaks
 (after! company
   (setq company-minimum-prefix-length 1
@@ -250,10 +304,10 @@ This sets up k-j as an evil escape sequence. Not used anymore due to setting esc
   (add-to-list 'company-backends 'company-files)
   (setq company-files-exclusions nil)
   (setq company-files-chop-trailing-slash t))
+#+end_src
 
-;; Tailwind CSS
-(use-package! lsp-tailwindcss)
-
+** Minimap (not using)
+#+begin_src elisp
 ;; ;; Setup Minimap
 ;; (require 'sublimity)
 ;; (require 'sublimity-scroll)
@@ -264,21 +318,15 @@ This sets up k-j as an evil escape sequence. Not used anymore due to setting esc
 ;; (map! :leader
 ;;       (:prefix ("t" . "toggle")
 ;;        :desc "Toggle minimap-mode" "m" #'minimap-mode))
+#+end_src
 
+** Treemacs
+#+begin_src elisp
 ;; Treemacs
 (require 'treemacs-all-the-icons)
 (setq doom-themes-treemacs-theme "all-the-icons")
+#+end_src
 
-;; Transparency
-(set-frame-parameter (selected-frame) 'alpha '(96 . 97))
-(add-to-list 'default-frame-alist '(alpha . (96 . 97)))
-
-;; Aggresssive Indent
-(require 'aggressive-indent)
-(global-aggressive-indent-mode 1)
-
-;; Blink cursor
-(blink-cursor-mode 1)
 
 ;; (require 'package)
 ;; (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/") t)
@@ -909,9 +957,6 @@ This sets up k-j as an evil escape sequence. Not used anymore due to setting esc
   (remove-hook 'dap-stopped-hook 'dap-ui-repl-toggle)
   (remove-hook 'dap-session-created-hook 'dap-ui-mode))
 
-(setq evil-move-cursor-back nil)      ; Don't move cursor back when exiting insert mode
-(setq evil-want-fine-undo t) ;; granular undo with evil mode
-(setq auto-save-default t) ;; autosave on
 
 ;; Setup writeroom width and appearance
 (after! writeroom-mode
