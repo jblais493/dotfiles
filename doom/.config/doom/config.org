@@ -604,6 +604,29 @@ This sets up k-j as an evil escape sequence. Not used anymore due to setting esc
   (remove-hook 'dap-session-created-hook 'dap-ui-mode))
 #+end_src
 
+** TRAMP
+#+begin_src elisp
+;;;; TRAMP optimizations
+(after! tramp
+  (setq tramp-default-method "ssh"          ; Use SSH by default
+        tramp-verbose 1                      ; Reduce verbosity
+        tramp-use-ssh-controlmaster-options nil  ; Don't use control master
+        tramp-chunksize 500                 ; Bigger chunks for better performance
+        tramp-connection-timeout 10         ; Shorter timeout
+        ;; Use SSH configuration
+        tramp-use-ssh-controlmaster-options nil
+        ;; Cache remote files
+        remote-file-name-inhibit-cache nil
+        ;; Enable file-name-handler cache
+        tramp-cache-read-persistent-data t))
+
+;; Additional performance settings
+(setq vc-ignore-dir-regexp
+      (format "%s\\|%s"
+              vc-ignore-dir-regexp
+              tramp-file-name-regexp))
+#+end_src
+
 * Writing
 ** Spelling
 #+begin_src elisp
@@ -810,98 +833,6 @@ This sets up k-j as an evil escape sequence. Not used anymore due to setting esc
 (projectile-add-known-project "~/Development/svelte-email")
 #+end_src
 
-;; Add to your config.el
-(setq completing-read-function #'completing-read-default)
-(setq read-file-name-function #'read-file-name-default)
-
-;; Makes path completion more like find-file everywhere
-(setq read-file-name-completion-ignore-case t
-      read-buffer-completion-ignore-case t
-      completion-ignore-case t)
-
-;; Use the familiar C-x C-f interface for directory completion
-(map! :map minibuffer-mode-map
-      :when (featurep! :completion vertico)
-      "C-x C-f" #'find-file)
-
-(after! vertico
-  ;; Add file preview
-  (add-hook 'rfn-eshadow-update-overlay-hook #'vertico-directory-tidy)
-  (define-key vertico-map (kbd "DEL") #'vertico-directory-delete-char)
-  (define-key vertico-map (kbd "M-DEL") #'vertico-directory-delete-word))
-
-;; Enhanced marginalia annotations
-(after! marginalia
-  (setq marginalia-annotators '(marginalia-annotators-heavy marginalia-annotators-light nil)))
-
-;; Corrected Embark configuration
-(map! :leader
-      (:prefix ("k" . "embark")  ;; Using 'k' prefix instead of 'e' which conflicts with elfeed
-       :desc "Embark act" "a" #'embark-act
-       :desc "Embark dwim" "d" #'embark-dwim))
-
-;; Optional: Make vertico use a more minimal display
-(after! vertico
-  (setq vertico-count 17
-        vertico-cycle t))
-
-;; Optional: Configure consult for better previews
-(after! consult
-  (setq consult-preview-key "M-.")
-  (setq consult-ripgrep-args "rg --null --line-buffered --color=never --max-columns=1000 --path-separator /   --smart-case --no-heading --with-filename --line-number --search-zip"))
-
-(map! :leader
-      :desc "Dirvish in current dir" "d" #'dirvish)
-
-
-
-;;;; TRAMP optimizations
-(after! tramp
-  (setq tramp-default-method "ssh"          ; Use SSH by default
-        tramp-verbose 1                      ; Reduce verbosity
-        tramp-use-ssh-controlmaster-options nil  ; Don't use control master
-        tramp-chunksize 500                 ; Bigger chunks for better performance
-        tramp-connection-timeout 10         ; Shorter timeout
-        ;; Use SSH configuration
-        tramp-use-ssh-controlmaster-options nil
-        ;; Cache remote files
-        remote-file-name-inhibit-cache nil
-        ;; Enable file-name-handler cache
-        tramp-cache-read-persistent-data t))
-
-;; Additional performance settings
-(setq vc-ignore-dir-regexp
-      (format "%s\\|%s"
-              vc-ignore-dir-regexp
-              tramp-file-name-regexp))
-
-
-;; Emacs everywhere configuration
-(after! emacs-everywhere
-  ;; Set default frame parameters for emacs-everywhere
-  (setq emacs-everywhere-frame-parameters
-        '((name . "emacs-everywhere")
-          (width . 80)
-          (height . 24)
-          (minibuffer . t)
-          (menu-bar-lines . 0)
-          (tool-bar-lines . 0)
-          (undecorated . t))))
-
-;; setup development sql database
-(setq sql-connection-alist
-      '((dev-postgres
-         (sql-product 'postgres)
-         (sql-server "localhost")
-         (sql-user "postgres")
-         (sql-password "postgres")
-         (sql-database "devdb")
-         (sql-port 5432))))
-
-;; Enable Treesitter for Go in org
-(after! tree-sitter
-  (require 'tree-sitter-langs)
-  (add-to-list 'tree-sitter-major-mode-language-alist '(org-mode . go)))
 
 ** Workspaces
 #+begin_src elisp
@@ -1019,6 +950,13 @@ I use org mode for calendaring, but I export and sync to my google calendar so I
   (when (file-exists-p private-config)
     (load private-config)))
 
+#+end_src
+
+** Dirvish
+#+begin_src elisp
+;; Open dirvish
+(map! :leader
+      :desc "Dirvish in current dir" "d" #'dirvish)
 #+end_src
 
 ** Graphical File management
@@ -1162,3 +1100,73 @@ I have various functions in my lisp directory for creating pomodoros, refiling d
 ;;  (define-key dired-mode-map [drag-mouse-1] 'my/drag-file-mouse)
 ;;  (define-key dired-mode-map (kbd "C-c C-d") 'my/drag-file-keyboard))
 #+end_src
+
+
+* TODO
+;; Add to your config.el
+(setq completing-read-function #'completing-read-default)
+(setq read-file-name-function #'read-file-name-default)
+
+;; Makes path completion more like find-file everywhere
+(setq read-file-name-completion-ignore-case t
+      read-buffer-completion-ignore-case t
+      completion-ignore-case t)
+
+;; Use the familiar C-x C-f interface for directory completion
+(map! :map minibuffer-mode-map
+      :when (featurep! :completion vertico)
+      "C-x C-f" #'find-file)
+
+(after! vertico
+  ;; Add file preview
+  (add-hook 'rfn-eshadow-update-overlay-hook #'vertico-directory-tidy)
+  (define-key vertico-map (kbd "DEL") #'vertico-directory-delete-char)
+  (define-key vertico-map (kbd "M-DEL") #'vertico-directory-delete-word))
+
+;; Enhanced marginalia annotations
+(after! marginalia
+  (setq marginalia-annotators '(marginalia-annotators-heavy marginalia-annotators-light nil)))
+
+;; Corrected Embark configuration
+(map! :leader
+      (:prefix ("k" . "embark")  ;; Using 'k' prefix instead of 'e' which conflicts with elfeed
+       :desc "Embark act" "a" #'embark-act
+       :desc "Embark dwim" "d" #'embark-dwim))
+
+;; Optional: Make vertico use a more minimal display
+(after! vertico
+  (setq vertico-count 17
+        vertico-cycle t))
+
+;; Optional: Configure consult for better previews
+(after! consult
+  (setq consult-preview-key "M-.")
+  (setq consult-ripgrep-args "rg --null --line-buffered --color=never --max-columns=1000 --path-separator /   --smart-case --no-heading --with-filename --line-number --search-zip"))
+
+
+;; Emacs everywhere configuration
+(after! emacs-everywhere
+  ;; Set default frame parameters for emacs-everywhere
+  (setq emacs-everywhere-frame-parameters
+        '((name . "emacs-everywhere")
+          (width . 80)
+          (height . 24)
+          (minibuffer . t)
+          (menu-bar-lines . 0)
+          (tool-bar-lines . 0)
+          (undecorated . t))))
+
+;; setup development sql database
+(setq sql-connection-alist
+      '((dev-postgres
+         (sql-product 'postgres)
+         (sql-server "localhost")
+         (sql-user "postgres")
+         (sql-password "postgres")
+         (sql-database "devdb")
+         (sql-port 5432))))
+
+;; Enable Treesitter for Go in org
+(after! tree-sitter
+  (require 'tree-sitter-langs)
+  (add-to-list 'tree-sitter-major-mode-language-alist '(org-mode . go)))
