@@ -88,7 +88,7 @@
 (set-language-environment "UTF-8")
 (set-default-coding-systems 'utf-8)
 (custom-set-faces!
-  '(vterm :family "Source Code Pro"))
+  '(vterm :family "Geistmono Nerd Font"))
 
 ;; open vterm in dired location
 (after! vterm

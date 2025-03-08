@@ -34,7 +34,7 @@ I really like GeistMono as a replacement for SourceCode Pro I will look at addin
 ;;       doom-variable-pitch-font (font-spec :family "sans" :size 13))
 #+end_src
 
-** Theming
+** Theming and base setup
 
 #+begin_src elisp
 ;; There are two ways to load a theme. Both assume the theme is installed and
@@ -50,19 +50,20 @@ I really like GeistMono as a replacement for SourceCode Pro I will look at addin
 
 ;; remove top frame bar in emacs
 (add-to-list 'default-frame-alist '(undecorated . t))
-#+end_src
-
-;; If you use `org' and don't want your org files in the default location below,
-;; change `org-directory'. It must be set before org loads!
-(setq org-directory "~/org")
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
 (setq display-line-numbers-type 'relative)
 
-;; Line wrap
+;; Line wrapping
 (global-visual-line-mode t)
 
+;; Send files to trash instead of fully deleting
+(setq delete-by-moving-to-trash t)
+#+end_src
+
+** Optimizations
+#+begin_src elisp
 ;; Performance optimizations
 (setq gc-cons-threshold (* 256 1024 1024))
 (setq read-process-output-max (* 4 1024 1024))
@@ -75,16 +76,26 @@ I really like GeistMono as a replacement for SourceCode Pro I will look at addin
 
 ;; Version control optimization
 (setq vc-handled-backends '(Git))
+#+end_src
 
-;; trash files before deleting
-(setq delete-by-moving-to-trash t)
+** Org mode setup
+#+begin_src elisp
+;; If you use `org' and don't want your org files in the default location below,
+;; change `org-directory'. It must be set before org loads!
+(setq org-directory "~/org")
+#+end_src
 
+** Splash Screen
+#+begin_src elisp
 ;; Setup custom splashscreen
 (remove-hook '+doom-dashboard-functions #'doom-dashboard-widget-shortmenu)
 (setq fancy-splash-image "~/Pictures/cath.jpg")
 (add-hook! '+doom-dashboard-functions :append
   (insert "\n" (+doom-dashboard--center +doom-dashboard--width "Welcome Home.")))
+#+end_src
 
+** Notes and misc
+#+begin_src elisp
 ;; Here are some additional functions/macros that could help you configure Doom:
 ;;
 ;; - `load!' for loading external *.el files relative to this one
@@ -95,17 +106,20 @@ I really like GeistMono as a replacement for SourceCode Pro I will look at addin
 ;;   `require' or `use-package'.
 ;; - `map!' for binding new keys
                                         ;(require 'org-mime)
+#+end_src
 
+** Evil mode setup
 ;; Evil-escape sequence
 (setq-default evil-escape-key-sequence "kj")
 (setq-default evil-escape-delay 0.1)
 
+** Vterm
 ;; Vterm adjustemts
 (setq vterm-environment '("TERM=xterm-256color"))
 (set-language-environment "UTF-8")
 (set-default-coding-systems 'utf-8)
 (custom-set-faces!
-  '(vterm :family "Source Code Pro"))
+  '(vterm :family "Geistmono Nerd Font"))
 
 ;; open vterm in dired location
 (after! vterm
