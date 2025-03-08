@@ -12,7 +12,9 @@ export PATH=$PATH:~/.local/bin/
 
 #scripts
 export PATH=$PATH:~/.config/scripts
+export PATH=$PATH:~/.config/scripts/Automations
 export PATH=$PATH:~/.config/scripts/Development
+export PATH=$PATH:~/.config/scripts/Misc
 export PATH=$PATH:~/.config/scripts/Media
 export PATH=$PATH:~/.config/scripts/Accounting
 export PATH=$PATH:~/.config/scripts/Dotfiles
