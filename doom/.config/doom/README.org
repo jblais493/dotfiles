@@ -1,4 +1,4 @@
-# My Doom Emacs Configuration
+# Controls for my Doom emacs
 
 I have used doom emacs as a way to get up and running with emacs
 
