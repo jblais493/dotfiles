@@ -15,7 +15,7 @@
       user-mail-address "josh@joshblais.com")
 #+end_src
 
-** Fonts
+*** Fonts
 I really like GeistMono as a replacement for SourceCode Pro I will look at adding in serif/alternate writeroom fonts
 - [ ] TODO: alternate fonts for writeroom
 
@@ -34,7 +34,7 @@ I really like GeistMono as a replacement for SourceCode Pro I will look at addin
 ;;       doom-variable-pitch-font (font-spec :family "sans" :size 13))
 #+end_src
 
-** Theming and base setup
+*** Theming and base setup
 
 #+begin_src elisp
 ;; There are two ways to load a theme. Both assume the theme is installed and
@@ -62,7 +62,7 @@ I really like GeistMono as a replacement for SourceCode Pro I will look at addin
 (setq delete-by-moving-to-trash t)
 #+end_src
 
-** Optimizations
+*** Optimizations
 #+begin_src elisp
 ;; Performance optimizations
 (setq gc-cons-threshold (* 256 1024 1024))
@@ -78,14 +78,8 @@ I really like GeistMono as a replacement for SourceCode Pro I will look at addin
 (setq vc-handled-backends '(Git))
 #+end_src
 
-** Org mode setup
-#+begin_src elisp
-;; If you use `org' and don't want your org files in the default location below,
-;; change `org-directory'. It must be set before org loads!
-(setq org-directory "~/org")
-#+end_src
 
-** Splash Screen
+*** Splash Screen
 #+begin_src elisp
 ;; Setup custom splashscreen
 (remove-hook '+doom-dashboard-functions #'doom-dashboard-widget-shortmenu)
@@ -94,7 +88,7 @@ I really like GeistMono as a replacement for SourceCode Pro I will look at addin
   (insert "\n" (+doom-dashboard--center +doom-dashboard--width "Welcome Home.")))
 #+end_src
 
-** Notes and misc
+*** Notes and misc
 #+begin_src elisp
 ;; Here are some additional functions/macros that could help you configure Doom:
 ;;
@@ -108,10 +102,21 @@ I really like GeistMono as a replacement for SourceCode Pro I will look at addin
                                         ;(require 'org-mime)
 #+end_src
 
+** Org mode setup
+#+begin_src elisp
+;; If you use `org' and don't want your org files in the default location below,
+;; change `org-directory'. It must be set before org loads!
+(setq org-directory "~/org")
+#+end_src
+
 ** Evil mode setup
+This sets up k-j as an evil escape sequence. Not used anymore due to setting esc keys in firmware.
+
+#+begin_src elisp
 ;; Evil-escape sequence
 (setq-default evil-escape-key-sequence "kj")
 (setq-default evil-escape-delay 0.1)
+#+end_src
 
 ** Vterm
 ;; Vterm adjustemts
@@ -158,7 +163,7 @@ I really like GeistMono as a replacement for SourceCode Pro I will look at addin
         :n "<M-right>" #'org-do-demote)
   )
 
-;; =============== MODELINE =============== ;;
+** Modeline setup
 (setq doom-modeline-icon t)
 (setq doom-modeline-major-mode-icon t)
 (setq doom-modeline-lsp-icon t)
@@ -430,6 +435,7 @@ I really like GeistMono as a replacement for SourceCode Pro I will look at addin
 ;;;; Schedule for 5:30 AM
 ;;(run-at-time "05:30" 86400 #'my/send-daily-agenda)
 
+** Org capture templates
 ;; Capture templates
 (setq org-capture-templates
       '(("t" "Todo" entry
