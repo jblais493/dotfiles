@@ -562,6 +562,9 @@
          (sql-database "devdb")
          (sql-port 5432))))
 
+(setq docker-command "podman")
+(setq docker-compose-command "podman-compose")
+
 ;; Spelling
 (setq ispell-program-name "aspell")
 (setq ispell-extra-args '("--sug-mode=ultra" "--lang=en_US"))

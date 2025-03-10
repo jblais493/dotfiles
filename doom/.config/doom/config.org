@@ -691,6 +691,12 @@ This sets up k-j as an evil escape sequence. Not used anymore due to setting esc
          (sql-port 5432))))
 #+end_src
 
+** Docker
+#+begin_src elisp
+(setq docker-command "podman")
+(setq docker-compose-command "podman-compose")
+#+end_src
+
 * Writing
 ** Spelling
 #+begin_src elisp
