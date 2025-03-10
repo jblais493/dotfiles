@@ -278,6 +278,8 @@ alias search-email='~/.config/scripts/email_search'
 alias blogdeploy="~/.config/scripts/Development/blogdeploy.sh"
 
 # Docker commands migrated to podman
+alias docker="podman"
+alias docker compose="podman compose"
 alias dcd="podman compose down"
 alias dcu="podman compose up -d"
 alias dcb='podman build -t forge.labrynth.org/josh/$(basename $PWD):latest .'
