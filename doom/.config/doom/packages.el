@@ -68,6 +68,15 @@
 ;;   :recipe (:host github
 ;;            :repo "rougier/nano-modeline"))
 
+;; Installing pgmacs for postgres databases
+(package! pg
+  :recipe (:host github :repo "emarsden/pg-el"))
+
+(package! pgmacs
+  :recipe (:host github :repo "emarsden/pgmacs"
+           :files ("*.el" "*.texi" "dir"
+                   (:exclude ".dir-locals.el" "test.el" "tests.el"))))
+
 ;; (package! jabber)
 (package! elpher)
 (package! emms)

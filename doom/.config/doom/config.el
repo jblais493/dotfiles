@@ -552,8 +552,7 @@
               vc-ignore-dir-regexp
               tramp-file-name-regexp))
 
-;; setup development sql database
-;; setup development sql database
+;; Setup development SQL database
 (setq sql-connection-alist
       '((dev-postgres
          (sql-product 'postgres)
@@ -576,6 +575,21 @@
   (org-babel-do-load-languages
    'org-babel-load-languages
    '((sql . t))))
+
+;; PGmacs setup
+(use-package pgmacs
+  :after pg
+  :commands (pgmacs pgmacs-open-string pgmacs-open-uri)
+  :config
+  ;; Define a function to quickly connect to your development database
+  (defun my-pgmacs-connect ()
+    "Connect to the development database using PGmacs."
+    (interactive)
+    (pgmacs-open-string "user=postgres password=postgres dbname=devdb host=localhost port=5432"))
+
+  ;; Set PGmacs customization options
+  (setq pgmacs-default-display-limit 100)  ;; Default number of rows to show
+  (setq pgmacs-widget-use-proportional-font nil))  ;; Use fixed-width font in widgets
 
 ;; Modified function to use existing SQL connection when available
 (defun pg-query-to-orgtable (query &optional buffer-name)
@@ -653,6 +667,13 @@
     (switch-to-buffer buffer)
     (goto-char (point-min))))
 
+;; Bridge function to export PGmacs data to Org documents
+(defun my-pg-export-table-to-org (table-name)
+  "Export a table from database to an Org document with query results."
+  (interactive "sTable name: ")
+  (pg-query-to-orgtable (format "SELECT * FROM %s LIMIT 100;" table-name)))
+
+;; All our existing functions kept for backward compatibility
 (defun pg-table-to-orgtable (table-name &optional limit-rows where-clause)
   "Select data from TABLE-NAME and display as an Org table.
 Optionally limit results with LIMIT-ROWS and/or filter with WHERE-CLAUSE."
@@ -670,7 +691,6 @@ Optionally limit results with LIMIT-ROWS and/or filter with WHERE-CLAUSE."
                         ""))))
     (pg-query-to-orgtable query (format "*Table: %s*" table-name))))
 
-;; New functions for better database exploration
 (defun pg-browse-table (table-name)
   "Browse a PostgreSQL table in Org mode."
   (interactive "sTable name: ")
@@ -710,8 +730,8 @@ Optionally limit results with LIMIT-ROWS and/or filter with WHERE-CLAUSE."
                         (unless (or (string= schema "Schema")
                                     (string-match-p "^--" schema)
                                     (string-match-p "^(" schema))
-                          (insert (format "| %s | %s | [[elisp:(pg-browse-table \"%s\")][Browse]] |\n"
-                                         schema table table))))))))))
+                          (insert (format "| %s | %s | [[elisp:(pg-browse-table \"%s\")][Browse]] | [[elisp:(my-pg-export-table-to-org \"%s\")][Export]] | [[elisp:(pgmacs-display-table \"%s\")][PGmacs]] |\n"
+                                         schema table table table table))))))))))
           (org-table-align))
         (switch-to-buffer buf))
     ;; Use org-babel if no SQL connection
@@ -728,7 +748,7 @@ Optionally limit results with LIMIT-ROWS and/or filter with WHERE-CLAUSE."
         (forward-line 1)
         (org-babel-execute-src-block)
 
-        ;; Create links for each table - simpler approach without using org-table-map-tables
+        ;; Create links for each table - with additional options
         (when (search-forward "#+RESULTS:" nil t)
           (forward-line 1)
           (let ((start (point)))
@@ -738,13 +758,12 @@ Optionally limit results with LIMIT-ROWS and/or filter with WHERE-CLAUSE."
                 (let ((schema (match-string-no-properties 1))
                       (table (match-string-no-properties 2)))
                   (delete-region (line-beginning-position) (line-end-position))
-                  (insert (format "| %s | %s | [[elisp:(pg-browse-table \"%s\")][Browse]] |"
-                                 schema table table))))
+                  (insert (format "| %s | %s | [[elisp:(pg-browse-table \"%s\")][Browse]] | [[elisp:(my-pg-export-table-to-org \"%s\")][Export]] | [[elisp:(pgmacs-display-table \"%s\")][PGmacs]] |"
+                                 schema table table table table))))
               (forward-line 1))
             (org-table-align))))
       (switch-to-buffer buf))))
 
-;; Schema exploration function
 (defun pg-describe-table (table-name)
   "Show detailed information about a table structure."
   (interactive "sTable name: ")
@@ -787,7 +806,6 @@ WHERE tablename = '%s';" table-name)))
         (pg-query-to-orgtable query)))
     (switch-to-buffer buf)))
 
-;; Sample data preview with filtering
 (defun pg-sample-data (table-name)
   "Show sample data from a table with ability to filter."
   (interactive "sTable name: ")
@@ -799,13 +817,11 @@ WHERE tablename = '%s';" table-name)))
                       limit)))
     (pg-query-to-orgtable query (format "*Sample: %s*" table-name))))
 
-;; Function to execute queries from an SQL buffer
 (defun pg-execute-buffer-query ()
   "Execute the current SQL buffer as a query and show results."
   (interactive)
   (pg-query-to-orgtable (buffer-string)))
 
-;; Function to execute the current statement at point
 (defun pg-execute-statement-at-point ()
   "Execute the SQL statement at point."
   (interactive)
@@ -813,7 +829,6 @@ WHERE tablename = '%s';" table-name)))
          (statement (buffer-substring-no-properties (car bounds) (cdr bounds))))
     (pg-query-to-orgtable statement)))
 
-;; Convenient function to connect to PostgreSQL
 (defun pg-connect ()
   "Connect to PostgreSQL database."
   (interactive)
@@ -825,6 +840,16 @@ WHERE tablename = '%s';" table-name)))
   (define-key sql-mode-map (kbd "C-c C-r") 'pg-execute-statement-at-point)
   (define-key sql-mode-map (kbd "C-c t") 'pg-list-tables)
   (define-key sql-mode-map (kbd "C-c d") 'pg-describe-table))
+
+;; Global key bindings for database operations
+(map! :leader
+      (:prefix-map ("e" . "custom")
+       (:prefix ("d" . "database")
+        :desc "Connect to PGmacs" "c" #'my-pgmacs-connect
+        :desc "Open PGmacs" "p" #'pgmacs
+        :desc "List tables" "t" #'pg-list-tables
+        :desc "Connect to SQL" "s" #'pg-connect
+        :desc "Execute SQL query" "q" #'pg-query-to-orgtable)))
 
 (setq docker-command "podman")
 (setq docker-compose-command "podman-compose")
