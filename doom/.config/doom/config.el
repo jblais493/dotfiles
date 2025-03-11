@@ -393,11 +393,27 @@
 ;; open vterm in dired location
 (after! vterm
   (setq vterm-buffer-name-string "vterm %s")
-  (defadvice! +vterm/buffer-name-from-dired (fn &rest args)
+
+  ;; Modify the default vterm opening behavior
+  (defadvice! +vterm-use-current-directory-a (fn &rest args)
+    "Make vterm open in the directory of the current buffer."
     :around #'vterm
-    (let ((default-directory (if (eq major-mode 'dired-mode)
-                                 (dired-current-directory)
-                               default-directory)))
+    (let ((default-directory (or (and (buffer-file-name)
+                                      (file-name-directory (buffer-file-name)))
+                                 (and (eq major-mode 'dired-mode)
+                                      (dired-current-directory))
+                                 default-directory)))
+      (apply fn args)))
+
+  ;; Also modify Doom's specific vterm functions
+  (defadvice! +vterm-use-current-directory-b (fn &rest args)
+    "Make Doom's vterm commands open in the directory of the current buffer."
+    :around #'+vterm/here
+    (let ((default-directory (or (and (buffer-file-name)
+                                      (file-name-directory (buffer-file-name)))
+                                 (and (eq major-mode 'dired-mode)
+                                      (dired-current-directory))
+                                 default-directory)))
       (apply fn args))))
 
 ;; Emmet remap
