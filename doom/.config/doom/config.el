@@ -1087,6 +1087,28 @@ WHERE tablename = '%s';" table-name)))
       nov-unzip-args '("-xC" directory "-f" filename))
 (add-to-list 'auto-mode-alist '("\\.epub\\'" . nov-mode))
 
+;; In config.el
+(use-package! calibredb
+  :commands calibredb
+  :config
+  (setq calibredb-root-dir "~/Library"
+        calibredb-db-dir (expand-file-name "metadata.db" calibredb-root-dir)
+        calibredb-library-alist '(("~/Library"))
+        calibredb-format-all-the-icons t)
+
+  ;; Set up key bindings for calibredb-search-mode
+  (map! :map calibredb-search-mode-map
+        :n "RET" #'calibredb-find-file
+        :n "?" #'calibredb-dispatch
+        :n "a" #'calibredb-add
+        :n "d" #'calibredb-remove
+        :n "j" #'calibredb-next-entry
+        :n "k" #'calibredb-previous-entry
+        :n "l" #'calibredb-open-file-with-default-tool
+        :n "s" #'calibredb-set-metadata-dispatch
+        :n "S" #'calibredb-switch-library
+        :n "q" #'calibredb-search-quit))
+
 ;; Add mu4e to load path
 (add-to-list 'load-path "/usr/share/emacs/site-lisp/mu4e")
 

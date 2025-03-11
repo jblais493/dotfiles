@@ -77,6 +77,8 @@
            :files ("*.el" "*.texi" "dir"
                    (:exclude ".dir-locals.el" "test.el" "tests.el"))))
 
+(package! calibredb)
+
 ;; (package! jabber)
 (package! elpher)
 (package! emms)
