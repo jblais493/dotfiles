@@ -387,17 +387,41 @@ We set the visual line wrapping and relative line numbers (then we can just go u
 ** Org Roam
 #+begin_src elisp
 ;;Org-Roam
-(setq org-roam-directory "~/org/roam")
+;; Org-Roam Configuration with SQLite Built-in Connector
+(use-package! org-roam
+  :custom
+  ;; Set your org-roam directory
+  (org-roam-directory "~/org/roam")
 
+  ;; Explicitly use the built-in SQLite connector
+  (org-roam-database-connector 'sqlite-builtin)
+
+  ;; Set an absolute path for the database file
+  (org-roam-db-location (expand-file-name "org-roam.db" org-roam-directory))
+
+  :config
+  ;; Make sure the directory exists
+  (unless (file-exists-p org-roam-directory)
+    (make-directory org-roam-directory t))
+
+  ;; Add error handling for database operations
+  (advice-add 'org-roam-db-query :around
+              (lambda (fn &rest args)
+                (condition-case err
+                    (apply fn args)
+                  (error
+                   (message "Database error in org-roam: %S" err)
+                   nil))))
+
+  ;; Enable auto-sync mode to keep the database updated
+  (org-roam-db-autosync-mode +1))
+
+;; Org-Roam UI setup - only load after org-roam is properly initialized
 (use-package! websocket
   :after org-roam)
 
 (use-package! org-roam-ui
-  :after org-roam ;; or :after org
-  ;;         normally we'd recommend hooking orui after org-roam, but since org-roam does not have
-  ;;         a hookable mode anymore, you're advised to pick something yourself
-  ;;         if you don't care about startup time, use
-  ;;  :hook (after-init . org-roam-ui-mode)
+  :after org-roam
   :config
   (setq org-roam-ui-sync-theme t
         org-roam-ui-follow t
@@ -407,6 +431,20 @@ We set the visual line wrapping and relative line numbers (then we can just go u
 ;; org-download customizations
 (require 'org-download)
 (setq-default org-download-screenshot-method "scrot -s %s")
+
+;; Debugging function for SQLite issues
+(defun debug-org-roam-db ()
+  "Debug function to test org-roam database connection."
+  (interactive)
+  (message "Testing org-roam database...")
+  (message "Directory exists: %s" (file-exists-p org-roam-directory))
+  (message "Database path: %s" org-roam-db-location)
+  (message "Database connector: %s" org-roam-database-connector)
+  (condition-case err
+      (progn
+        (org-roam-db-sync)
+        (message "Database synced successfully!"))
+    (error (message "Database sync error: %S" err))))
 #+end_src
 
 ** Org keybinds
