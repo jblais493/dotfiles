@@ -1250,6 +1250,7 @@ WHERE tablename = '%s';" table-name)))
 (load! "lisp/done-refile")
 (load! "lisp/mu4e-contact.el")
 (load! "lisp/post-to-blog")
+(load! "lisp/popup-scratch")
 
 ;; Load various scripts and templates
 (load! "templates/writing-template")

@@ -70,6 +70,7 @@ libxkbcommon-devel
 cairo-gobject-devel
 gtk-layer-shell-devel
 gtk3-devel
+ydotool
 
 Yazi
 Lazygit
