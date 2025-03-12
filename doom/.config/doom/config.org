@@ -1455,6 +1455,7 @@ I have various functions in my lisp directory for creating pomodoros, refiling d
 (load! "lisp/pomodoro")
 (load! "lisp/done-refile")
 (load! "lisp/mu4e-contact.el")
+(load! "lisp/post-to-blog")
 #+end_src
 
 ** Templates
