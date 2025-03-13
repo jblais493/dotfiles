@@ -1181,18 +1181,17 @@ WHERE tablename = '%s';" table-name)))
   )
 
 (make-directory "~/.elfeed" t)
-
 ;; Force load elfeed-org
 (require 'elfeed-org)
 (elfeed-org)
-
 ;; Set org feed file
 (setq rmh-elfeed-org-files '("~/.config/doom/elfeed.org"))
-
 ;; Configure elfeed
 (after! elfeed
   (setq elfeed-db-directory "~/.elfeed")
-  (setq elfeed-search-filter "@1-week-ago +unread -4chan -Reddit"))
+  (setq elfeed-search-filter "@1-week-ago +unread -4chan -Reddit")
+  (map! :map elfeed-search-mode-map
+        :n "O" #'elfeed-search-browse-url))
 
 (use-package! elfeed-tube
   :after elfeed

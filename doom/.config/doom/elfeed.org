@@ -12,8 +12,61 @@
 *** [[https://www.cbc.ca/webfeed/rss/rss-topstories][CBC]]
 *** [[https://feeds.bbci.co.uk/news/rss.xml][BBC]]
 
+** Science & Technology :science:tech:
+*** [[https://www.technologyreview.com/feed/][MIT Technology Review]]
+*** [[https://feeds.feedburner.com/IeeeSpectrum][IEEE Spectrum]]
+*** [[https://www.sciencedaily.com/rss/all.xml][Science Daily]]
+*** [[https://www.nature.com/nature.rss][Nature]]
+*** [[https://www.wired.com/feed/rss][Wired]]
+*** [[https://lobste.rs/rss][Lobsters]] :tech:
+*** [[https://news.ycombinator.com/rss][Hacker News]]
+*** [[https://feeds.arstechnica.com/arstechnica/index][Arstechnica]]
+*** [[https://www.theregister.com/headlines.atom][The Register]]
+
+** Linux
+*** [[https://lwn.net/headlines/rss][LWN.net]]
+*** [[https://itsfoss.com/feed/][It's FOSS]]
+*** [[https://www.phoronix.com/rss.php][Phoronix]]
+*** [[https://www.linuxjournal.com/node/feed][Linux Journal]]
+
+** Emacs
+*** [[https://sachachua.com/blog/category/emacs/feed/][Sacha Chua]]
+*** [[https://irreal.org/blog/?feed=rss2][Irreal]]
+*** [[https://systemcrafters.net/rss/content.xml][System Crafters]]
+*** [[https://protesilaos.com/codelog.xml][Protesilaos Stavrou]]
+*** [[https://with-emacs.com/rss.xml][With Emacs]]
+*** [[https://emacsredux.com/atom.xml][Emacs Redux]]
+
+** Programming
+*** [[https://jvns.ca/atom.xml][Julia Evans]]
+*** [[https://blog.pragmaticengineer.com/rss/][The Pragmatic Engineer]]
+*** [[https://martinfowler.com/feed.atom][Martin Fowler]]
+*** [[https://www.joelonsoftware.com/feed/][Joel on Software]]
+*** [[https://eli.thegreenplace.net/feeds/all.atom.xml][Eli Bendersky]]
+
+** Privacy and Security
+*** [[https://krebsonsecurity.com/feed/][Krebs on Security]]
+*** [[https://www.schneier.com/feed/atom/][Schneier on Security]]
+*** [[https://portswigger.net/daily-swig/rss][The Daily Swig]]
+*** [[https://www.darkreading.com/rss.xml][Dark Reading]]
+*** [[https://threatpost.com/feed/][ThreatPost]]
+*** [[https://www.eff.org/rss/updates.xml][EFF]]
+*** [[https://www.privacytools.io/feed.xml][Privacy Tools]]
+*** [[https://www.privateinternetaccess.com/blog/feed/][Private Internet Access]]
+
+** Philosophy
+*** [[https://dailynous.com/feed/][Daily Nous]]
+*** [[https://plato.stanford.edu/rss/sep.xml][Stanford Encyclopedia of Philosophy]]
+*** [[https://philosophybites.com/atom.xml][Philosophy Bites]]
+
+** Finance :finance:
+*** [[https://www.collaborativefund.com/feed/][Collaborative Fund]]
+*** [[https://ofdollarsanddata.com/feed/][Of Dollars and Data]]
+*** [[https://awealthofcommonsense.com/feed/][A Wealth of Common Sense]]
+*** [[https://investorfieldguide.com/feed/][The Investor's Field Guide]]
+
 ** Blogs :blog:
-*** [[https://joshblais.com/index.xml][Josh Blais]]
+*** [[https://joshblais.com/index.xml][Joshua Blais]]
 *** [[https://wrongthink.link/posts/index.xml][Wrong Think]]
 *** [[https://www.rousette.org.uk/index.xml][Rousette]]
 *** [[https://randomgeekery.org/index.xml][Random Geekery]]
@@ -51,6 +104,21 @@
 *** [[https://www.madewithtea.com/rss.xml][Made with Tea]]
 *** [[https://www.paritybit.ca/feed.xml][Parity Bit]]
 *** [[http://flower.codes/feed.xml][Flower Codes]]
+*** [[https://kevquirk.com/feed][KevQuirk]]
+*** [[https://www.gwern.net/atom.xml][Gwern]]
+*** [[https://blog.jim-nielsen.com/feed.xml][Jim Nielsen]]
+*** [[https://waitbutwhy.com/feed][Wait But Why]]
+*** [[https://fs.blog/feed/][Farnam Street]]
+*** [[https://increment.com/feed.xml][Increment]]
+*** [[https://writings.stephenwolfram.com/feed/][Stephen Wolfram]]
+*** [[https://blog.burntsushi.net/index.xml][BurntSushi]]
+*** [[https://tynan.com/feed/][Tynan]]
+*** [[https://macwright.com/rss.xml][Tom MacWright]]
+*** [[https://moxie.org/rss.xml][Moxie Marlinspike]]
+*** [[https://www.ribbonfarm.com/feed/][Ribbonfarm]]
+*** [[https://astralcodexten.substack.com/feed][Astral Codex Ten]]
+*** [[https://paul.graham/articles.rss][Paul Graham]]
+*** [[https://marginalrevolution.com/feed][Marginal Revolution]]
 
 ** YouTube :youtube:
 *** Technology :tech:
