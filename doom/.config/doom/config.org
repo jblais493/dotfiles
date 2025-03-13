@@ -1364,6 +1364,8 @@ WHERE tablename = '%s';" table-name)))
   (map! :map elfeed-search-mode-map
         :n "O" #'elfeed-search-browse-url))
 
+(run-at-time nil (* 60 60) #'elfeed-update)  ; Update hourly
+
 (use-package! elfeed-tube
   :after elfeed
   :config
