@@ -550,26 +550,41 @@
 (require 'treemacs-all-the-icons)
 (setq doom-themes-treemacs-theme "all-the-icons")
 
-;; (use-package! elysium
-;;   :custom
-;;   (elysium-window-size 0.33)
-;;   (elysium-window-style 'vertical))
+(use-package! gptel
+  :custom
+  (gptel-model "claude-3-7-sonnet-20250219")
+  :config
+  (defun gptel-api-key ()
+    "Read API key from file and ensure it's clean."
+    (string-trim
+     (with-temp-buffer
+       (insert-file-contents "~/secrets/claude_key")
+       (buffer-string))))
 
-;; (use-package! gptel
-;;   :custom
-;;   (gptel-model 'claude-3-5-sonnet-20241022)
-;;   :config
-;;   (defun gptel-api-key ()
-;;     "Read API key from file and ensure it's clean."
-;;     (string-trim
-;;      (with-temp-buffer
-;;        (insert-file-contents "~/secrets/claude_key")
-;;        (buffer-string))))
+  (setq gptel-backend
+        (gptel-make-anthropic "Claude"
+                             :stream t
+                             :key #'gptel-api-key)))
 
-;;   (setq gptel-backend
-;;         (gptel-make-anthropic "Claude"
-;;                               :stream t
-;;                               :key (gptel-api-key))))  ; Call the function immediately
+;; Elysium provides a nicer UI for gptel
+(use-package! elysium
+  :after gptel
+  :custom
+  (elysium-window-size 0.33)
+  (elysium-window-style 'vertical)
+  :config
+  ;; Fix for buffer-read-only error
+  (advice-add 'elysium :before
+              (lambda (&rest _)
+                (when (eq major-mode 'doom-mode)
+                  (other-buffer (current-buffer) t)))))
+
+;; Aider for code editing
+(use-package! aider
+  :after gptel
+  :custom
+  (aider-chat-model "claude-3-7-sonnet-20250219")
+  (aider-api-key-function #'gptel-api-key))
 
 (defun my/magit-stage-commit-push ()
   "Stage all, commit with quick message, and push with no questions"
@@ -1018,7 +1033,7 @@ WHERE tablename = '%s';" table-name)))
        :desc "Find definition"                  "f" #'lsp-find-definition
        )
       ;; Mappings for Elfeed and ERC
-      (:prefix("e" . "Elfeed and ERC")
+      (:prefix("e" . "Elfeed/ERC/AI")
        :desc "Open elfeed"              "e" #'elfeed
        :desc "Open ERC"                 "r" #'erc
        :desc "Open EWW Browser"         "w" #'eww
@@ -1026,7 +1041,13 @@ WHERE tablename = '%s';" table-name)))
        :desc "MPV watch video"          "v" #'elfeed-tube-mpv
        :desc "Open Elpher"              "l" #'elpher
        :desc "Open Pass"                "p" #'pass
+       :desc "Claude chat (gptel)"      "g" #'gptel
+       :desc "Send region to Claude"    "s" #'elysium-add-context
+       :desc "Elysium chat UI"          "i" #'elysium-query
+       :desc "Aider code session"       "a" #'aider-session
+       :desc "Aider edit region"        "c" #'aider-edit-regio
        )
+
       ;; Various other commands
       (:prefix("o" . "open")
        :desc "Calendar"                  "c" #'=calendar
