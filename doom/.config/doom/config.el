@@ -113,6 +113,18 @@
       :when (featurep! :completion vertico)
       "C-x C-f" #'find-file)
 
+;; Save minibuffer history - enables command history in M-x
+(use-package! savehist
+  :config
+  (setq savehist-file (concat doom-cache-dir "savehist")
+        savehist-save-minibuffer-history t
+        history-length 1000
+        history-delete-duplicates t
+        savehist-additional-variables '(search-ring
+                                        regexp-search-ring
+                                        extended-command-history))
+  (savehist-mode 1))
+
 (after! vertico
   ;; Add file preview
   (add-hook 'rfn-eshadow-update-overlay-hook #'vertico-directory-tidy)
@@ -123,12 +135,39 @@
         vertico-cycle t
         vertico-resize t)
   ;; Enable alternative filter methods
-  (setq vertico-sort-function #'vertico-sort-alpha)
+  (setq vertico-sort-function #'vertico-sort-history-alpha)
   ;; Quick actions keybindings
   (define-key vertico-map (kbd "C-j") #'vertico-next)
   (define-key vertico-map (kbd "C-k") #'vertico-previous)
-  (define-key vertico-map (kbd "M-RET") #'vertico-exit-input))
+  (define-key vertico-map (kbd "M-RET") #'vertico-exit-input)
 
+  ;; History navigation
+  (define-key vertico-map (kbd "M-p") #'vertico-previous-history)
+  (define-key vertico-map (kbd "M-n") #'vertico-next-history)
+  (define-key vertico-map (kbd "C-r") #'consult-history)
+
+  ;; Configure orderless for better filtering
+  (setq completion-styles '(orderless basic)
+        completion-category-defaults nil
+        completion-category-overrides '((file (styles basic partial-completion orderless))))
+
+  ;; Customize orderless behavior
+  (setq orderless-component-separator #'orderless-escapable-split-on-space
+        orderless-matching-styles '(orderless-literal
+                                    orderless-prefixes
+                                    orderless-initialism
+                                    orderless-regexp)))
+
+;; Quick command repetition
+(use-package! vertico-repeat
+  :after vertico
+  :config
+  (add-hook 'minibuffer-setup-hook #'vertico-repeat-save)
+  (map! :leader
+        (:prefix "r"
+         :desc "Repeat completion" "v" #'vertico-repeat)))
+
+;; TODO Not currently working
 ;; Enhanced sorting and filtering with prescient
 ;; (use-package! vertico-prescient
 ;;   :after vertico
@@ -168,6 +207,62 @@
    consult-theme consult-ripgrep consult-git-grep consult-grep
    consult-bookmark consult-recent-file consult-xref
    :preview-key '(:debounce 0.4 any)))
+
+;; Enhanced directory navigation
+(use-package! consult-dir
+  :bind
+  (("C-x C-d" . consult-dir)
+   :map vertico-map
+   ("C-x C-d" . consult-dir)
+   ("C-x C-j" . consult-dir-jump-file)))
+
+;; Add additional useful shortcuts
+(map! :leader
+      (:prefix "s"
+       :desc "Command history" "h" #'consult-history
+       :desc "Recent directories" "d" #'consult-dir))
+
+(after! company
+  (setq company-minimum-prefix-length 1
+        company-idle-delay 0.1
+        company-show-quick-access t
+        company-tooltip-limit 20
+        company-tooltip-align-annotations t)
+
+  ;; Make company-files a higher priority backend
+  (setq company-backends (cons 'company-files (delete 'company-files company-backends)))
+
+  ;; Better file path completion settings
+  (setq company-files-exclusions nil)
+  (setq company-files-chop-trailing-slash t)
+
+  ;; Enable completion at point for file paths
+  (defun my/enable-path-completion ()
+    "Enable file path completion using company."
+    (setq-local company-backends
+                (cons 'company-files company-backends)))
+
+  ;; Enable for all major modes
+  (add-hook 'after-change-major-mode-hook #'my/enable-path-completion)
+
+  ;; Custom file path trigger
+  (defun my/looks-like-path-p (input)
+    "Check if INPUT looks like a file path."
+    (or (string-match-p "^/" input)         ;; Absolute path
+        (string-match-p "^~/" input)        ;; Home directory
+        (string-match-p "^\\.\\{1,2\\}/" input))) ;; Relative path
+
+  (defun my/company-path-trigger (command &optional arg &rest ignored)
+    "Company backend that triggers file completion for path-like input."
+    (interactive (list 'interactive))
+    (cl-case command
+      (interactive (company-begin-backend 'company-files))
+      (prefix (when (my/looks-like-path-p (or (company-grab-line "\\([^ ]*\\)" 1) ""))
+                (company-files 'prefix)))
+      (t (apply 'company-files command arg ignored))))
+
+  ;; Add the custom path trigger to backends
+  (add-to-list 'company-backends 'my/company-path-trigger))
 
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
@@ -550,48 +645,6 @@
 
 ;; Tailwind CSS
 (use-package! lsp-tailwindcss)
-
-(after! company
-  (setq company-minimum-prefix-length 1
-        company-idle-delay 0.1
-        company-show-quick-access t
-        company-tooltip-limit 20
-        company-tooltip-align-annotations t)
-
-  ;; Make company-files a higher priority backend
-  (setq company-backends (cons 'company-files (delete 'company-files company-backends)))
-
-  ;; Better file path completion settings
-  (setq company-files-exclusions nil)
-  (setq company-files-chop-trailing-slash t)
-
-  ;; Enable completion at point for file paths
-  (defun my/enable-path-completion ()
-    "Enable file path completion using company."
-    (setq-local company-backends
-                (cons 'company-files company-backends)))
-
-  ;; Enable for all major modes
-  (add-hook 'after-change-major-mode-hook #'my/enable-path-completion)
-
-  ;; Custom file path trigger
-  (defun my/looks-like-path-p (input)
-    "Check if INPUT looks like a file path."
-    (or (string-match-p "^/" input)         ;; Absolute path
-        (string-match-p "^~/" input)        ;; Home directory
-        (string-match-p "^\\.\\{1,2\\}/" input))) ;; Relative path
-
-  (defun my/company-path-trigger (command &optional arg &rest ignored)
-    "Company backend that triggers file completion for path-like input."
-    (interactive (list 'interactive))
-    (cl-case command
-      (interactive (company-begin-backend 'company-files))
-      (prefix (when (my/looks-like-path-p (or (company-grab-line "\\([^ ]*\\)" 1) ""))
-                (company-files 'prefix)))
-      (t (apply 'company-files command arg ignored))))
-
-  ;; Add the custom path trigger to backends
-  (add-to-list 'company-backends 'my/company-path-trigger))
 
 ;; ;; Setup Minimap
 ;; (require 'sublimity)
