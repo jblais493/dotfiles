@@ -104,12 +104,10 @@
 ;; Completion mechanisms
 (setq completing-read-function #'completing-read-default)
 (setq read-file-name-function #'read-file-name-default)
-
 ;; Makes path completion more like find-file everywhere
 (setq read-file-name-completion-ignore-case t
       read-buffer-completion-ignore-case t
       completion-ignore-case t)
-
 ;; Use the familiar C-x C-f interface for directory completion
 (map! :map minibuffer-mode-map
       :when (featurep! :completion vertico)
@@ -119,27 +117,57 @@
   ;; Add file preview
   (add-hook 'rfn-eshadow-update-overlay-hook #'vertico-directory-tidy)
   (define-key vertico-map (kbd "DEL") #'vertico-directory-delete-char)
-  (define-key vertico-map (kbd "M-DEL") #'vertico-directory-delete-word))
+  (define-key vertico-map (kbd "M-DEL") #'vertico-directory-delete-word)
+  ;; Make vertico use a more minimal display
+  (setq vertico-count 17
+        vertico-cycle t
+        vertico-resize t)
+  ;; Enable alternative filter methods
+  (setq vertico-sort-function #'vertico-sort-alpha)
+  ;; Quick actions keybindings
+  (define-key vertico-map (kbd "C-j") #'vertico-next)
+  (define-key vertico-map (kbd "C-k") #'vertico-previous)
+  (define-key vertico-map (kbd "M-RET") #'vertico-exit-input))
+
+;; Enhanced sorting and filtering with prescient
+;; (use-package! vertico-prescient
+;;   :after vertico
+;;   :config
+;;   (vertico-prescient-mode 1)
+;;   (prescient-persist-mode 1)
+;;   (setq prescient-sort-length-enable nil
+;;         prescient-filter-method '(literal regexp initialism fuzzy)))
 
 ;; Enhanced marginalia annotations
 (after! marginalia
-  (setq marginalia-annotators '(marginalia-annotators-heavy marginalia-annotators-light nil)))
+  (setq marginalia-annotators '(marginalia-annotators-heavy marginalia-annotators-light nil))
+  ;; Show more details in marginalia
+  (setq marginalia-max-relative-age 0
+        marginalia-align 'right))
 
 ;; Corrected Embark configuration
 (map! :leader
       (:prefix ("k" . "embark")  ;; Using 'k' prefix instead of 'e' which conflicts with elfeed
        :desc "Embark act" "a" #'embark-act
-       :desc "Embark dwim" "d" #'embark-dwim))
+       :desc "Embark dwim" "d" #'embark-dwim
+       :desc "Embark collect" "c" #'embark-collect))
 
-;; Optional: Make vertico use a more minimal display
-(after! vertico
-  (setq vertico-count 17
-        vertico-cycle t))
-
-;; Optional: Configure consult for better previews
+;; Configure consult for better previews
 (after! consult
-  (setq consult-preview-key "M-.")
-  (setq consult-ripgrep-args "rg --null --line-buffered --color=never --max-columns=1000 --path-separator /   --smart-case --no-heading --with-filename --line-number --search-zip"))
+  (setq consult-preview-key "M-."
+        consult-ripgrep-args "rg --null --line-buffered --color=never --max-columns=1000 --path-separator /   --smart-case --no-heading --with-filename --line-number --search-zip"
+        consult-narrow-key "<"
+        consult-line-numbers-widen t
+        consult-async-min-input 2
+        consult-async-refresh-delay 0.15
+        consult-async-input-throttle 0.2
+        consult-async-input-debounce 0.1)
+
+  ;; More useful previews for different commands
+  (consult-customize
+   consult-theme consult-ripgrep consult-git-grep consult-grep
+   consult-bookmark consult-recent-file consult-xref
+   :preview-key '(:debounce 0.4 any)))
 
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
@@ -523,17 +551,47 @@
 ;; Tailwind CSS
 (use-package! lsp-tailwindcss)
 
-;; Company mode tweaks
 (after! company
   (setq company-minimum-prefix-length 1
         company-idle-delay 0.1
         company-show-quick-access t
         company-tooltip-limit 20
         company-tooltip-align-annotations t)
-  ;; Add file path completion
-  (add-to-list 'company-backends 'company-files)
+
+  ;; Make company-files a higher priority backend
+  (setq company-backends (cons 'company-files (delete 'company-files company-backends)))
+
+  ;; Better file path completion settings
   (setq company-files-exclusions nil)
-  (setq company-files-chop-trailing-slash t))
+  (setq company-files-chop-trailing-slash t)
+
+  ;; Enable completion at point for file paths
+  (defun my/enable-path-completion ()
+    "Enable file path completion using company."
+    (setq-local company-backends
+                (cons 'company-files company-backends)))
+
+  ;; Enable for all major modes
+  (add-hook 'after-change-major-mode-hook #'my/enable-path-completion)
+
+  ;; Custom file path trigger
+  (defun my/looks-like-path-p (input)
+    "Check if INPUT looks like a file path."
+    (or (string-match-p "^/" input)         ;; Absolute path
+        (string-match-p "^~/" input)        ;; Home directory
+        (string-match-p "^\\.\\{1,2\\}/" input))) ;; Relative path
+
+  (defun my/company-path-trigger (command &optional arg &rest ignored)
+    "Company backend that triggers file completion for path-like input."
+    (interactive (list 'interactive))
+    (cl-case command
+      (interactive (company-begin-backend 'company-files))
+      (prefix (when (my/looks-like-path-p (or (company-grab-line "\\([^ ]*\\)" 1) ""))
+                (company-files 'prefix)))
+      (t (apply 'company-files command arg ignored))))
+
+  ;; Add the custom path trigger to backends
+  (add-to-list 'company-backends 'my/company-path-trigger))
 
 ;; ;; Setup Minimap
 ;; (require 'sublimity)
