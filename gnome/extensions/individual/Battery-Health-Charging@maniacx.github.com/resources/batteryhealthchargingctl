@@ -1,0 +1,419 @@
+#!/usr/bin/env bash
+
+# batteryhealthchargingctl - This script for setting charging limit
+#
+# This file is part of the gnome-shell extension Battery-Health-Charging@maniacx.github.com.
+
+BAT0_END_PATH='/sys/class/power_supply/BAT0/charge_control_end_threshold'
+BAT0_START_PATH='/sys/class/power_supply/BAT0/charge_control_start_threshold'
+BAT1_END_PATH='/sys/class/power_supply/BAT1/charge_control_end_threshold'
+BAT1_START_PATH='/sys/class/power_supply/BAT1/charge_control_start_threshold'
+LG_PATH='/sys/devices/platform/lg-laptop/battery_care_limit'
+LENOVO_PATH='/sys/bus/platform/drivers/ideapad_acpi/VPC2004:00/conservation_mode'
+SONY_PATH='/sys/devices/platform/sony-laptop/battery_care_limiter'
+SONY_HIGHSPEED_CHARGING_PATH='/sys/devices/platform/sony-laptop/battery_highspeed_charging'
+HUAWEI_PATH='/sys/devices/platform/huawei-wmi/charge_control_thresholds'
+SAMSUNG_PATH='/sys/devices/platform/samsung/battery_life_extender'
+ACER_PATH='/sys/bus/wmi/drivers/acer-wmi-battery/health_mode'
+BATC_END_PATH='/sys/class/power_supply/BATC/charge_control_end_threshold'
+BATT_END_PATH='/sys/class/power_supply/BATT/charge_control_end_threshold'
+TP_BAT0_END='/sys/devices/platform/smapi/BAT0/stop_charge_thresh'
+TP_BAT0_START='/sys/devices/platform/smapi/BAT0/start_charge_thresh'
+TP_BAT1_END='/sys/devices/platform/smapi/BAT1/stop_charge_thresh'
+TP_BAT1_START='/sys/devices/platform/smapi/BAT1/start_charge_thresh'
+PANASONIC_PATH='/sys/devices/platform/panasonic/eco_mode'
+ASAHI_END_PATH='/sys/class/power_supply/macsmc-battery/charge_control_end_threshold'
+ASAHI_START_PATH='/sys/class/power_supply/macsmc-battery/charge_control_start_threshold'
+TUXEDO_PATH='/sys/devices/platform/tuxedo_keyboard/charging_profile/charging_profile'
+GIGABYTE_MODE='/sys/devices/platform/gigabyte_laptop/charge_mode'
+GIGABYTE_LIMIT='/sys/devices/platform/gigabyte_laptop/charge_limit'
+APPLE_CHARGING_LED_PATH='/sys/class/power_supply/BAT0/charge_control_full_threshold'
+BAT0_FORCE_DISCHARGE_PATH='/sys/class/power_supply/BAT0/charge_behaviour'
+BAT1_FORCE_DISCHARGE_PATH='/sys/class/power_supply/BAT1/charge_behaviour'
+CMB0_END_PATH='/sys/class/power_supply/CMB0/charge_control_end_threshold'
+CMB1_END_PATH='/sys/class/power_supply/CMB1/charge_control_end_threshold'
+DELL_BAT0_CHARGE_TYPES_PATH='/sys/class/power_supply/BAT0/charge_types'
+DELL_BAT1_CHARGE_TYPES_PATH='/sys/class/power_supply/BAT1/charge_types'
+
+EXIT_SUCCESS=0
+EXIT_ERROR=1
+EXIT_NEEDS_UPDATE=2
+
+TOOLCMD=$1
+ARG1=${2:-0}
+ARG2=${3:-0}
+ARG3=${4:-0}
+ARG4=${5:-0}
+
+function check_installation() {
+    local EXTENSION_NAME='Battery Health Charging'
+    local ACTION_BASE='dem.batteryhealthcharging'
+    local BHC_BASE='batteryhealthchargingctl'
+    local BHC_DIR='/usr/local/bin'
+    local RULE_DIR='/etc/polkit-1/rules.d'
+    local RULE_BASE="$ACTION_BASE.setthreshold"
+    local LEGACY_POLKIT=false
+    local VERSIONS EXTDIR TOOL_USER RULE_IN ACTION_IN TOOL_IN TOOL_OUT RULE_OUT ACTION_ID ACTION_OUT
+
+    printf -v VERSIONS '%s\n%s' "$(pkaction --version | cut -d' ' -f3)" "0.106"
+    if [[ $VERSIONS != "$(sort -V <<<"$VERSIONS")" ]]; then
+        LEGACY_POLKIT=false
+    else
+        LEGACY_POLKIT=true
+    fi
+
+    EXTDIR=$ARG1
+    TOOL_USER=$ARG2
+    RULE_IN="${EXTDIR}/10-${RULE_BASE}.rules"
+
+    if [[ "$LEGACY_POLKIT" = true ]]; then
+        RULE_IN="${RULE_IN}.legacy"
+        ACTION_IN="${EXTDIR}/${ACTION_BASE}.policy.in"
+    fi
+
+    TOOL_IN="${EXTDIR}/${BHC_BASE}"
+    TOOL_OUT="${BHC_DIR}/${BHC_BASE}-${TOOL_USER}"
+    RULE_OUT="${RULE_DIR}/10-${RULE_BASE}-${TOOL_USER}.rules"
+    ACTION_ID="${RULE_BASE}.${TOOL_USER}"
+    ACTION_OUT="/usr/share/polkit-1/actions/${ACTION_ID}.policy"
+
+    if [[ "$LEGACY_POLKIT" = true ]]; then
+        echo "$EXTENSION_NAME: checking legacy rules and policies !"
+        if ! sed -e "s:{{RULE_BASE}}:${RULE_BASE}:g" "${RULE_IN}" |
+            cmp --silent "${RULE_OUT}"; then
+            echo "$EXTENSION_NAME: installation needs to update rules !"
+            exit ${EXIT_NEEDS_UPDATE}
+        else
+            if ! sed -e "s:{{PATH}}:${TOOL_OUT}:g" \
+                -e "s:{{ACTION_BASE}}:${ACTION_BASE}:g" \
+                -e "s:{{ACTION_ID}}:${ACTION_ID}:g" "${ACTION_IN}" |
+                cmp --silent "${ACTION_OUT}"; then
+                echo "$EXTENSION_NAME: installation needs to update policies!"
+                exit ${EXIT_NEEDS_UPDATE}
+            fi
+        fi
+    else
+        echo "$EXTENSION_NAME: checking rules !"
+        if ! sed -e "s:{{TOOL_OUT}}:${TOOL_OUT}:g" \
+            -e "s:{{TOOL_USER}}:${TOOL_USER}:g" "${RULE_IN}" |
+            cmp --silent "${RULE_OUT}"; then
+            echo "$EXTENSION_NAME: installation needs updating rules!"
+            exit ${EXIT_NEEDS_UPDATE}
+        fi
+    fi
+
+    echo "$EXTENSION_NAME: checking ctl !"
+    if ! cmp --silent "${TOOL_IN}" "${TOOL_OUT}"; then
+        echo "$EXTENSION_NAME: installation needs updating ctl!"
+        exit ${EXIT_NEEDS_UPDATE}
+    fi
+
+    echo "$EXTENSION_NAME: installation is up to date"
+    exit ${EXIT_SUCCESS}
+}
+
+function validate_path() {
+    local TOOLPATH="$1"
+    local TOOLNAME="$2"
+    local VALIDPATHS=(
+        "/usr/local/sbin/"
+        "/usr/local/bin/"
+        "/usr/sbin/"
+        "/usr/bin/"
+        "/opt/"
+        "/run/wrapper/bin/"
+        "/run/current-system/sw/bin/"
+        "/nix/store/"
+        "/etc/profiles/per-user/"
+    )
+    for BASEPATH in "${VALIDPATHS[@]}"; do
+        if [[ "$TOOLPATH" == "${BASEPATH}"* && "$TOOLPATH" == *"$TOOLNAME" ]]; then
+            return 0
+        fi
+    done
+    return 1
+}
+
+case "$TOOLCMD" in
+    CHECKINSTALLATION)
+        check_installation
+        ;;
+    BAT0_END)
+        echo "$ARG1" >"$BAT0_END_PATH" &&
+            exit "$EXIT_SUCCESS" || exit "$EXIT_ERROR"
+        ;;
+    BAT0_END_START)
+        echo "$ARG1" >"$BAT0_END_PATH" &&
+            echo "$ARG2" >"$BAT0_START_PATH" &&
+            exit "$EXIT_SUCCESS" || exit "$EXIT_ERROR"
+        ;;
+    BAT0_START_END)
+        echo "$ARG2" >"$BAT0_START_PATH" &&
+            echo "$ARG1" >"$BAT0_END_PATH" &&
+            exit "$EXIT_SUCCESS" || exit "$EXIT_ERROR"
+        ;;
+    BAT1_END)
+        echo "$ARG1" >"$BAT1_END_PATH" &&
+            exit "$EXIT_SUCCESS" || exit "$EXIT_ERROR"
+        ;;
+    BAT1_END_START)
+        echo "$ARG1" >"$BAT1_END_PATH" &&
+            echo "$ARG2" >"$BAT1_START_PATH" &&
+            exit "$EXIT_SUCCESS" || exit "$EXIT_ERROR"
+        ;;
+    BAT1_START_END)
+        echo "$ARG2" >"$BAT1_START_PATH" &&
+            echo "$ARG1" >"$BAT1_END_PATH" &&
+            exit "$EXIT_SUCCESS" || exit "$EXIT_ERROR"
+        ;;
+    LG)
+        echo "$ARG1" >"$LG_PATH" &&
+            exit "$EXIT_SUCCESS" || exit "$EXIT_ERROR"
+        ;;
+    LENOVO)
+        echo "$ARG1" >"$LENOVO_PATH" &&
+            exit "$EXIT_SUCCESS" || exit "$EXIT_ERROR"
+        ;;
+    SONY)
+        {
+            if [ "$ARG2" == "on" ]; then
+                echo "1" >"$SONY_HIGHSPEED_CHARGING_PATH"
+            elif [ "$ARG2" == "off" ]; then
+                echo "0" >"$SONY_HIGHSPEED_CHARGING_PATH"
+            fi
+        } &&
+            echo "$ARG1" >"$SONY_PATH" &&
+            exit "$EXIT_SUCCESS" || exit "$EXIT_ERROR"
+        ;;
+    HUAWEI)
+        echo "$ARG2 $ARG1" >"$HUAWEI_PATH" &&
+            exit "$EXIT_SUCCESS" || exit "$EXIT_ERROR"
+        ;;
+    SAMSUNG)
+        echo "$ARG1" >"$SAMSUNG_PATH" &&
+            exit "$EXIT_SUCCESS" || exit "$EXIT_ERROR"
+        ;;
+    ACER)
+        echo "$ARG1" >"$ACER_PATH" &&
+            exit "$EXIT_SUCCESS" || exit "$EXIT_ERROR"
+        ;;
+    PANASONIC)
+        echo "$ARG1" >"$PANASONIC_PATH" &&
+            exit "$EXIT_SUCCESS" || exit "$EXIT_ERROR"
+        ;;
+    BATC_END)
+        echo "$ARG1" >"$BATC_END_PATH" &&
+            exit "$EXIT_SUCCESS" || exit "$EXIT_ERROR"
+        ;;
+    BATT_END)
+        echo "$ARG1" >"$BATT_END_PATH" &&
+            exit "$EXIT_SUCCESS" || exit "$EXIT_ERROR"
+        ;;
+    TP_BAT0_END_START)
+        echo "$ARG1" >"$TP_BAT0_END" &&
+            echo "$ARG2" >"$TP_BAT0_START" &&
+            exit "$EXIT_SUCCESS" || exit "$EXIT_ERROR"
+        ;;
+    TP_BAT0_START_END)
+        echo "$ARG2" >"$TP_BAT0_START" &&
+            echo "$ARG1" >"$TP_BAT0_END" &&
+            exit "$EXIT_SUCCESS" || exit "$EXIT_ERROR"
+        ;;
+    TP_BAT1_END_START)
+        echo "$ARG1" >"$TP_BAT1_END" &&
+            echo "$ARG2" >"$TP_BAT1_START" &&
+            exit "$EXIT_SUCCESS" || exit "$EXIT_ERROR"
+        ;;
+    TP_BAT1_START_END)
+        echo "$ARG2" >"$TP_BAT1_START" &&
+            echo "$ARG1" >"$TP_BAT1_END" &&
+            exit "$EXIT_SUCCESS" || exit "$EXIT_ERROR"
+        ;;
+    ASAHI_END_START)
+        echo "$ARG1" >"$ASAHI_END_PATH" &&
+            echo "$ARG2" >"$ASAHI_START_PATH" &&
+            exit "$EXIT_SUCCESS" || exit "$EXIT_ERROR"
+        ;;
+    TUXEDO)
+        echo "$ARG1" >"$TUXEDO_PATH" &&
+            exit "$EXIT_SUCCESS" || exit "$EXIT_ERROR"
+        ;;
+    GIGABYTE_THRESHOLD)
+        {
+            if [ "$ARG1" = "true" ]; then
+                echo "1" >"$GIGABYTE_MODE"
+            fi
+        } &&
+            echo "$ARG2" >"$GIGABYTE_LIMIT" &&
+            exit "$EXIT_SUCCESS" || exit "$EXIT_ERROR"
+        ;;
+    APPLE)
+        echo "$ARG1" >"$BAT0_END_PATH" &&
+            {
+                if [ "$ARG2" -ne 0 ]; then
+                    echo "$ARG2" >"$APPLE_CHARGING_LED_PATH"
+                fi
+            } &&
+            exit "$EXIT_SUCCESS" || exit "$EXIT_ERROR"
+        ;;
+    FORCE_DISCHARGE_BAT0)
+        echo "$ARG1" >"$BAT0_FORCE_DISCHARGE_PATH" &&
+            exit "$EXIT_SUCCESS" || exit "$EXIT_ERROR"
+        ;;
+    FORCE_DISCHARGE_BAT1)
+        echo "$ARG1" >"$BAT1_FORCE_DISCHARGE_PATH" &&
+            exit "$EXIT_SUCCESS" || exit "$EXIT_ERROR"
+        ;;
+    CMB0_END)
+        echo "$ARG1" >"$CMB0_END_PATH" &&
+            exit "$EXIT_SUCCESS" || exit "$EXIT_ERROR"
+        ;;
+    CMB1_END)
+        echo "$ARG1" >"$CMB1_END_PATH" &&
+            exit "$EXIT_SUCCESS" || exit "$EXIT_ERROR"
+        ;;
+    DELL_BAT0_END_START)
+        {
+            if [ "$ARG1" = "adv" ]; then
+                echo "Adaptive" >"$DELL_BAT0_CHARGE_TYPES_PATH"
+            elif [ "$ARG1" = "exp" ]; then
+                echo "Fast" >"$DELL_BAT0_CHARGE_TYPES_PATH"
+            else
+                echo "Custom" >"$DELL_BAT0_CHARGE_TYPES_PATH" &&
+                    echo "$ARG2" >"$BAT0_END_PATH" &&
+                    echo "$ARG3" >"$BAT0_START_PATH"
+            fi
+        } &&
+            exit "$EXIT_SUCCESS" || exit "$EXIT_ERROR"
+        ;;
+    DELL_BAT0_START_END)
+        {
+            if [ "$ARG1" = "adv" ]; then
+                echo "Adaptive" >"$DELL_BAT0_CHARGE_TYPES_PATH"
+            elif [ "$ARG1" = "exp" ]; then
+                echo "Fast" >"$DELL_BAT0_CHARGE_TYPES_PATH"
+            else
+                echo "Custom" >"$DELL_BAT0_CHARGE_TYPES_PATH" &&
+                    echo "$ARG3" >"$BAT0_START_PATH" &&
+                    echo "$ARG2" >"$BAT0_END_PATH"
+            fi
+        } &&
+            exit "$EXIT_SUCCESS" || exit "$EXIT_ERROR"
+        ;;
+    DELL_BAT1_END_START)
+        {
+            if [ "$ARG1" = "adv" ]; then
+                echo "Adaptive" >"$DELL_BAT1_CHARGE_TYPES_PATH"
+            elif [ "$ARG1" = "exp" ]; then
+                echo "Fast" >"$DELL_BAT1_CHARGE_TYPES_PATH"
+            else
+                echo "Custom" >"$DELL_BAT1_CHARGE_TYPES_PATH" &&
+                    echo "$ARG2" >"$BAT1_END_PATH" &&
+                    echo "$ARG3" >"$BAT1_START_PATH"
+            fi
+        } &&
+            exit "$EXIT_SUCCESS" || exit "$EXIT_ERROR"
+        ;;
+    DELL_BAT1_START_END)
+        {
+            if [ "$ARG1" = "adv" ]; then
+                echo "Adaptive" >"$DELL_BAT1_CHARGE_TYPES_PATH"
+            elif [ "$ARG1" = "exp" ]; then
+                echo "Fast" >"$DELL_BAT1_CHARGE_TYPES_PATH"
+            else
+                echo "Custom" >"$DELL_BAT1_CHARGE_TYPES_PATH" &&
+                    echo "$ARG3" >"$BAT1_START_PATH" &&
+                    echo "$ARG2" >"$BAT1_END_PATH"
+            fi
+        } &&
+            exit "$EXIT_SUCCESS" || exit "$EXIT_ERROR"
+        ;;
+    DELL_SMBIOS_READ)
+        validate_path "$ARG1" "/smbios-battery-ctl" &&
+            "$ARG1" --get-charging-cfg &&
+            exit "$EXIT_SUCCESS" || exit "$EXIT_ERROR"
+        ;;
+    DELL_SMBIOS_WRITE)
+        validate_path "$ARG1" "/smbios-battery-ctl" &&
+            {
+                if [ "$ARG2" = "adv" ]; then
+                    "$ARG1" --set-charging-mode='adaptive'
+                elif [ "$ARG2" = "exp" ]; then
+                    "$ARG1" --set-charging-mode='express'
+                else
+                    "$ARG1" --set-charging-mode='custom' &&
+                        "$ARG1" --set-custom-charge-interval="$ARG2" "$ARG3"
+                fi
+            } &&
+            exit "$EXIT_SUCCESS" || exit "$EXIT_ERROR"
+        ;;
+    DELL_CCTK_READ)
+        validate_path "$ARG1" "/cctk" &&
+            "$ARG1" --PrimaryBattChargeCfg &&
+            exit "$EXIT_SUCCESS" || exit "$EXIT_ERROR"
+        ;;
+    DELL_CCTK_WRITE)
+        validate_path "$ARG1" "/cctk" &&
+            {
+                if [ "$ARG2" = "adv" ]; then
+                    "$ARG1" --PrimaryBattChargeCfg=Adaptive
+                elif [ "$ARG2" = "exp" ]; then
+                    "$ARG1" --PrimaryBattChargeCfg=Express
+                else
+                    "$ARG1" --PrimaryBattChargeCfg=Custom:"$ARG2"-"$ARG3"
+                fi
+            }
+        COMMAND_EXIT_STATUS="$?"
+        if [ "$COMMAND_EXIT_STATUS" -eq 65 ] || [ "$COMMAND_EXIT_STATUS" -eq 58 ]; then
+            exit "$COMMAND_EXIT_STATUS"
+        elif [ "$COMMAND_EXIT_STATUS" -eq 0 ]; then
+            exit "$EXIT_SUCCESS"
+        else
+            exit "$EXIT_ERROR"
+        fi
+        ;;
+    DELL_CCTK_AUTH_WRITE)
+        validate_path "$ARG1" "/cctk" &&
+            {
+                if [ "$ARG3" = "adv" ]; then
+                    "$ARG1" --ValSetupPwd="$ARG2" --PrimaryBattChargeCfg=Adaptive
+                elif [ "$ARG3" = "exp" ]; then
+                    "$ARG1" --ValSetupPwd="$ARG2" --PrimaryBattChargeCfg=Express
+                else
+                    "$ARG1" --ValSetupPwd="$ARG2" --PrimaryBattChargeCfg=Custom:"$ARG3"-"$ARG4"
+                fi
+            }
+        COMMAND_EXIT_STATUS="$?"
+        if [ "$COMMAND_EXIT_STATUS" -eq 65 ] || [ "$COMMAND_EXIT_STATUS" -eq 58 ]; then
+            exit "$COMMAND_EXIT_STATUS"
+        elif [ "$COMMAND_EXIT_STATUS" -eq 0 ]; then
+            exit "$EXIT_SUCCESS"
+        else
+            exit "$EXIT_ERROR"
+        fi
+        ;;
+    FRAMEWORK_TOOL_THRESHOLD_READ)
+        validate_path "$ARG1" "/framework_tool" &&
+            "$ARG1" --driver "$ARG2" --charge-limit &&
+            exit "$EXIT_SUCCESS" || exit "$EXIT_ERROR"
+        ;;
+    FRAMEWORK_TOOL_THRESHOLD_WRITE)
+        validate_path "$ARG1" "/framework_tool" &&
+            "$ARG1" --driver "$ARG2" --charge-limit "$ARG3" &&
+            exit "$EXIT_SUCCESS" || exit "$EXIT_ERROR"
+        ;;
+    ECTOOL_THRESHOLD_READ)
+        validate_path "$ARG1" "/ectool" &&
+            "$ARG1" chargecontrol &&
+            exit "$EXIT_SUCCESS" || exit "$EXIT_ERROR"
+        ;;
+    ECTOOL_THRESHOLD_WRITE)
+        validate_path "$ARG1" "/ectool" &&
+            "$ARG1" chargecontrol normal "$ARG2" "$ARG3" &&
+            exit "$EXIT_SUCCESS" || exit "$EXIT_ERROR"
+        ;;
+    *)
+        echo "Unknown Command"
+        exit ${EXIT_ERROR}
+        ;;
+esac

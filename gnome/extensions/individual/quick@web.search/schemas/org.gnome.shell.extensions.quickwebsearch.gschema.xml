@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schemalist>
+  <schema id="org.gnome.shell.extensions.quickwebsearch" path="/org/gnome/shell/extensions/quickwebsearch/">
+    <!-- See also: https://docs.gtk.org/glib/gvariant-format-strings.html -->
+    <key name="search-engine" type="i">
+      <default>0</default>
+    </key>
+  </schema>
+</schemalist>

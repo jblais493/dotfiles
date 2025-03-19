@@ -1,0 +1,525 @@
+[Loupe]
+show-properties=false
+
+[Ptyxis]
+default-profile-uuid='6164fc1ffb6af765fe21b731676875de'
+profile-uuids=['6164fc1ffb6af765fe21b731676875de']
+window-size=(uint32 189, uint32 48)
+
+[TextEditor]
+last-save-directory='file:///home/joshua'
+
+[Weather]
+locations=[<(uint32 2, <('Edmonton', 'CYED', true, [(0.93666003772138751, -1.9803669304139968)], [(0.93462381444296339, -1.9809487010135638)])>)>]
+window-height=496
+window-maximized=false
+window-width=992
+
+[boxes]
+first-run=false
+view='icon-view'
+window-maximized=true
+window-position=[26, 23]
+window-size=[768, 600]
+
+[calendar]
+active-view='week'
+week-view-zoom-level=1.0
+window-maximized=true
+window-size=(768, 600)
+
+[control-center]
+last-panel='system'
+window-state=(980, 640, false)
+
+[desktop/a11y/keyboard]
+enable=false
+
+[desktop/app-folders]
+folder-children=['Utilities', 'YaST', 'Pardus']
+
+[desktop/app-folders/folders/Pardus]
+categories=['X-Pardus-Apps']
+name='X-Pardus-Apps.directory'
+translate=true
+
+[desktop/app-folders/folders/Utilities]
+apps=['gnome-abrt.desktop', 'gnome-system-log.desktop', 'nm-connection-editor.desktop', 'org.gnome.baobab.desktop', 'org.gnome.Connections.desktop', 'org.gnome.DejaDup.desktop', 'org.gnome.Dictionary.desktop', 'org.gnome.DiskUtility.desktop', 'org.gnome.Evince.desktop', 'org.gnome.FileRoller.desktop', 'org.gnome.fonts.desktop', 'org.gnome.Loupe.desktop', 'org.gnome.seahorse.Application.desktop', 'org.gnome.tweaks.desktop', 'org.gnome.Usage.desktop', 'vinagre.desktop']
+categories=['X-GNOME-Utilities']
+name='X-GNOME-Utilities.directory'
+translate=true
+
+[desktop/app-folders/folders/YaST]
+categories=['X-SuSE-YaST']
+name='suse-yast.directory'
+translate=true
+
+[desktop/background]
+color-shading-type='solid'
+picture-options='zoom'
+picture-uri='file:///home/joshua/.local/share/backgrounds/2025-03-09-21-32-43-test.processed.png'
+picture-uri-dark='file:///home/joshua/.local/share/backgrounds/2025-03-09-21-32-43-test.processed.png'
+primary-color='#000000000000'
+secondary-color='#000000000000'
+
+[desktop/input-sources]
+current=uint32 0
+mru-sources=[('xkb', 'us'), ('xkb', 'us+colemak_dh_ortho')]
+sources=[('xkb', 'us')]
+xkb-options=['caps:escape_shifted_capslock']
+
+[desktop/interface]
+accent-color='slate'
+color-scheme='prefer-dark'
+cursor-size=24
+cursor-theme='Nordic-cursors'
+enable-animations=true
+enable-hot-corners=false
+icon-theme='Zafiro-Nord-Dark-Black'
+toolkit-accessibility=false
+
+[desktop/notifications]
+application-children=['org-gnome-ptyxis', 'org-gnome-software', 'org-gnome-nautilus', 'org-gnome-shell-extensions', 'org-mozilla-firefox', 'gnome-power-panel', 'org-freedesktop-problems-applet', 'org-mozilla-thunderbird', 'emacs', 'org-signal-signal', 'org-gnome-evolution-alarm-notify', 'thunar', 'org-gnome-boxes', 'com-spotify-client', 'com-mattjakeman-extensionmanager', 'gimp', 'brave-browser', 'net-thunderbird-thunderbird', 'org-gnome-characters', 'org-shotcut-shotcut', 'io-dbeaver-dbeavercommunity', 'kitty', 'org-fedoraproject-mediawriter', 'vlc', 'zen-browser', 'org-telegram-desktop', 'libreoffice-writer', 'emacsclient', 'calibre-gui', 'org-gnome-settings']
+
+[desktop/notifications/application/brave-browser]
+application-id='brave-browser.desktop'
+
+[desktop/notifications/application/calibre-gui]
+application-id='calibre-gui.desktop'
+
+[desktop/notifications/application/com-mattjakeman-extensionmanager]
+application-id='com.mattjakeman.ExtensionManager.desktop'
+
+[desktop/notifications/application/com-spotify-client]
+application-id='com.spotify.Client.desktop'
+
+[desktop/notifications/application/emacs]
+application-id='emacs.desktop'
+
+[desktop/notifications/application/emacsclient]
+application-id='emacsclient.desktop'
+
+[desktop/notifications/application/gimp]
+application-id='gimp.desktop'
+
+[desktop/notifications/application/gnome-power-panel]
+application-id='gnome-power-panel.desktop'
+
+[desktop/notifications/application/io-dbeaver-dbeavercommunity]
+application-id='io.dbeaver.DBeaverCommunity.desktop'
+
+[desktop/notifications/application/kitty]
+application-id='kitty.desktop'
+
+[desktop/notifications/application/libreoffice-writer]
+application-id='libreoffice-writer.desktop'
+
+[desktop/notifications/application/net-thunderbird-thunderbird]
+application-id='net.thunderbird.Thunderbird.desktop'
+
+[desktop/notifications/application/org-fedoraproject-mediawriter]
+application-id='org.fedoraproject.MediaWriter.desktop'
+
+[desktop/notifications/application/org-freedesktop-problems-applet]
+application-id='org.freedesktop.problems.applet.desktop'
+
+[desktop/notifications/application/org-gnome-boxes]
+application-id='org.gnome.Boxes.desktop'
+
+[desktop/notifications/application/org-gnome-characters]
+application-id='org.gnome.Characters.desktop'
+
+[desktop/notifications/application/org-gnome-evolution-alarm-notify]
+application-id='org.gnome.Evolution-alarm-notify.desktop'
+
+[desktop/notifications/application/org-gnome-nautilus]
+application-id='org.gnome.Nautilus.desktop'
+
+[desktop/notifications/application/org-gnome-ptyxis]
+application-id='org.gnome.Ptyxis.desktop'
+
+[desktop/notifications/application/org-gnome-settings]
+application-id='org.gnome.Settings.desktop'
+
+[desktop/notifications/application/org-gnome-shell-extensions]
+application-id='org.gnome.Shell.Extensions.desktop'
+
+[desktop/notifications/application/org-gnome-software]
+application-id='org.gnome.Software.desktop'
+
+[desktop/notifications/application/org-mozilla-firefox]
+application-id='org.mozilla.firefox.desktop'
+
+[desktop/notifications/application/org-mozilla-thunderbird]
+application-id='org.mozilla.thunderbird.desktop'
+
+[desktop/notifications/application/org-shotcut-shotcut]
+application-id='org.shotcut.Shotcut.desktop'
+
+[desktop/notifications/application/org-signal-signal]
+application-id='org.signal.Signal.desktop'
+
+[desktop/notifications/application/org-telegram-desktop]
+application-id='org.telegram.desktop.desktop'
+
+[desktop/notifications/application/thunar]
+application-id='thunar.desktop'
+
+[desktop/notifications/application/vlc]
+application-id='vlc.desktop'
+
+[desktop/notifications/application/zen-browser]
+application-id='zen-browser.desktop'
+
+[desktop/peripherals/keyboard]
+delay=uint32 176
+repeat-interval=uint32 6
+
+[desktop/peripherals/mouse]
+speed=0.89922480620155043
+
+[desktop/peripherals/touchpad]
+natural-scroll=false
+speed=0.69999999999999996
+two-finger-scrolling-enabled=true
+
+[desktop/privacy]
+report-technical-problems=false
+
+[desktop/screensaver]
+color-shading-type='solid'
+picture-options='zoom'
+picture-uri='file:///home/joshua/.local/share/backgrounds/2025-03-09-21-32-43-test.processed.png'
+primary-color='#000000000000'
+secondary-color='#000000000000'
+
+[desktop/search-providers]
+disable-external=false
+sort-order=['org.gnome.Settings.desktop', 'org.gnome.Contacts.desktop', 'org.gnome.Nautilus.desktop']
+
+[desktop/wm/keybindings]
+activate-window-menu=@as []
+close=['<Alt>q']
+maximize=['<Alt>Up']
+move-to-workspace-1=['<Shift><Alt>1']
+move-to-workspace-2=['<Shift><Alt>2']
+move-to-workspace-3=['<Shift><Alt>3']
+move-to-workspace-4=['<Shift><Alt>4']
+move-to-workspace-left=@as []
+move-to-workspace-right=@as []
+panel-run-dialog=['<Alt>i']
+switch-applications=['<Alt>Tab']
+switch-applications-backward=['<Shift><Alt>Tab']
+switch-group=['<Control><Alt>Tab']
+switch-group-backward=['<Shift><Control><Alt>Tab']
+switch-panels=@as []
+switch-panels-backward=@as []
+switch-to-workspace-1=['<Alt>1']
+switch-to-workspace-2=['<Alt>2']
+switch-to-workspace-3=['<Alt>3']
+switch-to-workspace-4=['<Alt>4']
+toggle-fullscreen=['<Shift><Alt>f']
+
+[desktop/wm/preferences]
+focus-mode='mouse'
+mouse-button-modifier='<Alt>'
+resize-with-right-button=true
+
+[evince/default]
+continuous=true
+dual-page=false
+dual-page-odd-left=true
+enable-spellchecking=true
+fullscreen=false
+inverted-colors=false
+show-sidebar=true
+sidebar-page='thumbnails'
+sidebar-size=182
+sizing-mode='free'
+window-ratio=(1.2549019607843137, 0.59469696969696972)
+zoom=0.70097909240384459
+
+[evolution-data-server]
+migrated=true
+
+[evolution-data-server/calendar]
+notify-window-height=281
+notify-window-paned-position=73
+notify-window-width=196
+notify-window-x=26
+notify-window-y=23
+reminders-past=['06e92046751dd04f86d25d7d65028ce28f6c831b\n3ffddea5908ed69348211fd85c30b812dfa48dd7\t20250319T110000Z\n1742380200\n1742382000\n1742383800\nBEGIN:VEVENT\r\nDTSTART;TZID=America/Edmonton:20250319T050000\r\nDTEND;TZID=America/Edmonton:20250319T053000\r\nRRULE:FREQ=DAILY\r\nDTSTAMP:20250118T172800Z\r\nUID:u4cqmvi5tljd9h0rmptlisutus@google.com\r\nCREATED:20241006T170939Z\r\nDESCRIPTION:\r\nLAST-MODIFIED:20250118T172800Z\r\nLOCATION:\r\nSEQUENCE:5\r\nSTATUS:CONFIRMED\r\nSUMMARY:Prayer and Scripture reading\r\nTRANSP:OPAQUE\r\nX-EVOLUTION-CALDAV-ETAG:63872904480\r\nRECURRENCE-ID:20250319T110000Z\r\nBEGIN:VALARM\r\nACTION:DISPLAY\r\nDESCRIPTION:This is an event reminder\r\nTRIGGER:-PT30M\r\nX-EVOLUTION-ALARM-UID:3ffddea5908ed69348211fd85c30b812dfa48dd7\r\nEND:VALARM\r\nEND:VEVENT\r\n', '06e92046751dd04f86d25d7d65028ce28f6c831b\n3ffddea5908ed69348211fd85c30b812dfa48dd7\t20250318T110000Z\n1742293800\n1742295600\n1742297400\nBEGIN:VEVENT\r\nDTSTART;TZID=America/Edmonton:20250318T050000\r\nDTEND;TZID=America/Edmonton:20250318T053000\r\nRRULE:FREQ=DAILY\r\nDTSTAMP:20250118T172800Z\r\nUID:u4cqmvi5tljd9h0rmptlisutus@google.com\r\nCREATED:20241006T170939Z\r\nDESCRIPTION:\r\nLAST-MODIFIED:20250118T172800Z\r\nLOCATION:\r\nSEQUENCE:5\r\nSTATUS:CONFIRMED\r\nSUMMARY:Prayer and Scripture reading\r\nTRANSP:OPAQUE\r\nX-EVOLUTION-CALDAV-ETAG:63872904480\r\nRECURRENCE-ID:20250318T110000Z\r\nBEGIN:VALARM\r\nACTION:DISPLAY\r\nDESCRIPTION:This is an event reminder\r\nTRIGGER:-PT30M\r\nX-EVOLUTION-ALARM-UID:3ffddea5908ed69348211fd85c30b812dfa48dd7\r\nEND:VALARM\r\nEND:VEVENT\r\n', '06e92046751dd04f86d25d7d65028ce28f6c831b\n3ffddea5908ed69348211fd85c30b812dfa48dd7\t20250317T110000Z\n1742207400\n1742209200\n1742211000\nBEGIN:VEVENT\r\nDTSTART;TZID=America/Edmonton:20250317T050000\r\nDTEND;TZID=America/Edmonton:20250317T053000\r\nRRULE:FREQ=DAILY\r\nDTSTAMP:20250118T172800Z\r\nUID:u4cqmvi5tljd9h0rmptlisutus@google.com\r\nCREATED:20241006T170939Z\r\nDESCRIPTION:\r\nLAST-MODIFIED:20250118T172800Z\r\nLOCATION:\r\nSEQUENCE:5\r\nSTATUS:CONFIRMED\r\nSUMMARY:Prayer and Scripture reading\r\nTRANSP:OPAQUE\r\nX-EVOLUTION-CALDAV-ETAG:63872904480\r\nRECURRENCE-ID:20250317T110000Z\r\nBEGIN:VALARM\r\nACTION:DISPLAY\r\nDESCRIPTION:This is an event reminder\r\nTRIGGER:-PT30M\r\nX-EVOLUTION-ALARM-UID:3ffddea5908ed69348211fd85c30b812dfa48dd7\r\nEND:VALARM\r\nEND:VEVENT\r\n', '06e92046751dd04f86d25d7d65028ce28f6c831b\n3ffddea5908ed69348211fd85c30b812dfa48dd7\t20250316T110000Z\n1742121000\n1742122800\n1742124600\nBEGIN:VEVENT\r\nDTSTART;TZID=America/Edmonton:20250316T050000\r\nDTEND;TZID=America/Edmonton:20250316T053000\r\nRRULE:FREQ=DAILY\r\nDTSTAMP:20250118T172800Z\r\nUID:u4cqmvi5tljd9h0rmptlisutus@google.com\r\nCREATED:20241006T170939Z\r\nDESCRIPTION:\r\nLAST-MODIFIED:20250118T172800Z\r\nLOCATION:\r\nSEQUENCE:5\r\nSTATUS:CONFIRMED\r\nSUMMARY:Prayer and Scripture reading\r\nTRANSP:OPAQUE\r\nX-EVOLUTION-CALDAV-ETAG:63872904480\r\nRECURRENCE-ID:20250316T110000Z\r\nBEGIN:VALARM\r\nACTION:DISPLAY\r\nDESCRIPTION:This is an event reminder\r\nTRIGGER:-PT30M\r\nX-EVOLUTION-ALARM-UID:3ffddea5908ed69348211fd85c30b812dfa48dd7\r\nEND:VALARM\r\nEND:VEVENT\r\n', '06e92046751dd04f86d25d7d65028ce28f6c831b\nfbf2189774643c9613ae24d81dda0edf3a4ff76f\t20250315T083000\n1742047200\n1742049000\n1742050800\nBEGIN:VEVENT\r\nDTSTART;TZID=America/Edmonton:20250315T083000\r\nDTEND;TZID=America/Edmonton:20250315T090000\r\nDTSTAMP:20250311T183638Z\r\nUID:2mp0qcle7b9qjitrgciutiolqr@google.com\r\nCREATED:20250311T183630Z\r\nDESCRIPTION:\r\nLAST-MODIFIED:20250311T183638Z\r\nLOCATION:\r\nSEQUENCE:0\r\nSTATUS:CONFIRMED\r\nSUMMARY:moving @ Jakes\r\nTRANSP:OPAQUE\r\nX-EVOLUTION-CALDAV-ETAG:63877401398\r\nBEGIN:VALARM\r\nACTION:DISPLAY\r\nDESCRIPTION:This is an event reminder\r\nTRIGGER:-PT30M\r\nX-EVOLUTION-ALARM-UID:fbf2189774643c9613ae24d81dda0edf3a4ff76f\r\nEND:VALARM\r\nEND:VEVENT\r\n', '06e92046751dd04f86d25d7d65028ce28f6c831b\n3ffddea5908ed69348211fd85c30b812dfa48dd7\t20250315T110000Z\n1742034600\n1742036400\n1742038200\nBEGIN:VEVENT\r\nDTSTART;TZID=America/Edmonton:20250315T050000\r\nDTEND;TZID=America/Edmonton:20250315T053000\r\nRRULE:FREQ=DAILY\r\nDTSTAMP:20250118T172800Z\r\nUID:u4cqmvi5tljd9h0rmptlisutus@google.com\r\nCREATED:20241006T170939Z\r\nDESCRIPTION:\r\nLAST-MODIFIED:20250118T172800Z\r\nLOCATION:\r\nSEQUENCE:5\r\nSTATUS:CONFIRMED\r\nSUMMARY:Prayer and Scripture reading\r\nTRANSP:OPAQUE\r\nX-EVOLUTION-CALDAV-ETAG:63872904480\r\nRECURRENCE-ID:20250315T110000Z\r\nBEGIN:VALARM\r\nACTION:DISPLAY\r\nDESCRIPTION:This is an event reminder\r\nTRIGGER:-PT30M\r\nX-EVOLUTION-ALARM-UID:3ffddea5908ed69348211fd85c30b812dfa48dd7\r\nEND:VALARM\r\nEND:VEVENT\r\n', '06e92046751dd04f86d25d7d65028ce28f6c831b\nc357f9446b9b64e0ec2504a24e896d4426353fde\t20250314T150000\n1741984200\n1741986000\n1741989600\nBEGIN:VEVENT\r\nDTSTART;TZID=America/Edmonton:20250314T150000\r\nDTEND;TZID=America/Edmonton:20250314T160000\r\nDTSTAMP:20250311T001448Z\r\nORGANIZER;CN=joshuasmanifest@gmail.com:mailto:joshuasmanifest@gmail.com\r\nUID:\r\n ckojgp1o6sq3ibb460rjgb9k6lj3ibb1cli3eb9mc8rjcc9j64rmad1mc8@google.com\r\nATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;\r\n CN=mclean.rebecca77@gmail.com;X-NUM-GUESTS=0:mailto:\r\n mclean.rebecca77@gmail.com\r\nATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;\r\n CN=joshuasmanifest@gmail.com;X-NUM-GUESTS=0:mailto:\r\n joshuasmanifest@gmail.com\r\nX-GOOGLE-CONFERENCE:https://meet.google.com/jxz-nyzy-xnu\r\nCREATED:20250311T001447Z\r\nDESCRIPTION:-::~:~::~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:\r\n ~:~:~:~:~:~:~:~:~::~:~::-\\nJoin with Google Meet: https:\r\n //meet.google.com/jxz-nyzy-xnu\\n\\nLearn more about Meet at: https:\r\n //support.google.com/a/users/answer/9282720\\n\\nPlease do not edit this \r\n section.\\n-::~:~::~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:\r\n ~:~:~:~:~:~:~:~::~:~::-\r\nLAST-MODIFIED:20250311T001448Z\r\nLOCATION:5872 Sutter Pl NW\\, Edmonton\\, AB T6R 3R2\\, Canada\r\nSEQUENCE:0\r\nSTATUS:CONFIRMED\r\nSUMMARY:Walkthrough\r\nTRANSP:OPAQUE\r\nX-EVOLUTION-CALDAV-ETAG:63877335288\r\nBEGIN:VALARM\r\nACTION:DISPLAY\r\nDESCRIPTION:This is an event reminder\r\nTRIGGER:-PT30M\r\nX-EVOLUTION-ALARM-UID:c357f9446b9b64e0ec2504a24e896d4426353fde\r\nEND:VALARM\r\nEND:VEVENT\r\n', '06e92046751dd04f86d25d7d65028ce28f6c831b\n3ffddea5908ed69348211fd85c30b812dfa48dd7\t20250314T110000Z\n1741948200\n1741950000\n1741951800\nBEGIN:VEVENT\r\nDTSTART;TZID=America/Edmonton:20250314T050000\r\nDTEND;TZID=America/Edmonton:20250314T053000\r\nRRULE:FREQ=DAILY\r\nDTSTAMP:20250118T172800Z\r\nUID:u4cqmvi5tljd9h0rmptlisutus@google.com\r\nCREATED:20241006T170939Z\r\nDESCRIPTION:\r\nLAST-MODIFIED:20250118T172800Z\r\nLOCATION:\r\nSEQUENCE:5\r\nSTATUS:CONFIRMED\r\nSUMMARY:Prayer and Scripture reading\r\nTRANSP:OPAQUE\r\nX-EVOLUTION-CALDAV-ETAG:63872904480\r\nRECURRENCE-ID:20250314T110000Z\r\nBEGIN:VALARM\r\nACTION:DISPLAY\r\nDESCRIPTION:This is an event reminder\r\nTRIGGER:-PT30M\r\nX-EVOLUTION-ALARM-UID:3ffddea5908ed69348211fd85c30b812dfa48dd7\r\nEND:VALARM\r\nEND:VEVENT\r\n', '06e92046751dd04f86d25d7d65028ce28f6c831b\n3cf9964db3acecf8ae7d77d01c22b6b0983c6ebd\t20250313T120000\n1741887000\n1741888800\n1741889700\nBEGIN:VEVENT\r\nDTSTART;TZID=America/Edmonton:20250313T120000\r\nDTEND;TZID=America/Edmonton:20250313T121500\r\nDTSTAMP:20250312T235854Z\r\nUID:\r\n 64pj0eb2copj2b9ncosjeb9kc9h64bb16cpmabb2ccs38dr1c9gjcc9ico@google.com\r\nCREATED:20250312T235854Z\r\nDESCRIPTION:\r\nLAST-MODIFIED:20250312T235854Z\r\nLOCATION:\r\nSEQUENCE:0\r\nSTATUS:CONFIRMED\r\nSUMMARY:Call Deanne bobby lead\r\nTRANSP:OPAQUE\r\nX-EVOLUTION-CALDAV-ETAG:63877507134\r\nBEGIN:VALARM\r\nACTION:DISPLAY\r\nDESCRIPTION:This is an event reminder\r\nTRIGGER:-PT30M\r\nX-EVOLUTION-ALARM-UID:3cf9964db3acecf8ae7d77d01c22b6b0983c6ebd\r\nEND:VALARM\r\nEND:VEVENT\r\n', '06e92046751dd04f86d25d7d65028ce28f6c831b\n3ffddea5908ed69348211fd85c30b812dfa48dd7\t20250313T110000Z\n1741861800\n1741863600\n1741865400\nBEGIN:VEVENT\r\nDTSTART;TZID=America/Edmonton:20250313T050000\r\nDTEND;TZID=America/Edmonton:20250313T053000\r\nRRULE:FREQ=DAILY\r\nDTSTAMP:20250118T172800Z\r\nUID:u4cqmvi5tljd9h0rmptlisutus@google.com\r\nCREATED:20241006T170939Z\r\nDESCRIPTION:\r\nLAST-MODIFIED:20250118T172800Z\r\nLOCATION:\r\nSEQUENCE:5\r\nSTATUS:CONFIRMED\r\nSUMMARY:Prayer and Scripture reading\r\nTRANSP:OPAQUE\r\nX-EVOLUTION-CALDAV-ETAG:63872904480\r\nRECURRENCE-ID:20250313T110000Z\r\nBEGIN:VALARM\r\nACTION:DISPLAY\r\nDESCRIPTION:This is an event reminder\r\nTRIGGER:-PT30M\r\nX-EVOLUTION-ALARM-UID:3ffddea5908ed69348211fd85c30b812dfa48dd7\r\nEND:VALARM\r\nEND:VEVENT\r\n', '06e92046751dd04f86d25d7d65028ce28f6c831b\n3ffddea5908ed69348211fd85c30b812dfa48dd7\t20250312T110000Z\n1741775400\n1741777200\n1741779000\nBEGIN:VEVENT\r\nDTSTART;TZID=America/Edmonton:20250312T050000\r\nDTEND;TZID=America/Edmonton:20250312T053000\r\nRRULE:FREQ=DAILY\r\nDTSTAMP:20250118T172800Z\r\nUID:u4cqmvi5tljd9h0rmptlisutus@google.com\r\nCREATED:20241006T170939Z\r\nDESCRIPTION:\r\nLAST-MODIFIED:20250118T172800Z\r\nLOCATION:\r\nSEQUENCE:5\r\nSTATUS:CONFIRMED\r\nSUMMARY:Prayer and Scripture reading\r\nTRANSP:OPAQUE\r\nX-EVOLUTION-CALDAV-ETAG:63872904480\r\nRECURRENCE-ID:20250312T110000Z\r\nBEGIN:VALARM\r\nACTION:DISPLAY\r\nDESCRIPTION:This is an event reminder\r\nTRIGGER:-PT30M\r\nX-EVOLUTION-ALARM-UID:3ffddea5908ed69348211fd85c30b812dfa48dd7\r\nEND:VALARM\r\nEND:VEVENT\r\n']
+
+[login-screen]
+enable-fingerprint-authentication=true
+enable-smartcard-authentication=false
+
+[mutter]
+center-new-windows=true
+
+[mutter/keybindings]
+toggle-tiled-left=['<Alt>Left']
+toggle-tiled-right=['<Alt>Right']
+
+[nautilus/icon-view]
+default-zoom-level='medium'
+
+[nautilus/list-view]
+default-zoom-level='small'
+
+[nautilus/preferences]
+default-folder-viewer='icon-view'
+migrated-gtk-settings=true
+search-filter-time-type='last_modified'
+
+[nautilus/window-state]
+initial-size=(890, 550)
+initial-size-file-chooser=(890, 550)
+maximized=false
+
+[portal/filechooser/gnome-background-panel]
+last-folder-path='/home/joshua/Pictures/Nord'
+
+[portal/filechooser/nautilus]
+last-folder-path='/home/joshua/Development/Blog2024/content/posts/archiving-sites'
+
+[portal/filechooser/org.chromium.Chromium]
+last-folder-path='/home/joshua/Development/Blog2024/content/posts/how-to-use-social-media'
+
+[portal/filechooser/org.fedoraproject.MediaWriter]
+last-folder-path='/home/joshua/Downloads'
+
+[portal/filechooser/org.gnome.Settings]
+last-folder-path='/home/joshua/Pictures'
+
+[portal/filechooser/org.signal.Signal]
+last-folder-path='/home/joshua/Pictures/Kino'
+
+[settings-daemon/plugins/color]
+night-light-enabled=true
+night-light-schedule-automatic=false
+night-light-schedule-from=18.0
+night-light-schedule-to=7.0
+night-light-temperature=uint32 1700
+
+[settings-daemon/plugins/media-keys]
+custom-keybindings=['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom3/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom4/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom5/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom6/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom7/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom8/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom9/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom10/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom11/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom12/']
+email=['<Alt>m']
+next=['<Shift><Control><Alt>Right']
+play=['<Shift><Control><Alt>space']
+previous=['<Shift><Control><Alt>Left']
+screensaver=['<Control><Alt>l']
+search=['<Alt>space']
+volume-down=['<Shift><Control>Down']
+volume-up=['<Shift><Control>Up']
+www=['<Alt>w']
+
+[settings-daemon/plugins/media-keys/custom-keybindings/custom0]
+binding='<Alt>e'
+command='bash -c "GDK_BACKEND=x11 emacs"'
+name='emacs'
+
+[settings-daemon/plugins/media-keys/custom-keybindings/custom1]
+binding='<Alt>Return'
+command='kitty'
+name='kitty'
+
+[settings-daemon/plugins/media-keys/custom-keybindings/custom10]
+binding='<Alt>z'
+command="emacsclient -n -e '(progn (select-frame-set-input-focus (selected-frame)) (elfeed))'"
+name='elfeed'
+
+[settings-daemon/plugins/media-keys/custom-keybindings/custom11]
+binding='<Control><Alt>m'
+command="emacsclient -n -e '(progn (select-frame-set-input-focus (selected-frame)) (emms-smart-browse))'"
+name='emms browser'
+
+[settings-daemon/plugins/media-keys/custom-keybindings/custom12]
+binding='<Shift><Control>n'
+command="emacsclient -e '(popup-scratch-for-web)' -n"
+name='emacs scratch buffer'
+
+[settings-daemon/plugins/media-keys/custom-keybindings/custom2]
+binding='<Alt>f'
+command='nautilus'
+name='nautilus'
+
+[settings-daemon/plugins/media-keys/custom-keybindings/custom3]
+binding='<Shift><Control>1'
+command='/usr/bin/python3 /home/joshua/.config/scripts/obs_switch.py 1'
+name='obs 1'
+
+[settings-daemon/plugins/media-keys/custom-keybindings/custom4]
+binding='<Shift><Control>2'
+command='/usr/bin/python3 /home/joshua/.config/scripts/obs_switch.py 2'
+name='obs 2'
+
+[settings-daemon/plugins/media-keys/custom-keybindings/custom5]
+binding='<Shift><Control>o'
+command='/usr/bin/python3 /home/joshua/.config/scripts/obs_switch.py toggle\n'
+name='obs toggle'
+
+[settings-daemon/plugins/media-keys/custom-keybindings/custom6]
+binding='<Shift><Control>Right'
+command='playerctl next'
+name='media next'
+
+[settings-daemon/plugins/media-keys/custom-keybindings/custom7]
+binding='<Shift><Control>Left'
+command='playerctl previous'
+name='media prev'
+
+[settings-daemon/plugins/media-keys/custom-keybindings/custom8]
+binding='<Shift><Control>c'
+command="emacsclient -n -e '(progn (select-frame-set-input-focus (selected-frame)) (org-capture))'\n"
+name='emacs capture'
+
+[settings-daemon/plugins/media-keys/custom-keybindings/custom9]
+binding='<Shift><Control>p'
+command="emacsclient -n -e '(progn (select-frame-set-input-focus (selected-frame)) (pass))'\n"
+name='emacs password'
+
+[settings-daemon/plugins/power]
+sleep-inactive-ac-type='nothing'
+
+[shell]
+app-picker-layout=[{'io.github.vectorgraphics.asymptote.desktop': <{'position': <0>}>, 'org.gnome.Contacts.desktop': <{'position': <1>}>, 'org.gnome.Weather.desktop': <{'position': <2>}>, 'org.gnome.clocks.desktop': <{'position': <3>}>, 'org.gnome.Maps.desktop': <{'position': <4>}>, 'brave-browser.desktop': <{'position': <5>}>, 'thunar-bulk-rename.desktop': <{'position': <6>}>, 'org.gnome.Calculator.desktop': <{'position': <7>}>, 'org.gnome.Snapshot.desktop': <{'position': <8>}>, 'simple-scan.desktop': <{'position': <9>}>, 'org.gnome.Settings.desktop': <{'position': <10>}>, 'org.gnome.SystemMonitor.desktop': <{'position': <11>}>, 'org.gnome.Boxes.desktop': <{'position': <12>}>, 'emacs.desktop': <{'position': <13>}>, 'Utilities': <{'position': <14>}>, 'com.mattjakeman.ExtensionManager.desktop': <{'position': <15>}>, 'yelp.desktop': <{'position': <16>}>, 'org.fedoraproject.MediaWriter.desktop': <{'position': <17>}>, 'thunar-settings.desktop': <{'position': <18>}>, 'org.mozilla.firefox.desktop': <{'position': <19>}>, 'org.fontforge.FontForge.desktop': <{'position': <20>}>, 'com.mitchellh.ghostty.desktop': <{'position': <21>}>}, {'org.inkscape.Inkscape.desktop': <{'position': <0>}>, 'jupyter-qtconsole.desktop': <{'position': <1>}>, 'kitty.desktop': <{'position': <2>}>, 'libreoffice-calc.desktop': <{'position': <3>}>, 'libreoffice-impress.desktop': <{'position': <4>}>, 'libreoffice-writer.desktop': <{'position': <5>}>, 'mpv.desktop': <{'position': <6>}>, 'mu.codewith.editor.desktop': <{'position': <7>}>, 'mupdf-gl.desktop': <{'position': <8>}>, 'nvim.desktop': <{'position': <9>}>, 'org.gnome.Software.desktop': <{'position': <10>}>, 'syncthing-start.desktop': <{'position': <11>}>, 'syncthing-ui.desktop': <{'position': <12>}>, 'org.gnome.Ptyxis.desktop': <{'position': <13>}>, 'org.gnome.TextEditor.desktop': <{'position': <14>}>, 'thunar.desktop': <{'position': <15>}>, 'org.pwmt.zathura.desktop': <{'position': <16>}>, 'org.gnome.eog.desktop': <{'position': <17>}>}]
+command-history=['killall firefox', 'kmon', 'sudo dnf update']
+enabled-extensions=['background-logo@fedorahosted.org', 'Battery-Health-Charging@maniacx.github.com', 'weatherornot@somepaulo.github.io', 'dash-to-dock@micxgx.gmail.com', 'blur-my-shell@aunetx', 'impatience@gfxmonk.net', 'mediacontrols@cliffniff.github.com', 'status-area-horizontal-spacing@mathematical.coffee.gmail.com', 'date-menu-formatter@marcinjakubowski.github.com', 'grand-theft-focus@zalckos.github.com', 'ssh-search-provider@extensions.gnome-shell.fifi.org', 'notification-banner-reloaded@marcinjakubowski.github.com', 'auto-move-windows@gnome-shell-extensions.gcampax.github.com', 'drive-menu@gnome-shell-extensions.gcampax.github.com', 'color-picker@tuberry', 'transparent-top-bar@ftpix.com', 'gnome-shell-duckduckgo-search-provider@keithcirkel.co.uk', 'BrowserSearchProvider@mepowerleo10.github.io', 'quick@web.search']
+favorite-apps=['zen-browser.desktop', 'emacsclient.desktop', 'net.thunderbird.Thunderbird.desktop', 'org.gnome.Nautilus.desktop', 'org.gnome.Calendar.desktop', 'gimp.desktop', 'io.dbeaver.DBeaverCommunity.desktop', 'org.signal.Signal.desktop', 'org.telegram.desktop.desktop', 'calibre-gui.desktop', 'com.spotify.Client.desktop', 'com.obsproject.Studio.desktop', 'org.shotcut.Shotcut.desktop', 'org.videolan.VLC.desktop']
+last-selected-power-profile='power-saver'
+remember-mount-password=false
+welcome-dialog-last-shown-version='47.0'
+
+[shell/extensions/Battery-Health-Charging]
+amend-power-indicator=false
+charging-mode='bal'
+ctl-path='/usr/local/bin/batteryhealthchargingctl-joshua'
+current-bal-end-threshold=80
+current-bal-start-threshold=75
+current-ful-end-threshold=100
+current-ful-start-threshold=95
+current-max-end-threshold=60
+current-max-start-threshold=55
+default-threshold=false
+device-type=20
+dummy-apply-threshold=true
+dummy-default-threshold=false
+icon-style-type=0
+indicator-position-max=4
+polkit-status='installed'
+show-battery-panel2=false
+show-notifications=false
+show-preferences=false
+show-quickmenu-subtitle=false
+show-system-indicator=false
+
+[shell/extensions/auto-move-windows]
+application-list=['org.mozilla.firefox.desktop:2', 'org.signal.Signal.desktop:5', 'brave-browser.desktop:3', 'emacs.desktop:1', 'net.thunderbird.Thunderbird.desktop:4', 'io.dbeaver.DBeaverCommunity.desktop:3']
+
+[shell/extensions/blur-my-shell]
+pipelines={'pipeline_default': {'name': <'Default'>, 'effects': <[<{'type': <'native_static_gaussian_blur'>, 'id': <'effect_000000000000'>, 'params': <{'radius': <30>, 'brightness': <0.59999999999999998>}>}>]>}, 'pipeline_default_rounded': {'name': <'Default rounded'>, 'effects': <@av []>}}
+settings-version=2
+
+[shell/extensions/blur-my-shell/appfolder]
+brightness=0.59999999999999998
+sigma=30
+
+[shell/extensions/blur-my-shell/coverflow-alt-tab]
+pipeline='pipeline_default'
+
+[shell/extensions/blur-my-shell/dash-to-dock]
+blur=false
+brightness=0.59999999999999998
+pipeline='pipeline_default_rounded'
+sigma=30
+static-blur=true
+style-dash-to-dock=0
+
+[shell/extensions/blur-my-shell/lockscreen]
+pipeline='pipeline_default'
+
+[shell/extensions/blur-my-shell/overview]
+pipeline='pipeline_default'
+
+[shell/extensions/blur-my-shell/panel]
+blur=false
+brightness=0.59999999999999998
+pipeline='pipeline_default'
+sigma=30
+
+[shell/extensions/blur-my-shell/screenshot]
+pipeline='pipeline_default'
+
+[shell/extensions/blur-my-shell/window-list]
+brightness=0.59999999999999998
+sigma=30
+
+[shell/extensions/color-picker]
+color-picker-shortcut=['<Alt>c']
+enable-shortcut=true
+enable-systray=false
+
+[shell/extensions/dash-to-dock]
+animation-time=0.10000000000000002
+autohide-in-fullscreen=true
+background-opacity=0.0
+custom-theme-shrink=false
+dash-max-icon-size=30
+dock-position='BOTTOM'
+height-fraction=0.80000000000000004
+hide-delay=0.10000000000000002
+intellihide-mode='FOCUS_APPLICATION_WINDOWS'
+preferred-monitor=-2
+preferred-monitor-by-connector='eDP-1'
+show-trash=false
+transparency-mode='FIXED'
+
+[shell/extensions/date-menu-formatter]
+pattern='EEEE, MMMM d  |  H:mm'
+text-align='center'
+
+[shell/extensions/mediacontrols]
+extension-index=uint32 1
+extension-position='Left'
+show-control-icons=false
+
+[shell/extensions/net/gfxmonk/impatience]
+speed-factor=0.19148936170212766
+
+[shell/extensions/notification-banner-reloaded]
+anchor-horizontal=1
+animation-direction=1
+
+[shell/extensions/quickwebsearch]
+search-engine=9
+
+[shell/extensions/ssh-search-provider]
+terminal-application='kitty.desktop'
+
+[shell/extensions/status-area-horizontal-spacing]
+hpadding=0
+
+[shell/extensions/weatherornot]
+position='right'
+
+[shell/weather]
+automatic-location=true
+locations=[<(uint32 2, <('Edmonton', 'CYED', true, [(0.93666003772138751, -1.9803669304139968)], [(0.93462381444296339, -1.9809487010135638)])>)>]
+
+[shell/world-clocks]
+locations=@av []
+
+[software]
+check-timestamp=int64 1742398327
+first-run=false
+flatpak-purge-timestamp=int64 1742403647
+install-timestamp=int64 1742240921
+packagekit-historical-updates-timestamp=uint64 1742240921
+update-notification-timestamp=int64 1742240997
+
+[system/location]
+enabled=false
+
+[tweaks]
+show-extensions-notice=false

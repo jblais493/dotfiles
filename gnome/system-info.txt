@@ -1,0 +1,3 @@
+GNOME Version: GNOME Shell 47.4
+OS Version: "Fedora Linux 41 (Workstation Edition)"
+Backup Date: Wed 19 Mar 2025 03:00:32 PM MDT

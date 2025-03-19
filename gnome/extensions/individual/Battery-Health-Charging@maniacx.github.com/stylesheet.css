@@ -1,0 +1,14 @@
+.bhc-preferences-button {
+  border-radius: 48px;
+  padding: 6px;
+  background-color: rgba(128, 128, 128, 0.1);
+}
+.bhc-preferences-button:hover {
+  background-color: rgba(128, 128, 128, 0.3);
+}
+.bhc-popup-menu {
+  background-color: rgba(128, 128, 128, 0);
+}
+.bhc-popup-menu:hover {
+  background-color: rgba(128, 128, 128, 0);
+}

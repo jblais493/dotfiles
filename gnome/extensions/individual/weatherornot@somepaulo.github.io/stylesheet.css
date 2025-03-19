@@ -1,0 +1,11 @@
+.weatherornot .panel-status-menu-box {
+    padding-right: 7px;
+}
+
+.weatherornot .system-status-icon {
+    max-height: 16px;
+}
+
+.weatherornot-spacer * {
+    color: transparent !important;
+}

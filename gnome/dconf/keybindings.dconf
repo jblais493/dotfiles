@@ -1,0 +1,76 @@
+[/]
+custom-keybindings=['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom3/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom4/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom5/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom6/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom7/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom8/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom9/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom10/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom11/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom12/']
+email=['<Alt>m']
+next=['<Shift><Control><Alt>Right']
+play=['<Shift><Control><Alt>space']
+previous=['<Shift><Control><Alt>Left']
+screensaver=['<Control><Alt>l']
+search=['<Alt>space']
+volume-down=['<Shift><Control>Down']
+volume-up=['<Shift><Control>Up']
+www=['<Alt>w']
+
+[custom-keybindings/custom0]
+binding='<Alt>e'
+command='bash -c "GDK_BACKEND=x11 emacs"'
+name='emacs'
+
+[custom-keybindings/custom1]
+binding='<Alt>Return'
+command='kitty'
+name='kitty'
+
+[custom-keybindings/custom10]
+binding='<Alt>z'
+command="emacsclient -n -e '(progn (select-frame-set-input-focus (selected-frame)) (elfeed))'"
+name='elfeed'
+
+[custom-keybindings/custom11]
+binding='<Control><Alt>m'
+command="emacsclient -n -e '(progn (select-frame-set-input-focus (selected-frame)) (emms-smart-browse))'"
+name='emms browser'
+
+[custom-keybindings/custom12]
+binding='<Shift><Control>n'
+command="emacsclient -e '(popup-scratch-for-web)' -n"
+name='emacs scratch buffer'
+
+[custom-keybindings/custom2]
+binding='<Alt>f'
+command='nautilus'
+name='nautilus'
+
+[custom-keybindings/custom3]
+binding='<Shift><Control>1'
+command='/usr/bin/python3 /home/joshua/.config/scripts/obs_switch.py 1'
+name='obs 1'
+
+[custom-keybindings/custom4]
+binding='<Shift><Control>2'
+command='/usr/bin/python3 /home/joshua/.config/scripts/obs_switch.py 2'
+name='obs 2'
+
+[custom-keybindings/custom5]
+binding='<Shift><Control>o'
+command='/usr/bin/python3 /home/joshua/.config/scripts/obs_switch.py toggle\n'
+name='obs toggle'
+
+[custom-keybindings/custom6]
+binding='<Shift><Control>Right'
+command='playerctl next'
+name='media next'
+
+[custom-keybindings/custom7]
+binding='<Shift><Control>Left'
+command='playerctl previous'
+name='media prev'
+
+[custom-keybindings/custom8]
+binding='<Shift><Control>c'
+command="emacsclient -n -e '(progn (select-frame-set-input-focus (selected-frame)) (org-capture))'\n"
+name='emacs capture'
+
+[custom-keybindings/custom9]
+binding='<Shift><Control>p'
+command="emacsclient -n -e '(progn (select-frame-set-input-focus (selected-frame)) (pass))'\n"
+name='emacs password'

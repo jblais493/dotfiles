@@ -14,3 +14,4 @@ drive-menu@gnome-shell-extensions.gcampax.github.com
 color-picker@tuberry
 transparent-top-bar@ftpix.com
 background-logo@fedorahosted.org
+quick@web.search

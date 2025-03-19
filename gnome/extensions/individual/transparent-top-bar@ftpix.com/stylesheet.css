@@ -1,0 +1,1049 @@
+#panel.transparent-top-bar {
+  transition-duration: 500ms; }
+
+#panel.transparent-top-bar:overview {
+  background-color: transparent;
+  transition-duration: 250ms; }
+
+#panel .panel-corner {
+  -panel-corner-border-width: 0px; }
+
+#panel.transparent-top-bar-0 {
+  background-color: rgba(0, 0, 0, 0);
+  -panel-corner-border-width: 0px;
+  -panel-corner-opacity: 0;
+  transition-duration: 500ms;
+  box-shadow: none; }
+
+#panel.transparent-top-bar-0 .panel-corner {
+  -panel-corner-background-color: rgba(0, 0, 0, 0); }
+
+#panel.transparent-top-bar-1 {
+  background-color: rgba(0, 0, 0, 0.01);
+  -panel-corner-border-width: 0px;
+  -panel-corner-opacity: 0.01;
+  transition-duration: 500ms;
+  box-shadow: none; }
+
+#panel.transparent-top-bar-1 .panel-corner {
+  -panel-corner-background-color: rgba(0, 0, 0, 0.01); }
+
+#panel.transparent-top-bar-2 {
+  background-color: rgba(0, 0, 0, 0.02);
+  -panel-corner-border-width: 0px;
+  -panel-corner-opacity: 0.02;
+  transition-duration: 500ms;
+  box-shadow: none; }
+
+#panel.transparent-top-bar-2 .panel-corner {
+  -panel-corner-background-color: rgba(0, 0, 0, 0.02); }
+
+#panel.transparent-top-bar-3 {
+  background-color: rgba(0, 0, 0, 0.03);
+  -panel-corner-border-width: 0px;
+  -panel-corner-opacity: 0.03;
+  transition-duration: 500ms;
+  box-shadow: none; }
+
+#panel.transparent-top-bar-3 .panel-corner {
+  -panel-corner-background-color: rgba(0, 0, 0, 0.03); }
+
+#panel.transparent-top-bar-4 {
+  background-color: rgba(0, 0, 0, 0.04);
+  -panel-corner-border-width: 0px;
+  -panel-corner-opacity: 0.04;
+  transition-duration: 500ms;
+  box-shadow: none; }
+
+#panel.transparent-top-bar-4 .panel-corner {
+  -panel-corner-background-color: rgba(0, 0, 0, 0.04); }
+
+#panel.transparent-top-bar-5 {
+  background-color: rgba(0, 0, 0, 0.05);
+  -panel-corner-border-width: 0px;
+  -panel-corner-opacity: 0.05;
+  transition-duration: 500ms;
+  box-shadow: none; }
+
+#panel.transparent-top-bar-5 .panel-corner {
+  -panel-corner-background-color: rgba(0, 0, 0, 0.05); }
+
+#panel.transparent-top-bar-6 {
+  background-color: rgba(0, 0, 0, 0.06);
+  -panel-corner-border-width: 0px;
+  -panel-corner-opacity: 0.06;
+  transition-duration: 500ms;
+  box-shadow: none; }
+
+#panel.transparent-top-bar-6 .panel-corner {
+  -panel-corner-background-color: rgba(0, 0, 0, 0.06); }
+
+#panel.transparent-top-bar-7 {
+  background-color: rgba(0, 0, 0, 0.07);
+  -panel-corner-border-width: 0px;
+  -panel-corner-opacity: 0.07;
+  transition-duration: 500ms;
+  box-shadow: none; }
+
+#panel.transparent-top-bar-7 .panel-corner {
+  -panel-corner-background-color: rgba(0, 0, 0, 0.07); }
+
+#panel.transparent-top-bar-8 {
+  background-color: rgba(0, 0, 0, 0.08);
+  -panel-corner-border-width: 0px;
+  -panel-corner-opacity: 0.08;
+  transition-duration: 500ms;
+  box-shadow: none; }
+
+#panel.transparent-top-bar-8 .panel-corner {
+  -panel-corner-background-color: rgba(0, 0, 0, 0.08); }
+
+#panel.transparent-top-bar-9 {
+  background-color: rgba(0, 0, 0, 0.09);
+  -panel-corner-border-width: 0px;
+  -panel-corner-opacity: 0.09;
+  transition-duration: 500ms;
+  box-shadow: none; }
+
+#panel.transparent-top-bar-9 .panel-corner {
+  -panel-corner-background-color: rgba(0, 0, 0, 0.09); }
+
+#panel.transparent-top-bar-10 {
+  background-color: rgba(0, 0, 0, 0.1);
+  -panel-corner-border-width: 0px;
+  -panel-corner-opacity: 0.1;
+  transition-duration: 500ms;
+  box-shadow: none; }
+
+#panel.transparent-top-bar-10 .panel-corner {
+  -panel-corner-background-color: rgba(0, 0, 0, 0.1); }
+
+#panel.transparent-top-bar-11 {
+  background-color: rgba(0, 0, 0, 0.11);
+  -panel-corner-border-width: 0px;
+  -panel-corner-opacity: 0.11;
+  transition-duration: 500ms;
+  box-shadow: none; }
+
+#panel.transparent-top-bar-11 .panel-corner {
+  -panel-corner-background-color: rgba(0, 0, 0, 0.11); }
+
+#panel.transparent-top-bar-12 {
+  background-color: rgba(0, 0, 0, 0.12);
+  -panel-corner-border-width: 0px;
+  -panel-corner-opacity: 0.12;
+  transition-duration: 500ms;
+  box-shadow: none; }
+
+#panel.transparent-top-bar-12 .panel-corner {
+  -panel-corner-background-color: rgba(0, 0, 0, 0.12); }
+
+#panel.transparent-top-bar-13 {
+  background-color: rgba(0, 0, 0, 0.13);
+  -panel-corner-border-width: 0px;
+  -panel-corner-opacity: 0.13;
+  transition-duration: 500ms;
+  box-shadow: none; }
+
+#panel.transparent-top-bar-13 .panel-corner {
+  -panel-corner-background-color: rgba(0, 0, 0, 0.13); }
+
+#panel.transparent-top-bar-14 {
+  background-color: rgba(0, 0, 0, 0.14);
+  -panel-corner-border-width: 0px;
+  -panel-corner-opacity: 0.14;
+  transition-duration: 500ms;
+  box-shadow: none; }
+
+#panel.transparent-top-bar-14 .panel-corner {
+  -panel-corner-background-color: rgba(0, 0, 0, 0.14); }
+
+#panel.transparent-top-bar-15 {
+  background-color: rgba(0, 0, 0, 0.15);
+  -panel-corner-border-width: 0px;
+  -panel-corner-opacity: 0.15;
+  transition-duration: 500ms;
+  box-shadow: none; }
+
+#panel.transparent-top-bar-15 .panel-corner {
+  -panel-corner-background-color: rgba(0, 0, 0, 0.15); }
+
+#panel.transparent-top-bar-16 {
+  background-color: rgba(0, 0, 0, 0.16);
+  -panel-corner-border-width: 0px;
+  -panel-corner-opacity: 0.16;
+  transition-duration: 500ms;
+  box-shadow: none; }
+
+#panel.transparent-top-bar-16 .panel-corner {
+  -panel-corner-background-color: rgba(0, 0, 0, 0.16); }
+
+#panel.transparent-top-bar-17 {
+  background-color: rgba(0, 0, 0, 0.17);
+  -panel-corner-border-width: 0px;
+  -panel-corner-opacity: 0.17;
+  transition-duration: 500ms;
+  box-shadow: none; }
+
+#panel.transparent-top-bar-17 .panel-corner {
+  -panel-corner-background-color: rgba(0, 0, 0, 0.17); }
+
+#panel.transparent-top-bar-18 {
+  background-color: rgba(0, 0, 0, 0.18);
+  -panel-corner-border-width: 0px;
+  -panel-corner-opacity: 0.18;
+  transition-duration: 500ms;
+  box-shadow: none; }
+
+#panel.transparent-top-bar-18 .panel-corner {
+  -panel-corner-background-color: rgba(0, 0, 0, 0.18); }
+
+#panel.transparent-top-bar-19 {
+  background-color: rgba(0, 0, 0, 0.19);
+  -panel-corner-border-width: 0px;
+  -panel-corner-opacity: 0.19;
+  transition-duration: 500ms;
+  box-shadow: none; }
+
+#panel.transparent-top-bar-19 .panel-corner {
+  -panel-corner-background-color: rgba(0, 0, 0, 0.19); }
+
+#panel.transparent-top-bar-20 {
+  background-color: rgba(0, 0, 0, 0.2);
+  -panel-corner-border-width: 0px;
+  -panel-corner-opacity: 0.2;
+  transition-duration: 500ms;
+  box-shadow: none; }
+
+#panel.transparent-top-bar-20 .panel-corner {
+  -panel-corner-background-color: rgba(0, 0, 0, 0.2); }
+
+#panel.transparent-top-bar-21 {
+  background-color: rgba(0, 0, 0, 0.21);
+  -panel-corner-border-width: 0px;
+  -panel-corner-opacity: 0.21;
+  transition-duration: 500ms;
+  box-shadow: none; }
+
+#panel.transparent-top-bar-21 .panel-corner {
+  -panel-corner-background-color: rgba(0, 0, 0, 0.21); }
+
+#panel.transparent-top-bar-22 {
+  background-color: rgba(0, 0, 0, 0.22);
+  -panel-corner-border-width: 0px;
+  -panel-corner-opacity: 0.22;
+  transition-duration: 500ms;
+  box-shadow: none; }
+
+#panel.transparent-top-bar-22 .panel-corner {
+  -panel-corner-background-color: rgba(0, 0, 0, 0.22); }
+
+#panel.transparent-top-bar-23 {
+  background-color: rgba(0, 0, 0, 0.23);
+  -panel-corner-border-width: 0px;
+  -panel-corner-opacity: 0.23;
+  transition-duration: 500ms;
+  box-shadow: none; }
+
+#panel.transparent-top-bar-23 .panel-corner {
+  -panel-corner-background-color: rgba(0, 0, 0, 0.23); }
+
+#panel.transparent-top-bar-24 {
+  background-color: rgba(0, 0, 0, 0.24);
+  -panel-corner-border-width: 0px;
+  -panel-corner-opacity: 0.24;
+  transition-duration: 500ms;
+  box-shadow: none; }
+
+#panel.transparent-top-bar-24 .panel-corner {
+  -panel-corner-background-color: rgba(0, 0, 0, 0.24); }
+
+#panel.transparent-top-bar-25 {
+  background-color: rgba(0, 0, 0, 0.25);
+  -panel-corner-border-width: 0px;
+  -panel-corner-opacity: 0.25;
+  transition-duration: 500ms;
+  box-shadow: none; }
+
+#panel.transparent-top-bar-25 .panel-corner {
+  -panel-corner-background-color: rgba(0, 0, 0, 0.25); }
+
+#panel.transparent-top-bar-26 {
+  background-color: rgba(0, 0, 0, 0.26);
+  -panel-corner-border-width: 0px;
+  -panel-corner-opacity: 0.26;
+  transition-duration: 500ms;
+  box-shadow: none; }
+
+#panel.transparent-top-bar-26 .panel-corner {
+  -panel-corner-background-color: rgba(0, 0, 0, 0.26); }
+
+#panel.transparent-top-bar-27 {
+  background-color: rgba(0, 0, 0, 0.27);
+  -panel-corner-border-width: 0px;
+  -panel-corner-opacity: 0.27;
+  transition-duration: 500ms;
+  box-shadow: none; }
+
+#panel.transparent-top-bar-27 .panel-corner {
+  -panel-corner-background-color: rgba(0, 0, 0, 0.27); }
+
+#panel.transparent-top-bar-28 {
+  background-color: rgba(0, 0, 0, 0.28);
+  -panel-corner-border-width: 0px;
+  -panel-corner-opacity: 0.28;
+  transition-duration: 500ms;
+  box-shadow: none; }
+
+#panel.transparent-top-bar-28 .panel-corner {
+  -panel-corner-background-color: rgba(0, 0, 0, 0.28); }
+
+#panel.transparent-top-bar-29 {
+  background-color: rgba(0, 0, 0, 0.29);
+  -panel-corner-border-width: 0px;
+  -panel-corner-opacity: 0.29;
+  transition-duration: 500ms;
+  box-shadow: none; }
+
+#panel.transparent-top-bar-29 .panel-corner {
+  -panel-corner-background-color: rgba(0, 0, 0, 0.29); }
+
+#panel.transparent-top-bar-30 {
+  background-color: rgba(0, 0, 0, 0.3);
+  -panel-corner-border-width: 0px;
+  -panel-corner-opacity: 0.3;
+  transition-duration: 500ms;
+  box-shadow: none; }
+
+#panel.transparent-top-bar-30 .panel-corner {
+  -panel-corner-background-color: rgba(0, 0, 0, 0.3); }
+
+#panel.transparent-top-bar-31 {
+  background-color: rgba(0, 0, 0, 0.31);
+  -panel-corner-border-width: 0px;
+  -panel-corner-opacity: 0.31;
+  transition-duration: 500ms;
+  box-shadow: none; }
+
+#panel.transparent-top-bar-31 .panel-corner {
+  -panel-corner-background-color: rgba(0, 0, 0, 0.31); }
+
+#panel.transparent-top-bar-32 {
+  background-color: rgba(0, 0, 0, 0.32);
+  -panel-corner-border-width: 0px;
+  -panel-corner-opacity: 0.32;
+  transition-duration: 500ms;
+  box-shadow: none; }
+
+#panel.transparent-top-bar-32 .panel-corner {
+  -panel-corner-background-color: rgba(0, 0, 0, 0.32); }
+
+#panel.transparent-top-bar-33 {
+  background-color: rgba(0, 0, 0, 0.33);
+  -panel-corner-border-width: 0px;
+  -panel-corner-opacity: 0.33;
+  transition-duration: 500ms;
+  box-shadow: none; }
+
+#panel.transparent-top-bar-33 .panel-corner {
+  -panel-corner-background-color: rgba(0, 0, 0, 0.33); }
+
+#panel.transparent-top-bar-34 {
+  background-color: rgba(0, 0, 0, 0.34);
+  -panel-corner-border-width: 0px;
+  -panel-corner-opacity: 0.34;
+  transition-duration: 500ms;
+  box-shadow: none; }
+
+#panel.transparent-top-bar-34 .panel-corner {
+  -panel-corner-background-color: rgba(0, 0, 0, 0.34); }
+
+#panel.transparent-top-bar-35 {
+  background-color: rgba(0, 0, 0, 0.35);
+  -panel-corner-border-width: 0px;
+  -panel-corner-opacity: 0.35;
+  transition-duration: 500ms;
+  box-shadow: none; }
+
+#panel.transparent-top-bar-35 .panel-corner {
+  -panel-corner-background-color: rgba(0, 0, 0, 0.35); }
+
+#panel.transparent-top-bar-36 {
+  background-color: rgba(0, 0, 0, 0.36);
+  -panel-corner-border-width: 0px;
+  -panel-corner-opacity: 0.36;
+  transition-duration: 500ms;
+  box-shadow: none; }
+
+#panel.transparent-top-bar-36 .panel-corner {
+  -panel-corner-background-color: rgba(0, 0, 0, 0.36); }
+
+#panel.transparent-top-bar-37 {
+  background-color: rgba(0, 0, 0, 0.37);
+  -panel-corner-border-width: 0px;
+  -panel-corner-opacity: 0.37;
+  transition-duration: 500ms;
+  box-shadow: none; }
+
+#panel.transparent-top-bar-37 .panel-corner {
+  -panel-corner-background-color: rgba(0, 0, 0, 0.37); }
+
+#panel.transparent-top-bar-38 {
+  background-color: rgba(0, 0, 0, 0.38);
+  -panel-corner-border-width: 0px;
+  -panel-corner-opacity: 0.38;
+  transition-duration: 500ms;
+  box-shadow: none; }
+
+#panel.transparent-top-bar-38 .panel-corner {
+  -panel-corner-background-color: rgba(0, 0, 0, 0.38); }
+
+#panel.transparent-top-bar-39 {
+  background-color: rgba(0, 0, 0, 0.39);
+  -panel-corner-border-width: 0px;
+  -panel-corner-opacity: 0.39;
+  transition-duration: 500ms;
+  box-shadow: none; }
+
+#panel.transparent-top-bar-39 .panel-corner {
+  -panel-corner-background-color: rgba(0, 0, 0, 0.39); }
+
+#panel.transparent-top-bar-40 {
+  background-color: rgba(0, 0, 0, 0.4);
+  -panel-corner-border-width: 0px;
+  -panel-corner-opacity: 0.4;
+  transition-duration: 500ms;
+  box-shadow: none; }
+
+#panel.transparent-top-bar-40 .panel-corner {
+  -panel-corner-background-color: rgba(0, 0, 0, 0.4); }
+
+#panel.transparent-top-bar-41 {
+  background-color: rgba(0, 0, 0, 0.41);
+  -panel-corner-border-width: 0px;
+  -panel-corner-opacity: 0.41;
+  transition-duration: 500ms;
+  box-shadow: none; }
+
+#panel.transparent-top-bar-41 .panel-corner {
+  -panel-corner-background-color: rgba(0, 0, 0, 0.41); }
+
+#panel.transparent-top-bar-42 {
+  background-color: rgba(0, 0, 0, 0.42);
+  -panel-corner-border-width: 0px;
+  -panel-corner-opacity: 0.42;
+  transition-duration: 500ms;
+  box-shadow: none; }
+
+#panel.transparent-top-bar-42 .panel-corner {
+  -panel-corner-background-color: rgba(0, 0, 0, 0.42); }
+
+#panel.transparent-top-bar-43 {
+  background-color: rgba(0, 0, 0, 0.43);
+  -panel-corner-border-width: 0px;
+  -panel-corner-opacity: 0.43;
+  transition-duration: 500ms;
+  box-shadow: none; }
+
+#panel.transparent-top-bar-43 .panel-corner {
+  -panel-corner-background-color: rgba(0, 0, 0, 0.43); }
+
+#panel.transparent-top-bar-44 {
+  background-color: rgba(0, 0, 0, 0.44);
+  -panel-corner-border-width: 0px;
+  -panel-corner-opacity: 0.44;
+  transition-duration: 500ms;
+  box-shadow: none; }
+
+#panel.transparent-top-bar-44 .panel-corner {
+  -panel-corner-background-color: rgba(0, 0, 0, 0.44); }
+
+#panel.transparent-top-bar-45 {
+  background-color: rgba(0, 0, 0, 0.45);
+  -panel-corner-border-width: 0px;
+  -panel-corner-opacity: 0.45;
+  transition-duration: 500ms;
+  box-shadow: none; }
+
+#panel.transparent-top-bar-45 .panel-corner {
+  -panel-corner-background-color: rgba(0, 0, 0, 0.45); }
+
+#panel.transparent-top-bar-46 {
+  background-color: rgba(0, 0, 0, 0.46);
+  -panel-corner-border-width: 0px;
+  -panel-corner-opacity: 0.46;
+  transition-duration: 500ms;
+  box-shadow: none; }
+
+#panel.transparent-top-bar-46 .panel-corner {
+  -panel-corner-background-color: rgba(0, 0, 0, 0.46); }
+
+#panel.transparent-top-bar-47 {
+  background-color: rgba(0, 0, 0, 0.47);
+  -panel-corner-border-width: 0px;
+  -panel-corner-opacity: 0.47;
+  transition-duration: 500ms;
+  box-shadow: none; }
+
+#panel.transparent-top-bar-47 .panel-corner {
+  -panel-corner-background-color: rgba(0, 0, 0, 0.47); }
+
+#panel.transparent-top-bar-48 {
+  background-color: rgba(0, 0, 0, 0.48);
+  -panel-corner-border-width: 0px;
+  -panel-corner-opacity: 0.48;
+  transition-duration: 500ms;
+  box-shadow: none; }
+
+#panel.transparent-top-bar-48 .panel-corner {
+  -panel-corner-background-color: rgba(0, 0, 0, 0.48); }
+
+#panel.transparent-top-bar-49 {
+  background-color: rgba(0, 0, 0, 0.49);
+  -panel-corner-border-width: 0px;
+  -panel-corner-opacity: 0.49;
+  transition-duration: 500ms;
+  box-shadow: none; }
+
+#panel.transparent-top-bar-49 .panel-corner {
+  -panel-corner-background-color: rgba(0, 0, 0, 0.49); }
+
+#panel.transparent-top-bar-50 {
+  background-color: rgba(0, 0, 0, 0.5);
+  -panel-corner-border-width: 0px;
+  -panel-corner-opacity: 0.5;
+  transition-duration: 500ms;
+  box-shadow: none; }
+
+#panel.transparent-top-bar-50 .panel-corner {
+  -panel-corner-background-color: rgba(0, 0, 0, 0.5); }
+
+#panel.transparent-top-bar-51 {
+  background-color: rgba(0, 0, 0, 0.51);
+  -panel-corner-border-width: 0px;
+  -panel-corner-opacity: 0.51;
+  transition-duration: 500ms;
+  box-shadow: none; }
+
+#panel.transparent-top-bar-51 .panel-corner {
+  -panel-corner-background-color: rgba(0, 0, 0, 0.51); }
+
+#panel.transparent-top-bar-52 {
+  background-color: rgba(0, 0, 0, 0.52);
+  -panel-corner-border-width: 0px;
+  -panel-corner-opacity: 0.52;
+  transition-duration: 500ms;
+  box-shadow: none; }
+
+#panel.transparent-top-bar-52 .panel-corner {
+  -panel-corner-background-color: rgba(0, 0, 0, 0.52); }
+
+#panel.transparent-top-bar-53 {
+  background-color: rgba(0, 0, 0, 0.53);
+  -panel-corner-border-width: 0px;
+  -panel-corner-opacity: 0.53;
+  transition-duration: 500ms;
+  box-shadow: none; }
+
+#panel.transparent-top-bar-53 .panel-corner {
+  -panel-corner-background-color: rgba(0, 0, 0, 0.53); }
+
+#panel.transparent-top-bar-54 {
+  background-color: rgba(0, 0, 0, 0.54);
+  -panel-corner-border-width: 0px;
+  -panel-corner-opacity: 0.54;
+  transition-duration: 500ms;
+  box-shadow: none; }
+
+#panel.transparent-top-bar-54 .panel-corner {
+  -panel-corner-background-color: rgba(0, 0, 0, 0.54); }
+
+#panel.transparent-top-bar-55 {
+  background-color: rgba(0, 0, 0, 0.55);
+  -panel-corner-border-width: 0px;
+  -panel-corner-opacity: 0.55;
+  transition-duration: 500ms;
+  box-shadow: none; }
+
+#panel.transparent-top-bar-55 .panel-corner {
+  -panel-corner-background-color: rgba(0, 0, 0, 0.55); }
+
+#panel.transparent-top-bar-56 {
+  background-color: rgba(0, 0, 0, 0.56);
+  -panel-corner-border-width: 0px;
+  -panel-corner-opacity: 0.56;
+  transition-duration: 500ms;
+  box-shadow: none; }
+
+#panel.transparent-top-bar-56 .panel-corner {
+  -panel-corner-background-color: rgba(0, 0, 0, 0.56); }
+
+#panel.transparent-top-bar-57 {
+  background-color: rgba(0, 0, 0, 0.57);
+  -panel-corner-border-width: 0px;
+  -panel-corner-opacity: 0.57;
+  transition-duration: 500ms;
+  box-shadow: none; }
+
+#panel.transparent-top-bar-57 .panel-corner {
+  -panel-corner-background-color: rgba(0, 0, 0, 0.57); }
+
+#panel.transparent-top-bar-58 {
+  background-color: rgba(0, 0, 0, 0.58);
+  -panel-corner-border-width: 0px;
+  -panel-corner-opacity: 0.58;
+  transition-duration: 500ms;
+  box-shadow: none; }
+
+#panel.transparent-top-bar-58 .panel-corner {
+  -panel-corner-background-color: rgba(0, 0, 0, 0.58); }
+
+#panel.transparent-top-bar-59 {
+  background-color: rgba(0, 0, 0, 0.59);
+  -panel-corner-border-width: 0px;
+  -panel-corner-opacity: 0.59;
+  transition-duration: 500ms;
+  box-shadow: none; }
+
+#panel.transparent-top-bar-59 .panel-corner {
+  -panel-corner-background-color: rgba(0, 0, 0, 0.59); }
+
+#panel.transparent-top-bar-60 {
+  background-color: rgba(0, 0, 0, 0.6);
+  -panel-corner-border-width: 0px;
+  -panel-corner-opacity: 0.6;
+  transition-duration: 500ms;
+  box-shadow: none; }
+
+#panel.transparent-top-bar-60 .panel-corner {
+  -panel-corner-background-color: rgba(0, 0, 0, 0.6); }
+
+#panel.transparent-top-bar-61 {
+  background-color: rgba(0, 0, 0, 0.61);
+  -panel-corner-border-width: 0px;
+  -panel-corner-opacity: 0.61;
+  transition-duration: 500ms;
+  box-shadow: none; }
+
+#panel.transparent-top-bar-61 .panel-corner {
+  -panel-corner-background-color: rgba(0, 0, 0, 0.61); }
+
+#panel.transparent-top-bar-62 {
+  background-color: rgba(0, 0, 0, 0.62);
+  -panel-corner-border-width: 0px;
+  -panel-corner-opacity: 0.62;
+  transition-duration: 500ms;
+  box-shadow: none; }
+
+#panel.transparent-top-bar-62 .panel-corner {
+  -panel-corner-background-color: rgba(0, 0, 0, 0.62); }
+
+#panel.transparent-top-bar-63 {
+  background-color: rgba(0, 0, 0, 0.63);
+  -panel-corner-border-width: 0px;
+  -panel-corner-opacity: 0.63;
+  transition-duration: 500ms;
+  box-shadow: none; }
+
+#panel.transparent-top-bar-63 .panel-corner {
+  -panel-corner-background-color: rgba(0, 0, 0, 0.63); }
+
+#panel.transparent-top-bar-64 {
+  background-color: rgba(0, 0, 0, 0.64);
+  -panel-corner-border-width: 0px;
+  -panel-corner-opacity: 0.64;
+  transition-duration: 500ms;
+  box-shadow: none; }
+
+#panel.transparent-top-bar-64 .panel-corner {
+  -panel-corner-background-color: rgba(0, 0, 0, 0.64); }
+
+#panel.transparent-top-bar-65 {
+  background-color: rgba(0, 0, 0, 0.65);
+  -panel-corner-border-width: 0px;
+  -panel-corner-opacity: 0.65;
+  transition-duration: 500ms;
+  box-shadow: none; }
+
+#panel.transparent-top-bar-65 .panel-corner {
+  -panel-corner-background-color: rgba(0, 0, 0, 0.65); }
+
+#panel.transparent-top-bar-66 {
+  background-color: rgba(0, 0, 0, 0.66);
+  -panel-corner-border-width: 0px;
+  -panel-corner-opacity: 0.66;
+  transition-duration: 500ms;
+  box-shadow: none; }
+
+#panel.transparent-top-bar-66 .panel-corner {
+  -panel-corner-background-color: rgba(0, 0, 0, 0.66); }
+
+#panel.transparent-top-bar-67 {
+  background-color: rgba(0, 0, 0, 0.67);
+  -panel-corner-border-width: 0px;
+  -panel-corner-opacity: 0.67;
+  transition-duration: 500ms;
+  box-shadow: none; }
+
+#panel.transparent-top-bar-67 .panel-corner {
+  -panel-corner-background-color: rgba(0, 0, 0, 0.67); }
+
+#panel.transparent-top-bar-68 {
+  background-color: rgba(0, 0, 0, 0.68);
+  -panel-corner-border-width: 0px;
+  -panel-corner-opacity: 0.68;
+  transition-duration: 500ms;
+  box-shadow: none; }
+
+#panel.transparent-top-bar-68 .panel-corner {
+  -panel-corner-background-color: rgba(0, 0, 0, 0.68); }
+
+#panel.transparent-top-bar-69 {
+  background-color: rgba(0, 0, 0, 0.69);
+  -panel-corner-border-width: 0px;
+  -panel-corner-opacity: 0.69;
+  transition-duration: 500ms;
+  box-shadow: none; }
+
+#panel.transparent-top-bar-69 .panel-corner {
+  -panel-corner-background-color: rgba(0, 0, 0, 0.69); }
+
+#panel.transparent-top-bar-70 {
+  background-color: rgba(0, 0, 0, 0.7);
+  -panel-corner-border-width: 0px;
+  -panel-corner-opacity: 0.7;
+  transition-duration: 500ms;
+  box-shadow: none; }
+
+#panel.transparent-top-bar-70 .panel-corner {
+  -panel-corner-background-color: rgba(0, 0, 0, 0.7); }
+
+#panel.transparent-top-bar-71 {
+  background-color: rgba(0, 0, 0, 0.71);
+  -panel-corner-border-width: 0px;
+  -panel-corner-opacity: 0.71;
+  transition-duration: 500ms;
+  box-shadow: none; }
+
+#panel.transparent-top-bar-71 .panel-corner {
+  -panel-corner-background-color: rgba(0, 0, 0, 0.71); }
+
+#panel.transparent-top-bar-72 {
+  background-color: rgba(0, 0, 0, 0.72);
+  -panel-corner-border-width: 0px;
+  -panel-corner-opacity: 0.72;
+  transition-duration: 500ms;
+  box-shadow: none; }
+
+#panel.transparent-top-bar-72 .panel-corner {
+  -panel-corner-background-color: rgba(0, 0, 0, 0.72); }
+
+#panel.transparent-top-bar-73 {
+  background-color: rgba(0, 0, 0, 0.73);
+  -panel-corner-border-width: 0px;
+  -panel-corner-opacity: 0.73;
+  transition-duration: 500ms;
+  box-shadow: none; }
+
+#panel.transparent-top-bar-73 .panel-corner {
+  -panel-corner-background-color: rgba(0, 0, 0, 0.73); }
+
+#panel.transparent-top-bar-74 {
+  background-color: rgba(0, 0, 0, 0.74);
+  -panel-corner-border-width: 0px;
+  -panel-corner-opacity: 0.74;
+  transition-duration: 500ms;
+  box-shadow: none; }
+
+#panel.transparent-top-bar-74 .panel-corner {
+  -panel-corner-background-color: rgba(0, 0, 0, 0.74); }
+
+#panel.transparent-top-bar-75 {
+  background-color: rgba(0, 0, 0, 0.75);
+  -panel-corner-border-width: 0px;
+  -panel-corner-opacity: 0.75;
+  transition-duration: 500ms;
+  box-shadow: none; }
+
+#panel.transparent-top-bar-75 .panel-corner {
+  -panel-corner-background-color: rgba(0, 0, 0, 0.75); }
+
+#panel.transparent-top-bar-76 {
+  background-color: rgba(0, 0, 0, 0.76);
+  -panel-corner-border-width: 0px;
+  -panel-corner-opacity: 0.76;
+  transition-duration: 500ms;
+  box-shadow: none; }
+
+#panel.transparent-top-bar-76 .panel-corner {
+  -panel-corner-background-color: rgba(0, 0, 0, 0.76); }
+
+#panel.transparent-top-bar-77 {
+  background-color: rgba(0, 0, 0, 0.77);
+  -panel-corner-border-width: 0px;
+  -panel-corner-opacity: 0.77;
+  transition-duration: 500ms;
+  box-shadow: none; }
+
+#panel.transparent-top-bar-77 .panel-corner {
+  -panel-corner-background-color: rgba(0, 0, 0, 0.77); }
+
+#panel.transparent-top-bar-78 {
+  background-color: rgba(0, 0, 0, 0.78);
+  -panel-corner-border-width: 0px;
+  -panel-corner-opacity: 0.78;
+  transition-duration: 500ms;
+  box-shadow: none; }
+
+#panel.transparent-top-bar-78 .panel-corner {
+  -panel-corner-background-color: rgba(0, 0, 0, 0.78); }
+
+#panel.transparent-top-bar-79 {
+  background-color: rgba(0, 0, 0, 0.79);
+  -panel-corner-border-width: 0px;
+  -panel-corner-opacity: 0.79;
+  transition-duration: 500ms;
+  box-shadow: none; }
+
+#panel.transparent-top-bar-79 .panel-corner {
+  -panel-corner-background-color: rgba(0, 0, 0, 0.79); }
+
+#panel.transparent-top-bar-80 {
+  background-color: rgba(0, 0, 0, 0.8);
+  -panel-corner-border-width: 0px;
+  -panel-corner-opacity: 0.8;
+  transition-duration: 500ms;
+  box-shadow: none; }
+
+#panel.transparent-top-bar-80 .panel-corner {
+  -panel-corner-background-color: rgba(0, 0, 0, 0.8); }
+
+#panel.transparent-top-bar-81 {
+  background-color: rgba(0, 0, 0, 0.81);
+  -panel-corner-border-width: 0px;
+  -panel-corner-opacity: 0.81;
+  transition-duration: 500ms;
+  box-shadow: none; }
+
+#panel.transparent-top-bar-81 .panel-corner {
+  -panel-corner-background-color: rgba(0, 0, 0, 0.81); }
+
+#panel.transparent-top-bar-82 {
+  background-color: rgba(0, 0, 0, 0.82);
+  -panel-corner-border-width: 0px;
+  -panel-corner-opacity: 0.82;
+  transition-duration: 500ms;
+  box-shadow: none; }
+
+#panel.transparent-top-bar-82 .panel-corner {
+  -panel-corner-background-color: rgba(0, 0, 0, 0.82); }
+
+#panel.transparent-top-bar-83 {
+  background-color: rgba(0, 0, 0, 0.83);
+  -panel-corner-border-width: 0px;
+  -panel-corner-opacity: 0.83;
+  transition-duration: 500ms;
+  box-shadow: none; }
+
+#panel.transparent-top-bar-83 .panel-corner {
+  -panel-corner-background-color: rgba(0, 0, 0, 0.83); }
+
+#panel.transparent-top-bar-84 {
+  background-color: rgba(0, 0, 0, 0.84);
+  -panel-corner-border-width: 0px;
+  -panel-corner-opacity: 0.84;
+  transition-duration: 500ms;
+  box-shadow: none; }
+
+#panel.transparent-top-bar-84 .panel-corner {
+  -panel-corner-background-color: rgba(0, 0, 0, 0.84); }
+
+#panel.transparent-top-bar-85 {
+  background-color: rgba(0, 0, 0, 0.85);
+  -panel-corner-border-width: 0px;
+  -panel-corner-opacity: 0.85;
+  transition-duration: 500ms;
+  box-shadow: none; }
+
+#panel.transparent-top-bar-85 .panel-corner {
+  -panel-corner-background-color: rgba(0, 0, 0, 0.85); }
+
+#panel.transparent-top-bar-86 {
+  background-color: rgba(0, 0, 0, 0.86);
+  -panel-corner-border-width: 0px;
+  -panel-corner-opacity: 0.86;
+  transition-duration: 500ms;
+  box-shadow: none; }
+
+#panel.transparent-top-bar-86 .panel-corner {
+  -panel-corner-background-color: rgba(0, 0, 0, 0.86); }
+
+#panel.transparent-top-bar-87 {
+  background-color: rgba(0, 0, 0, 0.87);
+  -panel-corner-border-width: 0px;
+  -panel-corner-opacity: 0.87;
+  transition-duration: 500ms;
+  box-shadow: none; }
+
+#panel.transparent-top-bar-87 .panel-corner {
+  -panel-corner-background-color: rgba(0, 0, 0, 0.87); }
+
+#panel.transparent-top-bar-88 {
+  background-color: rgba(0, 0, 0, 0.88);
+  -panel-corner-border-width: 0px;
+  -panel-corner-opacity: 0.88;
+  transition-duration: 500ms;
+  box-shadow: none; }
+
+#panel.transparent-top-bar-88 .panel-corner {
+  -panel-corner-background-color: rgba(0, 0, 0, 0.88); }
+
+#panel.transparent-top-bar-89 {
+  background-color: rgba(0, 0, 0, 0.89);
+  -panel-corner-border-width: 0px;
+  -panel-corner-opacity: 0.89;
+  transition-duration: 500ms;
+  box-shadow: none; }
+
+#panel.transparent-top-bar-89 .panel-corner {
+  -panel-corner-background-color: rgba(0, 0, 0, 0.89); }
+
+#panel.transparent-top-bar-90 {
+  background-color: rgba(0, 0, 0, 0.9);
+  -panel-corner-border-width: 0px;
+  -panel-corner-opacity: 0.9;
+  transition-duration: 500ms;
+  box-shadow: none; }
+
+#panel.transparent-top-bar-90 .panel-corner {
+  -panel-corner-background-color: rgba(0, 0, 0, 0.9); }
+
+#panel.transparent-top-bar-91 {
+  background-color: rgba(0, 0, 0, 0.91);
+  -panel-corner-border-width: 0px;
+  -panel-corner-opacity: 0.91;
+  transition-duration: 500ms;
+  box-shadow: none; }
+
+#panel.transparent-top-bar-91 .panel-corner {
+  -panel-corner-background-color: rgba(0, 0, 0, 0.91); }
+
+#panel.transparent-top-bar-92 {
+  background-color: rgba(0, 0, 0, 0.92);
+  -panel-corner-border-width: 0px;
+  -panel-corner-opacity: 0.92;
+  transition-duration: 500ms;
+  box-shadow: none; }
+
+#panel.transparent-top-bar-92 .panel-corner {
+  -panel-corner-background-color: rgba(0, 0, 0, 0.92); }
+
+#panel.transparent-top-bar-93 {
+  background-color: rgba(0, 0, 0, 0.93);
+  -panel-corner-border-width: 0px;
+  -panel-corner-opacity: 0.93;
+  transition-duration: 500ms;
+  box-shadow: none; }
+
+#panel.transparent-top-bar-93 .panel-corner {
+  -panel-corner-background-color: rgba(0, 0, 0, 0.93); }
+
+#panel.transparent-top-bar-94 {
+  background-color: rgba(0, 0, 0, 0.94);
+  -panel-corner-border-width: 0px;
+  -panel-corner-opacity: 0.94;
+  transition-duration: 500ms;
+  box-shadow: none; }
+
+#panel.transparent-top-bar-94 .panel-corner {
+  -panel-corner-background-color: rgba(0, 0, 0, 0.94); }
+
+#panel.transparent-top-bar-95 {
+  background-color: rgba(0, 0, 0, 0.95);
+  -panel-corner-border-width: 0px;
+  -panel-corner-opacity: 0.95;
+  transition-duration: 500ms;
+  box-shadow: none; }
+
+#panel.transparent-top-bar-95 .panel-corner {
+  -panel-corner-background-color: rgba(0, 0, 0, 0.95); }
+
+#panel.transparent-top-bar-96 {
+  background-color: rgba(0, 0, 0, 0.96);
+  -panel-corner-border-width: 0px;
+  -panel-corner-opacity: 0.96;
+  transition-duration: 500ms;
+  box-shadow: none; }
+
+#panel.transparent-top-bar-96 .panel-corner {
+  -panel-corner-background-color: rgba(0, 0, 0, 0.96); }
+
+#panel.transparent-top-bar-97 {
+  background-color: rgba(0, 0, 0, 0.97);
+  -panel-corner-border-width: 0px;
+  -panel-corner-opacity: 0.97;
+  transition-duration: 500ms;
+  box-shadow: none; }
+
+#panel.transparent-top-bar-97 .panel-corner {
+  -panel-corner-background-color: rgba(0, 0, 0, 0.97); }
+
+#panel.transparent-top-bar-98 {
+  background-color: rgba(0, 0, 0, 0.98);
+  -panel-corner-border-width: 0px;
+  -panel-corner-opacity: 0.98;
+  transition-duration: 500ms;
+  box-shadow: none; }
+
+#panel.transparent-top-bar-98 .panel-corner {
+  -panel-corner-background-color: rgba(0, 0, 0, 0.98); }
+
+#panel.transparent-top-bar-99 {
+  background-color: rgba(0, 0, 0, 0.99);
+  -panel-corner-border-width: 0px;
+  -panel-corner-opacity: 0.99;
+  transition-duration: 500ms;
+  box-shadow: none; }
+
+#panel.transparent-top-bar-99 .panel-corner {
+  -panel-corner-background-color: rgba(0, 0, 0, 0.99); }
+
+#panel.transparent-top-bar-100 {
+  background-color: black;
+  -panel-corner-border-width: 0px;
+  -panel-corner-opacity: 1;
+  transition-duration: 500ms;
+  box-shadow: none; }
+
+#panel.transparent-top-bar-100 .panel-corner {
+  -panel-corner-background-color: black; }
+
+#panel.transparent-top-bar:overview .panel-corner {
+  -panel-corner-opacity: 0;
+  transition-duration: 250ms; }
+
+#panel.transparent-top-bar .panel-button {
+  color: #eee;
+  text-shadow: 0px 1px 2px rgba(0, 0, 0, 0.9);
+  transition-duration: 100ms; }
+
+#panel.transparent-top-bar .system-status-icon,
+#panel.transparent-top-bar .app-menu-icon > StIcon,
+#panel.transparent-top-bar .popup-menu-arrow {
+  icon-shadow: 0px 1px 2px rgba(0, 0, 0, 0.9); }
+
+#panel.transparent-top-bar:hover {
+  text-shadow: 0px 1px 6px black; }
+
+#panel.transparent-top-bar:hover .system-status-icon,
+#panel.transparent-top-bar:hover .app-menu-icon > StIcon,
+#panel.transparent-top-bar:hover .popup-menu-arrow {
+  icon-shadow: 0px 1px 6px black; }
+
+#panel.transparent-top-bar:active .system-status-icon,
+#panel.transparent-top-bar:overview .system-status-icon,
+#panel.transparent-top-bar:focus .system-status-icon,
+#panel.transparent-top-bar:checked .system-status-icon {
+  icon-shadow: black 0 2px 2px; }
+
+/*# sourceMappingURL=stylesheet.css.map */

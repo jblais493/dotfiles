@@ -1,0 +1,6 @@
+[/]
+center-new-windows=true
+
+[keybindings]
+toggle-tiled-left=['<Alt>Left']
+toggle-tiled-right=['<Alt>Right']

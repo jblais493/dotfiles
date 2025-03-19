@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schemalist gettext-domain="ssh-search-provider">
+  <schema path="/org/gnome/shell/extensions/ssh-search-provider/"
+	  id="org.gnome.shell.extensions.ssh-search-provider">
+    <key name="terminal-application" type="s">
+      <default>"org.gnome.Terminal.desktop"</default>
+      <summary>Terminal application.</summary>
+      <description>The Terminal Application used to launch new SSH
+      sessions with.</description>
+    </key>
+    <key name="terminal-application-arguments" type="s">
+      <default>"--"</default>
+      <summary>Terminal application arguments.</summary>
+      <description>The arguments passed to the Terminal Application.
+      The command "ssh [-p &lt;port&gt;] [user@]&lt;host&gt;" is appended after the
+      provided arguments.</description>
+    </key>
+    <key name="ssh-command-single-argument" type="b">
+      <default>false</default>
+      <summary>SSH command line is passed as a single
+      argument.</summary> <description>Whether or not the "ssh [-p
+      &lt;port&gt;] [user@]&lt;host&gt;" command line is appended as a
+      single argument.  If not, the command line will be broken up and
+      passed as multiple arguments.  Depends on the Terminal Emulator
+      Application used.</description>
+    </key>
+    <key name="debug" type="b">
+      <default>false</default>
+      <summary>Debugging.</summary>
+      <description>Enable debugging for the extension.</description>
+    </key>
+  </schema>
+</schemalist>

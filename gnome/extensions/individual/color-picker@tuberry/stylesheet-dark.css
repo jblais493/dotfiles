@@ -1,0 +1,38 @@
+.color-picker-label {
+  color: white;
+  padding: 0.3em;
+  min-width: 6em;
+  font-size: 1.4em;
+  border-radius: 0.4em;
+  background-color: st-lighten(#353535, 10%);
+  border: 0.05em solid rgba(255, 255, 255, 0.4);
+  /* box-shadow leads afterimage when moving */
+}
+
+.color-picker-button {
+  padding: 0 0.5em;
+}
+
+.color-picker-systray:state-busy {
+  color: st-lighten(-st-accent-color, 10%);
+}
+
+.color-picker-item-label {
+  font-family: monospace;
+}
+
+.color-picker-item-label:focus {
+  outline: 0.15em solid st-transparentize(-st-accent-color, 0.3);
+}
+
+.color-picker-icon {
+  padding: 0 0.15em;
+}
+
+.color-picker-icon:hover {
+  color: st-lighten(-st-accent-color, 5%);
+}
+
+.color-picker-icon:focus {
+  outline: 0.15em solid st-transparentize(-st-accent-color, 0.3);
+}
