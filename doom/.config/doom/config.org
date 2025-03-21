@@ -1588,9 +1588,10 @@ I have various functions in my lisp directory for creating pomodoros, refiling d
 ;; lisp functions
 (load! "lisp/pomodoro")
 (load! "lisp/done-refile")
-(load! "lisp/mu4e-contact.el")
+(load! "lisp/mu4e-contact")
 (load! "lisp/post-to-blog")
 (load! "lisp/popup-scratch")
+(load! "lisp/meeting-assistant")
 #+end_src
 
 ** Templates

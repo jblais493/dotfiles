@@ -1381,9 +1381,10 @@ WHERE tablename = '%s';" table-name)))
 ;; lisp functions
 (load! "lisp/pomodoro")
 (load! "lisp/done-refile")
-(load! "lisp/mu4e-contact.el")
+(load! "lisp/mu4e-contact")
 (load! "lisp/post-to-blog")
 (load! "lisp/popup-scratch")
+(load! "lisp/meeting-assistant")
 
 ;; Load various scripts and templates
 (load! "templates/writing-template")
