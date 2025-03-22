@@ -13,6 +13,9 @@
 ;; clients, file templates and snippets.
 (setq user-full-name "Josh Blais"
       user-mail-address "josh@joshblais.com")
+
+(setq auth-sources '("~/.authinfo.gpg" "~/.authinfo")
+      auth-source-cache-expiry nil) ; default is 7200 (2h)
 #+end_src
 
 ** Fonts
@@ -1592,6 +1595,8 @@ I have various functions in my lisp directory for creating pomodoros, refiling d
 (load! "lisp/post-to-blog")
 (load! "lisp/popup-scratch")
 (load! "lisp/meeting-assistant")
+;; POSSE posting system
+(load! "lisp/posse/posse-twitter")
 #+end_src
 
 ** Templates

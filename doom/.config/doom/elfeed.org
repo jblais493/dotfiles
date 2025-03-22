@@ -28,7 +28,8 @@
 *** [[https://itsfoss.com/feed/][It's FOSS]]
 *** [[https://www.phoronix.com/rss.php][Phoronix]]
 *** [[https://www.linuxjournal.com/node/feed][Linux Journal]]
-
+*** [[https://raphlinus.github.io/feed.xml][RaphLinus]]
+*** [[https://susam.net/feed.xml][Susam.net]]
 ** Emacs
 *** [[https://sachachua.com/blog/category/emacs/feed/][Sacha Chua]]
 *** [[https://irreal.org/blog/?feed=rss2][Irreal]]

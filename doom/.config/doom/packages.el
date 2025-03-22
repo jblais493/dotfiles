@@ -44,7 +44,7 @@
 (package! elysium)
 (package! aider :recipe (:host github :repo "tninja/aider.el" :files ("aider.el" "aider-core.el" "aider-file.el" "aider-code-change.el" "aider-discussion.el" "aider-prompt-mode.el" "aider-doom.el")))
 
-;; aider Trying to get mu4e nano working
+;; Trying to get mu4e nano working
 ;; (package! svg-tag-mode)
 ;; (package! nano-theme)
 ;; (package! mu4e-dashboard

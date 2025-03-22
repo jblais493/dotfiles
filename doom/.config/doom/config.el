@@ -8,6 +8,9 @@
 (setq user-full-name "Josh Blais"
       user-mail-address "josh@joshblais.com")
 
+(setq auth-sources '("~/.authinfo.gpg" "~/.authinfo")
+      auth-source-cache-expiry nil) ; default is 7200 (2h)
+
 ;; Doom exposes five (optional) variables for controlling fonts in Doom. Here
 ;; are the three important ones:
 (setq doom-font (font-spec :family "GeistMono Nerd Font" :size 15)
@@ -1385,6 +1388,8 @@ WHERE tablename = '%s';" table-name)))
 (load! "lisp/post-to-blog")
 (load! "lisp/popup-scratch")
 (load! "lisp/meeting-assistant")
+;; POSSE posting system
+(load! "lisp/posse/posse-twitter")
 
 ;; Load various scripts and templates
 (load! "templates/writing-template")
