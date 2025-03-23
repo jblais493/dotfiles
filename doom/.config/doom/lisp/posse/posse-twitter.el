@@ -23,6 +23,7 @@
     (with-current-buffer buf
       (erase-buffer)
       (insert "# Compose your tweet below (280 chars max):\n\n")
+      (insert "You can leave this empty for media-only tweets.")
       (org-mode)
       (goto-char (point-max))
 
@@ -54,12 +55,15 @@
   "Select media to attach to the tweet."
   (interactive)
   ;; Use standard file selection dialog
-  (let ((file (read-file-name "Select media file: " nil nil t)))
-    (when (and file
-               (string-match-p "\\(?:png\\|jpg\\|jpeg\\|gif\\|mp4\\)$" file))
-      (with-current-buffer "*Tweet Composer*"
-        (setq-local media-path file)
-        (message "Media selected: %s" (file-name-nondirectory file))))))
+  (let ((file (expand-file-name (read-file-name "Select media file: " nil nil t))))
+    ;; Verify the file exists and is a supported media type
+    (if (and file
+             (file-exists-p file)
+             (string-match-p "\\(?:png\\|jpg\\|jpeg\\|gif\\|mp4\\)$" file))
+        (with-current-buffer "*Tweet Composer*"
+          (setq-local media-path file)
+          (message "Media selected: %s" (file-name-nondirectory file)))
+      (message "Error: Selected file does not exist or is not a supported media type."))))
 
 (defun my-send-tweet-from-buffer ()
   "Send the tweet composed in the current buffer."
@@ -73,13 +77,15 @@
          (tweet-text (string-trim content))
          (media (buffer-local-value 'media-path (current-buffer))))
 
-    ;; Validate tweet text
+    ;; Check if we have either text or media (or both)
     (cond
-     ((string-empty-p tweet-text)
-      (message "Tweet is empty."))
-     ((> (length tweet-text) 280)
+     ((and (string-empty-p tweet-text) (not media))
+      (message "Tweet must contain either text or media (or both)."))
+     ((and (not (string-empty-p tweet-text)) (> (length tweet-text) 280))
       (message "Tweet exceeds 280 characters (%d). Please shorten it."
                (length tweet-text)))
+     ((and media (not (file-exists-p media)))
+      (message "Selected media file does not exist: %s" media))
      (t
       ;; Get credentials from auth-source
       (let* ((consumer-key-entry (car (auth-source-search :host "api.twitter.com" :user "TwitterAPI" :max 1)))
@@ -105,16 +111,17 @@
              (at (when access-token (string-trim access-token)))
              (ats (when access-token-secret (string-trim access-token-secret)))
 
-             (temp-file (make-temp-file "tweet-" nil ".txt")))
+             ;; Only create a temp text file if we have text content
+             (temp-file (when (not (string-empty-p tweet-text))
+                          (let ((tf (make-temp-file "tweet-" nil ".txt")))
+                            (with-temp-file tf
+                              (insert tweet-text))
+                            tf))))
 
         ;; Check if we have all credentials
         (if (and ck cs at ats)
             (progn
-              ;; Write tweet text to temporary file
-              (with-temp-file temp-file
-                (insert tweet-text))
-
-              ;; Create a Python script that mimics your working script exactly
+              ;; Create a Python script that handles both text and media-only tweets
               (let* ((script-file (make-temp-file "twitter-script-" nil ".py")))
                 (with-temp-file script-file
                   (insert "
@@ -148,60 +155,88 @@ class TwitterClient:
         media = self.api.media_upload(filename=photo_path)
         return media.media_id
 
-    def create_tweet(self, text: str, media_ids: Optional[list] = None) -> None:
+    def create_tweet(self, text: str = None, media_ids: Optional[list] = None) -> None:
+        # Handle empty text for media-only tweets
+        if not text or text.strip() == '':
+            text = None
         self.client.create_tweet(text=text, media_ids=media_ids)
 
 def main():
     try:
-        # Read tweet text from file
-        with open(sys.argv[1], 'r') as f:
-            tweet_text = f.read().strip()
-
         twitter = TwitterClient()
 
-        # Handle media if provided
+        # Parse arguments
+        has_text = False
+        has_media = False
+        tweet_text = None
         media_ids = None
+
+        # Check for text
+        if len(sys.argv) > 1 and sys.argv[1] != 'no_text':
+            with open(sys.argv[1], 'r') as f:
+                tweet_text = f.read().strip()
+                if tweet_text:
+                    has_text = True
+
+        # Check for media
         if len(sys.argv) > 2:
             media_path = sys.argv[2]
             media_ids = [twitter.upload_media(media_path)]
+            has_media = True
             print(f\"Media attached: {media_path}\")
 
         # Post tweet
-        twitter.create_tweet(tweet_text, media_ids)
-        print(f\"Tweet posted successfully: {tweet_text[:30]}...\")
+        twitter.create_tweet(text=tweet_text, media_ids=media_ids)
+
+        # Success message
+        if has_text and has_media:
+            print(f\"Tweet with media posted successfully: {tweet_text[:30]}...\")
+        elif has_text:
+            print(f\"Text-only tweet posted successfully: {tweet_text[:30]}...\")
+        elif has_media:
+            print(\"Media-only tweet posted successfully!\")
 
     except tweepy.errors.TweepyException as e:
         print(f\"Twitter API error: {e}\")
         sys.exit(1)
     except Exception as e:
         print(f\"An unexpected error occurred: {e}\")
+        import traceback
+        traceback.print_exc()
         sys.exit(1)
 
 if __name__ == '__main__':
     main()
 "))
 
-                ;; Execute the script with different argument style
-                (let* ((command (if media
+                ;; Execute the script with appropriate arguments
+                (let* ((text-arg (if (and temp-file (not (string-empty-p tweet-text)))
+                                     (shell-quote-argument temp-file)
+                                   "no_text"))
+                       (media-arg (when media
+                                    (shell-quote-argument media)))
+                       (command (if media
                                     (format "python %s %s %s"
                                             script-file
-                                            (shell-quote-argument temp-file)
-                                            (shell-quote-argument media))
+                                            text-arg
+                                            media-arg)
                                   (format "python %s %s"
                                           script-file
-                                          (shell-quote-argument temp-file))))
-                       (result (shell-command-to-string command)))
+                                          text-arg))))
 
-                  ;; Clean up temporary files
-                  (delete-file temp-file)
-                  (delete-file script-file)
+                  ;; Run the command and get output
+                  (let ((result (shell-command-to-string command)))
 
-                  ;; Show result
-                  (if (string-match-p "successfully" result)
-                      (progn
-                        (message "Tweet sent successfully!")
-                        (kill-buffer))
-                    (message "Error sending tweet: %s" result)))))
+                    ;; Clean up temporary files
+                    (when temp-file (delete-file temp-file))
+                    (delete-file script-file)
+
+                    ;; Show result
+                    (if (string-match-p "successfully" result)
+                        (progn
+                          (message "Tweet sent successfully!")
+                          (kill-buffer))
+                      (message "Error sending tweet: %s" result))))))
           (message "Could not retrieve all required credentials from auth-source. Check your ~/.authinfo.gpg file.")))))))
 
 ;; Bind it to a key
