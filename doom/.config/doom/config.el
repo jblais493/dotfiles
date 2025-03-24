@@ -1388,8 +1388,10 @@ WHERE tablename = '%s';" table-name)))
 (load! "lisp/post-to-blog")
 (load! "lisp/popup-scratch")
 (load! "lisp/meeting-assistant")
+(load! "lisp/create-daily")
 ;; POSSE posting system
 (load! "lisp/posse/posse-twitter")
+(load! "lisp/posse/instagram-scheduler")
 
 ;; Load various scripts and templates
 (load! "templates/writing-template")

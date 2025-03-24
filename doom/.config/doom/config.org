@@ -1595,8 +1595,10 @@ I have various functions in my lisp directory for creating pomodoros, refiling d
 (load! "lisp/post-to-blog")
 (load! "lisp/popup-scratch")
 (load! "lisp/meeting-assistant")
+(load! "lisp/create-daily")
 ;; POSSE posting system
 (load! "lisp/posse/posse-twitter")
+(load! "lisp/posse/instagram-scheduler")
 #+end_src
 
 ** Templates
