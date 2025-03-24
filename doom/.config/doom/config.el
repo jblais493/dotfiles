@@ -279,6 +279,7 @@
   (map! :map org-mode-map
         :n "<M-left>" #'org-do-promote
         :n "<M-right>" #'org-do-demote)
+  (org-meeting-notify-enable)
   )
 
 ;; Auto-clock in when state changes to STRT
