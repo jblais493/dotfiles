@@ -341,7 +341,6 @@ We set the visual line wrapping and relative line numbers (then we can just go u
   (map! :map org-mode-map
         :n "<M-left>" #'org-do-promote
         :n "<M-right>" #'org-do-demote)
-  (org-meeting-notify-enable)
   )
 
 ;; Auto-clock in when state changes to STRT
@@ -1437,11 +1436,33 @@ WHERE tablename = '%s';" table-name)))
 *** Nov.el
 #+begin_src elisp
 ;; Nov.el customizations and setup
-(setq nov-unzip-program (executable-find "bsdtar")
-      nov-unzip-args '("-xC" directory "-f" filename))
-(add-to-list 'auto-mode-alist '("\\.epub\\'" . nov-mode))
+(after! nov
+  ;; Setting up extraction with bsdtar
+  (setq nov-unzip-program (executable-find "bsdtar"))
 
+  ;; This is the problematic part - directory and filename aren't available
+  ;; at configuration time
+  (setq nov-unzip-args (lambda (filename)
+                         (let ((directory (file-name-directory filename)))
+                           (list "-xC" directory "-f" filename))))
+
+  ;; File association
+  (add-to-list 'auto-mode-alist '("\\.epub\\'" . nov-mode))
+
+  ;; Enhance reading experience
+  (add-hook 'nov-mode-hook 'visual-line-mode)
+
+  ;; Set a nicer font for reading
+  (defun my-nov-font-setup ()
+    (face-remap-add-relative 'variable-pitch
+                             :family "Alegreya"
+                             :height 1.4))
+  (add-hook 'nov-mode-hook 'my-nov-font-setup)
+
+  ;; Customize margins for better readability
+  (setq nov-text-width 80))
 #+end_src
+
 *** Calibre
 #+begin_src elisp
 ;; In config.el
