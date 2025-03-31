@@ -1272,31 +1272,9 @@ WHERE tablename = '%s';" table-name)))
       (concat dir (car cover-files)))))
 
 ;; Nov.el customizations and setup
-(after! nov
-  ;; Setting up extraction with bsdtar
-  (setq nov-unzip-program (executable-find "bsdtar"))
-
-  ;; This is the problematic part - directory and filename aren't available
-  ;; at configuration time
-  (setq nov-unzip-args (lambda (filename)
-                         (let ((directory (file-name-directory filename)))
-                           (list "-xC" directory "-f" filename))))
-
-  ;; File association
-  (add-to-list 'auto-mode-alist '("\\.epub\\'" . nov-mode))
-
-  ;; Enhance reading experience
-  (add-hook 'nov-mode-hook 'visual-line-mode)
-
-  ;; Set a nicer font for reading
-  (defun my-nov-font-setup ()
-    (face-remap-add-relative 'variable-pitch
-                             :family "Alegreya"
-                             :height 1.4))
-  (add-hook 'nov-mode-hook 'my-nov-font-setup)
-
-  ;; Customize margins for better readability
-  (setq nov-text-width 80))
+(setq nov-unzip-program (executable-find "bsdtar")
+      nov-unzip-args '("-xC" directory "-f" filename))
+(add-to-list 'auto-mode-alist '("\\.epub\\'" . nov-mode))
 
 ;; In config.el
 (use-package! calibredb
