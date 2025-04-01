@@ -1582,6 +1582,47 @@ Sometimes, we need to drag and drop files to GUIs - I previously was using drago
           (tool-bar-lines . 0)
           (undecorated . t))))
 #+end_src
+** CIRCE (IRC)
+#+begin_src elisp
+;; Load private IRC configuration
+(load! "private/irc-config" nil t)
+
+(after! circe
+
+  ;; Rest of your configuration remains the same
+  (setq circe-format-self-say "{nick}: {body}")
+  (setq circe-format-server-topic "*** Topic: {topic-diff}")
+  (setq circe-use-cycle-completion t)
+  (setq circe-reduce-lurker-spam t)
+
+  (setq lui-max-buffer-size 30000)
+  (enable-lui-autopaste)
+  (enable-lui-irc-colors)
+
+  (tracking-mode 1)
+  (setq tracking-faces-priorities '(circe-highlight-nick-face))
+  (setq tracking-ignored-buffers '("*circe-network-Rizon*"))
+
+  (setq circe-highlight-nick-type 'all)
+
+  (setq circe-directory "~/.doom.d/circe-logs")
+  (setq lui-logging-directory "~/.doom.d/circe-logs")
+  (setq lui-logging-file-format "{buffer}/%Y-%m-%d.txt")
+  (setq lui-logging-format "[%H:%M:%S] {text}")
+  (enable-lui-logging-globally)
+
+  (unless (file-exists-p "~/.doom.d/circe-logs")
+    (make-directory "~/.doom.d/circe-logs" t)))
+
+(defun my/irc-connect-rizon ()
+  "Connect to Rizon IRC."
+  (interactive)
+  (circe "Rizon"))
+
+(map! :leader
+      (:prefix ("o" . "open")
+       :desc "Connect to Rizon IRC" "i" #'my/irc-connect-rizon))
+#+end_src
 
 * Custom functions and templates
 I have various functions in my lisp directory for creating pomodoros, refiling done tasks to my global done.org file, and adding contacts to emails in mu4e

@@ -1381,6 +1381,45 @@ WHERE tablename = '%s';" table-name)))
               (lambda ()
                 (local-set-key (kbd "C-M-f") 'open-nautilus-here)))))
 
+;; Load private IRC configuration
+(load! "private/irc-config" nil t)
+
+(after! circe
+
+  ;; Rest of your configuration remains the same
+  (setq circe-format-self-say "{nick}: {body}")
+  (setq circe-format-server-topic "*** Topic: {topic-diff}")
+  (setq circe-use-cycle-completion t)
+  (setq circe-reduce-lurker-spam t)
+
+  (setq lui-max-buffer-size 30000)
+  (enable-lui-autopaste)
+  (enable-lui-irc-colors)
+
+  (tracking-mode 1)
+  (setq tracking-faces-priorities '(circe-highlight-nick-face))
+  (setq tracking-ignored-buffers '("*circe-network-Rizon*"))
+
+  (setq circe-highlight-nick-type 'all)
+
+  (setq circe-directory "~/.doom.d/circe-logs")
+  (setq lui-logging-directory "~/.doom.d/circe-logs")
+  (setq lui-logging-file-format "{buffer}/%Y-%m-%d.txt")
+  (setq lui-logging-format "[%H:%M:%S] {text}")
+  (enable-lui-logging-globally)
+
+  (unless (file-exists-p "~/.doom.d/circe-logs")
+    (make-directory "~/.doom.d/circe-logs" t)))
+
+(defun my/irc-connect-rizon ()
+  "Connect to Rizon IRC."
+  (interactive)
+  (circe "Rizon"))
+
+(map! :leader
+      (:prefix ("o" . "open")
+       :desc "Connect to Rizon IRC" "i" #'my/irc-connect-rizon))
+
 ;; lisp functions
 (load! "lisp/pomodoro")
 (load! "lisp/done-refile")
