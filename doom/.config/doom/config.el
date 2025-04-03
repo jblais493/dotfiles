@@ -580,6 +580,13 @@
                                  default-directory)))
       (apply fn args))))
 
+(defun open-vterm-in-current-context ()
+  "Open vterm in the context of the current buffer/window."
+  (interactive)
+  (when-let ((buf (current-buffer)))
+    (with-current-buffer buf
+      (call-interactively #'+vterm/here))))
+
 ;; Emmet remap
 (add-hook 'sgml-mode-hook 'emmet-mode) ;; Auto-start on any markup modes
 (add-hook 'css-mode-hook  'emmet-mode) ;; enable Emmet's css abbreviation.
@@ -1435,6 +1442,46 @@ WHERE tablename = '%s';" table-name)))
 ;; Load various scripts and templates
 (load! "templates/writing-template")
 (load! "templates/note-template")
+
+(defun popup-dirvish-browser ()
+  "Create a new frame with Dirvish browser starting in home directory."
+  (interactive)
+  ;; First, calculate the screen dimensions
+  (let* ((display-width (display-pixel-width))
+         (display-height (display-pixel-height))
+         ;; Calculate desired frame size (in pixels)
+         (desired-width-px (* (frame-char-width) 100))
+         (desired-height-px (* (frame-char-height) 35))
+         ;; Calculate center position
+         (left-pos (max 0 (/ (- display-width desired-width-px) 2)))
+         (top-pos (max 0 (/ (- display-height desired-height-px) 2)))
+         ;; Prepare frame parameters with explicit positioning
+         (frame-props `((name . "Dirvish Browser")
+                        (width . 100)
+                        (height . 35)
+                        (minibuffer . t)
+                        (vertical-scroll-bars . nil)
+                        (menu-bar-lines . 0)
+                        (tool-bar-lines . 0)
+                        (left . ,left-pos)
+                        (top . ,top-pos))))
+
+    ;; Create the pre-positioned frame
+    (let ((frame (make-frame frame-props)))
+      (select-frame frame)
+
+      ;; Open Dirvish in home directory
+      (dirvish "~/")
+
+      ;; Add special keybindings for this frame
+      (with-selected-frame frame
+        (let ((map (copy-keymap dirvish-mode-map)))
+          (define-key map (kbd "q") 'delete-frame)
+          (define-key map (kbd "C-g") 'delete-frame)
+          (use-local-map map)))
+
+      ;; Add helpful message
+      (message "Dirvish browser ready. Navigate with normal commands. Press 'N' for Nautilus, 'q' to close."))))
 
 ;;;; Send a daily email to myself with the days agenda:
 ;;(defun my/send-daily-agenda ()
