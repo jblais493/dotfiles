@@ -1,6 +1,5 @@
 ;;; ../../dotfiles/doom/.config/doom/lisp/popup-scratch.el -*- lexical-binding: t; -*-
 
-
 (defun popup-scratch-for-web ()
   "Create a popup frame with a scratch buffer for web text editing.
 Designed specifically for GNOME Wayland with Doom Emacs spell checking."
@@ -12,7 +11,6 @@ Designed specifically for GNOME Wayland with Doom Emacs spell checking."
       (text-mode)
 
       ;; For Doom Emacs, enable appropriate spell checking mode
-      ;; This should enable the z= binding for spell suggestions
       (when (fboundp 'spell-checking-enable)
         (spell-checking-enable))
 
@@ -32,17 +30,13 @@ Designed specifically for GNOME Wayland with Doom Emacs spell checking."
                                 (forward-line 4)
                                 (point))
                               (point-max))))
-
                 ;; Copy to Emacs clipboard
                 (kill-new content)
-
                 ;; For Wayland - use wl-copy which is the most compatible
                 (when (executable-find "wl-copy")
                   (call-process "wl-copy" nil nil nil content))
-
                 ;; Message user about next steps
                 (message "Text copied to clipboard! Ready to paste with Ctrl+V")
-
                 ;; Store frame to close
                 (let ((frame-to-close (selected-frame)))
                   ;; Close frame after a short delay
@@ -73,13 +67,19 @@ Designed specifically for GNOME Wayland with Doom Emacs spell checking."
       (goto-char (point-min))
       (forward-line 4)
 
-      ;; Center the frame using a timer
-      (run-with-timer 0.2 nil
-                      (lambda ()
-                        (let* ((display-width (display-pixel-width))
-                               (display-height (display-pixel-height))
-                               (frame-width (frame-pixel-width))
-                               (frame-height (frame-pixel-height))
-                               (left-pos (max 0 (/ (- display-width frame-width) 2)))
-                               (top-pos (max 0 (/ (- display-height frame-height) 2))))
-                          (set-frame-position frame left-pos top-pos)))))))
+      ;; Use external window manager tools to center the frame
+      ;; This replaces the previous centering method
+      (run-with-timer
+       0.3 nil
+       (lambda ()
+         (when (frame-live-p frame)
+           ;; Try different centering methods based on available tools
+           (cond
+            ;; First try wmctrl which works well with GNOME
+            ((executable-find "wmctrl")
+             (shell-command "wmctrl -r 'Web Compose' -e 0,-1,-1,-1,-1"))
+
+            ;; Fall back to xdotool if available
+            ((executable-find "xdotool")
+             (shell-command
+              "xdotool search --name 'Web Compose' windowmove $(xdotool getdisplaygeometry | awk '{print $1/2-400, $2/2-200}')")))))))))
