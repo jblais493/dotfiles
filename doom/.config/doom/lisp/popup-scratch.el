@@ -1,4 +1,4 @@
-;;; ../../dotfiles/doom/.config/doom/lisp/popup-scratch.el -*- lexical-binding: t; -*-
+;;; ../../Dotfiles/doom/.config/doom/lisp/popup-scratch.el -*- lexical-binding: t; -*-
 
 (defun popup-scratch-for-web ()
   "Create a popup frame with a scratch buffer for web text editing.
@@ -30,6 +30,7 @@ Designed specifically for GNOME Wayland with Doom Emacs spell checking."
                                 (forward-line 4)
                                 (point))
                               (point-max))))
+
                 ;; Copy to Emacs clipboard
                 (kill-new content)
                 ;; For Wayland - use wl-copy which is the most compatible
@@ -37,13 +38,14 @@ Designed specifically for GNOME Wayland with Doom Emacs spell checking."
                   (call-process "wl-copy" nil nil nil content))
                 ;; Message user about next steps
                 (message "Text copied to clipboard! Ready to paste with Ctrl+V")
+
                 ;; Store frame to close
                 (let ((frame-to-close (selected-frame)))
+
                   ;; Close frame after a short delay
                   (run-with-timer 0.5 nil
                                   (lambda ()
                                     (delete-frame frame-to-close)))))))
-
       ;; Bind our function to the local map
       (local-set-key (kbd "C-c C-c") 'web-compose-finish)
 
@@ -62,11 +64,9 @@ Designed specifically for GNOME Wayland with Doom Emacs spell checking."
       ;; Set up the frame
       (select-frame frame)
       (switch-to-buffer "*web-compose*")
-
       ;; Position cursor after comments
       (goto-char (point-min))
       (forward-line 4)
-
       ;; Use external window manager tools to center the frame
       ;; This replaces the previous centering method
       (run-with-timer
