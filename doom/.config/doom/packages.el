@@ -19,7 +19,7 @@
 ;; (package! ssh)
 ;; (package! multiple-cursors)
 ;; (package! org-super-agenda)
-;; (package! org-fancy-priorities)
+(package! org-fancy-priorities)
 ;; (package! theme-magic)
 (package! centaur-tabs)
 (package! prettier-js)

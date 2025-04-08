@@ -1427,6 +1427,15 @@ WHERE tablename = '%s';" table-name)))
       (:prefix ("o" . "open")
        :desc "Connect to Rizon IRC" "i" #'my/irc-connect-rizon))
 
+(define-minor-mode my/audio-recorder-mode
+  "Minor mode for recording audio in Emacs."
+  :lighter " Audio"
+  :global t
+  :keymap (let ((map (make-sparse-keymap)))
+            (define-key map (kbd "C-c a r") 'my/record-audio)
+            (define-key map (kbd "C-c a s") 'my/stop-audio-recording)
+            map))
+
 ;; lisp functions
 (load! "lisp/pomodoro")
 (load! "lisp/done-refile")
@@ -1436,6 +1445,7 @@ WHERE tablename = '%s';" table-name)))
 (load! "lisp/popup-dirvish-browser")
 (load! "lisp/meeting-assistant")
 (load! "lisp/create-daily")
+(load! "lisp/audio-record")
 ;; POSSE posting system
 (load! "lisp/posse/posse-twitter")
 (load! "lisp/posse/instagram-scheduler")

@@ -1631,6 +1631,18 @@ Sometimes, we need to drag and drop files to GUIs - I previously was using drago
        :desc "Connect to Rizon IRC" "i" #'my/irc-connect-rizon))
 #+end_src
 
+** Audio recording
+#+begin_src elisp
+(define-minor-mode my/audio-recorder-mode
+  "Minor mode for recording audio in Emacs."
+  :lighter " Audio"
+  :global t
+  :keymap (let ((map (make-sparse-keymap)))
+            (define-key map (kbd "C-c a r") 'my/record-audio)
+            (define-key map (kbd "C-c a s") 'my/stop-audio-recording)
+            map))
+#+end_src
+
 * Custom functions and templates
 I have various functions in my lisp directory for creating pomodoros, refiling done tasks to my global done.org file, and adding contacts to emails in mu4e
 
@@ -1645,6 +1657,7 @@ I have various functions in my lisp directory for creating pomodoros, refiling d
 (load! "lisp/popup-dirvish-browser")
 (load! "lisp/meeting-assistant")
 (load! "lisp/create-daily")
+(load! "lisp/audio-record")
 ;; POSSE posting system
 (load! "lisp/posse/posse-twitter")
 (load! "lisp/posse/instagram-scheduler")
