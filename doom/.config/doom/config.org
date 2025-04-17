@@ -116,6 +116,11 @@ We set the visual line wrapping and relative line numbers (then we can just go u
 
 ;; Version control optimization
 (setq vc-handled-backends '(Git))
+
+;; Fix x11 issues
+(setq x-no-window-manager t)
+(setq frame-inhibit-implied-resize t)
+(setq focus-follows-mouse nil)
 #+end_src
 
 ** Splash Screen

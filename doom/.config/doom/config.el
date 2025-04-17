@@ -78,6 +78,11 @@
 ;; Version control optimization
 (setq vc-handled-backends '(Git))
 
+;; Fix x11 issues
+(setq x-no-window-manager t)
+(setq frame-inhibit-implied-resize t)
+(setq focus-follows-mouse nil)
+
 ;; Setup custom splashscreen
 (remove-hook '+doom-dashboard-functions #'doom-dashboard-widget-shortmenu)
 (setq fancy-splash-image "~/Pictures/gnu_color.png")
