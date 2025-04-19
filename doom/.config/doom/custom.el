@@ -11,8 +11,9 @@
      "7ea883b13485f175d3075c72fceab701b5bf76b2076f024da50dff4107d0db25" default))
  '(magit-todos-insert-after '(bottom) nil nil "Changed by setter of obsolete option `magit-todos-insert-at'")
  '(org-agenda-files
-   '("~/org/projects.org" "/home/joshua/org/contacts.org"
-     "/home/joshua/org/calendar.org" "/home/joshua/org/inbox.org"
+   '("~/org/notes.org" "/home/joshua/org/projects.org"
+     "/home/joshua/org/contacts.org" "/home/joshua/org/calendar.org"
+     "/home/joshua/org/inbox.org"
      "/home/joshua/org/journal/2025/Week 13/March 25, 2025.org"))
  '(package-selected-packages
    '(company company dart-mode elpher emacs-everywhere flycheck hover jabber
