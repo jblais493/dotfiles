@@ -19,7 +19,6 @@ Designed specifically for GNOME Wayland with Doom Emacs spell checking."
       (insert "* Instructions\n")
       (insert "- Press C-c C-c when done to copy text and close\n")
       (insert "- Use z= on misspelled words to see correction suggestions\n")
-      (insert "- Code blocks will be executed with C-c C-c while cursor is in them\n")
       (insert "- Text will be copied to clipboard for pasting\n\n")
       (insert "* Your Text\n\n")
 
@@ -27,13 +26,6 @@ Designed specifically for GNOME Wayland with Doom Emacs spell checking."
       (fset 'web-compose-finish
             (lambda ()
               (interactive)
-              ;; Execute all source blocks first
-              (save-excursion
-                (goto-char (point-min))
-                (when (and (fboundp 'org-babel-execute-buffer)
-                           (y-or-n-p "Execute all code blocks before copying?"))
-                  (org-babel-execute-buffer)))
-
               ;; Extract content (just the "Your Text" section)
               (let ((content (save-excursion
                                (let ((start nil) (end nil))
@@ -68,15 +60,7 @@ Designed specifically for GNOME Wayland with Doom Emacs spell checking."
                                     (delete-frame frame-to-close)))))))
 
       ;; Bind our function to the local map
-      (local-set-key (kbd "C-c C-c")
-                     (lambda ()
-                       (interactive)
-                       ;; If in a src block, execute it, otherwise finish
-                       (if (and (fboundp 'org-in-src-block-p)
-                                (org-in-src-block-p))
-                           (org-babel-execute-src-block)
-                         (web-compose-finish))))
-
+      (local-set-key (kbd "C-c C-c") 'web-compose-finish)
       (local-set-key (kbd "C-c C-k") (lambda ()
                                        (interactive)
                                        (let ((frame-to-close (selected-frame)))
@@ -86,7 +70,7 @@ Designed specifically for GNOME Wayland with Doom Emacs spell checking."
 
       ;; Set up mode line to indicate Doom/Evil spell check is available
       (setq mode-line-format
-            (list "-- WEB COMPOSE (ORG MODE) -- Use z= for spelling -- C-c C-c to execute/finish ")))
+            (list "-- WEB COMPOSE (ORG MODE) -- Use z= for spelling -- C-c C-c when done ")))
 
     ;; Create the frame
     (let ((frame (make-frame `((name . "Web Compose")
@@ -151,16 +135,6 @@ Designed specifically for GNOME Wayland with Doom Emacs spell checking."
              ;; This is less reliable but might work in some cases
              (shell-command "wtype -M alt -P space -m alt -p space"))))))
 
-      ;; Enable org babel languages that might be used
-      (org-babel-do-load-languages
-       'org-babel-load-languages
-       '((shell . t)
-         (python . t)
-         (emacs-lisp . t)))
-
-      ;; Set sensible org-babel defaults
-      (setq-local org-confirm-babel-evaluate nil) ; Don't confirm execution
-
       ;; Use transient map for special first-key behavior
       (let ((keymap (make-sparse-keymap)))
         (define-key keymap (kbd "DEL") (lambda ()
@@ -172,7 +146,6 @@ Designed specifically for GNOME Wayland with Doom Emacs spell checking."
                                          (insert "* Instructions\n")
                                          (insert "- Press C-c C-c when done to copy text and close\n")
                                          (insert "- Use z= on misspelled words to see correction suggestions\n")
-                                         (insert "- Code blocks will be executed with C-c C-c while cursor is in them\n")
                                          (insert "- Text will be copied to clipboard for pasting\n\n")
                                          (insert "* Your Text\n\n")
                                          (search-forward "* Your Text")
@@ -186,7 +159,6 @@ Designed specifically for GNOME Wayland with Doom Emacs spell checking."
                                            (insert "* Instructions\n")
                                            (insert "- Press C-c C-c when done to copy text and close\n")
                                            (insert "- Use z= on misspelled words to see correction suggestions\n")
-                                           (insert "- Code blocks will be executed with C-c C-c while cursor is in them\n")
                                            (insert "- Text will be copied to clipboard for pasting\n\n")
                                            (insert "* Your Text\n\n")
                                            (search-forward "* Your Text")
