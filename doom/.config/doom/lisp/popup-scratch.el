@@ -2,8 +2,8 @@
 
 (defun popup-scratch-for-web ()
   "Create a popup frame with an org buffer for web text editing.
-Designed specifically for GNOME Wayland with Doom Emacs spell checking. Called via
-Ctrl+Shift+n in GNOME shell"
+Designed specifically for GNOME Wayland with Doom Emacs spell checking.
+Called via Ctrl+Shift+n in GNOME shell"
   (interactive)
   (let* ((buffer-name "*web-compose*")
          (buffer (get-buffer-create buffer-name)))
