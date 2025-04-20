@@ -1451,6 +1451,7 @@ WHERE tablename = '%s';" table-name)))
 (load! "lisp/meeting-assistant")
 (load! "lisp/create-daily")
 (load! "lisp/audio-record")
+(load! "lisp/universal-launcher")
 ;; POSSE posting system
 (load! "lisp/posse/posse-twitter")
 (load! "lisp/posse/instagram-scheduler")
