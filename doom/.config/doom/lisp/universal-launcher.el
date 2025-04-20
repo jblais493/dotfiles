@@ -22,13 +22,21 @@
                                       (list 'buffer buffer)))
                               (buffer-list))
 
-                      ;; Applications
+                      ;; Regular applications
                       (mapcar (lambda (app)
                                 (cons (format "%s App: %s"
                                               (all-the-icons-faicon "desktop")
                                               (car app))
                                       (list 'app (cdr app))))
                               (universal-launcher--get-applications))
+
+                      ;; Flatpak applications
+                      (mapcar (lambda (app)
+                                (cons (format "%s App: %s"
+                                              (all-the-icons-faicon "cubes")
+                                              (car app))
+                                      (list 'app (cdr app))))
+                              (universal-launcher--get-flatpak-applications))
 
                       ;; Browser tabs
                       (mapcar (lambda (tab)
@@ -108,14 +116,52 @@
 
 ;; Helper function to run an application
 (defun universal-launcher--run-application (exec-string)
-  "Run application with EXEC-STRING."
-  (let ((cmd (car (split-string exec-string))))
-    (start-process cmd nil cmd)))
+  "Run application with EXEC-STRING and bring it to focus."
+  (let* ((exec-parts (split-string exec-string))
+         (cmd (car exec-parts))
+         (proc (apply #'start-process cmd nil exec-parts)))
+    ;; Give the process a moment to start
+    (run-with-timer 0.5 nil
+                    (lambda ()
+                      ;; Try to focus the window using window manager tools
+                      (condition-case nil
+                          (call-process "wmctrl" nil nil nil "-a" cmd)
+                        (error
+                         (condition-case nil
+                             (call-process "xdotool" nil nil nil "search" "--name" cmd "windowactivate")
+                           (error nil))))))))
 
-;; Helper function to run a command
 (defun universal-launcher--run-command (command)
-  "Run COMMAND."
-  (start-process command nil command))
+  "Run COMMAND and bring it to focus."
+  (let ((proc (start-process command nil command)))
+    ;; Give the process a moment to start
+    (run-with-timer 0.5 nil
+                    (lambda ()
+                      ;; Try to focus the window using window manager tools
+                      (condition-case nil
+                          (call-process "wmctrl" nil nil nil "-a" command)
+                        (error
+                         (condition-case nil
+                             (call-process "xdotool" nil nil nil "search" "--name" command "windowactivate")
+                           (error nil))))))))
+
+(defun universal-launcher--get-flatpak-applications ()
+  "Get list of installed Flatpak applications."
+  (let ((apps '()))
+    (with-temp-buffer
+      (when (= 0 (call-process "flatpak" nil t nil "list" "--app" "--columns=name,application"))
+        (goto-char (point-min))
+        (while (not (eobp))
+          (let* ((line (buffer-substring-no-properties (line-beginning-position) (line-end-position)))
+                 (parts (split-string line "\t"))
+                 (name (nth 0 parts))
+                 (app-id (nth 1 parts)))
+            (when (and name app-id)
+              (push (cons (format "%s (Flatpak)" name)
+                          (concat "flatpak run " app-id))
+                    apps)))
+          (forward-line 1))))
+    apps))
 
 ;; Firefox remote debugging configuration
 (defcustom universal-launcher-firefox-debug-port 6000
