@@ -49,10 +49,13 @@
                       ;; Firefox options
                       (mapcar (lambda (tab)
                                 (cons (format "%s Firefox: %s"
-                                              (all-the-icons-octicon "globe")
+                                              (all-the-icons-faicon "firefox")
                                               (car tab))
                                       (list 'firefox-action (cdr tab))))
                               (universal-launcher--get-firefox-actions))
+
+                      ;; Bookmarks from Org file
+                      (universal-launcher--get-bookmarks)
 
                       ;; Recent files
                       (mapcar (lambda (file)
@@ -86,6 +89,7 @@
         ('running (universal-launcher--focus-running-application item))
         ('app (universal-launcher--run-application item))
         ('firefox-action (universal-launcher--handle-firefox-action item))
+        ('bookmark (universal-launcher--handle-bookmark item))
         ('file (find-file item))
         ('command (universal-launcher--run-command item))))))
 
@@ -328,6 +332,41 @@
      (let ((url (cadr action)))
        (call-process "firefox" nil nil nil "--new-tab" url)
        (message "Opened %s in Firefox" url)))))
+
+;; Function to parse org bookmarks file
+(defun universal-launcher--parse-org-bookmarks (file)
+  "Parse bookmarks from an org FILE."
+  (let ((bookmarks '()))
+    (when (file-exists-p file)
+      (with-temp-buffer
+        (insert-file-contents file)
+        (goto-char (point-min))
+        ;; Look for links in the format - [[url][description]] or [[url][]] or [[url]]
+        (while (re-search-forward "\\[\\[\\(https?:[^]]+\\)\\]\\(?:\\[\\([^]]*\\)\\]\\)?\\]" nil t)
+          (let* ((url (match-string 1))
+                 (desc (match-string 2)))
+            ;; If description is empty or nil, use URL as description
+            (when (or (null desc) (string= desc ""))
+              (setq desc url))
+            (push (cons desc url) bookmarks)))))
+    (nreverse bookmarks)))
+
+;; Function to get bookmarks for the launcher
+(defun universal-launcher--get-bookmarks ()
+  "Get bookmarks from the user's org bookmarks file."
+  (let ((bookmarks-file (expand-file-name "~/org/bookmarks.org")))
+    (mapcar (lambda (bookmark)
+              (cons (format "%s Bookmark: %s"
+                            (all-the-icons-faicon "bookmark")
+                            (car bookmark))
+                    (list 'bookmark (cdr bookmark))))
+            (universal-launcher--parse-org-bookmarks bookmarks-file))))
+
+;; Handler for bookmark actions
+(defun universal-launcher--handle-bookmark (url)
+  "Open URL in the default browser."
+  (browse-url url)
+  (message "Opened bookmark: %s" url))
 
 (provide 'universal-launcher)
 ;;; universal-launcher.el ends here

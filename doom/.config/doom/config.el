@@ -386,6 +386,11 @@
         ("i" "Idea" entry
          (file+headline "~/org/ideas.org" "Ideas")
          "** IDEA %^{Idea}\n:PROPERTIES:\n:CREATED: %U\n:CAPTURED: %a\n:END:\n%?")
+        ("b" "Bookmark" entry
+        (file+function "~/org/bookmarks.org"
+                    (lambda () (org-find-exact-headline-in-buffer
+                                (completing-read "Category: " '("Free Content" "Personal" "Work" "News" "Miscellaneous")))))
+        "* [[%^{URL}][%^{Title}]]\n:PROPERTIES:\n:CREATED: %U\n:TAGS: %^{Tags}\n:END:\n%?")
         ("c" "Contact" entry
          (file+headline "~/org/contacts.org" "Inbox")
          "* %^{Name}
