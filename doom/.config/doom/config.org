@@ -1664,6 +1664,7 @@ I have various functions in my lisp directory for creating pomodoros, refiling d
 (load! "lisp/create-daily")
 (load! "lisp/audio-record")
 (load! "lisp/universal-launcher")
+(load! "lisp/weather")
 ;; POSSE posting system
 (load! "lisp/posse/posse-twitter")
 (load! "lisp/posse/instagram-scheduler")

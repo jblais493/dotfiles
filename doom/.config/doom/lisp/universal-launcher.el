@@ -22,10 +22,18 @@
                                       (list 'buffer buffer)))
                               (buffer-list))
 
+                      ;; Running applications
+                      (mapcar (lambda (app)
+                                (cons (format "%s Running: %s"
+                                              (all-the-icons-octicon "device-desktop")
+                                              (car app))
+                                      (list 'running (cdr app))))
+                              (universal-launcher--get-running-applications))
+
                       ;; Regular applications
                       (mapcar (lambda (app)
                                 (cons (format "%s App: %s"
-                                              (all-the-icons-faicon "desktop")
+                                              (all-the-icons-octicon "rocket")
                                               (car app))
                                       (list 'app (cdr app))))
                               (universal-launcher--get-applications))
@@ -33,18 +41,18 @@
                       ;; Flatpak applications
                       (mapcar (lambda (app)
                                 (cons (format "%s App: %s"
-                                              (all-the-icons-faicon "cubes")
+                                              (all-the-icons-octicon "package")
                                               (car app))
                                       (list 'app (cdr app))))
                               (universal-launcher--get-flatpak-applications))
 
-                      ;; Browser tabs
+                      ;; Firefox options
                       (mapcar (lambda (tab)
-                                (cons (format "%s Tab: %s"
-                                              (all-the-icons-faicon "firefox")
+                                (cons (format "%s Firefox: %s"
+                                              (all-the-icons-octicon "globe")
                                               (car tab))
-                                      (list 'tab (cdr tab))))
-                              (universal-launcher--get-browser-tabs))
+                                      (list 'firefox-action (cdr tab))))
+                              (universal-launcher--get-firefox-actions))
 
                       ;; Recent files
                       (mapcar (lambda (file)
@@ -75,8 +83,9 @@
       ;; Take action based on type
       (pcase type
         ('buffer (switch-to-buffer item))
+        ('running (universal-launcher--focus-running-application item))
         ('app (universal-launcher--run-application item))
-        ('tab (universal-launcher--focus-browser-tab item))
+        ('firefox-action (universal-launcher--handle-firefox-action item))
         ('file (find-file item))
         ('command (universal-launcher--run-command item))))))
 
@@ -113,6 +122,123 @@
                      (not (file-directory-p file)))
             (push (file-name-nondirectory file) commands)))))
     (delete-dups commands)))
+
+;; Function to get list of running applications
+(defun universal-launcher--get-running-applications ()
+  "Get list of currently running applications."
+  (let ((apps '()))
+    ;; Try multiple methods to detect running applications
+
+    ;; Method 1: Using wmctrl
+    (with-temp-buffer
+      (when (= 0 (call-process "wmctrl" nil t nil "-l"))
+        (goto-char (point-min))
+        (while (re-search-forward "^\\(0x[0-9a-f]+\\)\\s-+\\S-+\\s-+\\S-+\\s-+\\(.+\\)$" nil t)
+          (let ((window-id (match-string-no-properties 1))
+                (app-name (match-string-no-properties 2)))
+            ;; Filter out some window manager entries
+            (unless (string-match-p "\\(Desktop\\|Dock\\|Emacs\\)" app-name)
+              (push (cons app-name (list window-id app-name)) apps))))))
+
+    ;; Method 2: Using GNOME's specific commands for running applications
+    (with-temp-buffer
+      (when (= 0 (call-process "gsettings" nil t nil "get" "org.gnome.desktop.wm.preferences" "button-layout"))
+        ;; This suggests we're in a GNOME environment
+        (with-temp-buffer
+          (call-process "ps" nil t nil "-e")
+          (goto-char (point-min))
+          ;; Look for common GNOME applications
+          (let ((gnome-apps '("gnome-terminal" "nautilus" "gedit" "eog" "evince"
+                              "gnome-system-monitor" "gnome-control-center"
+                              "gnome-calculator" "gnome-calendar" "shotcut"
+                              "dbeaver" "code" "gimp" "inkscape")))
+            (dolist (app gnome-apps)
+              (goto-char (point-min))
+              (when (search-forward app nil t)
+                (let ((window-id (concat "gnome-" app))
+                      (app-name (capitalize app)))
+                  (push (cons app-name (list window-id app-name)) apps))))))))
+
+    ;; Method 3: Using xdotool as a fallback
+    (when (null apps)
+      (with-temp-buffer
+        (when (= 0 (call-process "xdotool" nil t nil "search" "--class" ".*" "getwindowname"))
+          (goto-char (point-min))
+          (while (not (eobp))
+            (let* ((window-id (buffer-substring-no-properties
+                               (line-beginning-position)
+                               (line-end-position)))
+                   (app-name nil))
+              (forward-line)
+              (when (not (eobp))
+                (setq app-name (buffer-substring-no-properties
+                                (line-beginning-position)
+                                (line-end-position)))
+                (unless (string-match-p "\\(Desktop\\|Dock\\|Emacs\\)" app-name)
+                  (push (cons app-name (list window-id app-name)) apps))
+                (forward-line)))))))
+
+    ;; Remove duplicates based on application name
+    (let ((unique-apps '())
+          (seen-names '()))
+      (dolist (app apps)
+        (let ((name (car app)))
+          (unless (member name seen-names)
+            (push name seen-names)
+            (push app unique-apps))))
+      (nreverse unique-apps))))
+
+;; Function to focus running application
+(defun universal-launcher--focus-running-application (app-info)
+  "Focus running application using APP-INFO."
+  (let ((window-id (car app-info))
+        (app-name (cadr app-info)))
+    (message "Focusing application: %s (ID: %s)" app-name window-id)
+    ;; Try multiple focusing methods
+    (cond
+     ;; If it's a GNOME app (identified by the prefix)
+     ((string-prefix-p "gnome-" window-id)
+      (let ((app-cmd (substring window-id 6)))
+        (message "GNOME app detected: %s" app-cmd)
+        (call-process "wmctrl" nil nil nil "-a" app-name)))
+
+     ;; Try by window ID with wmctrl
+     ((condition-case nil
+          (progn
+            (call-process "wmctrl" nil nil nil "-i" "-a" window-id)
+            t)
+        (error nil))
+      (message "Focused with wmctrl by ID"))
+
+     ;; Try by app name with wmctrl
+     ((condition-case nil
+          (progn
+            (call-process "wmctrl" nil nil nil "-a" app-name)
+            t)
+        (error nil))
+      (message "Focused with wmctrl by name"))
+
+     ;; Try xdotool by window ID
+     ((condition-case nil
+          (progn
+            (call-process "xdotool" nil nil nil "windowactivate" window-id)
+            t)
+        (error nil))
+      (message "Focused with xdotool by ID"))
+
+     ;; Try xdotool by app name
+     ((condition-case nil
+          (progn
+            (call-process "xdotool" nil nil nil "search" "--name" app-name "windowactivate")
+            t)
+        (error nil))
+      (message "Focused with xdotool by name"))
+
+     ;; Last resort - try to relaunch the app with its command name
+     (t
+      (let ((cmd (downcase app-name)))
+        (message "Attempting to run: %s" cmd)
+        (start-process cmd nil cmd))))))
 
 ;; Helper function to run an application
 (defun universal-launcher--run-application (exec-string)
@@ -163,69 +289,45 @@
           (forward-line 1))))
     apps))
 
-;; Firefox remote debugging configuration
-(defcustom universal-launcher-firefox-debug-port 6000
-  "Port used for Firefox remote debugging."
-  :type 'integer
-  :group 'universal-launcher)
+;; Firefox actions without using remote debugging
+(defun universal-launcher--get-firefox-actions ()
+  "Get list of Firefox actions."
+  (let ((actions '()))
+    ;; Check if Firefox is running
+    (when (= 0 (call-process "pgrep" nil nil nil "-x" "firefox"))
+      ;; If Firefox is running, offer to focus its window
+      (push (cons "Focus Firefox window" '(focus-window)) actions)
+      (push (cons "Open new tab" '(new-tab)) actions)
 
-;; Function to get browser tabs using Firefox remote debugging
-(defun universal-launcher--get-browser-tabs ()
-  "Get list of Firefox tabs using Remote Debugging Protocol."
-  (condition-case err
-      (let ((tabs '())
-            (json-string (with-temp-buffer
-                           (message "Attempting to connect to Firefox on port %d..."
-                                    universal-launcher-firefox-debug-port)
-                           (call-process "curl" nil t nil "-s" "-v"
-                                         (format "http://localhost:%d/json/list"
-                                                 universal-launcher-firefox-debug-port))
-                           (let ((response (buffer-string)))
-                             (message "Firefox response: %s"
-                                      (if (> (length response) 200)
-                                          (concat (substring response 0 200) "...")
-                                        response))
-                             response))))
-        (if (string-empty-p json-string)
-            (progn
-              (message "No response from Firefox. Make sure it's running with --remote-debugging-port=%d"
-                       universal-launcher-firefox-debug-port)
-              '())
-          (condition-case parse-err
-              (let ((tab-data (json-parse-string json-string :object-type 'alist)))
-                (message "Successfully parsed JSON with %d entries" (length tab-data))
-                (dolist (tab tab-data)
-                  (let* ((id (or (alist-get 'id tab)
-                                 (alist-get 'webSocketDebuggerUrl tab)))
-                         (title (alist-get 'title tab))
-                         (url (alist-get 'url tab))
-                         (display-title (if (and title (> (length title) 50))
-                                            (concat (substring title 0 47) "...")
-                                          (or title "(No title)"))))
-                    (when (and id url)
-                      (push (cons display-title (list id url)) tabs))))
-                tabs)
-            (error
-             (message "Error parsing Firefox tabs JSON: %s" (error-message-string parse-err))
-             '()))))
-    (error
-     (message "Error connecting to Firefox: %s" (error-message-string err))
-     '())))
+      ;; Common websites
+      (let ((common-sites '(("Google" . "https://www.google.com")
+                            ("GitHub" . "https://github.com")
+                            ("YouTube" . "https://www.youtube.com")
+                            ("Wikipedia" . "https://en.wikipedia.org"))))
+        (dolist (site common-sites)
+          (push (cons (concat "Open " (car site))
+                      (list 'open-url (cdr site)))
+                actions))))
+    actions))
 
-;; Function to focus browser tab using Firefox remote debugging
-(defun universal-launcher--focus-browser-tab (tab-info)
-  "Focus browser tab with TAB-INFO using Remote Debugging Protocol."
-  (let ((tab-id (car tab-info))
-        (url (cadr tab-info)))
-    (condition-case err
-        (let ((result (shell-command-to-string
-                       (format "curl -s -X POST http://localhost:%d/json/activate/%s"
-                               universal-launcher-firefox-debug-port tab-id))))
-          (if (string-match-p "\"wasActivated\":true" result)
-              (message "Switched to tab: %s" url)
-            (message "Failed to switch tabs. Response: %s" result)))
-      (error
-       (message "Error activating tab: %s" (error-message-string err))))))
+(defun universal-launcher--handle-firefox-action (action)
+  "Handle firefox ACTION."
+  (pcase (car action)
+    ('focus-window
+     (condition-case nil
+         (call-process "wmctrl" nil nil nil "-a" "Firefox")
+       (error
+        (call-process "xdotool" nil nil nil "search" "--class" "firefox" "windowactivate")))
+     (message "Focused Firefox window"))
+
+    ('new-tab
+     (call-process "firefox" nil nil nil "--new-tab" "about:newtab")
+     (message "Opened new Firefox tab"))
+
+    ('open-url
+     (let ((url (cadr action)))
+       (call-process "firefox" nil nil nil "--new-tab" url)
+       (message "Opened %s in Firefox" url)))))
 
 (provide 'universal-launcher)
 ;;; universal-launcher.el ends here

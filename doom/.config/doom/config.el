@@ -1452,6 +1452,7 @@ WHERE tablename = '%s';" table-name)))
 (load! "lisp/create-daily")
 (load! "lisp/audio-record")
 (load! "lisp/universal-launcher")
+(load! "lisp/weather")
 ;; POSSE posting system
 (load! "lisp/posse/posse-twitter")
 (load! "lisp/posse/instagram-scheduler")
