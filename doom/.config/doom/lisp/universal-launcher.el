@@ -56,21 +56,21 @@
 ;; Icon cache with category-specific icons
 (defvar universal-launcher--icon-cache
   (let ((cache (make-hash-table :test 'equal)))
-    (puthash 'buffer (all-the-icons-fileicon "elisp") cache)
-    (puthash 'running (all-the-icons-octicon "device-desktop") cache)
-    (puthash 'app (all-the-icons-faicon "rocket") cache)
-    (puthash 'flatpak (all-the-icons-octicon "package") cache)
-    (puthash 'firefox (all-the-icons-faicon "firefox") cache)
-    (puthash 'bookmark (all-the-icons-faicon "bookmark") cache)
-    (puthash 'file (all-the-icons-faicon "file") cache)
-    (puthash 'command (all-the-icons-octicon "terminal") cache)
-    (puthash 'emoji (all-the-icons-faicon "smile-o") cache)  ; Added emoji icon
+    (puthash 'buffer (all-the-icons-fileicon "elisp" :face 'font-lock-string-face) cache)
+    (puthash 'running (all-the-icons-octicon "device-desktop" :face 'font-lock-keyword-face) cache)
+    (puthash 'app (all-the-icons-faicon "rocket" :face 'font-lock-function-name-face) cache)
+    (puthash 'flatpak (all-the-icons-octicon "package" :face 'font-lock-variable-name-face) cache)
+    (puthash 'firefox (all-the-icons-faicon "firefox" :face 'font-lock-type-face) cache)
+    (puthash 'bookmark (all-the-icons-faicon "bookmark" :face 'font-lock-constant-face) cache)
+    (puthash 'file (all-the-icons-faicon "file" :face 'font-lock-doc-face) cache)
+    (puthash 'command (all-the-icons-alltheicon "terminal" :face 'font-lock-builtin-face) cache)
+    (puthash 'emoji (all-the-icons-faicon "smile-o" :face 'font-lock-comment-face) cache)  ; Added emoji icon
     ;; Category icons
-    (puthash "Active" (all-the-icons-material "dashboard") cache)
-    (puthash "Files & Apps" (all-the-icons-material "apps") cache)
-    (puthash "Web" (all-the-icons-material "language") cache)
-    (puthash "System" (all-the-icons-material "settings") cache)
-    (puthash "Tools" (all-the-icons-material "build") cache)  ; Added tools category
+    (puthash "Active" (all-the-icons-material "dashboard" :face 'font-lock-keyword-face) cache)
+    (puthash "Files & Apps" (all-the-icons-material "apps" :face 'font-lock-function-name-face) cache)
+    (puthash "Web" (all-the-icons-material "language" :face 'font-lock-type-face) cache)
+    (puthash "System" (all-the-icons-material "settings" :face 'font-lock-constant-face) cache)
+    (puthash "Tools" (all-the-icons-material "build" :face 'font-lock-variable-name-face) cache)  ; Added tools category
     cache)
   "Pre-loaded icon cache.")
 
@@ -78,37 +78,37 @@
   "Get appropriate icon for FILENAME based on its extension."
   (let ((ext (file-name-extension filename)))
     (cond
-     ((null ext) (all-the-icons-faicon "file"))
-     ((string= ext "org") (all-the-icons-fileicon "org"))
-     ((member ext '("js" "jsx" "ts" "tsx")) (all-the-icons-alltheicon "javascript"))
-     ((string= ext "py") (all-the-icons-alltheicon "python"))
-     ((string= ext "rb") (all-the-icons-fileicon "ruby"))
-     ((string= ext "java") (all-the-icons-fileicon "java"))
-     ((string= ext "c") (all-the-icons-fileicon "c"))
-     ((string= ext "cpp") (all-the-icons-fileicon "cpp"))
-     ((string= ext "h") (all-the-icons-fileicon "h"))
-     ((string= ext "go") (all-the-icons-alltheicon "go"))
-     ((string= ext "rs") (all-the-icons-fileicon "rust"))
-     ((string= ext "php") (all-the-icons-fileicon "php"))
-     ((string= ext "el") (all-the-icons-fileicon "elisp"))
-     ((string= ext "clj") (all-the-icons-fileicon "clojure"))
-     ((string= ext "hs") (all-the-icons-fileicon "haskell"))
-     ((string= ext "sh") (all-the-icons-fileicon "shell"))
-     ((string= ext "css") (all-the-icons-alltheicon "css3"))
-     ((string= ext "html") (all-the-icons-faicon "html5"))
-     ((string= ext "json") (all-the-icons-fileicon "jsonld"))
-     ((string= ext "md") (all-the-icons-fileicon "markdown"))
-     ((string= ext "yml") (all-the-icons-fileicon "yaml"))
-     ((string= ext "xml") (all-the-icons-fileicon "xml"))
-     ((string= ext "pdf") (all-the-icons-faicon "file-pdf-o"))
-     ((member ext '("jpg" "jpeg" "png" "gif" "svg")) (all-the-icons-faicon "file-image-o"))
-     ((member ext '("zip" "tar" "gz" "rar" "7z")) (all-the-icons-faicon "file-archive-o"))
-     ((member ext '("doc" "docx")) (all-the-icons-faicon "file-word-o"))
-     ((member ext '("xls" "xlsx")) (all-the-icons-faicon "file-excel-o"))
-     ((member ext '("ppt" "pptx")) (all-the-icons-faicon "file-powerpoint-o"))
-     ((member ext '("mp3" "wav" "flac" "ogg")) (all-the-icons-faicon "file-audio-o"))
-     ((member ext '("mp4" "avi" "mkv" "mov")) (all-the-icons-faicon "file-video-o"))
-     (t (all-the-icons-faicon "file")))))
+     ((null ext) (all-the-icons-faicon "file" :face 'font-lock-doc-face))
+     ((string= ext "org") (all-the-icons-fileicon "org" :face 'org-level-1))
+     ((member ext '("js" "jsx" "ts" "tsx")) (all-the-icons-alltheicon "javascript" :face 'font-lock-type-face))
+     ((string= ext "py") (all-the-icons-alltheicon "python" :face 'font-lock-keyword-face))
+     ((string= ext "rb") (all-the-icons-fileicon "ruby" :face 'font-lock-type-face))
+     ((string= ext "java") (all-the-icons-fileicon "java" :face 'font-lock-function-name-face))
+     ((string= ext "c") (all-the-icons-fileicon "c" :face 'font-lock-keyword-face))
+     ((string= ext "cpp") (all-the-icons-fileicon "cpp" :face 'font-lock-keyword-face))
+     ((string= ext "h") (all-the-icons-fileicon "h" :face 'font-lock-preprocessor-face))
+     ((string= ext "go") (all-the-icons-alltheicon "go" :face 'font-lock-keyword-face))
+     ((string= ext "rs") (all-the-icons-fileicon "rust" :face 'font-lock-type-face))
+     ((string= ext "php") (all-the-icons-fileicon "php" :face 'font-lock-function-name-face))
+     ((string= ext "el") (all-the-icons-fileicon "elisp" :face 'font-lock-variable-name-face))
+     ((string= ext "clj") (all-the-icons-fileicon "clojure" :face 'font-lock-function-name-face))
+     ((string= ext "hs") (all-the-icons-fileicon "haskell" :face 'font-lock-function-name-face))
+     ((string= ext "sh") (all-the-icons-fileicon "shell" :face 'font-lock-builtin-face))
+     ((string= ext "css") (all-the-icons-alltheicon "css3" :face 'font-lock-variable-name-face))
+     ((string= ext "html") (all-the-icons-faicon "html5" :face 'font-lock-function-name-face))
+     ((string= ext "json") (all-the-icons-fileicon "jsonld" :face 'font-lock-constant-face))
+     ((string= ext "md") (all-the-icons-fileicon "markdown" :face 'markdown-header-face))
+     ((string= ext "yml") (all-the-icons-fileicon "yaml" :face 'font-lock-variable-name-face))
+     ((string= ext "xml") (all-the-icons-fileicon "xml" :face 'font-lock-constant-face))
+     ((string= ext "pdf") (all-the-icons-faicon "file-pdf-o" :face 'font-lock-doc-face))
+     ((member ext '("jpg" "jpeg" "png" "gif" "svg")) (all-the-icons-faicon "file-image-o" :face 'font-lock-string-face))
+     ((member ext '("zip" "tar" "gz" "rar" "7z")) (all-the-icons-faicon "file-archive-o" :face 'font-lock-preprocessor-face))
+     ((member ext '("doc" "docx")) (all-the-icons-faicon "file-word-o" :face 'font-lock-keyword-face))
+     ((member ext '("xls" "xlsx")) (all-the-icons-faicon "file-excel-o" :face 'font-lock-type-face))
+     ((member ext '("ppt" "pptx")) (all-the-icons-faicon "file-powerpoint-o" :face 'font-lock-function-name-face))
+     ((member ext '("mp3" "wav" "flac" "ogg")) (all-the-icons-faicon "file-audio-o" :face 'font-lock-builtin-face))
+     ((member ext '("mp4" "avi" "mkv" "mov")) (all-the-icons-faicon "file-video-o" :face 'font-lock-constant-face))
+     (t (all-the-icons-faicon "file" :face 'font-lock-doc-face)))))
 
 (defun universal-launcher--grouped-candidates ()
   "Return candidates grouped by category."
@@ -139,10 +139,13 @@
     (puthash 'file
              (lambda ()
                (mapcar (lambda (file)
-                         (cons (format "%s File: %s"
-                                       (universal-launcher--get-file-icon file)  ; Changed from (universal-launcher--get-icon 'file)
-                                       (file-name-nondirectory file))
-                               (list 'file file)))
+                         (let ((filename (file-name-nondirectory file))
+                               (directory (file-name-directory file)))
+                           (cons (format "%s File: %s  %s"
+                                         (universal-launcher--get-file-icon file)
+                                         filename
+                                         (propertize (abbreviate-file-name directory) 'face 'font-lock-comment-face))
+                                 (list 'file file))))
                        recentf-list))
              category-handlers)
 
@@ -387,11 +390,12 @@
 
 ;; Insert emoji function
 (defun universal-launcher--insert-emoji (emoji)
-  "Insert EMOJI at point."
+  "Insert EMOJI at point and copy to clipboard."
   (let ((frame universal-launcher--previous-frame))
     (when (and frame (frame-live-p frame))
       (select-frame-set-input-focus frame))
-    (insert emoji)))
+    (gui-set-selection 'CLIPBOARD emoji)
+    (message "Emoji '%s' copied to clipboard" emoji)))
 
 (defun universal-launcher-popup ()
   "Simple launcher using existing frame."
