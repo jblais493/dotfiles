@@ -413,6 +413,7 @@
   "Search the web with QUERY using default browser."
   (let* ((search-engines
           '(("Google" . "https://www.google.com/search?q=")
+            ("Youtube" . "https://www.youtube.com/results?search_query=")
             ("DuckDuckGo" . "https://duckduckgo.com/?q=")
             ("Bing" . "https://www.bing.com/search?q=")
             ("Wikipedia" . "https://en.wikipedia.org/w/index.php?search=")))
