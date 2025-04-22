@@ -14,6 +14,7 @@
 ;; (package! calfw-org)
 ;; (package! web-beautify)
 (package! alert)
+(package! counsel)
 (package! sqlite3)
 (package! impatient-mode)
 ;; (package! ssh)
