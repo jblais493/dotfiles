@@ -30,6 +30,7 @@
 *** [[https://www.linuxjournal.com/node/feed][Linux Journal]]
 *** [[https://raphlinus.github.io/feed.xml][RaphLinus]]
 *** [[https://susam.net/feed.xml][Susam.net]]
+*** [[https://battlepenguin.com/feed.xml][BattlePenguin]]
 ** Emacs
 *** [[https://sachachua.com/blog/category/emacs/feed/][Sacha Chua]]
 *** [[https://irreal.org/blog/?feed=rss2][Irreal]]

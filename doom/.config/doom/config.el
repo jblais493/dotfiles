@@ -374,23 +374,28 @@
       '(("t" "Todo" entry
          (file+headline "~/org/inbox.org" "Inbox")
          "* TODO %^{Task}\n:PROPERTIES:\n:CREATED: %U\n:CAPTURED: %a\n:END:\n%?")
+
         ("e" "Event" entry
          (file+headline "~/org/calendar.org" "Events")
          "* %^{Event}\n%^{SCHEDULED}T\n:PROPERTIES:\n:CREATED: %U\n:CAPTURED: %a\n:CONTACT: %(org-capture-ref-link \"~/org/contacts.org\")\n:END:\n%?")
+
         ("d" "Deadline" entry
          (file+headline "~/org/calendar.org" "Deadlines")
          "* TODO %^{Task}\nDEADLINE: %^{Deadline}T\n:PROPERTIES:\n:CREATED: %U\n:CAPTURED: %a\n:END:\n%?")
+
         ("p" "Project" entry
          (file+headline "~/org/projects.org" "Projects")
          "* PROJ %^{Project name}\n:PROPERTIES:\n:CREATED: %U\n:CAPTURED: %a\n:END:\n** TODO %?")
+
         ("i" "Idea" entry
          (file+headline "~/org/ideas.org" "Ideas")
          "** IDEA %^{Idea}\n:PROPERTIES:\n:CREATED: %U\n:CAPTURED: %a\n:END:\n%?")
+
         ("b" "Bookmark" entry
-        (file+function "~/org/bookmarks.org"
-                    (lambda () (org-find-exact-headline-in-buffer
-                                (completing-read "Category: " '("Free Content" "Personal" "Work" "News" "Miscellaneous")))))
-        "* [[%^{URL}][%^{Title}]]\n:PROPERTIES:\n:CREATED: %U\n:TAGS: %^{Tags}\n:END:\n%?")
+        (file+headline "~/org/bookmarks.org" "Inbox")
+        "** [[%^{URL}][%^{Title}]]\n:PROPERTIES:\n:CREATED: %U\n:TAGS: %(org-capture-bookmark-tags)\n:END:\n\n"
+        :empty-lines 0)
+
         ("c" "Contact" entry
          (file+headline "~/org/contacts.org" "Inbox")
          "* %^{Name}
@@ -407,10 +412,30 @@
 \\ *** Communications
 \\ *** Notes
 %?")
+
         ("n" "Note" entry
          (file+headline "~/org/notes.org" "Inbox")
          "* [%<%Y-%m-%d %a>] %^{Title}\n:PROPERTIES:\n:CREATED: %U\n:CAPTURED: %a\n:END:\n%?"
          :prepend t)))
+
+(defun org-capture-bookmark-tags ()
+  "Get tags from existing bookmarks and prompt for tags with completion."
+  (save-window-excursion
+    (let ((tags-list '()))
+      ;; Collect existing tags
+      (with-current-buffer (find-file-noselect "~/org/bookmarks.org")
+        (save-excursion
+          (goto-char (point-min))
+          (while (re-search-forward "^:TAGS:\\s-*\\(.+\\)$" nil t)
+            (let ((tag-string (match-string 1)))
+              (dolist (tag (split-string tag-string "[,;]" t "[[:space:]]"))
+                (push (string-trim tag) tags-list))))))
+      ;; Remove duplicates and sort
+      (setq tags-list (sort (delete-dups tags-list) 'string<))
+      ;; Prompt user with completion
+      (let ((selected-tags (completing-read-multiple "Tags (comma-separated): " tags-list)))
+        ;; Return as a comma-separated string
+        (mapconcat 'identity selected-tags ", ")))))
 
 ;; Helper function to select and link a contact
 (defun org-capture-ref-link (file)
