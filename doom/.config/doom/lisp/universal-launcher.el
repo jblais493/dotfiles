@@ -7,7 +7,8 @@
 
 (require 'all-the-icons)
 (require 'json)
-(require 'url-util)  ; For URL encoding
+(require 'url-util)
+(require 'calc)
 
 ;; Pre-grouped category structure for aesthetic grouping
 (defvar universal-launcher--categories
@@ -15,7 +16,7 @@
     (:name "Files & Apps" :icon "apps" :types (file app flatpak))
     (:name "Web" :icon "globe" :types (bookmark firefox-action))
     (:name "System" :icon "terminal" :types (command))
-    (:name "Tools" :icon "wrench" :types (emoji)))  ; Added emoji category
+    (:name "Tools" :icon "wrench" :types (emoji calculator)))
   "Category definitions for the launcher.")
 
 ;; Enhanced cache system
@@ -64,7 +65,8 @@
     (puthash 'bookmark (all-the-icons-faicon "bookmark" :face 'font-lock-constant-face) cache)
     (puthash 'file (all-the-icons-faicon "file" :face 'font-lock-doc-face) cache)
     (puthash 'command (all-the-icons-alltheicon "terminal" :face 'font-lock-builtin-face) cache)
-    (puthash 'emoji (all-the-icons-faicon "smile-o" :face 'font-lock-comment-face) cache)  ; Added emoji icon
+    (puthash 'emoji (all-the-icons-faicon "smile-o" :face 'font-lock-comment-face) cache)
+    (puthash 'calculator (all-the-icons-faicon "calculator" :face 'font-lock-preprocessor-face) cache)
     ;; Category icons
     (puthash "Active" (all-the-icons-material "dashboard" :face 'font-lock-keyword-face) cache)
     (puthash "Files & Apps" (all-the-icons-material "apps" :face 'font-lock-function-name-face) cache)
@@ -212,6 +214,14 @@
                        universal-launcher--common-emojis))
              category-handlers)
 
+    (puthash 'calculator
+             (lambda ()
+               (list (cons (format "%s Calculator: Enter math expression"
+                                   (universal-launcher--get-icon 'calculator))
+                           (list 'calculator 'ready))))
+             category-handlers)
+
+
     ;; Process categories
     (dolist (category universal-launcher--categories)
       (let* ((cat-name (plist-get category :name))
@@ -295,6 +305,29 @@
                     apps)))
           (forward-line 1))))
     apps))
+
+;; TODO Calculator Module
+(defun universal-launcher--is-calculator-input (input)
+  "Check if INPUT is a math expression."
+  (and (not (string-empty-p input))
+       (not (string-match-p "^Command " input))  ; Don't match command entries
+       (string-match-p "^[0-9+\\-*/().,^ ]+$" input)
+       (string-match-p "[+\\-*/^]" input)        ; Must contain at least one operator
+       (string-match-p "[0-9]" input)))          ; Must contain at least one number
+
+(defun universal-launcher--calculate (expr)
+  "Calculate mathematical expression EXPR using calc."
+  (condition-case err
+      (let* ((clean-expr (string-trim expr))
+             (result (calc-eval clean-expr)))
+        (if (and result
+                 (not (string= result ""))
+                 (not (string= result "[Bad format]"))
+                 (not (string-match-p "\\[.*\\]" result))  ; Reject error messages
+                 (string-match-p "^[-+]?[0-9]+\\.?[0-9]*\\(?:[eE][-+]?[0-9]+\\)?$" result))
+            result
+          nil))
+    (error nil)))
 
 (defun universal-launcher--get-system-commands ()
   "Get system commands from PATH."
@@ -414,6 +447,16 @@
          (candidate (cdr (assoc selection universal-launcher--all-candidates))))
 
     (cond
+     ;; Check calculator first, before matching candidates
+     ((and (not (string-empty-p selection))
+           (universal-launcher--is-calculator-input selection))
+      (let ((result (universal-launcher--calculate selection)))
+        (if result
+            (progn
+              (gui-set-selection 'CLIPBOARD result)
+              (message "%s = %s (copied to clipboard)" selection result))
+          (message "Invalid mathematical expression: %s" selection))))
+
      ;; Handle matched candidates
      ((and candidate (not (eq candidate 'separator)))
       (let ((type (car candidate))
@@ -426,7 +469,8 @@
           ('bookmark (universal-launcher--handle-bookmark item))
           ('file (find-file item))
           ('command (universal-launcher--run-command item))
-          ('emoji (universal-launcher--insert-emoji item)))))
+          ('emoji (universal-launcher--insert-emoji item))
+          ('calculator (message "Start typing a math expression...")))))
 
      ;; Handle web search fallback for non-matched input
      ((and (not candidate) (not (string-empty-p selection)))
