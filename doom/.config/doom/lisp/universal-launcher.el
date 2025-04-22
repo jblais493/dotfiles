@@ -1,16 +1,12 @@
 ;;; universal-launcher.el --- Optimized universal launcher
 
 ;;; Commentary:
-;; Ultra-optimized version for instantaneous popup display
+;; Simplified version that uses the existing Emacs frame
 
 ;;; Code:
 
 (require 'all-the-icons)
 (require 'json)
-
-;; Pre-create the frame
-(defvar universal-launcher--frame nil "Pre-created launcher frame.")
-(defvar universal-launcher--initialized nil "Whether the launcher has been initialized.")
 
 ;; Pre-grouped category structure for aesthetic grouping
 (defvar universal-launcher--categories
@@ -24,6 +20,7 @@
 (defvar universal-launcher--all-candidates nil "Pre-computed candidates.")
 (defvar universal-launcher--last-update 0 "Last time candidates were updated.")
 (defvar universal-launcher--update-interval 30 "Update interval in seconds.")
+(defvar universal-launcher--previous-frame nil "The previous frame to return to.")
 
 ;; Icon cache with category-specific icons
 (defvar universal-launcher--icon-cache
@@ -44,44 +41,41 @@
     cache)
   "Pre-loaded icon cache.")
 
-(defun universal-launcher--initialize ()
-  "Initialize the launcher system."
-  (unless universal-launcher--initialized
-    ;; Pre-create the frame but keep it invisible
-    (setq universal-launcher--frame
-          (let* ((monitor-attrs (frame-monitor-attributes))
-                 (monitor-workarea (cdr (assoc 'workarea monitor-attrs)))
-                 (monitor-width (nth 2 monitor-workarea))
-                 (monitor-height (nth 3 monitor-workarea))
-                 (frame-height 10))
-            (make-frame `((name . "launcher")
-                          (minibuffer . only)
-                          (width . ,(/ monitor-width (frame-char-width)))
-                          (height . ,frame-height)
-                          (left . 0)
-                          (top . ,(- monitor-height (* frame-height (frame-char-height))))
-                          (auto-raise . t)
-                          (skip-taskbar . t)
-                          (undecorated . t)
-                          (internal-border-width . 0)
-                          (vertical-scroll-bars . nil)
-                          (menu-bar-lines . 0)
-                          (tool-bar-lines . 0)
-                          (visibility . nil)  ; Start invisible
-                          (no-focus-on-map . t)
-                          (no-accept-focus . nil)
-                          (buffer-predicate . (lambda (_) nil))
-                          (background-mode . 'dark)))))
-
-    ;; Pre-compute candidates
-    (universal-launcher--update-candidates t)
-
-    ;; Set up background update timer
-    (run-with-timer universal-launcher--update-interval
-                    universal-launcher--update-interval
-                    #'universal-launcher--update-candidates)
-
-    (setq universal-launcher--initialized t)))
+(defun universal-launcher--get-file-icon (filename)
+  "Get appropriate icon for FILENAME based on its extension."
+  (let ((ext (file-name-extension filename)))
+    (cond
+     ((null ext) (all-the-icons-faicon "file"))
+     ((string= ext "org") (all-the-icons-fileicon "org"))
+     ((member ext '("js" "jsx" "ts" "tsx")) (all-the-icons-alltheicon "javascript"))
+     ((string= ext "py") (all-the-icons-alltheicon "python"))
+     ((string= ext "rb") (all-the-icons-fileicon "ruby"))
+     ((string= ext "java") (all-the-icons-fileicon "java"))
+     ((string= ext "c") (all-the-icons-fileicon "c"))
+     ((string= ext "cpp") (all-the-icons-fileicon "cpp"))
+     ((string= ext "h") (all-the-icons-fileicon "h"))
+     ((string= ext "go") (all-the-icons-fileicon "go"))
+     ((string= ext "rs") (all-the-icons-fileicon "rust"))
+     ((string= ext "php") (all-the-icons-fileicon "php"))
+     ((string= ext "el") (all-the-icons-fileicon "elisp"))
+     ((string= ext "clj") (all-the-icons-fileicon "clojure"))
+     ((string= ext "hs") (all-the-icons-fileicon "haskell"))
+     ((string= ext "sh") (all-the-icons-fileicon "shell"))
+     ((string= ext "css") (all-the-icons-alltheicon "css3"))
+     ((string= ext "html") (all-the-icons-faicon "html5"))
+     ((string= ext "json") (all-the-icons-fileicon "jsonld"))
+     ((string= ext "md") (all-the-icons-fileicon "markdown"))
+     ((string= ext "yml") (all-the-icons-fileicon "yaml"))
+     ((string= ext "xml") (all-the-icons-fileicon "xml"))
+     ((string= ext "pdf") (all-the-icons-faicon "file-pdf-o"))
+     ((member ext '("jpg" "jpeg" "png" "gif" "svg")) (all-the-icons-faicon "file-image-o"))
+     ((member ext '("zip" "tar" "gz" "rar" "7z")) (all-the-icons-faicon "file-archive-o"))
+     ((member ext '("doc" "docx")) (all-the-icons-faicon "file-word-o"))
+     ((member ext '("xls" "xlsx")) (all-the-icons-faicon "file-excel-o"))
+     ((member ext '("ppt" "pptx")) (all-the-icons-faicon "file-powerpoint-o"))
+     ((member ext '("mp3" "wav" "flac" "ogg")) (all-the-icons-faicon "file-audio-o"))
+     ((member ext '("mp4" "avi" "mkv" "mov")) (all-the-icons-faicon "file-video-o"))
+     (t (all-the-icons-faicon "file")))))
 
 (defun universal-launcher--grouped-candidates ()
   "Return candidates grouped by category."
@@ -113,7 +107,7 @@
              (lambda ()
                (mapcar (lambda (file)
                          (cons (format "%s File: %s"
-                                       (universal-launcher--get-icon 'file)
+                                       (universal-launcher--get-file-icon file)  ; Changed from (universal-launcher--get-icon 'file)
                                        (file-name-nondirectory file))
                                (list 'file file)))
                        recentf-list))
@@ -334,41 +328,41 @@
   (start-process command nil command))
 
 (defun universal-launcher-popup ()
-  "Ultra-fast launcher popup."
+  "Simple launcher using existing frame."
   (interactive)
 
-  ;; Initialize if needed
-  (unless universal-launcher--initialized
-    (universal-launcher--initialize))
+  ;; Store the current frame
+  (setq universal-launcher--previous-frame (selected-frame))
 
-  ;; Simply make the pre-created frame visible
-  (make-frame-visible universal-launcher--frame)
-  (select-frame-set-input-focus universal-launcher--frame)
+  ;; Update candidates if needed
+  (universal-launcher--update-candidates)
 
-  (let ((minibuffer-setup-hook
-         (cons (lambda ()
-                 (setq-local completion-ignore-case t)
-                 (setq-local resize-mini-windows nil))
-               minibuffer-setup-hook)))
-    (unwind-protect
-        (let* ((selection (completing-read "Launch: "
-                                           (mapcar #'car universal-launcher--all-candidates)
-                                           nil t))
-               (candidate (cdr (assoc selection universal-launcher--all-candidates))))
-          (when (and candidate (not (eq candidate 'separator)))
-            (let ((type (car candidate))
-                  (item (cadr candidate)))
-              (pcase type
-                ('buffer (switch-to-buffer item))
-                ('running (universal-launcher--focus-running-application item))
-                ('app (universal-launcher--run-application item))
-                ('firefox-action (universal-launcher--handle-firefox-action item))
-                ('bookmark (universal-launcher--handle-bookmark item))
-                ('file (find-file item))
-                ('command (universal-launcher--run-command item))))))
+  ;; Use existing minibuffer
+  (let* ((selection (completing-read "Launch: "
+                                     (mapcar #'car universal-launcher--all-candidates)
+                                     nil t))
+         (candidate (cdr (assoc selection universal-launcher--all-candidates))))
+    (when (and candidate (not (eq candidate 'separator)))
+      (let ((type (car candidate))
+            (item (cadr candidate)))
+        (pcase type
+          ('buffer (switch-to-buffer item))
+          ('running (universal-launcher--focus-running-application item))
+          ('app (universal-launcher--run-application item))
+          ('firefox-action (universal-launcher--handle-firefox-action item))
+          ('bookmark (universal-launcher--handle-bookmark item))
+          ('file (find-file item))
+          ('command (universal-launcher--run-command item)))))
 
-      ;; Just hide the frame instead of deleting it
-      (make-frame-invisible universal-launcher--frame))))
+    ;; Return to the previous frame if it still exists
+    (when (and universal-launcher--previous-frame
+               (frame-live-p universal-launcher--previous-frame))
+      (select-frame-set-input-focus universal-launcher--previous-frame))))
+
+;; Set up background update timer
+(run-with-timer universal-launcher--update-interval
+                universal-launcher--update-interval
+                #'universal-launcher--update-candidates)
 
 (provide 'universal-launcher)
 ;;; universal-launcher.el ends here
