@@ -7,13 +7,15 @@
 
 (require 'all-the-icons)
 (require 'json)
+(require 'url-util)  ; For URL encoding
 
 ;; Pre-grouped category structure for aesthetic grouping
 (defvar universal-launcher--categories
   '((:name "Active" :icon "device-desktop" :types (buffer running))
     (:name "Files & Apps" :icon "apps" :types (file app flatpak))
     (:name "Web" :icon "globe" :types (bookmark firefox-action))
-    (:name "System" :icon "terminal" :types (command)))
+    (:name "System" :icon "terminal" :types (command))
+    (:name "Tools" :icon "wrench" :types (emoji)))  ; Added emoji category
   "Category definitions for the launcher.")
 
 ;; Enhanced cache system
@@ -21,6 +23,35 @@
 (defvar universal-launcher--last-update 0 "Last time candidates were updated.")
 (defvar universal-launcher--update-interval 30 "Update interval in seconds.")
 (defvar universal-launcher--previous-frame nil "The previous frame to return to.")
+
+;; Emoji data
+(defvar universal-launcher--common-emojis
+  '(("Smiling Face" . "😊")
+    ("Heart" . "❤️")
+    ("Thumbs Up" . "👍")
+    ("Thinking Face" . "🤔")
+    ("Fire" . "🔥")
+    ("Star" . "⭐")
+    ("Check Mark" . "✅")
+    ("Rocket" . "🚀")
+    ("Party Popper" . "🎉")
+    ("Eyes" . "👀")
+    ("Laughing Face" . "😂")
+    ("Clapping Hands" . "👏")
+    ("Folded Hands" . "🙏")
+    ("Muscle" . "💪")
+    ("Sparkles" . "✨")
+    ("Warning" . "⚠️")
+    ("Information" . "ℹ️")
+    ("Question Mark" . "❓")
+    ("Prohibited" . "🚫")
+    ("Calendar" . "📅")
+    ("Clock" . "⏰")
+    ("Mail" . "📧")
+    ("Lock" . "🔒")
+    ("Magnifying Glass" . "🔍")
+    ("Light Bulb" . "💡"))
+  "Common emojis for quick access.")
 
 ;; Icon cache with category-specific icons
 (defvar universal-launcher--icon-cache
@@ -33,11 +64,13 @@
     (puthash 'bookmark (all-the-icons-faicon "bookmark") cache)
     (puthash 'file (all-the-icons-faicon "file") cache)
     (puthash 'command (all-the-icons-octicon "terminal") cache)
+    (puthash 'emoji (all-the-icons-faicon "smile-o") cache)  ; Added emoji icon
     ;; Category icons
     (puthash "Active" (all-the-icons-material "dashboard") cache)
     (puthash "Files & Apps" (all-the-icons-material "apps") cache)
     (puthash "Web" (all-the-icons-material "language") cache)
     (puthash "System" (all-the-icons-material "settings") cache)
+    (puthash "Tools" (all-the-icons-material "build") cache)  ; Added tools category
     cache)
   "Pre-loaded icon cache.")
 
@@ -54,7 +87,7 @@
      ((string= ext "c") (all-the-icons-fileicon "c"))
      ((string= ext "cpp") (all-the-icons-fileicon "cpp"))
      ((string= ext "h") (all-the-icons-fileicon "h"))
-     ((string= ext "go") (all-the-icons-fileicon "go"))
+     ((string= ext "go") (all-the-icons-alltheicon "go"))
      ((string= ext "rs") (all-the-icons-fileicon "rust"))
      ((string= ext "php") (all-the-icons-fileicon "php"))
      ((string= ext "el") (all-the-icons-fileicon "elisp"))
@@ -162,6 +195,18 @@
                                        cmd)
                                (list 'command cmd)))
                        (universal-launcher--get-system-commands)))
+             category-handlers)
+
+    ;; Add emoji handler
+    (puthash 'emoji
+             (lambda ()
+               (mapcar (lambda (emoji)
+                         (cons (format "%s Emoji: %s %s"
+                                       (universal-launcher--get-icon 'emoji)
+                                       (car emoji)
+                                       (cdr emoji))
+                               (list 'emoji (cdr emoji))))
+                       universal-launcher--common-emojis))
              category-handlers)
 
     ;; Process categories
@@ -327,6 +372,27 @@
   "Run COMMAND."
   (start-process command nil command))
 
+;; Web search function
+(defun universal-launcher--web-search (query)
+  "Search the web with QUERY using default browser."
+  (let* ((search-engines
+          '(("Google" . "https://www.google.com/search?q=")
+            ("DuckDuckGo" . "https://duckduckgo.com/?q=")
+            ("Bing" . "https://www.bing.com/search?q=")
+            ("Wikipedia" . "https://en.wikipedia.org/w/index.php?search=")))
+         (engine (completing-read "Search with: " (mapcar #'car search-engines) nil t))
+         (url-base (cdr (assoc engine search-engines)))
+         (encoded-query (url-hexify-string query)))
+    (browse-url (concat url-base encoded-query))))
+
+;; Insert emoji function
+(defun universal-launcher--insert-emoji (emoji)
+  "Insert EMOJI at point."
+  (let ((frame universal-launcher--previous-frame))
+    (when (and frame (frame-live-p frame))
+      (select-frame-set-input-focus frame))
+    (insert emoji)))
+
 (defun universal-launcher-popup ()
   "Simple launcher using existing frame."
   (interactive)
@@ -340,9 +406,12 @@
   ;; Use existing minibuffer
   (let* ((selection (completing-read "Launch: "
                                      (mapcar #'car universal-launcher--all-candidates)
-                                     nil t))
+                                     nil nil))  ; Changed from nil t to allow non-matched input
          (candidate (cdr (assoc selection universal-launcher--all-candidates))))
-    (when (and candidate (not (eq candidate 'separator)))
+
+    (cond
+     ;; Handle matched candidates
+     ((and candidate (not (eq candidate 'separator)))
       (let ((type (car candidate))
             (item (cadr candidate)))
         (pcase type
@@ -352,7 +421,12 @@
           ('firefox-action (universal-launcher--handle-firefox-action item))
           ('bookmark (universal-launcher--handle-bookmark item))
           ('file (find-file item))
-          ('command (universal-launcher--run-command item)))))
+          ('command (universal-launcher--run-command item))
+          ('emoji (universal-launcher--insert-emoji item)))))
+
+     ;; Handle web search fallback for non-matched input
+     ((and (not candidate) (not (string-empty-p selection)))
+      (universal-launcher--web-search selection)))
 
     ;; Return to the previous frame if it still exists
     (when (and universal-launcher--previous-frame
