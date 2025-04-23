@@ -1703,6 +1703,16 @@ I use elpher for gemini/gopher, and want to save bookmarks. Some quality of life
   (org-link-set-parameters "gopher" :follow
                           (lambda (path) (elpher-go (concat "gopher://" path)))))
 #+end_src
+** EWW
+Started using EWW to browse more often.
+
+Simple hook to make EWW full size buffer:
+
+#+begin_src elisp
+;; Remove EWW from popup rules to make it open in a full buffer
+(after! eww
+  (set-popup-rule! "^\\*eww\\*" :ignore t))
+#+end_src
 
 * Custom functions and templates
 I have various functions in my lisp directory for creating pomodoros, refiling done tasks to my global done.org file, and adding contacts to emails in mu4e

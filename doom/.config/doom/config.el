@@ -1493,6 +1493,10 @@ WHERE tablename = '%s';" table-name)))
   (org-link-set-parameters "gopher" :follow
                           (lambda (path) (elpher-go (concat "gopher://" path)))))
 
+;; Remove EWW from popup rules to make it open in a full buffer
+(after! eww
+  (set-popup-rule! "^\\*eww\\*" :ignore t))
+
 ;; lisp functions
 (load! "lisp/pomodoro")
 (load! "lisp/done-refile")
