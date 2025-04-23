@@ -99,7 +99,7 @@
      ((string= ext "css") (all-the-icons-alltheicon "css3" :face 'font-lock-variable-name-face))
      ((string= ext "html") (all-the-icons-faicon "html5" :face 'font-lock-function-name-face))
      ((string= ext "json") (all-the-icons-fileicon "jsonld" :face 'font-lock-constant-face))
-     ((string= ext "md") (all-the-icons-fileicon "markdown" :face 'markdown-header-face))
+     ((string= ext "md") (all-the-icons-octicon "markdown" :face 'markdown-header-face))
      ((string= ext "yml") (all-the-icons-fileicon "yaml" :face 'font-lock-variable-name-face))
      ((string= ext "xml") (all-the-icons-fileicon "xml" :face 'font-lock-constant-face))
      ((string= ext "pdf") (all-the-icons-faicon "file-pdf-o" :face 'font-lock-doc-face))
