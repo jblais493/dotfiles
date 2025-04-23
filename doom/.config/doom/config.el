@@ -1471,6 +1471,28 @@ WHERE tablename = '%s';" table-name)))
             (define-key map (kbd "C-c a s") 'my/stop-audio-recording)
             map))
 
+(defun my/org-return-and-maybe-elpher ()
+  "Handle org-return and open gemini/gopher links in elpher when appropriate."
+  (interactive)
+  (let ((context (org-element-context)))
+    (if (and (eq (org-element-type context) 'link)
+             (member (org-element-property :type context) '("gemini" "gopher")))
+        ;; If it's a gemini/gopher link, open in elpher
+        (let ((url (org-element-property :raw-link context)))
+          (elpher-go url))
+      ;; Otherwise, do the normal org-return behavior
+      (org-return))))
+
+;; Override the Return key in org-mode
+(with-eval-after-load 'org
+  (define-key org-mode-map (kbd "RET") 'my/org-return-and-maybe-elpher)
+
+  ;; Register protocols with org-mode
+  (org-link-set-parameters "gemini" :follow
+                          (lambda (path) (elpher-go (concat "gemini://" path))))
+  (org-link-set-parameters "gopher" :follow
+                          (lambda (path) (elpher-go (concat "gopher://" path)))))
+
 ;; lisp functions
 (load! "lisp/pomodoro")
 (load! "lisp/done-refile")

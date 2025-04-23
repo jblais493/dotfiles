@@ -1677,6 +1677,32 @@ Sometimes, we need to drag and drop files to GUIs - I previously was using drago
             (define-key map (kbd "C-c a s") 'my/stop-audio-recording)
             map))
 #+end_src
+** Elpher
+I use elpher for gemini/gopher, and want to save bookmarks. Some quality of life enhancements.
+
+#+begin_src elisp
+(defun my/org-return-and-maybe-elpher ()
+  "Handle org-return and open gemini/gopher links in elpher when appropriate."
+  (interactive)
+  (let ((context (org-element-context)))
+    (if (and (eq (org-element-type context) 'link)
+             (member (org-element-property :type context) '("gemini" "gopher")))
+        ;; If it's a gemini/gopher link, open in elpher
+        (let ((url (org-element-property :raw-link context)))
+          (elpher-go url))
+      ;; Otherwise, do the normal org-return behavior
+      (org-return))))
+
+;; Override the Return key in org-mode
+(with-eval-after-load 'org
+  (define-key org-mode-map (kbd "RET") 'my/org-return-and-maybe-elpher)
+
+  ;; Register protocols with org-mode
+  (org-link-set-parameters "gemini" :follow
+                          (lambda (path) (elpher-go (concat "gemini://" path))))
+  (org-link-set-parameters "gopher" :follow
+                          (lambda (path) (elpher-go (concat "gopher://" path)))))
+#+end_src
 
 * Custom functions and templates
 I have various functions in my lisp directory for creating pomodoros, refiling done tasks to my global done.org file, and adding contacts to emails in mu4e
