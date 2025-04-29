@@ -18,7 +18,17 @@ We will create setup scripts for the OS's we use (unix based)
 ** Mac
 ** Linux
    
-   ** NixOS:
-   create a symbolic link to your /etc/nixos/ directory like so:
+** NixOS:
+#+begin_src bash
+#!/bin/bash
+# Save as ~/Dotfiles/scripts/nixos-config.sh
 
-   sudo ln -s ~/Dotfiles/nixos/ /etc/nixos
+# Copy configs to system location
+sudo cp -r ~/Dotfiles/nixos/* /etc/nixos/
+
+# Optionally rebuild
+read -p "Rebuild NixOS now? (y/n): " answer
+if [[ $answer == "y" ]]; then
+  sudo nixos-rebuild switch
+fi
+#+end_src
