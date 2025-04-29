@@ -36,6 +36,16 @@
   # Set your time zone.
   time.timeZone = "America/Edmonton";
 
+  # Setup Kmonad
+  # Load the uinput module
+  boot.kernelModules = [ "uinput" ];
+
+  # Give permissions to /dev/uinput
+  services.udev.extraRules = ''
+    # KMonad user access to /dev/uinput
+    KERNEL=="uinput", MODE="0660", GROUP="input", TAG+="uaccess"
+  '';
+
   # Select internationalisation properties.
   i18n.defaultLocale = "en_CA.UTF-8";
 
