@@ -105,6 +105,12 @@
       enable = true;
   };
 
+  # Set zsh as default shell
+  programs.zsh.enable = true;
+  users.users.joshua = {
+    shell = pkgs.zsh;
+  };
+
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
