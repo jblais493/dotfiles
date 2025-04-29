@@ -17,3 +17,8 @@ We will create setup scripts for the OS's we use (unix based)
 * Installation scripts:
 ** Mac
 ** Linux
+   
+   ** NixOS:
+   create a symbolic link to your /etc/nixos/ directory like so:
+
+   sudo ln -s ~/Dotfiles/nixos/ /etc/nixos

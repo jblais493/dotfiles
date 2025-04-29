@@ -96,45 +96,74 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
+    # Core Utilities
   	wget
-	stow
-	git
-	emacs
-	curl
-	neovim
-	btop
-	kmonad
-	eza
-	yazi
-	zoxide
-	kitty
-	pdftk
-	texliveFull
-	libreoffice
-	starship
-	zsh
-	bat
-	ripgrep-all
-	fd
-	pass
-	coreutils
-	gnumake
-	geist-font
-	alegreya
-	tmux
-	tmuxifier
-	rsync
-	gnupg
-	qbittorrent
-	gimp-with-plugins
-	hugo
-	go
-	python314
-	podman
-	podman-compose
-	waybar
-	hyprpaper
-	fastfetch
+	  stow
+	  git
+	  emacs
+	  curl
+    gcc
+    clang
+    glibc
+    killall
+    zip
+    unzip
+    bluez
+    blueman
+    bluez-tools
+    libnotify
+    pipewire
+    wireplumber
+    pavucontrol
+    xdg-utils
+    brightnessctl
+	  networkmanager
+	  networkmanagerapplet
+
+    # Standard
+    fzf
+    trash-cli
+    tldr
+    neovim
+	  btop
+    flatpak
+	  kmonad
+	  eza
+	  yazi
+	  zoxide
+	  kitty
+    ydotool
+    grim
+    slurp
+	  pdftk
+	  texliveFull
+	  libreoffice
+	  starship
+    xfce.thunar
+    wofi
+	  zsh
+	  bat
+	  ripgrep-all
+	  fd
+	  pass
+	  coreutils
+	  gnumake
+	  geist-font
+	  alegreya
+	  tmux
+	  tmuxifier
+	  rsync
+	  gnupg
+	  qbittorrent
+	  gimp-with-plugins
+	  hugo
+	  go
+	  python314
+	  podman
+	  podman-compose
+	  waybar
+	  hyprpaper
+	  fastfetch
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
