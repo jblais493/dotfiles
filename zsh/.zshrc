@@ -238,6 +238,9 @@ alias doomdoc="~/.config/emacs/bin/doom doctor"
 alias doompurge="~/.config/emacs/bin/doom purge"
 alias doomupgrade="~/.config/emacs/bin/doom upgrade"
 
+# NixOS
+alias nrs="~/dotfiles/scripts/nix-config.sh"
+
 # Networking
 alias nmconnect="nmcli device wifi connect"
 alias nmdown="nmcli c delete"

@@ -19,6 +19,10 @@ We will create setup scripts for the OS's we use (unix based)
 ** Linux
    
 ** NixOS:
+Run nixos-config.sh:
+
+I have this aliased in my .zshrc to ~nrs~ for "nix rebuild switch"
+
 #+begin_src bash
 #!/bin/bash
 # Save as ~/Dotfiles/scripts/nixos-config.sh
