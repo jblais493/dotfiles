@@ -93,8 +93,6 @@
   # Setup GPG key support
   programs.gnupg.agent = {
       enable = true;
-      enableSSHSupport = true;
-      pinentryFlavor = "gtk2"; # or "curses", "qt", "gnome3" depending on your environment
   };
 
   # Allow unfree packages
