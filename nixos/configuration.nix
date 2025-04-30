@@ -147,6 +147,7 @@
 	  networkmanagerapplet
 	  coreutils
 	  gnumake
+    sdbus-cpp
 
     # Emacs
 	  emacs
@@ -184,6 +185,7 @@
     # Hyprland
 	  waybar
     hyprwayland-scanner
+    hyprutils
 	  hyprpicker
     hyprsunset
     hyprlock
