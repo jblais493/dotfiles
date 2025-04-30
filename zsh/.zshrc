@@ -240,6 +240,7 @@ alias doomupgrade="~/.config/emacs/bin/doom upgrade"
 
 # NixOS
 alias nrs="~/dotfiles/scripts/nix-config.sh"
+alias enix="nvim ~/dotfiles/nixos/configuration.nix"
 
 # Networking
 alias nmconnect="nmcli device wifi connect"
@@ -274,7 +275,7 @@ alias qutebrowser="cd ~/.config/qutebrowser"
 alias shell="cd ~/.config/shell"
 alias scripts="cd ~/.config/scripts"
 alias books="cd ~/.config/scripts/bookmarks"
-alias kmon="kmonad ~/.config/kmonad/config.kbd &"
+alias kmon="kmonad ~/.config/kmonad/x230.kbd &"
 
 # Development
 alias work="arttime --nolearn -a eye -t 'For I consider that the sufferings of this present time are not worth comparing with the glory that is going to be revealed to us - Romans 8:18' -g 4h"

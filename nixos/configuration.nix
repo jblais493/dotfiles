@@ -101,7 +101,6 @@
   programs.hyprland = {
     enable = true;
     xwayland.enable = true;  # For X11 app support
-    wrapperFeatures.gtk = true;  # For proper GTK app handling
   };
 
   # Setup GPG key support
