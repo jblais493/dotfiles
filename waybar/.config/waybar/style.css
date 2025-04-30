@@ -73,6 +73,7 @@ button:hover {
   border-bottom: 3px solid #88c0d0; /* Nord frost blue */
 }
 
+/* Adjust the right modules to match workspaces style and be closer together */
 #clock,
 #battery,
 #cpu,
@@ -89,11 +90,25 @@ button:hover {
 #idle_inhibitor,
 #scratchpad,
 #mpd {
-  padding: 0 10px;
+  padding: 0 8px; /* Reduced padding from 10px to 8px */
   color: #e5e9f0; /* Nord snow storm */
-  background: rgba(59, 66, 82, 0.5); /* Nord polar night medium shade */
+  background: rgba(59, 66, 82, 0.5); /* Same as workspaces background */
   border-radius: 10px;
-  margin: 5px;
+  margin: 5px 2px; /* 5px vertical margin, 2px horizontal to bring closer */
+}
+
+/* Add negative margin to bring modules on the right closer together */
+.modules-right > widget:not(:last-child) > * {
+  margin-right: -3px; /* Negative margin to bring elements closer */
+}
+
+/* Optional: Add a subtle hover effect for the right modules */
+#clock:hover,
+#battery:hover,
+#network:hover,
+#pulseaudio:hover,
+#tray:hover {
+  background: rgba(59, 66, 82, 0.7); /* Slightly darker on hover */
 }
 
 #window,
