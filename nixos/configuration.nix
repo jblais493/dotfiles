@@ -125,6 +125,8 @@
 	  stow
 	  git
 	  curl
+    cmake
+    libtool
     gcc
     clang
     glibc
