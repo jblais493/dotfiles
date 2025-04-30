@@ -152,6 +152,7 @@
 	  emacs
 	  texliveFull
     wmctrl
+    vips # for dirvish thumbnails
 
     # shell and terminal
 	  kitty
