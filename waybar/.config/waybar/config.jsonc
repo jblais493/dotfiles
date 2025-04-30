@@ -21,29 +21,38 @@
     //          "3": "",
     //          "4": "",
     //          "5": "",
+    //          "8": "Ⅷ.",
+    //          "9": "Ⅸ.",
     //          "urgent": "",
     //          "focused": "",
     //          "default": ""
     //      }
     //  },
     "hyprland/workspaces": {
-         "disable-scroll": true,
-         "all-outputs": true,
-         "format": "{icon}",
-         "format-icons": {
-             "1": "Ⅰ.",
-             "2": "Ⅱ.",
-             "3": "Ⅲ.",
-             "4": "Ⅳ.󰇮",
-             "5": "Ⅴ.",
-             "6": "Ⅵ.",
-             "7": "Ⅶ.",
-       //      "8": "Ⅷ.",
-       //      "9": "Ⅸ.",
-             "urgent": "",
-             "focused": "",
-             "default": ""
-         }
+        "disable-scroll": true,
+        "all-outputs": true,
+        "format": "{icon}",
+        "persistent-workspaces": {
+            "1": [],
+            "2": [],
+            "3": [],
+            "4": [],
+            "5": [],
+            "6": [],
+            "7": []
+        },
+        "format-icons": {
+            "1": "Ⅰ.",
+            "2": "Ⅱ.",
+            "3": "Ⅲ.",
+            "4": "Ⅳ.󰇮",
+            "5": "Ⅴ.",
+            "6": "Ⅵ.",
+            "7": "Ⅶ.",
+            "urgent": "",
+            "focused": "",
+            "default": ""
+        }
      },
     "keyboard-state": {
         "numlock": true,

@@ -45,20 +45,23 @@ button:hover {
   background-color: transparent;
   color: #e5e9f0; /* Nord snow storm */
   min-width: 30px;
+  transition: all 0.2s ease;
 }
 
 #workspaces button:hover {
   background: rgba(136, 192, 208, 0.2); /* Nord frost blue with transparency */
 }
 
-#workspaces button.focused {
+#workspaces button.active {
   background: rgba(
-    136,
-    192,
-    208,
-    0.4
-  ); /* Nord frost blue darker with transparency */
-  box-shadow: inset 0 -3px #88c0d0; /* Nord frost blue */
+    59,
+    66,
+    82,
+    0.7
+  ); /* Darker background for active workspace */
+  box-shadow: inset 0 -3px #ebcb8b; /* Nord yellow underline */
+  color: #ebcb8b; /* Nord yellow for text/icon */
+  font-weight: bold; /* Makes the text/icon bolder */
 }
 
 #workspaces button.urgent {
@@ -137,25 +140,25 @@ button:hover {
 }
 
 #idle_inhibitor.activated {
-color: #ebcb8b; /* Nord aurora yellow */
+  color: #ebcb8b; /* Nord aurora yellow */
 }
 
 #mpd {
-color: #e5e9f0; /* Nord snow storm */
+  color: #e5e9f0; /* Nord snow storm */
 }
 
 #mpd.disconnected {
-color: #bf616a; /* Nord aurora red */
+  color: #bf616a; /* Nord aurora red */
 }
 
 #mpd.stopped {
-color: #4c566a; /* Nord polar night lightest shade */
+  color: #4c566a; /* Nord polar night lightest shade */
 }
 
 #mpd.paused {
-color: #81a1c1; /* Nord frost medium blue */
+  color: #81a1c1; /* Nord frost medium blue */
 }
 
 #pulseaudio.muted {
-color: #4c566a; /* Nord polar night lightest shade */
+  color: #4c566a; /* Nord polar night lightest shade */
 }
