@@ -1,15 +1,21 @@
 * {
-  font-size: 16px;
+  font-size: 14px;
   font-family: "GeistMono Nerd Font";
-  /* letter-spacing: 1px; */
-  font-weight: 500;
+  font-weight: 400;
 }
 
 window#waybar {
-  background: rgba(0, 0, 0, 0);
-  color: #ffffff;
+  background: rgba(
+    46,
+    52,
+    64,
+    0.7
+  ); /* Nord dark background with transparency */
+  color: #eceff4; /* Nord snow storm (light color) */
   transition-property: background-color;
   transition-duration: 0.5s;
+  border-radius: 10px;
+  margin: 5px 5px 0 5px; /* Add some margin at the top */
 }
 
 window#waybar.hidden {
@@ -17,45 +23,51 @@ window#waybar.hidden {
 }
 
 button {
-  /* Use box-shadow instead of border so the text isn't offset */
   box-shadow: inset 0 -3px transparent;
-  /* Avoid rounded borders under each button name */
   border: none;
   border-radius: 0;
 }
 
-/* https://github.com/Alexays/Waybar/wiki/FAQ#the-workspace-buttons-have-a-strange-hover-effect */
 button:hover {
-  background: inherit;
-  box-shadow: inset 0 -3px #ffffff;
+  background: rgba(76, 86, 106, 0.5); /* Nord polar night lighter shade */
+  box-shadow: inset 0 -3px #88c0d0; /* Nord frost blue */
 }
 
 #workspaces {
-  color: #ffffff;
+  background: rgba(59, 66, 82, 0.5); /* Nord polar night medium shade */
+  border-radius: 10px;
+  margin: 5px;
+  padding: 0 5px;
 }
 
 #workspaces button {
   padding: 0 5px;
   background-color: transparent;
-  color: #ffffff;
+  color: #e5e9f0; /* Nord snow storm */
+  min-width: 30px;
 }
 
 #workspaces button:hover {
-  background: rgba(0, 0, 0, 0.2);
+  background: rgba(136, 192, 208, 0.2); /* Nord frost blue with transparency */
 }
 
 #workspaces button.focused {
-  background-color: transparent;
-  box-shadow: inset 0 -3px #ffffff;
+  background: rgba(
+    136,
+    192,
+    208,
+    0.4
+  ); /* Nord frost blue darker with transparency */
+  box-shadow: inset 0 -3px #88c0d0; /* Nord frost blue */
 }
 
 #workspaces button.urgent {
-  background-color: #eb4d4b;
+  background-color: #bf616a; /* Nord aurora red */
 }
 
 #mode {
-  background-color: #64727d;
-  border-bottom: 3px solid #ffffff;
+  background-color: #4c566a; /* Nord polar night lightest shade */
+  border-bottom: 3px solid #88c0d0; /* Nord frost blue */
 }
 
 #clock,
@@ -75,7 +87,10 @@ button:hover {
 #scratchpad,
 #mpd {
   padding: 0 10px;
-  color: #ffffff;
+  color: #e5e9f0; /* Nord snow storm */
+  background: rgba(59, 66, 82, 0.5); /* Nord polar night medium shade */
+  border-radius: 10px;
+  margin: 5px;
 }
 
 #window,
@@ -83,26 +98,29 @@ button:hover {
   margin: 0 4px;
 }
 
-/* If workspaces is the leftmost module, omit left margin */
-.modules-left > widget:first-child > #workspaces {
-  margin-left: 0;
+/* Module-specific styling */
+#battery.charging {
+  color: #a3be8c; /* Nord aurora green */
 }
 
-/* If workspaces is the rightmost module, omit right margin */
-.modules-right > widget:last-child > #workspaces {
-  margin-right: 0;
+#battery.warning:not(.charging) {
+  color: #ebcb8b; /* Nord aurora yellow */
 }
 
-label:focus {
-  background-color: #000000;
+#battery.critical:not(.charging) {
+  color: #bf616a; /* Nord aurora red */
 }
 
-#disk {
-  background-color: #964b00;
+#network.disconnected {
+  color: #bf616a; /* Nord aurora red */
+}
+
+#temperature.critical {
+  color: #bf616a; /* Nord aurora red */
 }
 
 #tray {
-  /* background-color: #1d1f21; */
+  background-color: rgba(59, 66, 82, 0.7); /* Nord polar night medium shade */
 }
 
 #tray > .passive {
@@ -111,142 +129,33 @@ label:focus {
 
 #tray > .needs-attention {
   -gtk-icon-effect: highlight;
-  background-color: #eb4d4b;
+  background-color: #bf616a; /* Nord aurora red */
 }
 
 #idle_inhibitor {
-  color: #ffffff;
-  margin: 3px 3px 3px 3px;
-  padding: 5px 7px 5px 5px;
-  background: #1d1f21;
-  border-top-right-radius: 10px;
-  border-bottom-right-radius: 10px;
-  border-top-left-radius: 10px;
-  border-bottom-left-radius: 10px;
+  color: #e5e9f0; /* Nord snow storm */
 }
 
 #idle_inhibitor.activated {
-  color: #be3509;
-  margin: 3px 3px 3px 3px;
-  padding: 5px 7px 5px 5px;
-  background: #1d1f21;
-  border-top-right-radius: 10px;
-  border-bottom-right-radius: 10px;
-  border-top-left-radius: 10px;
-  border-bottom-left-radius: 10px;
+color: #ebcb8b; /* Nord aurora yellow */
 }
 
 #mpd {
-  /* background-color: #66cc99; */
-  color: #ffffff;
+color: #e5e9f0; /* Nord snow storm */
 }
 
 #mpd.disconnected {
-  background-color: #f53c3c;
+color: #bf616a; /* Nord aurora red */
 }
 
 #mpd.stopped {
-  /* background-color: #90b1b1; */
+color: #4c566a; /* Nord polar night lightest shade */
 }
 
 #mpd.paused {
-  /* background-color: #51a37a; */
+color: #81a1c1; /* Nord frost medium blue */
 }
 
-#scratchpad {
-  background: rgba(0, 0, 0, 0.2);
-}
-
-#scratchpad.empty {
-  background-color: transparent;
-}
-
-#clock {
-  margin: 3px 3px 3px 3px;
-  padding: 5px;
-  color: #fff;
-  /* background: #1d1f21; */
-  border-top-left-radius: 10px;
-  border-bottom-left-radius: 10px;
-  color: #ffffff;
-}
-
-#hyprland-workspaces {
-  color: #ffffff;
-  margin: 3px 3px 3px 3px;
-  padding: 5px 7px 5px 5px;
-  /* background: #1d1f21; */
-  border-top-right-radius: 10px;
-  border-bottom-right-radius: 10px;
-  border-top-left-radius: 10px;
-  border-bottom-left-radius: 10px;
-}
-
-#custom-media {
-  min-width: 100px;
-  color: #ffffff;
-  margin: 3px 3px 3px 3px;
-  padding: 5px 7px 5px 5px;
-  /* background: #1d1f21; */
-  border-top-right-radius: 10px;
-  border-bottom-right-radius: 10px;
-  border-top-left-radius: 10px;
-  border-bottom-left-radius: 10px;
-}
-#pulseaudio {
-  color: #ffffff;
-  margin: 3px 3px 3px 3px;
-  padding: 5px 7px 5px 5px;
-  /* background: #1d1f21; */
-  border-top-right-radius: 10px;
-  border-bottom-right-radius: 10px;
-  border-top-left-radius: 10px;
-  border-bottom-left-radius: 10px;
-}
-
-#network {
-  color: #ffffff;
-  margin: 3px 3px 3px 3px;
-  padding: 5px 7px 5px 5px;
-  /* background: #1d1f21; */
-  border-top-right-radius: 10px;
-  border-bottom-right-radius: 10px;
-  border-top-left-radius: 10px;
-  border-bottom-left-radius: 10px;
-}
-
-#cpu {
-  color: #ffffff;
-  margin: 3px 3px 3px 3px;
-  padding: 5px 7px 5px 5px;
-  /* background: #001d1f21; */
-  border-top-right-radius: 10px;
-  border-bottom-right-radius: 10px;
-  border-top-left-radius: 10px;
-  border-bottom-left-radius: 10px;
-}
-#temperature {
-  color: #ffffff;
-}
-
-#memory {
-  color: #ffffff;
-  margin: 3px 3px 3px 3px;
-  padding: 5px 7px 5px 5px;
-  /* background: #1d1f21; */
-  border-top-right-radius: 10px;
-  border-bottom-right-radius: 10px;
-  border-top-left-radius: 10px;
-  border-bottom-left-radius: 10px;
-}
-
-#custom-media {
-  color: #ffffff;
-  margin: 3px 3px 3px 3px;
-  padding: 5px 7px 5px 5px;
-  background: #1d1f21;
-  border-top-right-radius: 10px;
-  border-bottom-right-radius: 10px;
-  border-top-left-radius: 10px;
-  border-bottom-left-radius: 10px;
+#pulseaudio.muted {
+color: #4c566a; /* Nord polar night lightest shade */
 }

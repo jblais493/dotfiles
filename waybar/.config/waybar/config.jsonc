@@ -3,12 +3,13 @@
     // "position": "bottom", // Waybar position (top|bottom|left|right)
     "height": 30, // Waybar height (to be removed for auto height)
     // "width": 1280, // Waybar width
-    "spacing": 4, // Gaps between modules (4px)
+    "spacing": 2, // Gaps between modules (4px)
     // Choose the order of the modules
     // "modules-left": ["hyprland/workspaces", "hyprland/mode", "hyprland/scratchpad", "custom/media"],
     "modules-left": ["hyprland/workspaces", "hyprland/window"],
     "modules-center": ["mpd"],
-    "modules-right": ["pulseaudio", "network", "cpu", "memory", "temperature", "battery", "battery#bat2", "clock", "tray"],
+    // "modules-right": ["pulseaudio", "network", "cpu", "memory", "temperature", "battery", "battery#bat2", "clock", "tray"],
+    "modules-right": ["pulseaudio", "network", "battery", "clock", "tray"],
     // Modules configuration
     // "hyprland/workspaces": {
     //      "disable-scroll": true,
@@ -30,15 +31,15 @@
          "all-outputs": true,
          "format": "{icon}",
          "format-icons": {
-             "1": "Ⅰ",
-             "2": "Ⅱ",
-             "3": "Ⅲ",
-             "4": "Ⅳ",
-             "5": "Ⅴ",
-             "6": "Ⅵ",
-             "7": "Ⅶ",
-             "8": "Ⅷ",
-             "9": "Ⅸ",
+             "1": "Ⅰ.",
+             "2": "Ⅱ.",
+             "3": "Ⅲ.",
+             "4": "Ⅳ.󰇮",
+             "5": "Ⅴ.",
+             "6": "Ⅵ.",
+             "7": "Ⅶ.",
+       //      "8": "Ⅷ.",
+       //      "9": "Ⅸ.",
              "urgent": "",
              "focused": "",
              "default": ""
@@ -98,7 +99,7 @@
     },
     "tray": {
         // "icon-size": 21,
-        "spacing": 10
+        "spacing": 8
     },
     "clock": {
         // "timezone": "America/New_York",
