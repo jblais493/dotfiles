@@ -1281,11 +1281,13 @@ WHERE tablename = '%s';" table-name)))
   ;; Load workspaces automatically on startup
   (setq persp-auto-resume-time -1))
 
-;; EMMS
+;; EMMS full configuration with Nord theme and centered layout
 (emms-all)
 (emms-default-players)
 (emms-mode-line-mode 1)
 (emms-playing-time-mode 1)
+
+;; Basic settings
 (setq emms-source-file-default-directory "~/Music"
       emms-browser-covers #'emms-browser-cache-thumbnail-async
       emms-browser-thumbnail-small-size 64
@@ -1293,8 +1295,68 @@ WHERE tablename = '%s';" table-name)))
       emms-playlist-buffer-name "*Music*"
       emms-info-asynchronously t
       emms-source-file-directory-tree-function 'emms-source-file-directory-tree-find)
+
+;; Ensure players are properly set up
+(setq emms-player-list '(emms-player-mpd
+                         emms-player-mplayer
+                         emms-player-vlc
+                         emms-player-mpg321
+                         emms-player-ogg123))
+
+;; Nord theme colors
+(with-eval-after-load 'emms
+  (custom-set-faces
+   ;; Nord colors: https://www.nordtheme.com/docs/colors-and-palettes
+   '(emms-browser-artist-face ((t (:foreground "#ECEFF4" :height 1.1))))  ;; Nord Snow Storm (bright white)
+   '(emms-browser-album-face ((t (:foreground "#88C0D0" :height 1.0))))   ;; Nord Frost (blue)
+   '(emms-browser-track-face ((t (:foreground "#A3BE8C" :height 1.0))))   ;; Nord Aurora (green)
+   '(emms-playlist-track-face ((t (:foreground "#D8DEE9" :height 1.0))))  ;; Nord Snow Storm (lighter white)
+   '(emms-playlist-selected-face ((t (:foreground "#BF616A" :weight bold))))))  ;; Nord Aurora (red)
+
+;; Add margins and spacing for better layout
+(defun emms-center-buffer-in-frame ()
+  "Add margins to center the EMMS buffer in the frame."
+  (let* ((window-width (window-width))
+         (desired-width 80)  ;; Desired text width
+         (margin (max 0 (/ (- window-width desired-width) 2))))
+    (setq-local left-margin-width margin)
+    (setq-local right-margin-width margin)
+    ;; Add line spacing for better readability
+    (setq-local line-spacing 0.2)
+    (set-window-buffer (selected-window) (current-buffer))))
+
+;; Set dark Nord background and center layout
+(add-hook 'emms-browser-mode-hook
+          (lambda ()
+            (face-remap-add-relative 'default '(:background "#2E3440"))  ;; Nord Polar Night (dark blue-gray)
+            (emms-center-buffer-in-frame)))
+
+(add-hook 'emms-playlist-mode-hook
+          (lambda ()
+            (face-remap-add-relative 'default '(:background "#2E3440"))  ;; Nord Polar Night (dark blue-gray)
+            (emms-center-buffer-in-frame)))
+
+;; Add window resize hook to maintain centering
+(add-hook 'window-size-change-functions
+          (lambda (_)
+            (when (or (eq major-mode 'emms-browser-mode)
+                      (eq major-mode 'emms-playlist-mode))
+              (emms-center-buffer-in-frame))))
+
+;; Ensure browser functionality
+(setq emms-browser-default-browse-type 'artist)
+(add-to-list 'emms-info-functions 'emms-info-mp3info)
+(add-to-list 'emms-info-functions 'emms-info-ogginfo)
+(add-to-list 'emms-info-functions 'emms-info-metaflac)
+(add-to-list 'emms-info-functions 'emms-info-tinytag)
+
+;; Ensure tracks play when selected
+(define-key emms-browser-mode-map (kbd "RET") 'emms-browser-add-tracks-and-play)
+(define-key emms-browser-mode-map (kbd "SPC") 'emms-pause)
+
+;; Your keybindings
 (map! :leader
-      (:prefix ("m" . "music/EMMS")  ;; Changed from 'a' to 'm' for music
+      (:prefix ("m" . "music/EMMS")
        :desc "Play at directory tree"   "d" #'emms-play-directory-tree
        :desc "Go to emms playlist"      "p" #'emms-playlist-mode-go
        :desc "Shuffle"                  "h" #'emms-shuffle
@@ -1303,7 +1365,7 @@ WHERE tablename = '%s';" table-name)))
        :desc "Emms play previous track" "b" #'emms-previous
        :desc "Emms play next track"     "n" #'emms-next))
 
-;; Grab album artwork for dunst to display
+;; Cover art function
 (defun emms-cover-art-path ()
   "Return the path of the cover art for the current track."
   (let* ((track (emms-playlist-current-selected-track))
