@@ -183,6 +183,8 @@
     # Hyprland
 	  waybar
 	  hyprpicker
+    hyprsunset
+    hyprlock
     hypridle
     wofi
     wl-clipboard
