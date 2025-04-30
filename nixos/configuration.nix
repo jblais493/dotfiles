@@ -183,6 +183,7 @@
 
     # Hyprland
 	  waybar
+    hyprwayland-scanner
 	  hyprpicker
     hyprsunset
     hyprlock
