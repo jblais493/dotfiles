@@ -149,6 +149,7 @@
     # Emacs
 	  emacs
 	  texliveFull
+    wmctrl
 
     # shell and terminal
 	  kitty
