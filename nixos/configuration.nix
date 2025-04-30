@@ -98,11 +98,15 @@
   programs.firefox.enable = true;
 
   # Hyprland setup
-  programs.hyprland.enable = true;
+  programs.hyprland = {
+    enable = true;
+    xwayland.enable = true;  # For X11 app support
+    wrapperFeatures.gtk = true;  # For proper GTK app handling
+  };
 
   # Setup GPG key support
   programs.gnupg.agent = {
-      enable = true;
+    enable = true;
   };
 
   # Set zsh as default shell
@@ -118,10 +122,9 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     # Core Utilities
-  	wget
+    wget
 	  stow
 	  git
-	  emacs
 	  curl
     gcc
     clang
@@ -140,51 +143,76 @@
     brightnessctl
 	  networkmanager
 	  networkmanagerapplet
+	  coreutils
+	  gnumake
 
-    # Standard
+    # Emacs
+	  emacs
+	  texliveFull
+
+    # shell and terminal
+	  kitty
     fzf
     trash-cli
     tldr
     neovim
 	  btop
-    flatpak
 	  kmonad
 	  eza
 	  yazi
 	  zoxide
-	  kitty
     ydotool
-    grim
-    slurp
 	  pdftk
-	  texliveFull
 	  libreoffice
 	  starship
-    xfce.thunar
-    wofi
 	  zsh
 	  bat
 	  ripgrep-all
 	  fd
 	  pass
-	  coreutils
-	  gnumake
-	  geist-font
-	  alegreya
 	  tmux
 	  tmuxifier
 	  rsync
 	  gnupg
-	  qbittorrent
-	  gimp-with-plugins
+	  fastfetch
+    flatpak
+
+    # Hyprland
+	  waybar
+	  hyprpaper
+    wofi
+    wl-clipboard
+    swww
+    swaynotificationcenter
+    grim
+    slurp
+    wlsunset
+    polkit_gnome # for authentication flows
+
+    # Fonts
+	  geist-font
+	  alegreya
+
+    # Development
 	  hugo
 	  go
 	  python314
 	  podman
 	  podman-compose
-	  waybar
-	  hyprpaper
-	  fastfetch
+
+    # Graphical Applications
+    xfce.thunar
+	  qbittorrent
+	  gimp-with-plugins
+    signal-desktop
+    telegram-desktop
+    obs-studio
+    calibre
+    shotcut
+    vlc
+    mpv
+    syncthing
+    waydroid
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
