@@ -139,6 +139,7 @@
     pipewire
     wireplumber
     pavucontrol
+    playerctl
     xdg-utils
     brightnessctl
 	  networkmanager
@@ -180,6 +181,7 @@
     # Hyprland
 	  waybar
 	  hyprpaper
+	  hyprpicker
     wofi
     wl-clipboard
     swww
