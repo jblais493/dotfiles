@@ -182,8 +182,8 @@
 
     # Hyprland
 	  waybar
-	  hyprpaper
 	  hyprpicker
+    hypridle
     wofi
     wl-clipboard
     swww
