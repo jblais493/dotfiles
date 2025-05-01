@@ -199,6 +199,11 @@
     wlsunset
     polkit_gnome # for authentication flows
 
+    # Theming
+    nordic
+    nordzy-cursor-theme
+    nwg-look
+
     # Fonts
 	  geist-font
 	  alegreya
@@ -212,6 +217,7 @@
 
     # Graphical Applications
     xfce.thunar
+    xfce.tumbler
 	  qbittorrent
 	  gimp-with-plugins
     signal-desktop

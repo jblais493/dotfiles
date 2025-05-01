@@ -1455,8 +1455,8 @@ WHERE tablename = '%s';" table-name)))
       :desc "Dirvish in current dir" "d" #'dirvish)
 
 ;; Open file manager in place dirvish/dired
-(defun open-nautilus-here ()
-  "Open nautilus in the current directory shown in dired/dirvish."
+(defun open-thunar-here ()
+  "Open thunar in the current directory shown in dired/dirvish."
   (interactive)
   (let ((dir (cond
               ;; If we're in dired mode
@@ -1469,21 +1469,19 @@ WHERE tablename = '%s';" table-name)))
                (or (bound-and-true-p dirvish-directory) default-directory))
               ;; Fallback for any other mode
               (t default-directory))))
-    (message "Opening nautilus in: %s" dir)  ; Helpful for debugging
-    (start-process "nautilus" nil "nautilus" dir)))
-
+    (message "Opening thunar in: %s" dir)  ; Helpful for debugging
+    (start-process "thunar" nil "thunar" dir)))
 ;; Bind it to Ctrl+Alt+f in both dired and dirvish modes
 (with-eval-after-load 'dired
-  (define-key dired-mode-map (kbd "C-M-f") 'open-nautilus-here))
-
+  (define-key dired-mode-map (kbd "C-M-f") 'open-thunar-here))
 ;; For dirvish, we need to add our binding to its special keymap if it exists
 (with-eval-after-load 'dirvish
   (if (boundp 'dirvish-mode-map)
-      (define-key dirvish-mode-map (kbd "C-M-f") 'open-nautilus-here)
+      (define-key dirvish-mode-map (kbd "C-M-f") 'open-thunar-here)
     ;; Alternative approach if dirvish uses a different keymap system
     (add-hook 'dirvish-mode-hook
               (lambda ()
-                (local-set-key (kbd "C-M-f") 'open-nautilus-here)))))
+                (local-set-key (kbd "C-M-f") 'open-thunar-here)))))
 
 ;; Load private IRC configuration
 (load! "private/irc-config" nil t)
