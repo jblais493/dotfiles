@@ -1,9 +1,9 @@
 sw_volume: 100
 audio_device_state:1:PipeWire Sound Server
 audio_device_state:1:my_fifo
-state: play
+state: pause
 current: 7
-time: 120.001
+time: 15.503
 random: 0
 repeat: 0
 single: 0
@@ -19,7 +19,7 @@ playlist_begin
 3:Bell.wav
 4:Casiopea - Various.mp3
 5:Dan Gibson - Solitudes (Gregorian Chant).mp3
-6:Genesis - Jesus He Knows Me.mp3
+6:Genesis/We Can't Dance/Genesis - Jesus He Knows Me.mp3
 7:Godsmack - Bulletproof.mp3
 8:Laura Branigan - Self Control.mp3
 9:Philip Stopford - Lully, Lulla, Lullay.mp3

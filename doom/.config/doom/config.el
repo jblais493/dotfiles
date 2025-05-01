@@ -1300,12 +1300,23 @@ WHERE tablename = '%s';" table-name)))
 (require 'emms-player-mpd)
 (setq emms-player-mpd-server-name "localhost")
 (setq emms-player-mpd-server-port "6600")
-(setq emms-player-mpd-music-directory "~/Music") ;; Make sure this matches your music directory
+(setq emms-player-mpd-music-directory (expand-file-name "~/Music"))
 
 ;; Connect to MPD and add it to player list and info functions
 (add-to-list 'emms-player-list 'emms-player-mpd)
 (add-to-list 'emms-info-functions 'emms-info-mpd)
 (emms-player-mpd-connect)
+
+(defun my/update-emms-from-mpd ()
+  "Update EMMS cache from MPD and refresh browser."
+  (interactive)
+  (message "Updating EMMS cache from MPD...")
+  (emms-player-mpd-connect)
+  (emms-cache-set-from-mpd-all)
+  (message "EMMS cache updated. Refreshing browser...")
+  (when (get-buffer "*EMMS Browser*")
+    (with-current-buffer "*EMMS Browser*"
+      (emms-browser-refresh))))
 
 ;; Ensure players are properly set up
 (setq emms-player-list '(emms-player-mpd
@@ -1368,6 +1379,7 @@ WHERE tablename = '%s';" table-name)))
 ;; Your keybindings
 (map! :leader
       (:prefix ("m" . "music/EMMS")
+       :desc "Update from MPD" "u" #'my/update-emms-from-mpd
        :desc "Play at directory tree"   "d" #'emms-play-directory-tree
        :desc "Go to emms playlist"      "p" #'emms-playlist-mode-go
        :desc "Shuffle"                  "h" #'emms-shuffle
