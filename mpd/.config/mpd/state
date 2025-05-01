@@ -1,0 +1,32 @@
+sw_volume: 100
+audio_device_state:1:PipeWire Sound Server
+audio_device_state:1:my_fifo
+state: play
+current: 7
+time: 120.001
+random: 0
+repeat: 0
+single: 0
+consume: 0
+crossfade: 0
+mixrampdb: 0
+mixrampdelay: -1
+lastloadedplaylist: 
+playlist_begin
+0:1638 - Miserere Mei.mp3
+1:Alex Jones - How can I serve you Lord.mp3
+2:Bell.mp3
+3:Bell.wav
+4:Casiopea - Various.mp3
+5:Dan Gibson - Solitudes (Gregorian Chant).mp3
+6:Genesis - Jesus He Knows Me.mp3
+7:Godsmack - Bulletproof.mp3
+8:Laura Branigan - Self Control.mp3
+9:Philip Stopford - Lully, Lulla, Lullay.mp3
+10:The Midnight - Brooklyn.mp3
+11:The Midnight - Fire In The Sky.mp3
+12:The Midnight - Sunset.mp3
+13:royalty free/karl casey - hackers.mp3
+14:royalty free/password-infinity-123276.mp3
+15:夜のフライト - Shinjuku 1980.mp3
+playlist_end

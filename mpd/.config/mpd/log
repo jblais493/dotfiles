@@ -23,3 +23,25 @@
 [src/libmpg123/id3.c:INT123_parse_new_id3():1073] error: ID3v2: non-syncsafe size of CTOC frame, skipping the remainder of tag
 2025-05-01T14:31:14 update: added /夜のフライト - Shinjuku 1980.mp3
 2025-05-01T14:31:14 update: added /Laura Branigan - Self Control.mp3
+2025-05-01T14:34:07 player: played "1638 - Miserere Mei.mp3"
+2025-05-01T14:34:15 player: played "Laura Branigan - Self Control.mp3"
+2025-05-01T14:34:18 player: played "The Midnight - Brooklyn.mp3"
+2025-05-01T14:34:19 player: played "Godsmack - Bulletproof.mp3"
+2025-05-01T14:34:21 player: played "Laura Branigan - Self Control.mp3"
+2025-05-01T14:34:25 player: played "Bell.wav"
+2025-05-01T14:34:26 player: played "Alex Jones - How can I serve you Lord.mp3"
+2025-05-01T14:34:28 player: played "Bell.mp3"
+2025-05-01T14:34:29 player: played "Bell.wav"
+2025-05-01T14:34:31 player: played "Casiopea - Various.mp3"
+2025-05-01T14:34:34 player: played "Dan Gibson - Solitudes (Gregorian Chant).mp3"
+2025-05-01T14:34:37 player: played "Godsmack - Bulletproof.mp3"
+2025-05-01T14:34:41 player: played "Laura Branigan - Self Control.mp3"
+2025-05-01T14:37:44 player: played "Casiopea - Various.mp3"
+2025-05-01T14:37:47 player: played "Dan Gibson - Solitudes (Gregorian Chant).mp3"
+2025-05-01T14:38:06 player: played "Laura Branigan - Self Control.mp3"
+2025-05-01T14:38:09 player: played "royalty free/karl casey - hackers.mp3"
+2025-05-01T14:38:11 player: played "Godsmack - Bulletproof.mp3"
+2025-05-01T14:39:58 update: added Genesis/We Can't Dance/Genesis - Jesus He Knows Me.mp3
+2025-05-01T14:41:53 update: removing Genesis - Jesus He Knows Me.mp3
+2025-05-01T14:42:27 player: played "Genesis - Jesus He Knows Me.mp3"
+2025-05-01T14:45:24 player: played "Godsmack - Bulletproof.mp3"

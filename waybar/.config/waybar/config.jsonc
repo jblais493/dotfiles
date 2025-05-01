@@ -76,7 +76,7 @@
     "mpd": {
         "format": "    {artist} - {title}",
         "format-disconnected": "Disconnected ",
-        "format-stopped": "{stateIcon} Stopped ",
+        "format-stopped": "",
         "unknown-tag": "N/A",
         "interval": 2,
         "consume-icons": {
