@@ -1782,6 +1782,7 @@ I have various functions in my lisp directory for creating pomodoros, refiling d
 ** Functions
 #+begin_src elisp
 ;; lisp functions
+(load! "lisp/nm")
 (load! "lisp/pomodoro")
 (load! "lisp/done-refile")
 (load! "lisp/mu4e-contact")

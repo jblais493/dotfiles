@@ -1560,6 +1560,7 @@ WHERE tablename = '%s';" table-name)))
   (set-popup-rule! "^\\*eww\\*" :ignore t))
 
 ;; lisp functions
+(load! "lisp/nm")
 (load! "lisp/pomodoro")
 (load! "lisp/done-refile")
 (load! "lisp/mu4e-contact")
