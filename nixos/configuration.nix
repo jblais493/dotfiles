@@ -182,6 +182,10 @@
 	  fastfetch
     flatpak
 
+    # Music and media
+    mpd
+    mpc
+
     # Hyprland
 	  waybar
     hyprwayland-scanner
