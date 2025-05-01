@@ -253,7 +253,7 @@ alias stopvpn="sudo systemctl stop wg-quick@wg0"
 # Payouts
 alias letterhead="cd /mnt/nomad/TrueNAS/Revere/Revere\ LATEST/Logos\ and\ Assets/Letterhead/2022/"
 alias eftinfo="gimp /mnt/nomad/TrueNAS/Revere/Revere\ LATEST/Logos\ and\ Assets/Letterhead/2022/Paid\ by\ EFT.xcf"
-alias invoice="gimp ~/Revere/Logos and Assets/Letterhead/2022/Invoice Template.xcf"
+alias invoice="gimp ~/Revere/Logos\ and\ Assets/Letterhead/2022/Invoice\ Template.xcf"
 alias cashback="gimp ~/Revere/Logos\ and\ Assets/Letterhead/2022/Cashback\ Template.xcf"
 alias payout="gimp ~/Revere/Systems/Templates/Invoicing\ Templates/Paystub\ Template.xcf"
 alias payoutCody="gimp ~/Revere/Brokerage/Alberta/Edmonton/Agents/Paystubs/Paystub\ -\ Cody\ Serediak.xcf"
