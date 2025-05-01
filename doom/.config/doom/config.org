@@ -1441,7 +1441,7 @@ WHERE tablename = '%s';" table-name)))
 * Media and Communications
 ** EMMS
 #+begin_src elisp
-;; EMMS full configuration with Nord theme and centered layout
+;; EMMS full configuration with Nord theme, centered layout, and swaync notifications
 (emms-all)
 (emms-default-players)
 (emms-mode-line-mode 1)
@@ -1455,6 +1455,17 @@ WHERE tablename = '%s';" table-name)))
       emms-playlist-buffer-name "*Music*"
       emms-info-asynchronously t
       emms-source-file-directory-tree-function 'emms-source-file-directory-tree-find)
+
+;; MPD integration
+(require 'emms-player-mpd)
+(setq emms-player-mpd-server-name "localhost")
+(setq emms-player-mpd-server-port "6600")
+(setq emms-player-mpd-music-directory "~/Music") ;; Make sure this matches your music directory
+
+;; Connect to MPD and add it to player list and info functions
+(add-to-list 'emms-player-list 'emms-player-mpd)
+(add-to-list 'emms-info-functions 'emms-info-mpd)
+(emms-player-mpd-connect)
 
 ;; Ensure players are properly set up
 (setq emms-player-list '(emms-player-mpd
@@ -1523,17 +1534,63 @@ WHERE tablename = '%s';" table-name)))
        :desc "Emms pause track"         "x" #'emms-pause
        :desc "Emms stop track"          "s" #'emms-stop
        :desc "Emms play previous track" "b" #'emms-previous
-       :desc "Emms play next track"     "n" #'emms-next))
+       :desc "Emms play next track"     "n" #'emms-next
+       :desc "EMMS Browser"             "o" #'emms-browser))
 
-;; Cover art function
+;; Enhanced cover art function (used by both browser and notifications)
 (defun emms-cover-art-path ()
   "Return the path of the cover art for the current track."
   (let* ((track (emms-playlist-current-selected-track))
          (path (emms-track-get track 'name))
          (dir (file-name-directory path))
-         (cover-files (directory-files dir nil ".*\\(jpg\\|png\\|jpeg\\)$")))
-    (when cover-files
-      (concat dir (car cover-files)))))
+         ;; Check standard cover filenames first
+         (standard-files '("cover.jpg" "cover.png" "folder.jpg" "folder.png"
+                         "album.jpg" "album.png" "front.jpg" "front.png"))
+         (standard-cover (cl-find-if
+                         (lambda (file)
+                           (file-exists-p (expand-file-name file dir)))
+                         standard-files)))
+    (if standard-cover
+        (expand-file-name standard-cover dir)
+      ;; If standard files aren't found, try any image in the directory
+      (let ((cover-files (directory-files dir nil ".*\\(jpg\\|png\\|jpeg\\)$")))
+        (when cover-files
+          (expand-file-name (car cover-files) dir))))))
+
+;; Swaync notification function with cover art
+(defun emms-notify-song-change-with-artwork ()
+  "Send song change notification with album artwork to swaync via libnotify"
+  (let* ((track (emms-playlist-current-selected-track))
+         (artist (or (emms-track-get track 'info-artist) "Unknown Artist"))
+         (title (or (emms-track-get track 'info-title) "Unknown Title"))
+         (album (or (emms-track-get track 'info-album) "Unknown Album"))
+         ;; Use our existing cover art function
+         (cover-image (emms-cover-art-path)))
+
+    ;; Send notification with artwork if available
+    (apply #'start-process
+           "emms-notify" nil "notify-send"
+           "-a" "EMMS"               ;; Application name
+           "-c" "music"              ;; Category
+           (append
+            ;; Add artwork if found
+            (when cover-image
+              (list "-i" cover-image))
+            ;; Summary and body
+            (list
+             (format "Now Playing: %s" title)
+             (format "Artist: %s\nAlbum: %s" artist album))))))
+
+;; Add the notification function to hook
+(add-hook 'emms-player-started-hook 'emms-notify-song-change-with-artwork)
+
+;; Waybar MPD integration helper - optional signal to waybar on track change
+(defun emms-signal-waybar-mpd-update ()
+  "Signal waybar to update its MPD widget"
+  (start-process "emms-signal-waybar" nil "pkill" "-RTMIN+8" "waybar"))
+
+;; Add the waybar signal function to hook (optional, uncomment if using waybar)
+;; (add-hook 'emms-player-started-hook 'emms-signal-waybar-mpd-update)
 #+end_src
 
 ** Reading
