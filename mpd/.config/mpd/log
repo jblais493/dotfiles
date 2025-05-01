@@ -45,3 +45,85 @@
 2025-05-01T14:41:53 update: removing Genesis - Jesus He Knows Me.mp3
 2025-05-01T14:42:27 player: played "Genesis - Jesus He Knows Me.mp3"
 2025-05-01T14:45:24 player: played "Godsmack - Bulletproof.mp3"
+2025-05-01T14:47:01 exception: Failed to decode "/home/joshua/Music/Genesis - Jesus He Knows Me.mp3"; Failed to open "/home/joshua/Music/Genesis - Jesus He Knows Me.mp3": No such file or directory
+2025-05-01T14:47:01 player: played "Genesis - Jesus He Knows Me.mp3"
+2025-05-01T14:47:01 exception: Failed to decode "/home/joshua/Music/Genesis - Jesus He Knows Me.mp3"; Failed to open "/home/joshua/Music/Genesis - Jesus He Knows Me.mp3": No such file or directory
+2025-05-01T14:47:01 exception: Failed to decode "/home/joshua/Music/Genesis - Jesus He Knows Me.mp3"; Failed to open "/home/joshua/Music/Genesis - Jesus He Knows Me.mp3": No such file or directory
+2025-05-01T14:47:01 player: played "Genesis - Jesus He Knows Me.mp3"
+2025-05-01T14:47:01 exception: Failed to decode "/home/joshua/Music/Genesis - Jesus He Knows Me.mp3"; Failed to open "/home/joshua/Music/Genesis - Jesus He Knows Me.mp3": No such file or directory
+2025-05-01T14:47:02 exception: Failed to decode "/home/joshua/Music/Genesis - Jesus He Knows Me.mp3"; Failed to open "/home/joshua/Music/Genesis - Jesus He Knows Me.mp3": No such file or directory
+2025-05-01T14:47:02 player: played "Genesis - Jesus He Knows Me.mp3"
+2025-05-01T14:47:02 exception: Failed to decode "/home/joshua/Music/Genesis - Jesus He Knows Me.mp3"; Failed to open "/home/joshua/Music/Genesis - Jesus He Knows Me.mp3": No such file or directory
+2025-05-01T14:47:02 exception: Failed to decode "/home/joshua/Music/Genesis - Jesus He Knows Me.mp3"; Failed to open "/home/joshua/Music/Genesis - Jesus He Knows Me.mp3": No such file or directory
+2025-05-01T14:47:02 player: played "Genesis - Jesus He Knows Me.mp3"
+2025-05-01T14:47:02 exception: Failed to decode "/home/joshua/Music/Genesis - Jesus He Knows Me.mp3"; Failed to open "/home/joshua/Music/Genesis - Jesus He Knows Me.mp3": No such file or directory
+2025-05-01T14:47:02 exception: Failed to decode "/home/joshua/Music/Genesis - Jesus He Knows Me.mp3"; Failed to open "/home/joshua/Music/Genesis - Jesus He Knows Me.mp3": No such file or directory
+2025-05-01T14:47:02 player: played "Genesis - Jesus He Knows Me.mp3"
+2025-05-01T14:47:02 exception: Failed to decode "/home/joshua/Music/Genesis - Jesus He Knows Me.mp3"; Failed to open "/home/joshua/Music/Genesis - Jesus He Knows Me.mp3": No such file or directory
+2025-05-01T14:47:02 exception: Failed to decode "/home/joshua/Music/Genesis - Jesus He Knows Me.mp3"; Failed to open "/home/joshua/Music/Genesis - Jesus He Knows Me.mp3": No such file or directory
+2025-05-01T14:47:02 player: played "Genesis - Jesus He Knows Me.mp3"
+2025-05-01T14:47:02 exception: Failed to decode "/home/joshua/Music/Genesis - Jesus He Knows Me.mp3"; Failed to open "/home/joshua/Music/Genesis - Jesus He Knows Me.mp3": No such file or directory
+2025-05-01T14:47:02 exception: Failed to decode "/home/joshua/Music/Genesis - Jesus He Knows Me.mp3"; Failed to open "/home/joshua/Music/Genesis - Jesus He Knows Me.mp3": No such file or directory
+2025-05-01T14:47:02 player: played "Genesis - Jesus He Knows Me.mp3"
+2025-05-01T14:47:02 exception: Failed to decode "/home/joshua/Music/Genesis - Jesus He Knows Me.mp3"; Failed to open "/home/joshua/Music/Genesis - Jesus He Knows Me.mp3": No such file or directory
+2025-05-01T14:47:07 player: played "Godsmack - Bulletproof.mp3"
+2025-05-01T14:47:07 exception: Failed to decode "/home/joshua/Music/Genesis - Jesus He Knows Me.mp3"; Failed to open "/home/joshua/Music/Genesis - Jesus He Knows Me.mp3": No such file or directory
+2025-05-01T14:47:07 player: played "Genesis - Jesus He Knows Me.mp3"
+2025-05-01T14:47:09 player: played "Godsmack - Bulletproof.mp3"
+2025-05-01T14:47:18 exception: Failed to decode "/home/joshua/Music/Genesis - Jesus He Knows Me.mp3"; Failed to open "/home/joshua/Music/Genesis - Jesus He Knows Me.mp3": No such file or directory
+2025-05-01T14:47:18 player: played "Genesis - Jesus He Knows Me.mp3"
+2025-05-01T14:47:18 exception: Failed to decode "/home/joshua/Music/Genesis - Jesus He Knows Me.mp3"; Failed to open "/home/joshua/Music/Genesis - Jesus He Knows Me.mp3": No such file or directory
+[src/libmpg123/id3.c:INT123_parse_new_id3():1073] error: ID3v2: non-syncsafe size of CTOC frame, skipping the remainder of tag
+2025-05-01T14:52:37 player: played "夜のフライト - Shinjuku 1980.mp3"
+2025-05-01T14:52:48 exception: Failed to decode "/home/joshua/Music/Genesis - Jesus He Knows Me.mp3"; Failed to open "/home/joshua/Music/Genesis - Jesus He Knows Me.mp3": No such file or directory
+2025-05-01T14:52:48 player: played "Genesis - Jesus He Knows Me.mp3"
+2025-05-01T14:52:50 player: played "Godsmack - Bulletproof.mp3"
+2025-05-01T14:52:51 player: played "Alex Jones - How can I serve you Lord.mp3"
+2025-05-01T14:52:53 player: played "Bell.mp3"
+2025-05-01T14:52:54 player: played "Bell.wav"
+2025-05-01T14:52:57 player: played "Casiopea - Various.mp3"
+2025-05-01T14:53:07 player: played "Dan Gibson - Solitudes (Gregorian Chant).mp3"
+2025-05-01T14:53:07 exception: Failed to decode "/home/joshua/Music/Genesis - Jesus He Knows Me.mp3"; Failed to open "/home/joshua/Music/Genesis - Jesus He Knows Me.mp3": No such file or directory
+2025-05-01T14:53:07 player: played "Genesis - Jesus He Knows Me.mp3"
+2025-05-01T15:00:27 exception: Failed to decode "/home/joshua/Music/Genesis - Jesus He Knows Me.mp3"; Failed to open "/home/joshua/Music/Genesis - Jesus He Knows Me.mp3": No such file or directory
+2025-05-01T15:00:27 player: played "Genesis - Jesus He Knows Me.mp3"
+2025-05-01T15:00:27 exception: Failed to decode "/home/joshua/Music/Genesis - Jesus He Knows Me.mp3"; Failed to open "/home/joshua/Music/Genesis - Jesus He Knows Me.mp3": No such file or directory
+2025-05-01T15:00:28 exception: Failed to decode "/home/joshua/Music/Genesis - Jesus He Knows Me.mp3"; Failed to open "/home/joshua/Music/Genesis - Jesus He Knows Me.mp3": No such file or directory
+2025-05-01T15:00:28 player: played "Genesis - Jesus He Knows Me.mp3"
+2025-05-01T15:00:28 exception: Failed to decode "/home/joshua/Music/Genesis - Jesus He Knows Me.mp3"; Failed to open "/home/joshua/Music/Genesis - Jesus He Knows Me.mp3": No such file or directory
+2025-05-01T15:00:28 exception: Failed to decode "/home/joshua/Music/Genesis - Jesus He Knows Me.mp3"; Failed to open "/home/joshua/Music/Genesis - Jesus He Knows Me.mp3": No such file or directory
+2025-05-01T15:00:28 player: played "Genesis - Jesus He Knows Me.mp3"
+2025-05-01T15:00:28 exception: Failed to decode "/home/joshua/Music/Genesis - Jesus He Knows Me.mp3"; Failed to open "/home/joshua/Music/Genesis - Jesus He Knows Me.mp3": No such file or directory
+2025-05-01T15:00:29 exception: Failed to decode "/home/joshua/Music/Genesis - Jesus He Knows Me.mp3"; Failed to open "/home/joshua/Music/Genesis - Jesus He Knows Me.mp3": No such file or directory
+2025-05-01T15:00:29 player: played "Genesis - Jesus He Knows Me.mp3"
+2025-05-01T15:00:29 exception: Failed to decode "/home/joshua/Music/Genesis - Jesus He Knows Me.mp3"; Failed to open "/home/joshua/Music/Genesis - Jesus He Knows Me.mp3": No such file or directory
+2025-05-01T15:01:01 player: played "Godsmack - Bulletproof.mp3"
+2025-05-01T15:01:01 exception: Failed to decode "/home/joshua/Music/Genesis - Jesus He Knows Me.mp3"; Failed to open "/home/joshua/Music/Genesis - Jesus He Knows Me.mp3": No such file or directory
+2025-05-01T15:01:01 player: played "Genesis - Jesus He Knows Me.mp3"
+2025-05-01T15:01:02 player: played "Godsmack - Bulletproof.mp3"
+2025-05-01T15:01:18 player: played "Dan Gibson - Solitudes (Gregorian Chant).mp3"
+2025-05-01T15:01:19 exception: No such directory
+[src/libmpg123/id3.c:INT123_parse_new_id3():1073] error: ID3v2: non-syncsafe size of CTOC frame, skipping the remainder of tag
+2025-05-01T15:02:12 player: played "Genesis/We Can't Dance/Genesis - Jesus He Knows Me.mp3"
+2025-05-01T15:02:12 exception: No such directory
+2025-05-01T15:02:14 player: played "1638 - Miserere Mei.mp3"
+2025-05-01T15:02:15 player: played "Alex Jones - How can I serve you Lord.mp3"
+2025-05-01T15:02:16 player: played "Bell.mp3"
+2025-05-01T15:02:17 player: played "Bell.wav"
+2025-05-01T15:02:19 player: played "Casiopea - Various.mp3"
+2025-05-01T15:02:21 player: played "Dan Gibson - Solitudes (Gregorian Chant).mp3"
+2025-05-01T15:02:23 player: played "Godsmack - Bulletproof.mp3"
+2025-05-01T15:05:18 player: played "Laura Branigan - Self Control.mp3"
+2025-05-01T15:05:57 player: played "Laura Branigan - Self Control.mp3"
+2025-05-01T15:06:00 player: played "Bell.wav"
+2025-05-01T15:06:02 player: played "Casiopea - Various.mp3"
+[src/libmpg123/id3.c:INT123_parse_new_id3():1073] error: ID3v2: non-syncsafe size of CTOC frame, skipping the remainder of tag
+2025-05-01T15:06:14 ffmpeg/opus: Could not update timestamps for skipped samples.
+2025-05-01T15:06:14 ffmpeg/opus: Could not update timestamps for discarded samples.
+2025-05-01T15:06:16 player: played "Philip Stopford - Lully, Lulla, Lullay.mp3"
+2025-05-01T15:06:32 player: played "Genesis/We Can't Dance/Genesis - Jesus He Knows Me.mp3"
+2025-05-01T15:08:05 player: played "1638 - Miserere Mei.mp3"
+2025-05-01T15:08:08 player: played "Godsmack - Bulletproof.mp3"
+2025-05-01T15:08:14 player: played "Dan Gibson - Solitudes (Gregorian Chant).mp3"
+2025-05-01T15:08:16 player: played "Godsmack - Bulletproof.mp3"
+2025-05-01T15:08:23 player: played "Laura Branigan - Self Control.mp3"
