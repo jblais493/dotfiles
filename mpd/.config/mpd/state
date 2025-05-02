@@ -2,9 +2,9 @@ sw_volume: 100
 audio_device_state:1:Pulse Audio
 audio_device_state:1:album_art
 audio_device_state:1:HTTP Stream
-state: pause
-current: 7
-time: 47.08
+state: play
+current: 15
+time: 120.12400000000001
 random: 0
 repeat: 0
 single: 0
