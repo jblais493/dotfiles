@@ -148,6 +148,10 @@
 	  coreutils
 	  gnumake
     sdbus-cpp
+    jq
+    imagemagick
+    atomicparsley
+    python312Packages.eyed3
 
     # Emacs
 	  emacs
