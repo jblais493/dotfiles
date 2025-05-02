@@ -15,7 +15,8 @@ window#waybar {
   transition-property: background-color;
   transition-duration: 0.5s;
   border-radius: 10px;
-  margin: 5px 5px 0 5px; /* Add some margin at the top */
+  margin: 5px 0 0 0; /* Only keep margin at the top */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 
 window#waybar.hidden {
@@ -68,6 +69,13 @@ button:hover {
   background-color: #bf616a; /* Nord aurora red */
 }
 
+.modules-right {
+  background: rgba(59, 66, 82, 0.5);
+  border-radius: 10px;
+  margin: 5px;
+  padding: 0 5px;
+}
+
 #mode {
   background-color: #4c566a; /* Nord polar night lightest shade */
   border-bottom: 3px solid #88c0d0; /* Nord frost blue */
@@ -92,8 +100,7 @@ button:hover {
 #mpd {
   padding: 0 8px; /* Reduced padding from 10px to 8px */
   color: #e5e9f0; /* Nord snow storm */
-  background: rgba(59, 66, 82, 0.5); /* Same as workspaces background */
-  border-radius: 10px;
+  background: transparent; /* Remove individual backgrounds */
   margin: 5px 2px; /* 5px vertical margin, 2px horizontal to bring closer */
 }
 
