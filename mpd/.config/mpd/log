@@ -127,3 +127,194 @@
 2025-05-01T15:08:14 player: played "Dan Gibson - Solitudes (Gregorian Chant).mp3"
 2025-05-01T15:08:16 player: played "Godsmack - Bulletproof.mp3"
 2025-05-01T15:08:23 player: played "Laura Branigan - Self Control.mp3"
+2025-05-01T15:53:44 player: played "The Midnight - Sunset.mp3"
+2025-05-01T15:53:48 player: played "Genesis/We Can't Dance/Genesis - Jesus He Knows Me.mp3"
+2025-05-01T15:53:49 player: played "Godsmack - Bulletproof.mp3"
+2025-05-01T15:55:26 update: added Godsmack/When Legends Rise/Godsmack - Bulletproof.mp3
+2025-05-01T15:55:37 update: added The Midnight/The Midnight - Full Disography.webm
+2025-05-01T15:56:46 update: added The Midnight/The Midnight - Brooklyn.mp3
+2025-05-01T15:56:46 update: added The Midnight/The Midnight - Fire In The Sky.mp3
+2025-05-01T15:56:46 update: added The Midnight/The Midnight - Last Train.webm
+2025-05-01T15:56:46 update: added The Midnight/The Midnight - Sunset.mp3
+2025-05-01T15:57:26 exception: Failed to decode "/home/joshua/Music/Godsmack - Bulletproof.mp3"; Failed to open "/home/joshua/Music/Godsmack - Bulletproof.mp3": No such file or directory
+2025-05-01T15:58:02 update: added The Midnight/Monsters/The Midnight - Brooklyn.mp3
+2025-05-01T15:58:02 update: added The Midnight/Monsters/The Midnight - Fire In The Sky.mp3
+2025-05-01T15:58:02 update: removing The Midnight/The Midnight - Brooklyn.mp3
+2025-05-01T15:58:02 update: removing The Midnight/The Midnight - Fire In The Sky.mp3
+2025-05-01T15:58:05 player: played "Genesis/We Can't Dance/Genesis - Jesus He Knows Me.mp3"
+2025-05-01T15:58:05 player: played "Godsmack - Bulletproof.mp3"
+2025-05-01T15:58:05 exception: Failed to decode "/home/joshua/Music/Godsmack - Bulletproof.mp3"; Failed to open "/home/joshua/Music/Godsmack - Bulletproof.mp3": No such file or directory
+2025-05-01T15:58:05 player: played "Godsmack - Bulletproof.mp3"
+2025-05-01T15:58:25 update: added The Midnight/Monsters/The Midnight - Last Train.webm
+2025-05-01T15:58:25 update: removing The Midnight/The Midnight - Last Train.webm
+2025-05-01T15:59:10 update: added The Midnight/Endless Summer/The Midnight - Sunset.mp3
+2025-05-01T15:59:10 update: removing The Midnight/The Midnight - Sunset.mp3
+2025-05-01T16:00:44 update: removing The Midnight - Brooklyn.mp3
+2025-05-01T16:00:44 update: removing The Midnight - Fire In The Sky.mp3
+2025-05-01T16:00:44 update: removing The Midnight - Last Train.webm
+2025-05-01T16:00:44 update: removing The Midnight - Sunset.mp3
+2025-05-01T16:00:44 update: removing The Midnight - Full Disography.webm
+2025-05-01T16:00:44 update: removing Godsmack - Bulletproof.mp3
+2025-05-01T16:01:06 player: played "Bell.wav"
+2025-05-01T16:01:07 exception: No such directory
+2025-05-01T16:01:07 exception: No such directory
+2025-05-01T16:01:07 exception: No such directory
+2025-05-01T16:01:07 exception: No such directory
+2025-05-01T16:01:14 player: played "Dan Gibson - Solitudes (Gregorian Chant).mp3"
+2025-05-01T16:01:15 player: played "royalty free/password-infinity-123276.mp3"
+[src/libmpg123/id3.c:INT123_parse_new_id3():1073] error: ID3v2: non-syncsafe size of CTOC frame, skipping the remainder of tag
+2025-05-01T16:01:18 player: played "夜のフライト - Shinjuku 1980.mp3"
+2025-05-01T16:01:18 exception: Bad song index
+2025-05-01T16:01:24 player: played "Casiopea - Various.mp3"
+2025-05-01T16:02:08 player: played "Dan Gibson - Solitudes (Gregorian Chant).mp3"
+2025-05-01T16:02:09 exception: Bad song index
+2025-05-01T16:02:12 exception: Bad song index
+2025-05-01T16:02:14 exception: Bad song index
+2025-05-01T16:02:21 exception: Bad song index
+2025-05-01T16:02:29 exception: Bad song index
+2025-05-01T16:02:30 exception: Bad song index
+2025-05-01T16:02:38 player: played "Dan Gibson - Solitudes (Gregorian Chant).mp3"
+2025-05-01T16:02:40 player: played "The Midnight/Endless Summer/The Midnight - Sunset.mp3"
+2025-05-01T16:02:42 player: played "The Midnight/Monsters/The Midnight - Fire In The Sky.mp3"
+2025-05-01T16:03:31 player: played "The Midnight/Monsters/The Midnight - Brooklyn.mp3"
+2025-05-01T16:03:33 exception: Not playing
+2025-05-01T16:03:33 exception: Not playing
+2025-05-01T16:03:41 player: played "royalty free/password-infinity-123276.mp3"
+2025-05-01T16:03:43 player: played "Alex Jones - How can I serve you Lord.mp3"
+2025-05-01T16:03:44 player: played "Bell.mp3"
+2025-05-01T16:03:45 player: played "Bell.wav"
+2025-05-01T16:04:59 update: added Casiopea/Mint Jams/Casiopea - Various.mp3
+2025-05-01T16:06:05 update: added Skeler/Night Drive/Skeler - N i g h t D r i v e スケラー PART IV (Phonk-Wave).m4a
+2025-05-01T16:06:39 update: added royalty free/Bell.mp3
+2025-05-01T16:06:39 update: added royalty free/Bell.wav
+2025-05-01T16:06:46 update: added royalty free/Alex Jones - How can I serve you Lord.mp3
+2025-05-01T16:07:02 update: added Dan Gibson/Solitudes/Dan Gibson - Solitudes (Gregorian Chant).mp3
+2025-05-01T16:08:09 update: added Kaiser Snap/Let's Go Somewhere/Kaiser Snap - Let's Go Somewhere.m4a
+2025-05-01T16:08:29 update: added FM-84/Atlas/FM-84 - Atlas (Full album).webm
+2025-05-01T16:08:49 player: played "The Midnight/Endless Summer/The Midnight - Sunset.mp3"
+2025-05-01T16:12:57 player: played "The Midnight/Monsters/The Midnight - Fire In The Sky.mp3"
+2025-05-01T16:13:14 update: added Laura Branigan/Self Control/Laura Branigan - Self Control.mp3
+2025-05-01T16:14:13 update: added Philip Stopford/Lully Lulla Lullay/Philip Stopford - Lully, Lulla, Lullay.mp3
+2025-05-01T16:14:39 player: played "The Midnight/Monsters/The Midnight - Brooklyn.mp3"
+2025-05-01T16:14:40 exception: Not playing
+2025-05-01T16:14:41 exception: Not playing
+2025-05-01T16:14:41 exception: Not playing
+2025-05-01T16:14:41 exception: Not playing
+2025-05-01T16:14:50 player: played "1638 - Miserere Mei.mp3"
+2025-05-01T16:15:05 player: played "Godsmack/When Legends Rise/Godsmack - Bulletproof.mp3"
+2025-05-01T16:15:07 player: played "Dan Gibson/Solitudes/Dan Gibson - Solitudes (Gregorian Chant).mp3"
+2025-05-01T16:16:58 exception: Bad song index
+2025-05-01T16:17:01 exception: Bad song index
+2025-05-01T16:17:03 exception: Bad song index
+2025-05-01T16:17:05 exception: Bad song index
+2025-05-01T16:23:06 player: played "royalty free/karl casey - hackers.mp3"
+2025-05-01T16:23:33 pipewire_output: Decoder is too slow; playing silence to avoid xrun
+[src/libmpg123/id3.c:INT123_parse_new_id3():1073] error: ID3v2: non-syncsafe size of CTOC frame, skipping the remainder of tag
+2025-05-01T16:23:37 player: played "夜のフライト - Shinjuku 1980.mp3"
+2025-05-01T16:23:39 exception: Not playing
+2025-05-01T16:23:39 exception: Not playing
+2025-05-01T16:23:40 exception: Not playing
+2025-05-01T16:23:40 exception: Not playing
+2025-05-01T16:23:40 exception: Not playing
+2025-05-01T16:23:40 exception: Not playing
+2025-05-01T16:23:40 exception: Not playing
+2025-05-01T16:23:40 exception: Not playing
+2025-05-01T16:23:49 player: played "Genesis/We Can't Dance/Genesis - Jesus He Knows Me.mp3"
+2025-05-01T16:23:51 player: played "Godsmack/When Legends Rise/Godsmack - Bulletproof.mp3"
+2025-05-01T16:23:53 player: played "Dan Gibson/Solitudes/Dan Gibson - Solitudes (Gregorian Chant).mp3"
+2025-05-01T16:23:57 player: played "Casiopea/Mint Jams/Casiopea - Various.mp3"
+2025-05-01T16:24:06 player: played "Laura Branigan/Self Control/Laura Branigan - Self Control.mp3"
+2025-05-01T16:33:30 update: added Matsubara Miki/Pocket Park/Mayonaka no Door.mp3
+2025-05-01T16:37:41 update: added House of Blow/Banger.mp3
+2025-05-01T16:37:47 update: removing Laura Branigan - Self Control.mp3
+2025-05-01T16:37:47 update: removing Casiopea - Various.mp3
+2025-05-01T16:37:47 update: removing FM-84 - Atlas (Full album).webm
+2025-05-01T16:37:47 update: removing Skeler - N i g h t D r i v e スケラー PART IV (Phonk-Wave).m4a
+2025-05-01T16:37:47 update: removing Philip Stopford - Lully, Lulla, Lullay.mp3
+2025-05-01T16:37:47 update: removing Kaiser Snap - Let's Go Somewhere.m4a
+2025-05-01T16:37:47 update: removing Dan Gibson - Solitudes (Gregorian Chant).mp3
+2025-05-01T16:37:47 update: removing Bell.wav
+2025-05-01T16:37:47 update: removing Bell.mp3
+2025-05-01T16:37:47 update: removing Alex Jones - How can I serve you Lord.mp3
+2025-05-01T16:37:51 player: played "The Midnight/Endless Summer/The Midnight - Sunset.mp3"
+2025-05-01T16:38:11 player: played "The Midnight/Monsters/The Midnight - Brooklyn.mp3"
+2025-05-01T16:38:19 player: played "1638 - Miserere Mei.mp3"
+2025-05-01T16:38:23 player: played "Laura Branigan/Self Control/Laura Branigan - Self Control.mp3"
+2025-05-01T16:38:24 player: played "Godsmack/When Legends Rise/Godsmack - Bulletproof.mp3"
+2025-05-01T16:38:25 player: played "House of Blow/Banger.mp3"
+2025-05-01T16:38:27 player: played "House of Blow/Banger.mp3"
+2025-05-01T16:41:07 update: added /Darude - Sandstorm.mp3
+2025-05-01T16:43:11 update: added Darude/Sandstorm/Darude - Sandstorm.mp3
+2025-05-01T16:45:52 update: added Electronic/Gala, Molella, Phil Jay - Freed From Desire - prod. Molella, Phil Jay.mp3
+2025-05-01T16:46:56 player: played "Godsmack/When Legends Rise/Godsmack - Bulletproof.mp3"
+2025-05-01T16:47:02 player: played "1638 - Miserere Mei.mp3"
+2025-05-01T16:47:15 player: played "Electronic/Gala, Molella, Phil Jay - Freed From Desire - prod. Molella, Phil Jay.mp3"
+2025-05-01T16:47:20 player: played "The Midnight/Endless Summer/The Midnight - Sunset.mp3"
+2025-05-01T16:54:37 update: added /Snakehips, Jess Glynne, A Boogie Wit da Hoodie, Davido, Gorgon City - Lie for You (feat. A Boogie Wit Da Hoodie & Davido) - Gorgon City Remix.mp3
+2025-05-01T16:54:37 update: removing Darude - Sandstorm.mp3
+2025-05-01T16:55:03 player: played "The Midnight/Endless Summer/The Midnight - Sunset.mp3"
+2025-05-01T16:57:38 pipewire_output: Decoder is too slow; playing silence to avoid xrun
+2025-05-01T17:04:47 update: added /Jay Pryor - Aside.mp3
+2025-05-01T17:06:57 update: added /Kisch - Bright Lights.mp3
+2025-05-01T17:11:04 update: added /DJ Mayson - Anywhere You Go.mp3
+2025-05-01T17:16:30 update: added /Nora En Pure, Tim Morrison - Come Away.mp3
+2025-05-01T17:26:49 update: added /Mr. Green - What Can I Say.mp3
+2025-05-01T17:28:32 update: added /Tritonal, Brigetta - Born Yesterday.mp3
+2025-05-01T17:30:33 update: added /Caleb Laurenson - It Ain't Right.mp3
+2025-05-01T17:47:20 update: added /Junko Ohashi - テレフォン・ナンバー.mp3
+2025-05-01T18:03:24 player: played "Laura Branigan/Self Control/Laura Branigan - Self Control.mp3"
+2025-05-01T18:08:49 player: played "Matsubara Miki/Pocket Park/Mayonaka no Door.mp3"
+2025-05-01T18:13:56 player: played "The Midnight/Monsters/The Midnight - Fire In The Sky.mp3"
+2025-05-01T18:26:12 player: played "Junko Ohashi - テレフォン・ナンバー.mp3"
+2025-05-01T18:26:17 player: played "Kisch - Bright Lights.mp3"
+2025-05-01T18:40:44 player: played "Mr. Green - What Can I Say.mp3"
+2025-05-01T18:42:50 update: added /Various - Progressive Trance Mix.webm
+2025-05-01T18:42:50 update: added /levelup - levelup.webm
+2025-05-01T18:42:51 update: added /Runescape - Original Classics.m4a
+2025-05-01T18:42:51 update: added /1638 - Miserere Mei.mp3
+2025-05-01T18:42:51 update: added royalty free/password-infinity-123276.mp3
+2025-05-01T18:42:51 update: added royalty free/karl casey - hackers.mp3
+2025-05-01T18:42:51 update: added royalty free/Bell.mp3
+2025-05-01T18:42:51 update: added royalty free/Bell.wav
+2025-05-01T18:42:51 update: added royalty free/Alex Jones - How can I serve you Lord.mp3
+[src/libmpg123/id3.c:INT123_parse_new_id3():1073] error: ID3v2: non-syncsafe size of CTOC frame, skipping the remainder of tag
+2025-05-01T18:42:51 update: added /夜のフライト - Shinjuku 1980.mp3
+2025-05-01T18:42:51 update: added Genesis/We Can't Dance/Genesis - Jesus He Knows Me.mp3
+2025-05-01T18:42:51 update: added Dan Gibson/Solitudes/Dan Gibson - Solitudes (Gregorian Chant).mp3
+2025-05-01T18:42:51 update: added The Midnight/The Midnight - Full Disography.webm
+2025-05-01T18:42:51 update: added The Midnight/Monsters/The Midnight - Brooklyn.mp3
+2025-05-01T18:42:51 update: added The Midnight/Monsters/The Midnight - Fire In The Sky.mp3
+2025-05-01T18:42:51 update: added The Midnight/Monsters/The Midnight - Last Train.webm
+2025-05-01T18:42:51 update: added The Midnight/Endless Summer/The Midnight - Sunset.mp3
+2025-05-01T18:42:51 update: added Godsmack/When Legends Rise/Godsmack - Bulletproof.mp3
+2025-05-01T18:42:51 update: added Casiopea/Mint Jams/Casiopea - Various.mp3
+2025-05-01T18:42:51 update: added Skeler/Night Drive/Skeler - N i g h t D r i v e スケラー PART IV (Phonk-Wave).m4a
+2025-05-01T18:42:51 update: added Kaiser Snap/Let's Go Somewhere/Kaiser Snap - Let's Go Somewhere.m4a
+2025-05-01T18:42:51 update: added FM-84/Atlas/FM-84 - Atlas (Full album).webm
+2025-05-01T18:42:51 update: added Laura Branigan/Self Control/Laura Branigan - Self Control.mp3
+2025-05-01T18:42:51 update: added Philip Stopford/Lully Lulla Lullay/Philip Stopford - Lully, Lulla, Lullay.mp3
+2025-05-01T18:42:51 update: added Matsubara Miki/Pocket Park/Mayonaka no Door.mp3
+2025-05-01T18:42:51 update: added House of Blow/Banger.mp3
+2025-05-01T18:42:51 update: added Darude/Sandstorm/Darude - Sandstorm.mp3
+2025-05-01T18:42:51 update: added Electronic/Gala, Molella, Phil Jay - Freed From Desire - prod. Molella, Phil Jay.mp3
+2025-05-01T18:42:51 update: added /Snakehips, Jess Glynne, A Boogie Wit da Hoodie, Davido, Gorgon City - Lie for You (feat. A Boogie Wit Da Hoodie & Davido) - Gorgon City Remix.mp3
+2025-05-01T18:42:51 update: added /Jay Pryor - Aside.mp3
+2025-05-01T18:42:51 update: added /Kisch - Bright Lights.mp3
+2025-05-01T18:42:51 update: added /DJ Mayson - Anywhere You Go.mp3
+2025-05-01T18:42:51 update: added /Nora En Pure, Tim Morrison - Come Away.mp3
+2025-05-01T18:42:51 update: added /Mr. Green - What Can I Say.mp3
+2025-05-01T18:42:51 update: added /Tritonal, Brigetta - Born Yesterday.mp3
+2025-05-01T18:42:51 update: added /Caleb Laurenson - It Ain't Right.mp3
+2025-05-01T18:42:51 update: added /Junko Ohashi - テレフォン・ナンバー.mp3
+2025-05-01T18:47:01 player: played "Laura Branigan/Self Control/Laura Branigan - Self Control.mp3"
+2025-05-01T18:47:05 player: played "royalty free/Bell.mp3"
+2025-05-01T18:47:08 player: played "royalty free/Bell.wav"
+2025-05-01T18:47:15 player: played "royalty free/Alex Jones - How can I serve you Lord.mp3"
+2025-05-01T18:47:18 player: played "royalty free/Bell.mp3"
+[src/libmpg123/id3.c:INT123_parse_new_id3():1073] error: ID3v2: non-syncsafe size of CTOC frame, skipping the remainder of tag
+2025-05-01T18:47:21 player: played "夜のフライト - Shinjuku 1980.mp3"
+2025-05-01T18:47:22 exception: Bad song index
+2025-05-01T18:47:33 player: played "Jay Pryor - Aside.mp3"
+2025-05-01T18:47:35 player: played "DJ Mayson - Anywhere You Go.mp3"
+2025-05-01T18:47:39 player: played "Dan Gibson/Solitudes/Dan Gibson - Solitudes (Gregorian Chant).mp3"
+2025-05-01T18:47:43 player: played "Darude/Sandstorm/Darude - Sandstorm.mp3"

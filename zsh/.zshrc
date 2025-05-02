@@ -276,7 +276,7 @@ alias qutebrowser="cd ~/.config/qutebrowser"
 alias shell="cd ~/.config/shell"
 alias scripts="cd ~/.config/scripts"
 alias books="cd ~/.config/scripts/bookmarks"
-alias kmon="kmonad ~/.config/kmonad/x230.kbd &"
+alias kmon="kmonad ~/.config/kmonad/config.kbd &"
 
 # Development
 alias work="arttime --nolearn -a eye -t 'For I consider that the sufferings of this present time are not worth comparing with the glory that is going to be revealed to us - Romans 8:18' -g 4h"
@@ -315,6 +315,7 @@ alias te="~/.config/scripts/edit_task.sh"
 alias tc="~/.config/scripts/add_contact.sh"
 alias rem="remind ~/.reminders/reminders.rem"
 alias ytmp3="~/.config/scripts/Media/ytmp3.sh"
+alias mpdupdate="~/.config/scripts/Media/mpdupdate.sh"
 
 bindkey -v
 bindkey -M viins 'kj' vi-cmd-mode
