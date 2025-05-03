@@ -159,6 +159,10 @@
     wmctrl
     vips # for dirvish thumbnails
 
+    # Networking
+    mullvad-vpn
+    mullvad
+
     # shell and terminal
 	  kitty
     fzf

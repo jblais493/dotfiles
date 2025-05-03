@@ -3,8 +3,8 @@ audio_device_state:1:Pulse Audio
 audio_device_state:1:album_art
 audio_device_state:1:HTTP Stream
 state: pause
-current: 18
-time: 39.678000000000004
+current: 14
+time: 133.092
 random: 0
 repeat: 0
 single: 0
@@ -15,32 +15,46 @@ mixrampdelay: -1
 lastloadedplaylist: 
 playlist_begin
 0:1638 - Miserere Mei.mp3
-1:Caleb Laurenson - It Ain't Right.mp3
-2:Casiopea/Mint Jams/Casiopea - Various.mp3
-3:DJ Mayson - Anywhere You Go.mp3
-4:Dan Gibson/Solitudes/Dan Gibson - Solitudes (Gregorian Chant).mp3
-5:Darude/Sandstorm/Darude - Sandstorm.mp3
-6:Electronic/Gala, Molella, Phil Jay - Freed From Desire - prod. Molella, Phil Jay.mp3
-7:Genesis/We Can't Dance/Genesis - Jesus He Knows Me.mp3
-8:Godsmack/When Legends Rise/Godsmack - Bulletproof.mp3
-9:House of Blow/Banger.mp3
-10:Jay Pryor - Aside.mp3
-11:Junko Ohashi - テレフォン・ナンバー.mp3
-12:Kisch - Bright Lights.mp3
-13:Laura Branigan/Self Control/Laura Branigan - Self Control.mp3
-14:Matsubara Miki/Pocket Park/Mayonaka no Door.mp3
-15:Mr. Green - What Can I Say.mp3
-16:Nora En Pure, Tim Morrison - Come Away.mp3
-17:Philip Stopford/Lully Lulla Lullay/Philip Stopford - Lully, Lulla, Lullay.mp3
-18:Snakehips, Jess Glynne, A Boogie Wit da Hoodie, Davido, Gorgon City - Lie for You (feat. A Boogie Wit Da Hoodie & Davido) - Gorgon City Remix.mp3
-19:The Midnight/Endless Summer/The Midnight - Sunset.mp3
-20:The Midnight/Monsters/The Midnight - Brooklyn.mp3
-21:The Midnight/Monsters/The Midnight - Fire In The Sky.mp3
-22:Tritonal, Brigetta - Born Yesterday.mp3
-23:royalty free/Alex Jones - How can I serve you Lord.mp3
-24:royalty free/Bell.mp3
-25:royalty free/Bell.wav
-26:royalty free/karl casey - hackers.mp3
-27:royalty free/password-infinity-123276.mp3
-28:夜のフライト - Shinjuku 1980.mp3
+1:levelup - levelup.webm
+2:Runescape - Original Classics.m4a
+3:Various - Progressive Trance Mix.webm
+4:夜のフライト - Shinjuku 1980.mp3
+5:DJ Mayson - Anywhere You Go.mp3
+6:Jay Pryor - Aside.mp3
+7:Tritonal, Brigetta - Born Yesterday.mp3
+8:Kisch - Bright Lights.mp3
+9:Mr. Green - What Can I Say.mp3
+10:Nora En Pure, Tim Morrison - Come Away.mp3
+11:Caleb Laurenson - It Ain't Right.mp3
+12:Snakehips, Jess Glynne, A Boogie Wit da Hoodie, Davido, Gorgon City - Lie for You (feat. A Boogie Wit Da Hoodie & Davido) - Gorgon City Remix.mp3
+13:Junko Ohashi - テレフォン・ナンバー.mp3
+14:Anri/Bi・Ki・Ni/Good Bye Boogie Dance.mp3
+15:Anri/Heaven Beach/Last Summer Whisper.mp3
+16:Anri/Timely!!/Driving My Love.mp3
+17:Anri/Timely!!/I CAN'T STOP THE LONELINESS.mp3
+18:Casiopea/Mint Jams/Casiopea - Various.mp3
+19:Dan Gibson/Solitudes/Dan Gibson - Solitudes (Gregorian Chant).mp3
+20:Darude/Sandstorm/Darude - Sandstorm.mp3
+21:Electronic/Gala, Molella, Phil Jay - Freed From Desire - prod. Molella, Phil Jay.mp3
+22:FM-84/Atlas/FM-84 - Atlas (Full album).webm
+23:Genesis/We Can't Dance/Genesis - Jesus He Knows Me.mp3
+24:Godsmack/When Legends Rise/Godsmack - Bulletproof.mp3
+25:House of Blow/Banger.mp3
+26:Japanese/Yasuha/フライディ・チャイナタウン/Fly Day Chinatown.mp3
+27:Junko Ohashi/For Tomorrow/Sweet Love.mp3
+28:Kaiser Snap/Let's Go Somewhere/Kaiser Snap - Let's Go Somewhere.m4a
+29:Laura Branigan/Self Control/Laura Branigan - Self Control.mp3
+30:Matsubara Miki/Pocket Park/Mayonaka no Door.mp3
+31:Philip Stopford/Lully Lulla Lullay/Philip Stopford - Lully, Lulla, Lullay.mp3
+32:royalty free/Alex Jones - How can I serve you Lord.mp3
+33:royalty free/Bell.mp3
+34:royalty free/Bell.wav
+35:royalty free/karl casey - hackers.mp3
+36:royalty free/password-infinity-123276.mp3
+37:Skeler/Night Drive/Skeler - N i g h t D r i v e スケラー PART IV (Phonk-Wave).m4a
+38:The Midnight/The Midnight - Full Disography.webm
+39:The Midnight/Endless Summer/The Midnight - Sunset.mp3
+40:The Midnight/Monsters/The Midnight - Last Train.webm
+41:The Midnight/Monsters/The Midnight - Fire In The Sky.mp3
+42:The Midnight/Monsters/The Midnight - Brooklyn.mp3
 playlist_end
