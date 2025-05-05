@@ -488,3 +488,227 @@
 2025-05-02T12:34:17 ffmpeg/opus: Could not update timestamps for skipped samples.
 2025-05-02T12:34:19 ffmpeg/opus: Could not update timestamps for skipped samples.
 2025-05-03T07:45:15 player: played "FM-84/Atlas/FM-84 - Atlas (Full album).webm"
+2025-05-03T22:10:21 update: added The Midnight/The Midnight - Kids (2018) Mp3 Album 320kbps Quality/4 - Lost Boy.mp3
+2025-05-03T22:10:21 update: added The Midnight/The Midnight - Kids (2018) Mp3 Album 320kbps Quality/8 - Arcade Dreams.mp3
+2025-05-03T22:10:21 update: added The Midnight/The Midnight - Kids (2018) Mp3 Album 320kbps Quality/1 - Youth.mp3
+2025-05-03T22:10:21 update: added The Midnight/The Midnight - Kids (2018) Mp3 Album 320kbps Quality/7 - America 2.mp3
+2025-05-03T22:10:21 update: added The Midnight/The Midnight - Kids (2018) Mp3 Album 320kbps Quality/3 - Kids (Prelude).mp3
+2025-05-03T22:10:21 update: added The Midnight/The Midnight - Kids (2018) Mp3 Album 320kbps Quality/6 - Explorers.mp3
+2025-05-03T22:10:21 update: added The Midnight/The Midnight - Kids (2018) Mp3 Album 320kbps Quality/2 - Wave.mp3
+2025-05-03T22:10:21 update: added The Midnight/The Midnight - Kids (2018) Mp3 Album 320kbps Quality/9 - Kids (Reprise).mp3
+2025-05-03T22:10:21 update: added The Midnight/The Midnight - Kids (2018) Mp3 Album 320kbps Quality/5 - Saturday Mornings (Interlude).mp3
+[src/libmpg123/id3.c:process_comment():587] error: No comment text / valid description?
+2025-05-03T22:10:34 update: added The Midnight/The Midnight - Monsters (2020) (2020) Mp3 320kbps [PMEDIA] ⭐️/10. Helvetica.mp3
+[src/libmpg123/id3.c:process_comment():587] error: No comment text / valid description?
+2025-05-03T22:10:34 update: added The Midnight/The Midnight - Monsters (2020) (2020) Mp3 320kbps [PMEDIA] ⭐️/06. The Search for Ecco.mp3
+[src/libmpg123/id3.c:process_comment():587] error: No comment text / valid description?
+2025-05-03T22:10:34 update: added The Midnight/The Midnight - Monsters (2020) (2020) Mp3 320kbps [PMEDIA] ⭐️/11. Brooklyn.mp3
+[src/libmpg123/id3.c:process_comment():587] error: No comment text / valid description?
+2025-05-03T22:10:34 update: added The Midnight/The Midnight - Monsters (2020) (2020) Mp3 320kbps [PMEDIA] ⭐️/12. Deep Blue.mp3
+[src/libmpg123/id3.c:process_comment():587] error: No comment text / valid description?
+2025-05-03T22:10:34 update: added The Midnight/The Midnight - Monsters (2020) (2020) Mp3 320kbps [PMEDIA] ⭐️/15. Last Train.mp3
+[src/libmpg123/id3.c:process_comment():587] error: No comment text / valid description?
+2025-05-03T22:10:34 update: added The Midnight/The Midnight - Monsters (2020) (2020) Mp3 320kbps [PMEDIA] ⭐️/08. Fire In The Sky.mp3
+[src/libmpg123/id3.c:process_comment():587] error: No comment text / valid description?
+2025-05-03T22:10:34 update: added The Midnight/The Midnight - Monsters (2020) (2020) Mp3 320kbps [PMEDIA] ⭐️/07. Prom Night.mp3
+[src/libmpg123/id3.c:process_comment():587] error: No comment text / valid description?
+2025-05-03T22:10:34 update: added The Midnight/The Midnight - Monsters (2020) (2020) Mp3 320kbps [PMEDIA] ⭐️/04. Seventeen.mp3
+[src/libmpg123/id3.c:process_comment():587] error: No comment text / valid description?
+2025-05-03T22:10:34 update: added The Midnight/The Midnight - Monsters (2020) (2020) Mp3 320kbps [PMEDIA] ⭐️/13. Night Skies.mp3
+[src/libmpg123/id3.c:process_comment():587] error: No comment text / valid description?
+2025-05-03T22:10:34 update: added The Midnight/The Midnight - Monsters (2020) (2020) Mp3 320kbps [PMEDIA] ⭐️/14. City Dreams (interlude).mp3
+[src/libmpg123/id3.c:process_comment():587] error: No comment text / valid description?
+2025-05-03T22:10:34 update: added The Midnight/The Midnight - Monsters (2020) (2020) Mp3 320kbps [PMEDIA] ⭐️/01. 1991 (intro).mp3
+[src/libmpg123/id3.c:process_comment():587] error: No comment text / valid description?
+2025-05-03T22:10:34 update: added The Midnight/The Midnight - Monsters (2020) (2020) Mp3 320kbps [PMEDIA] ⭐️/02. America Online.mp3
+[src/libmpg123/id3.c:process_comment():587] error: No comment text / valid description?
+2025-05-03T22:10:34 update: added The Midnight/The Midnight - Monsters (2020) (2020) Mp3 320kbps [PMEDIA] ⭐️/05. Dream Away.mp3
+[src/libmpg123/id3.c:process_comment():587] error: No comment text / valid description?
+2025-05-03T22:10:34 update: added The Midnight/The Midnight - Monsters (2020) (2020) Mp3 320kbps [PMEDIA] ⭐️/09. Monsters (feat. Jupiter Winter).mp3
+[src/libmpg123/id3.c:process_comment():587] error: No comment text / valid description?
+2025-05-03T22:10:34 update: added The Midnight/The Midnight - Monsters (2020) (2020) Mp3 320kbps [PMEDIA] ⭐️/03. Dance With Somebody.mp3
+2025-05-03T22:10:40 player: played "Anri/Bi・Ki・Ni/Good Bye Boogie Dance.mp3"
+2025-05-03T22:10:53 player: played "Casiopea/Mint Jams/Casiopea - Various.mp3"
+2025-05-03T22:12:09 player: played "Dan Gibson/Solitudes/Dan Gibson - Solitudes (Gregorian Chant).mp3"
+2025-05-03T22:13:00 player: played "1638 - Miserere Mei.mp3"
+2025-05-03T22:13:03 player: played "The Midnight/The Midnight - Kids (2018) Mp3 Album 320kbps Quality/3 - Kids (Prelude).mp3"
+2025-05-03T22:13:04 player: played "The Midnight/The Midnight - Kids (2018) Mp3 Album 320kbps Quality/4 - Lost Boy.mp3"
+2025-05-03T22:13:13 player: played "The Midnight/The Midnight - Kids (2018) Mp3 Album 320kbps Quality/5 - Saturday Mornings (Interlude).mp3"
+[src/libmpg123/id3.c:process_comment():587] error: No comment text / valid description?
+[src/libmpg123/id3.c:process_comment():587] error: No comment text / valid description?
+2025-05-03T22:14:32 update: removing The Midnight/Monsters/The Midnight - Brooklyn.mp3
+2025-05-03T22:14:32 update: removing The Midnight/Monsters/The Midnight - Fire In The Sky.mp3
+2025-05-03T22:14:32 update: removing The Midnight/Monsters/The Midnight - Last Train.webm
+[src/libmpg123/id3.c:process_comment():587] error: No comment text / valid description?
+2025-05-03T22:15:01 update: added The Midnight/The Midnight - Monsters (2020)/10. Helvetica.mp3
+[src/libmpg123/id3.c:process_comment():587] error: No comment text / valid description?
+2025-05-03T22:15:01 update: added The Midnight/The Midnight - Monsters (2020)/06. The Search for Ecco.mp3
+[src/libmpg123/id3.c:process_comment():587] error: No comment text / valid description?
+2025-05-03T22:15:01 update: added The Midnight/The Midnight - Monsters (2020)/11. Brooklyn.mp3
+[src/libmpg123/id3.c:process_comment():587] error: No comment text / valid description?
+2025-05-03T22:15:01 update: added The Midnight/The Midnight - Monsters (2020)/12. Deep Blue.mp3
+[src/libmpg123/id3.c:process_comment():587] error: No comment text / valid description?
+2025-05-03T22:15:01 update: added The Midnight/The Midnight - Monsters (2020)/15. Last Train.mp3
+[src/libmpg123/id3.c:process_comment():587] error: No comment text / valid description?
+2025-05-03T22:15:01 update: added The Midnight/The Midnight - Monsters (2020)/08. Fire In The Sky.mp3
+[src/libmpg123/id3.c:process_comment():587] error: No comment text / valid description?
+2025-05-03T22:15:01 update: added The Midnight/The Midnight - Monsters (2020)/07. Prom Night.mp3
+[src/libmpg123/id3.c:process_comment():587] error: No comment text / valid description?
+2025-05-03T22:15:01 update: added The Midnight/The Midnight - Monsters (2020)/04. Seventeen.mp3
+[src/libmpg123/id3.c:process_comment():587] error: No comment text / valid description?
+2025-05-03T22:15:01 update: added The Midnight/The Midnight - Monsters (2020)/13. Night Skies.mp3
+[src/libmpg123/id3.c:process_comment():587] error: No comment text / valid description?
+2025-05-03T22:15:01 update: added The Midnight/The Midnight - Monsters (2020)/14. City Dreams (interlude).mp3
+[src/libmpg123/id3.c:process_comment():587] error: No comment text / valid description?
+2025-05-03T22:15:01 update: added The Midnight/The Midnight - Monsters (2020)/01. 1991 (intro).mp3
+[src/libmpg123/id3.c:process_comment():587] error: No comment text / valid description?
+2025-05-03T22:15:01 update: added The Midnight/The Midnight - Monsters (2020)/02. America Online.mp3
+[src/libmpg123/id3.c:process_comment():587] error: No comment text / valid description?
+2025-05-03T22:15:01 update: added The Midnight/The Midnight - Monsters (2020)/05. Dream Away.mp3
+[src/libmpg123/id3.c:process_comment():587] error: No comment text / valid description?
+2025-05-03T22:15:01 update: added The Midnight/The Midnight - Monsters (2020)/09. Monsters (feat. Jupiter Winter).mp3
+[src/libmpg123/id3.c:process_comment():587] error: No comment text / valid description?
+2025-05-03T22:15:01 update: added The Midnight/The Midnight - Monsters (2020)/03. Dance With Somebody.mp3
+2025-05-03T22:15:01 update: removing The Midnight/The Midnight - Monsters (2020) (2020) Mp3 320kbps [PMEDIA] ⭐️/15. Last Train.mp3
+2025-05-03T22:15:01 update: removing The Midnight/The Midnight - Monsters (2020) (2020) Mp3 320kbps [PMEDIA] ⭐️/14. City Dreams (interlude).mp3
+2025-05-03T22:15:01 update: removing The Midnight/The Midnight - Monsters (2020) (2020) Mp3 320kbps [PMEDIA] ⭐️/13. Night Skies.mp3
+2025-05-03T22:15:01 update: removing The Midnight/The Midnight - Monsters (2020) (2020) Mp3 320kbps [PMEDIA] ⭐️/12. Deep Blue.mp3
+2025-05-03T22:15:01 update: removing The Midnight/The Midnight - Monsters (2020) (2020) Mp3 320kbps [PMEDIA] ⭐️/11. Brooklyn.mp3
+2025-05-03T22:15:01 update: removing The Midnight/The Midnight - Monsters (2020) (2020) Mp3 320kbps [PMEDIA] ⭐️/10. Helvetica.mp3
+2025-05-03T22:15:01 update: removing The Midnight/The Midnight - Monsters (2020) (2020) Mp3 320kbps [PMEDIA] ⭐️/09. Monsters (feat. Jupiter Winter).mp3
+2025-05-03T22:15:01 update: removing The Midnight/The Midnight - Monsters (2020) (2020) Mp3 320kbps [PMEDIA] ⭐️/08. Fire In The Sky.mp3
+2025-05-03T22:15:01 update: removing The Midnight/The Midnight - Monsters (2020) (2020) Mp3 320kbps [PMEDIA] ⭐️/07. Prom Night.mp3
+2025-05-03T22:15:01 update: removing The Midnight/The Midnight - Monsters (2020) (2020) Mp3 320kbps [PMEDIA] ⭐️/06. The Search for Ecco.mp3
+2025-05-03T22:15:01 update: removing The Midnight/The Midnight - Monsters (2020) (2020) Mp3 320kbps [PMEDIA] ⭐️/05. Dream Away.mp3
+2025-05-03T22:15:01 update: removing The Midnight/The Midnight - Monsters (2020) (2020) Mp3 320kbps [PMEDIA] ⭐️/04. Seventeen.mp3
+2025-05-03T22:15:01 update: removing The Midnight/The Midnight - Monsters (2020) (2020) Mp3 320kbps [PMEDIA] ⭐️/03. Dance With Somebody.mp3
+2025-05-03T22:15:01 update: removing The Midnight/The Midnight - Monsters (2020) (2020) Mp3 320kbps [PMEDIA] ⭐️/02. America Online.mp3
+2025-05-03T22:15:01 update: removing The Midnight/The Midnight - Monsters (2020) (2020) Mp3 320kbps [PMEDIA] ⭐️/01. 1991 (intro).mp3
+2025-05-03T22:15:14 update: added The Midnight/The Midnight - Kids (2018)/4 - Lost Boy.mp3
+2025-05-03T22:15:14 update: added The Midnight/The Midnight - Kids (2018)/8 - Arcade Dreams.mp3
+2025-05-03T22:15:14 update: added The Midnight/The Midnight - Kids (2018)/1 - Youth.mp3
+2025-05-03T22:15:14 update: added The Midnight/The Midnight - Kids (2018)/7 - America 2.mp3
+2025-05-03T22:15:14 update: added The Midnight/The Midnight - Kids (2018)/3 - Kids (Prelude).mp3
+2025-05-03T22:15:14 update: added The Midnight/The Midnight - Kids (2018)/6 - Explorers.mp3
+2025-05-03T22:15:14 update: added The Midnight/The Midnight - Kids (2018)/2 - Wave.mp3
+2025-05-03T22:15:14 update: added The Midnight/The Midnight - Kids (2018)/9 - Kids (Reprise).mp3
+2025-05-03T22:15:14 update: added The Midnight/The Midnight - Kids (2018)/5 - Saturday Mornings (Interlude).mp3
+2025-05-03T22:15:14 update: removing The Midnight/The Midnight - Kids (2018) Mp3 Album 320kbps Quality/9 - Kids (Reprise).mp3
+2025-05-03T22:15:14 update: removing The Midnight/The Midnight - Kids (2018) Mp3 Album 320kbps Quality/8 - Arcade Dreams.mp3
+2025-05-03T22:15:14 update: removing The Midnight/The Midnight - Kids (2018) Mp3 Album 320kbps Quality/7 - America 2.mp3
+2025-05-03T22:15:14 update: removing The Midnight/The Midnight - Kids (2018) Mp3 Album 320kbps Quality/6 - Explorers.mp3
+2025-05-03T22:15:14 update: removing The Midnight/The Midnight - Kids (2018) Mp3 Album 320kbps Quality/5 - Saturday Mornings (Interlude).mp3
+2025-05-03T22:15:14 update: removing The Midnight/The Midnight - Kids (2018) Mp3 Album 320kbps Quality/4 - Lost Boy.mp3
+2025-05-03T22:15:14 update: removing The Midnight/The Midnight - Kids (2018) Mp3 Album 320kbps Quality/3 - Kids (Prelude).mp3
+2025-05-03T22:15:14 update: removing The Midnight/The Midnight - Kids (2018) Mp3 Album 320kbps Quality/2 - Wave.mp3
+2025-05-03T22:15:14 update: removing The Midnight/The Midnight - Kids (2018) Mp3 Album 320kbps Quality/1 - Youth.mp3
+2025-05-03T22:16:54 player: played "The Midnight/The Midnight - Monsters (2020) (2020) Mp3 320kbps [PMEDIA] ⭐️/09. Monsters (feat. Jupiter Winter).mp3"
+2025-05-03T22:16:55 exception: No such directory
+2025-05-03T22:16:55 exception: No such directory
+2025-05-03T22:16:55 exception: No such directory
+2025-05-03T22:16:55 exception: No such directory
+2025-05-03T22:16:55 exception: No such directory
+2025-05-03T22:16:55 exception: No such directory
+2025-05-03T22:16:55 exception: No such directory
+2025-05-03T22:16:55 exception: No such directory
+2025-05-03T22:16:55 exception: No such directory
+2025-05-03T22:16:55 exception: No such directory
+2025-05-03T22:16:55 exception: No such directory
+2025-05-03T22:16:55 exception: No such directory
+2025-05-03T22:16:55 exception: No such directory
+2025-05-03T22:16:55 exception: No such directory
+2025-05-03T22:16:55 exception: No such directory
+2025-05-03T22:16:55 exception: No such directory
+2025-05-03T22:16:55 exception: No such directory
+2025-05-03T22:16:55 exception: No such directory
+2025-05-03T22:16:55 exception: No such directory
+2025-05-03T22:16:55 exception: No such directory
+2025-05-03T22:16:55 exception: No such directory
+2025-05-03T22:16:55 exception: No such directory
+2025-05-03T22:16:55 exception: No such directory
+2025-05-03T22:16:55 exception: No such directory
+2025-05-03T22:16:55 exception: No such directory
+2025-05-03T22:16:55 exception: No such directory
+2025-05-03T22:17:06 exception: Not playing
+2025-05-03T22:17:12 exception: No such directory
+2025-05-03T22:17:12 exception: No such directory
+2025-05-03T22:17:12 exception: No such directory
+2025-05-03T22:17:12 exception: No such directory
+2025-05-03T22:17:12 exception: No such directory
+2025-05-03T22:17:12 exception: No such directory
+2025-05-03T22:17:12 exception: No such directory
+2025-05-03T22:17:12 exception: No such directory
+2025-05-03T22:17:12 exception: No such directory
+2025-05-03T22:17:12 exception: No such directory
+2025-05-03T22:17:12 exception: No such directory
+2025-05-03T22:17:12 exception: No such directory
+2025-05-03T22:17:12 exception: No such directory
+2025-05-03T22:17:12 exception: No such directory
+2025-05-03T22:17:12 exception: No such directory
+2025-05-03T22:17:12 exception: No such directory
+2025-05-03T22:17:12 exception: No such directory
+2025-05-03T22:17:12 exception: No such directory
+2025-05-03T22:17:12 exception: No such directory
+2025-05-03T22:17:12 exception: No such directory
+2025-05-03T22:17:12 exception: No such directory
+2025-05-03T22:17:12 exception: No such directory
+2025-05-03T22:17:12 exception: No such directory
+2025-05-03T22:17:12 exception: No such directory
+2025-05-03T22:17:12 exception: No such directory
+2025-05-03T22:17:12 exception: No such directory
+2025-05-03T22:17:17 exception: No such directory
+2025-05-03T22:17:17 exception: No such directory
+2025-05-03T22:17:17 exception: No such directory
+2025-05-03T22:17:17 exception: No such directory
+2025-05-03T22:17:17 exception: No such directory
+2025-05-03T22:17:17 exception: No such directory
+2025-05-03T22:17:17 exception: No such directory
+2025-05-03T22:17:17 exception: No such directory
+2025-05-03T22:17:17 exception: No such directory
+2025-05-03T22:17:17 exception: No such directory
+2025-05-03T22:17:17 exception: No such directory
+2025-05-03T22:17:17 exception: No such directory
+2025-05-03T22:17:17 exception: No such directory
+2025-05-03T22:17:17 exception: No such directory
+2025-05-03T22:17:17 exception: No such directory
+2025-05-03T22:17:17 exception: No such directory
+2025-05-03T22:17:17 exception: No such directory
+2025-05-03T22:17:17 exception: No such directory
+2025-05-03T22:17:17 exception: No such directory
+2025-05-03T22:17:17 exception: No such directory
+2025-05-03T22:17:17 exception: No such directory
+2025-05-03T22:17:17 exception: No such directory
+2025-05-03T22:17:17 exception: No such directory
+2025-05-03T22:17:17 exception: No such directory
+2025-05-03T22:17:17 exception: No such directory
+2025-05-03T22:17:17 exception: No such directory
+2025-05-03T22:18:10 player: played "The Midnight/Endless Summer/The Midnight - Sunset.mp3"
+2025-05-03T22:18:15 player: played "The Midnight/The Midnight - Kids (2018)/1 - Youth.mp3"
+[src/libmpg123/id3.c:process_comment():587] error: No comment text / valid description?
+[src/libmpg123/id3.c:process_comment():587] error: No comment text / valid description?
+2025-05-03T22:18:16 player: played "The Midnight/The Midnight - Monsters (2020)/01. 1991 (intro).mp3"
+[src/libmpg123/id3.c:process_comment():587] error: No comment text / valid description?
+[src/libmpg123/id3.c:process_comment():587] error: No comment text / valid description?
+2025-05-03T22:18:18 player: played "The Midnight/The Midnight - Monsters (2020)/01. 1991 (intro).mp3"
+[src/libmpg123/id3.c:process_comment():587] error: No comment text / valid description?
+2025-05-03T22:18:22 player: played "The Midnight/The Midnight - Monsters (2020)/03. Dance With Somebody.mp3"
+[src/libmpg123/id3.c:process_comment():587] error: No comment text / valid description?
+2025-05-03T22:18:24 player: played "The Midnight/The Midnight - Monsters (2020)/08. Fire In The Sky.mp3"
+[src/libmpg123/id3.c:process_comment():587] error: No comment text / valid description?
+2025-05-03T22:18:26 player: played "The Midnight/The Midnight - Monsters (2020)/11. Brooklyn.mp3"
+[src/libmpg123/id3.c:process_comment():587] error: No comment text / valid description?
+2025-05-03T22:22:48 player: played "The Midnight/The Midnight - Monsters (2020)/15. Last Train.mp3"
+2025-05-03T22:23:00 exception: Not playing
+2025-05-03T22:23:03 exception: Not playing
+2025-05-03T22:23:04 exception: Not playing
+2025-05-03T22:23:04 exception: Not playing
+2025-05-03T22:23:04 exception: Not playing
+[src/libmpg123/id3.c:process_comment():587] error: No comment text / valid description?
+[src/libmpg123/id3.c:process_comment():587] error: No comment text / valid description?
+[src/libmpg123/id3.c:process_comment():587] error: No comment text / valid description?
+[src/libmpg123/id3.c:process_comment():587] error: No comment text / valid description?
+[src/libmpg123/id3.c:process_comment():587] error: No comment text / valid description?
+2025-05-04T17:47:06 player: played "The Midnight/The Midnight - Monsters (2020)/06. The Search for Ecco.mp3"
+2025-05-04T17:47:08 player: played "The Midnight/The Midnight - Kids (2018)/1 - Youth.mp3"
+2025-05-04T17:47:10 player: played "The Midnight/The Midnight - Kids (2018)/8 - Arcade Dreams.mp3"
+2025-05-04T20:06:01 player: played "The Midnight/The Midnight - Kids (2018)/3 - Kids (Prelude).mp3"
