@@ -3,8 +3,8 @@ audio_device_state:1:Pulse Audio
 audio_device_state:1:album_art
 audio_device_state:1:HTTP Stream
 state: pause
-current: 14
-time: 133.092
+current: 46
+time: 1.98
 random: 0
 repeat: 0
 single: 0
@@ -54,7 +54,28 @@ playlist_begin
 37:Skeler/Night Drive/Skeler - N i g h t D r i v e スケラー PART IV (Phonk-Wave).m4a
 38:The Midnight/The Midnight - Full Disography.webm
 39:The Midnight/Endless Summer/The Midnight - Sunset.mp3
-40:The Midnight/Monsters/The Midnight - Last Train.webm
-41:The Midnight/Monsters/The Midnight - Fire In The Sky.mp3
-42:The Midnight/Monsters/The Midnight - Brooklyn.mp3
+40:The Midnight/The Midnight - Kids (2018)/1 - Youth.mp3
+41:The Midnight/The Midnight - Kids (2018)/2 - Wave.mp3
+42:The Midnight/The Midnight - Kids (2018)/3 - Kids (Prelude).mp3
+43:The Midnight/The Midnight - Kids (2018)/4 - Lost Boy.mp3
+44:The Midnight/The Midnight - Kids (2018)/5 - Saturday Mornings (Interlude).mp3
+45:The Midnight/The Midnight - Kids (2018)/6 - Explorers.mp3
+46:The Midnight/The Midnight - Kids (2018)/7 - America 2.mp3
+47:The Midnight/The Midnight - Kids (2018)/8 - Arcade Dreams.mp3
+48:The Midnight/The Midnight - Kids (2018)/9 - Kids (Reprise).mp3
+49:The Midnight/The Midnight - Monsters (2020)/01. 1991 (intro).mp3
+50:The Midnight/The Midnight - Monsters (2020)/02. America Online.mp3
+51:The Midnight/The Midnight - Monsters (2020)/03. Dance With Somebody.mp3
+52:The Midnight/The Midnight - Monsters (2020)/04. Seventeen.mp3
+53:The Midnight/The Midnight - Monsters (2020)/05. Dream Away.mp3
+54:The Midnight/The Midnight - Monsters (2020)/06. The Search for Ecco.mp3
+55:The Midnight/The Midnight - Monsters (2020)/07. Prom Night.mp3
+56:The Midnight/The Midnight - Monsters (2020)/08. Fire In The Sky.mp3
+57:The Midnight/The Midnight - Monsters (2020)/09. Monsters (feat. Jupiter Winter).mp3
+58:The Midnight/The Midnight - Monsters (2020)/10. Helvetica.mp3
+59:The Midnight/The Midnight - Monsters (2020)/11. Brooklyn.mp3
+60:The Midnight/The Midnight - Monsters (2020)/12. Deep Blue.mp3
+61:The Midnight/The Midnight - Monsters (2020)/13. Night Skies.mp3
+62:The Midnight/The Midnight - Monsters (2020)/14. City Dreams (interlude).mp3
+63:The Midnight/The Midnight - Monsters (2020)/15. Last Train.mp3
 playlist_end
