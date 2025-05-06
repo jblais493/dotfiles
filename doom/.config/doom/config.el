@@ -1367,9 +1367,9 @@ WHERE tablename = '%s';" table-name)))
 
 ;; Ensure browser functionality
 (setq emms-browser-default-browse-type 'artist)
-(add-to-list 'emms-info-functions 'emms-info-mp3info)
+;; (add-to-list 'emms-info-functions 'emms-info-mp3info)
 (add-to-list 'emms-info-functions 'emms-info-ogginfo)
-(add-to-list 'emms-info-functions 'emms-info-metaflac)
+;; (add-to-list 'emms-info-functions 'emms-info-metaflac)
 (add-to-list 'emms-info-functions 'emms-info-tinytag)
 
 ;; Ensure tracks play when selected
