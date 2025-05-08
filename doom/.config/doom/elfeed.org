@@ -3,14 +3,14 @@
 #+STARTUP: fold
 
 * Feeds :elfeed:
-** News :news:
+** News
 *** [[https://monero.observer/feed.xml][Monero Observer]] :crypto:
 *** [[http://rss.slashdot.org/Slashdot/slashdotMain][Slashdot]] :tech:
 *** [[http://feeds.feedburner.com/zerohedge/feed][Zero Hedge]]
-*** [[https://www.rt.com/rss][RT]]
+*** [[https://www.rt.com/rss][RT]] :news:
 *** [[https://www.sovereignman.com/feed/][Sovereign Man]]
-*** [[https://www.cbc.ca/webfeed/rss/rss-topstories][CBC]]
-*** [[https://feeds.bbci.co.uk/news/rss.xml][BBC]]
+*** [[https://www.cbc.ca/webfeed/rss/rss-topstories][CBC]] :news:
+*** [[https://feeds.bbci.co.uk/news/rss.xml][BBC]] :news:
 
 ** Science & Technology :science:tech:
 *** [[https://www.technologyreview.com/feed/][MIT Technology Review]]

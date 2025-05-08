@@ -1497,7 +1497,7 @@ WHERE tablename = '%s';" table-name)))
 ;; Configure elfeed
 (after! elfeed
   (setq elfeed-db-directory "~/.elfeed")
-  (setq elfeed-search-filter "@1-week-ago +unread -4chan -Reddit")
+  (setq elfeed-search-filter "@1-week-ago +unread -4chan -news -Reddit")
   (map! :map elfeed-search-mode-map
         :n "O" #'elfeed-search-browse-url))
 
