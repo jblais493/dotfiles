@@ -315,6 +315,7 @@ alias te="~/.config/scripts/edit_task.sh"
 alias tc="~/.config/scripts/add_contact.sh"
 alias rem="remind ~/.reminders/reminders.rem"
 alias ytmp3="~/.config/scripts/Media/ytmp3.sh"
+alias aa="python ~/.config/scripts/Media/albumartwork.py"
 alias mpdupdate="~/.config/scripts/Media/mpdupdate.sh"
 
 bindkey -v
