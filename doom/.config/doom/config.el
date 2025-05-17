@@ -1348,6 +1348,7 @@ WHERE tablename = '%s';" table-name)))
     (set-window-buffer (selected-window) (current-buffer))))
 
 ;; Set dark Nord background and center layout
+
 (add-hook 'emms-browser-mode-hook
           (lambda ()
             (face-remap-add-relative 'default '(:background "#2E3440"))  ;; Nord Polar Night (dark blue-gray)
