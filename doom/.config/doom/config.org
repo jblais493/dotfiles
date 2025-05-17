@@ -1448,7 +1448,7 @@ WHERE tablename = '%s';" table-name)))
 (emms-playing-time-mode 1)
 
 ;; Basic settings
-(setq emms-source-file-default-directory "~/Music"
+(setq emms-source-file-default-directory "~/MusicOrganized"
       emms-browser-covers #'emms-browser-cache-thumbnail-async
       emms-browser-thumbnail-small-size 64
       emms-browser-thumbnail-medium-size 128
