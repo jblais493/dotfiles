@@ -1516,9 +1516,7 @@ WHERE tablename = '%s';" table-name)))
          ([remap save-buffer] . elfeed-tube-save)))
 
 ;; Load private org-gcal credentials if the file exists
-(let ((private-config (expand-file-name "private/org-gcal-credentials.el" doom-private-dir)))
-  (when (file-exists-p private-config)
-    (load private-config)))
+(load! "lisp/org-gcal-credentials")
 
 ;; Open dirvish
 (map! :leader

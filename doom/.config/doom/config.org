@@ -1693,10 +1693,7 @@ I use org mode for calendaring, but I export and sync to my google calendar so I
 
 #+begin_src elisp
 ;; Load private org-gcal credentials if the file exists
-(let ((private-config (expand-file-name "private/org-gcal-credentials.el" doom-private-dir)))
-  (when (file-exists-p private-config)
-    (load private-config)))
-
+(load! "lisp/org-gcal-credentials")
 #+end_src
 
 ** Dirvish
