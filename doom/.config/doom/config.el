@@ -666,6 +666,9 @@
         lsp-ui-sideline-enable nil
         lsp-ui-peek-enable t))
 
+(add-to-list 'auto-mode-alist '("\\.astro\\'" . web-mode))
+(set-file-template! "\\.astro$" :trigger "__astro" :mode 'web-mode)
+
 ;; Enable Treesitter for Go in org
 (after! tree-sitter
   (require 'tree-sitter-langs)

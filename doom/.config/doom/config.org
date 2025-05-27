@@ -765,6 +765,13 @@ This sets up k-j as an evil escape sequence. Not used anymore due to setting esc
         lsp-ui-peek-enable t))
 #+end_src
 
+** Web mode
+Add Astro files to web-mode automatically:
+#+begin_src elisp
+(add-to-list 'auto-mode-alist '("\\.astro\\'" . web-mode))
+(set-file-template! "\\.astro$" :trigger "__astro" :mode 'web-mode)
+#+end_src
+
 ** Treesitter
 #+begin_src elisp
 ;; Enable Treesitter for Go in org
