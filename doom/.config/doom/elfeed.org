@@ -69,26 +69,26 @@
 
 ** Blogs :blog:
 *** [[https://joshblais.com/index.xml][Joshua Blais]]
-*** [[https://wrongthink.link/posts/index.xml][Wrong Think]]
+*** [[https://wrongthink.link/posts/index.xml][Wrong Think]] :tech:security:
 *** [[https://www.rousette.org.uk/index.xml][Rousette]]
 *** [[https://randomgeekery.org/index.xml][Random Geekery]]
 *** [[https://runxiyu.org/blog/index.xml][Runxiyu]]
 *** [[https://maggieappleton.com/rss.xml][Maggie Appleton]]
 *** [[https://drewdevault.com/blog/index.xml][Drew DeVault]] :tech:
 *** [[https://ounapuu.ee/index.xml][Ounapuu]]
-*** [[https://sive.rs/en.atom][Derek Sivers]]
+*** [[https://sive.rs/en.atom][Derek Sivers]] :tech:
 *** [[https://serhack.me/index.xml][Serhack]]
-*** [[https://lukesmith.xyz/rss.xml][Luke Smith]]
-*** [[https://notrelated.xyz/rss][Not Related]]
+*** [[https://lukesmith.xyz/rss.xml][Luke Smith]] :tech:meta:
+*** [[https://notrelated.xyz/rss][Not Related]] :meta:
 *** [[https://levels.io/rss/][Levels.io]]
 *** [[https://feedpress.me/thetechnium][The Technium]]
 *** [[https://solar.lowtechmagazine.com/feeds/all-en.atom.xml][Low Tech Magazine]]
 *** [[https://feeds.feedburner.com/collabfund][Collab Fund]]
 *** [[https://www.lesswrong.com/feed.xml?view=curated-rss][Less Wrong]]
 *** [[http://www.geero.net/feed][Geero]]
-*** [[https://digdeeper.neocities.org/atom.xml][Dig Deeper]]
+*** [[https://digdeeper.neocities.org/atom.xml][Dig Deeper]] :tech:security:
 *** [[https://sizeof.cat/index.xml][Sizeof Cat]] :tech:
-*** [[https://icyphox.sh/blog/feed.xml][Icyphox]]
+*** [[https://icyphox.sh/blog/feed.xml][Icyphox]] :tech:
 *** [[https://wiki.xxiivv.com/links/rss.xml][XXIIVV]]
 *** [[https://unixdigest.com/feed.rss][Unix Digest]] :tech:
 *** [[https://100r.co/links/rss.xml][100r]]
@@ -118,10 +118,10 @@
 *** [[https://macwright.com/rss.xml][Tom MacWright]]
 *** [[https://moxie.org/rss.xml][Moxie Marlinspike]]
 *** [[https://www.ribbonfarm.com/feed/][Ribbonfarm]]
-*** [[https://astralcodexten.substack.com/feed][Astral Codex Ten]]
+*** [[https://astralcodexten.substack.com/feed][Astral Codex Ten]] :meta:
 *** [[https://paul.graham/articles.rss][Paul Graham]]
 *** [[https://marginalrevolution.com/feed][Marginal Revolution]]
-
+*** [[https://hamatti.org/feed/feed.xml][Juhis]] :tech:
 
 ** YouTube :youtube:
 *** Technology :tech:
