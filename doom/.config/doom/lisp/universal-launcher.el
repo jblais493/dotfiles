@@ -414,6 +414,7 @@
   (let* ((search-engines
           '(("Google" . "https://www.google.com/search?q=")
             ("Youtube" . "https://www.youtube.com/results?search_query=")
+            ("Perplexity" . "https://www.perplexity.ai/search/new?q=")
             ("DuckDuckGo" . "https://duckduckgo.com/?q=")
             ("Bing" . "https://www.bing.com/search?q=")
             ("Wikipedia" . "https://en.wikipedia.org/w/index.php?search=")))
