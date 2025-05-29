@@ -8,7 +8,7 @@
 *** [[http://rss.slashdot.org/Slashdot/slashdotMain][Slashdot]] :tech:
 *** [[http://feeds.feedburner.com/zerohedge/feed][Zero Hedge]]
 *** [[https://www.rt.com/rss][RT]] :news:
-*** [[https://www.sovereignman.com/feed/][Sovereign Man]]
+*** [[https://www.sovereignman.com/feed/][Sovereign Man]] :freedom:
 *** [[https://www.cbc.ca/webfeed/rss/rss-topstories][CBC]] :news:
 *** [[https://feeds.bbci.co.uk/news/rss.xml][BBC]] :news:
 
@@ -17,27 +17,27 @@
 *** [[https://feeds.feedburner.com/IeeeSpectrum][IEEE Spectrum]]
 *** [[https://www.sciencedaily.com/rss/all.xml][Science Daily]]
 *** [[https://www.nature.com/nature.rss][Nature]]
-*** [[https://www.wired.com/feed/rss][Wired]]
+*** [[https://www.wired.com/feed/rss][Wired]] :tech:
 *** [[https://lobste.rs/rss][Lobsters]] :tech:
-*** [[https://news.ycombinator.com/rss][Hacker News]]
-*** [[https://feeds.arstechnica.com/arstechnica/index][Arstechnica]]
+*** [[https://news.ycombinator.com/rss][Hacker News]] :tech:
+*** [[https://feeds.arstechnica.com/arstechnica/index][Arstechnica]] :tech:
 *** [[https://www.theregister.com/headlines.atom][The Register]]
 
 ** Linux
-*** [[https://lwn.net/headlines/rss][LWN.net]]
+*** [[https://lwn.net/headlines/rss][LWN.net]] :linux:
 *** [[https://itsfoss.com/feed/][It's FOSS]]
 *** [[https://www.phoronix.com/rss.php][Phoronix]]
-*** [[https://www.linuxjournal.com/node/feed][Linux Journal]]
+*** [[https://www.linuxjournal.com/node/feed][Linux Journal]] :linux:
 *** [[https://raphlinus.github.io/feed.xml][RaphLinus]]
 *** [[https://susam.net/feed.xml][Susam.net]]
 *** [[https://battlepenguin.com/feed.xml][BattlePenguin]]
 ** Emacs
-*** [[https://sachachua.com/blog/category/emacs/feed/][Sacha Chua]]
-*** [[https://irreal.org/blog/?feed=rss2][Irreal]]
-*** [[https://systemcrafters.net/rss/content.xml][System Crafters]]
-*** [[https://protesilaos.com/codelog.xml][Protesilaos Stavrou]]
-*** [[https://with-emacs.com/rss.xml][With Emacs]]
-*** [[https://emacsredux.com/atom.xml][Emacs Redux]]
+*** [[https://sachachua.com/blog/category/emacs/feed/][Sacha Chua]] :emacs:
+*** [[https://irreal.org/blog/?feed=rss2][Irreal]] :emacs:
+*** [[https://systemcrafters.net/rss/content.xml][System Crafters]] :emacs:
+*** [[https://protesilaos.com/codelog.xml][Protesilaos Stavrou]] :emacs:
+*** [[https://with-emacs.com/rss.xml][With Emacs]] :emacs:
+*** [[https://emacsredux.com/atom.xml][Emacs Redux]] :emacs:
 
 ** Programming
 *** [[https://jvns.ca/atom.xml][Julia Evans]]
@@ -122,6 +122,7 @@
 *** [[https://paul.graham/articles.rss][Paul Graham]]
 *** [[https://marginalrevolution.com/feed][Marginal Revolution]]
 
+
 ** YouTube :youtube:
 *** Technology :tech:
 **** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCwHwDuNd9lCdA7chyyquDXw][BreadOnPenguins]]
@@ -143,6 +144,21 @@
 **** [[https://www.youtube.com/feeds/videos.xml?channel_id=UC9-y-6csu5WGm29I7JiwpnA][Computerphile]]
 **** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCYeiozh-4QwuC1sjgCmB92w][Devops Toolbox]]
 **** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCbDmEdLs-SB3FjrDFQJ4TDg][Reysu]]
+**** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCl2mFZoRqjw_ELax4Yisf6w][Louis Rossmann]]
+**** [[https://www.youtube.com/feeds/videos.xml?channel_id=UC6biysICWOJ-C3P4Tyeggzg][Low Level]]
+**** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCrqM0Ym_NbK1fqeQG2VIohg][Tsoding]]
+**** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCr613nJgA50o8DUUT00qHvw][Wulff Den]]
+**** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCwgKmJM4ZJQRJ-U5NjvR2dg][George Hotz]]
+**** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCWQaM7SpSECp9FELz-cHzuQ][Dreams of Code]]
+**** Dreams of Autonomy
+**** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCZ1y-iH9Hsp83vh6graA7Zw][Josh Medeski]]
+**** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCC_NjLEb2Sley94py4vSYTA][Andreas Vidoza]]
+**** [[https://www.youtube.com/feeds/videos.xml?channel_id=UC2WHjPDvbE6O328n17ZGcfg][Forrest Knight]]
+
+*** Vibes
+**** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCSLeoz5odIGS2GdlbHbCAUg][Matthew Encina]]
+**** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCRZ1OquIwGiUjJS7SXW4Fdg][Life of Riza]]
+
 *** Cooking :cooking:
 **** [[https://www.youtube.com/feeds/videos.xml?channel_id=UC5qRAYQmCLx8hFGIiTWSQvA][Aaron and Claire]]
 **** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCPzFLpOblZEaIx2lpym1l1A][Alex]]
@@ -169,7 +185,6 @@
 **** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCcMjLgeWNwqL2LBGS-iPb1A][Bishop Robert Barron]]
 **** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCz72pwrQRTXibU14NmHep8w][PatristicNectar]]
 **** [[https://www.youtube.com/feeds/videos.xml?channel_id=UC4ocopmnWmwViIHELoo1Gkg][harmony]]
-**** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCAu1DpqF65ZXfsi5ZzzEFMw][Father Moses]]
 **** [[https://www.youtube.com/feeds/videos.xml?channel_id=UC3puFf-lxwTWBFCfHHjCz2A][Mull Monestary]]
 
 *** Photography :photography:
@@ -181,6 +196,7 @@
 **** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCM6SJb18voXy12YI0WWvcWQ][トバログ]]
 
 *** Travel :travel:
+**** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCNIXUCzBMXoWu69iDOtbx5A][Nomad Push]]
 **** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCHL9bfHTxCMi-7vfxQ-AYtg][Abroad in Japan]]
 **** [[https://www.youtube.com/feeds/videos.xml?channel_id=UC0GmdVKZhMM3Rmielp4oVAA][Stefanovic]]
 
