@@ -317,27 +317,77 @@
     apps))
 
 ;; TODO Calculator Module
+;; Calculator Module
 (defun universal-launcher--is-calculator-input (input)
   "Check if INPUT is a math expression."
   (and (not (string-empty-p input))
-       (not (string-match-p "^Command " input))  ; Don't match command entries
-       (string-match-p "^[0-9+\\-*/().,^ ]+$" input)
-       (string-match-p "[+\\-*/^]" input)        ; Must contain at least one operator
-       (string-match-p "[0-9]" input)))          ; Must contain at least one number
+       (not (string-match-p "^[[:space:]]*$" input))
+       ;; Allow more mathematical symbols and functions
+       (string-match-p "^[0-9+\\-*/().,^ %!sincotaqrexplog]+$" input)
+       ;; Must contain at least one operator or math function
+       (or (string-match-p "[+\\-*/^%]" input)
+           (string-match-p "\\(sin\\|cos\\|tan\\|sqrt\\|exp\\|log\\)" input))
+       ;; Must contain at least one number
+       (string-match-p "[0-9]" input)))
 
 (defun universal-launcher--calculate (expr)
   "Calculate mathematical expression EXPR using calc."
   (condition-case err
       (let* ((clean-expr (string-trim expr))
-             (result (calc-eval clean-expr)))
+             ;; Replace common notations
+             (calc-expr (replace-regexp-in-string "\\^" "**" clean-expr))
+             (calc-expr (replace-regexp-in-string "×" "*" calc-expr))
+             (calc-expr (replace-regexp-in-string "÷" "/" calc-expr))
+             (result (calc-eval calc-expr)))
         (if (and result
+                 (stringp result)
                  (not (string= result ""))
-                 (not (string= result "[Bad format]"))
-                 (not (string-match-p "\\[.*\\]" result))  ; Reject error messages
-                 (string-match-p "^[-+]?[0-9]+\\.?[0-9]*\\(?:[eE][-+]?[0-9]+\\)?$" result))
+                 (not (string-match-p "\\(Error\\|Bad\\)" result))
+                 ;; Accept various number formats including scientific notation
+                 (or (string-match-p "^[-+]?[0-9]+\\.?[0-9]*\\(?:[eE][-+]?[0-9]+\\)?$" result)
+                     (string-match-p "^[-+]?[0-9]+/[0-9]+$" result))) ; fractions
             result
           nil))
     (error nil)))
+
+(defun universal-launcher--copy-to-clipboard (text)
+  "Copy TEXT to system clipboard, handling both X11 and Wayland."
+  (cond
+   ;; GUI Emacs - use built-in
+   ((display-graphic-p)
+    (gui-set-selection 'CLIPBOARD text))
+   ;; Terminal with wl-copy (Wayland)
+   ((executable-find "wl-copy")
+    (let ((process (start-process "wl-copy" nil "wl-copy")))
+      (process-send-string process text)
+      (process-send-eof process)))
+   ;; Terminal with xclip (X11)
+   ((executable-find "xclip")
+    (let ((process (start-process "xclip" nil "xclip" "-selection" "clipboard")))
+      (process-send-string process text)
+      (process-send-eof process)))
+   ;; Fallback
+   (t
+    (kill-new text)
+    (message "Copied to Emacs kill ring (install wl-copy or xclip for system clipboard)"))))
+
+;; Enhanced calculator handler for the main popup function
+(defun universal-launcher--handle-calculator-input (input)
+  "Handle calculator INPUT with immediate calculation."
+  (let ((result (universal-launcher--calculate input)))
+    (if result
+        (progn
+          (universal-launcher--copy-to-clipboard result)
+          (message "📊 %s = %s (copied to clipboard)" input result)
+          ;; If in a buffer, optionally insert the result
+          (when (and universal-launcher--previous-frame
+                     (frame-live-p universal-launcher--previous-frame))
+            (with-selected-frame universal-launcher--previous-frame
+              (when (and (not (minibufferp))
+                         (not buffer-read-only)
+                         (y-or-n-p "Insert result at point? "))
+                (insert result)))))
+      (message "❌ Invalid expression: %s" input))))
 
 (defun universal-launcher--get-system-commands ()
   "Get system commands from PATH."
