@@ -553,34 +553,51 @@
     (message "Emoji '%s' copied to clipboard" emoji)))
 
 (defun universal-launcher-popup ()
-  "Simple launcher using existing frame."
+  "World-class launcher for Emacs."
   (interactive)
 
-  ;; Store the current frame
+  ;; Store current frame
   (setq universal-launcher--previous-frame (selected-frame))
 
-  ;; Update candidates if needed
+  ;; Force update if needed
   (universal-launcher--update-candidates)
 
-  ;; Use existing minibuffer
-  (let* ((selection (completing-read "Launch: "
-                                     (mapcar #'car universal-launcher--all-candidates)
-                                     nil nil))  ; Changed from nil t to allow non-matched input
+  ;; Create candidates list with nil as completion table to allow any input
+  (let* ((candidates (mapcar #'car universal-launcher--all-candidates))
+         (prompt "🚀 Launch (or enter math expression): ")
+         (selection
+          (minibuffer-with-setup-hook
+              (lambda ()
+                ;; Allow any input, not just candidates
+                (setq-local completion-styles '(substring partial-completion basic))
+                (setq-local completion-category-overrides nil))
+            (completing-read prompt
+                             ;; Use a function that always returns all candidates
+                             ;; This allows typing anything while still showing candidates
+                             (lambda (string pred action)
+                               (if (eq action 'metadata)
+                                   '(metadata (category . universal-launcher))
+                                 (all-completions string candidates pred)))
+                             nil    ; predicate
+                             nil    ; require-match = nil allows any input!
+                             nil    ; initial-input
+                             nil    ; hist
+                             nil))) ; def
          (candidate (cdr (assoc selection universal-launcher--all-candidates))))
 
     (cond
-     ;; Check calculator first, before matching candidates
-     ((and (not (string-empty-p selection))
-           (universal-launcher--is-calculator-input selection))
-      (let ((result (universal-launcher--calculate selection)))
-        (if result
-            (progn
-              (gui-set-selection 'CLIPBOARD result)
-              (message "%s = %s (copied to clipboard)" selection result))
-          (message "Invalid mathematical expression: %s" selection))))
+     ;; Empty input - do nothing
+     ((string-empty-p selection) nil)
+
+     ;; Calculator check - prioritize this before other matches
+     ((universal-launcher--is-calculator-input selection)
+      (universal-launcher--handle-calculator-input selection))
+
+     ;; Separator - do nothing
+     ((eq candidate 'separator) nil)
 
      ;; Handle matched candidates
-     ((and candidate (not (eq candidate 'separator)))
+     (candidate
       (let ((type (car candidate))
             (item (cadr candidate)))
         (pcase type
@@ -592,13 +609,15 @@
           ('file (find-file item))
           ('command (universal-launcher--run-command item))
           ('emoji (universal-launcher--insert-emoji item))
-          ('calculator (message "Start typing a math expression...")))))
+          ('calculator (message "🧮 Type a math expression like: 2+2, sqrt(16), sin(45)")))))
 
-     ;; Handle web search fallback for non-matched input
-     ((and (not candidate) (not (string-empty-p selection)))
+     ;; Web search fallback - only if not a calculator expression
+     ((and (not candidate)
+           (not (string-empty-p selection))
+           (not (universal-launcher--is-calculator-input selection)))
       (universal-launcher--web-search selection)))
 
-    ;; Return to the previous frame if it still exists
+    ;; Return to previous frame
     (when (and universal-launcher--previous-frame
                (frame-live-p universal-launcher--previous-frame))
       (select-frame-set-input-focus universal-launcher--previous-frame))))
