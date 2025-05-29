@@ -424,31 +424,46 @@
       (with-temp-buffer
         (insert-file-contents file)
         (org-mode)
-        (goto-char (point-min))
-
-        ;; Parse standard org links
-        (while (re-search-forward org-link-any-re nil t)
-          (let* ((link (match-string-no-properties 0))
-                 (parsed (org-element-link-parser)))
-            (when parsed
-              (let* ((type (org-element-property :type parsed))
-                     (path (org-element-property :path parsed))
-                     (desc (or (org-element-property :contents-begin parsed)
-                               (org-element-property :raw-link parsed))))
-                (when (member type '("http" "https"))
-                  (push (cons (or desc path)
-                              (concat type ":" path))
+        ;; Use org-element-map to parse the entire buffer
+        (org-element-map (org-element-parse-buffer) 'link
+          (lambda (link)
+            (when (member (org-element-property :type link) '("http" "https"))
+              (let* ((raw-link (org-element-property :raw-link link))
+                     ;; Extract just the URL part using regex, excluding initial [ or ]
+                     (url-candidate (if (string-match "^\\(https?://[^]\\[]+\\)" raw-link)
+                                        (match-string 1 raw-link)
+                                      raw-link))
+                     ;; Remove trailing slash if present and it's not the only char after "://"
+                     (url (if (and url-candidate
+                                   (> (length url-candidate) (if (string-prefix-p "https" url-candidate) 8 7)) ; "https://" is 8, "http://" is 7
+                                   (string-suffix-p "/" url-candidate))
+                              (substring url-candidate 0 -1)
+                            url-candidate))
+                     (desc (or (org-element-interpret-data
+                                (org-element-contents link))
+                               (universal-launcher--extract-domain url))))
+                (when url ; Ensure URL is not nil
+                  (push (cons (if (string-empty-p desc)
+                                  (universal-launcher--extract-domain url)
+                                desc)
+                              url)
                         bookmarks))))))
-
         ;; Also parse plain URLs
         (goto-char (point-min))
-        (while (re-search-forward "\\bhttps?://[^ \t\n]+" nil t)
-          (let ((url (match-string-no-properties 0)))
-            (unless (assoc url bookmarks)
-              (push (cons (universal-launcher--extract-domain url) url)
-                    bookmarks))))))
-
-    ;; Sort by description and remove duplicates
+        ;; Regex now excludes ']', '[', space, tab, and newline from the URL part
+        (while (re-search-forward "\\bhttps?://[^]\\[ \t\n]+" nil t)
+          (let* ((url-candidate (match-string-no-properties 0))
+                 ;; Remove trailing slash if present
+                 (url (if (and url-candidate
+                               (> (length url-candidate) (if (string-prefix-p "https" url-candidate) 8 7))
+                               (string-suffix-p "/" url-candidate))
+                          (substring url-candidate 0 -1)
+                        url-candidate)))
+            (when url ; Ensure URL is not nil
+              (unless (rassoc url bookmarks) ; Check against the processed URL
+                (push (cons (universal-launcher--extract-domain url) url)
+                      bookmarks)))))))
+    ;; Sort by description and remove duplicates by URL
     (cl-remove-duplicates
      (sort bookmarks (lambda (a b) (string< (car a) (car b))))
      :test (lambda (a b) (string= (cdr a) (cdr b)))
