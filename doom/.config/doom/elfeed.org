@@ -82,7 +82,7 @@
 *** [[https://notrelated.xyz/rss][Not Related]] :meta:
 *** [[https://levels.io/rss/][Levels.io]]
 *** [[https://feedpress.me/thetechnium][The Technium]]
-*** [[https://solar.lowtechmagazine.com/feeds/all-en.atom.xml][Low Tech Magazine]]
+*** [[https://solar.lowtechmagazine.com/feeds/all-en.atom.xml][Low Tech Magazine]] :tech:minimalism:
 *** [[https://feeds.feedburner.com/collabfund][Collab Fund]]
 *** [[https://www.lesswrong.com/feed.xml?view=curated-rss][Less Wrong]]
 *** [[http://www.geero.net/feed][Geero]]
@@ -106,11 +106,11 @@
 *** [[https://www.madewithtea.com/rss.xml][Made with Tea]]
 *** [[https://www.paritybit.ca/feed.xml][Parity Bit]]
 *** [[http://flower.codes/feed.xml][Flower Codes]]
-*** [[https://kevquirk.com/feed][KevQuirk]]
+*** [[https://kevquirk.com/feed][KevQuirk]] :tech:
 *** [[https://www.gwern.net/atom.xml][Gwern]]
 *** [[https://blog.jim-nielsen.com/feed.xml][Jim Nielsen]]
 *** [[https://waitbutwhy.com/feed][Wait But Why]]
-*** [[https://fs.blog/feed/][Farnam Street]]
+*** [[https://fs.blog/feed/][Farnam Street]] :science:
 *** [[https://increment.com/feed.xml][Increment]]
 *** [[https://writings.stephenwolfram.com/feed/][Stephen Wolfram]]
 *** [[https://blog.burntsushi.net/index.xml][BurntSushi]]
@@ -122,6 +122,8 @@
 *** [[https://paul.graham/articles.rss][Paul Graham]]
 *** [[https://marginalrevolution.com/feed][Marginal Revolution]]
 *** [[https://hamatti.org/feed/feed.xml][Juhis]] :tech:
+*** [[https://her.st/rss.xml :tech:security:
+][her.st]]
 
 ** YouTube :youtube:
 *** Technology :tech:
