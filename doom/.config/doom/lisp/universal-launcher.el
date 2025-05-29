@@ -64,10 +64,10 @@
     (puthash 'flatpak (all-the-icons-material "layers" :face '(:foreground "#56b6c2" :height 0.9)) cache)
     (puthash 'firefox (all-the-icons-faicon "firefox" :face '(:foreground "#e06c75" :height 0.9)) cache)
     (puthash 'bookmark (all-the-icons-octicon "bookmark" :face '(:foreground "#d19a66" :height 0.9)) cache)
-    (puthash 'file (all-the-icons-octicon "file" :face '(:foreground "#abb2bf" :height 0.9)) cache)
+    (puthash 'file (all-the-icons-faicon "file" :face '(:foreground "#abb2bf" :height 0.9)) cache)
     (puthash 'command (all-the-icons-octicon "terminal" :face '(:foreground "#98c379" :height 0.9)) cache)
     (puthash 'emoji (all-the-icons-material "insert_emoticon" :face '(:foreground "#e5c07b" :height 0.9)) cache)
-    (puthash 'calculator (all-the-icons-material "calculate" :face '(:foreground "#56b6c2" :height 0.9)) cache)
+    (puthash 'calculator (all-the-icons-faicon "calculator" :face '(:foreground "#56b6c2" :height 0.9)) cache)
     ;; Category icons with matching style
     (puthash "Active" (all-the-icons-material "dashboard" :face '(:foreground "#61afef" :weight bold :height 1.0)) cache)
     (puthash "Files & Apps" (all-the-icons-material "apps" :face '(:foreground "#c678dd" :weight bold :height 1.0)) cache)
@@ -99,6 +99,7 @@
      ((string= ext "cpp") (all-the-icons-fileicon "cpp" :face 'font-lock-keyword-face))
      ((string= ext "h") (all-the-icons-fileicon "h" :face 'font-lock-preprocessor-face))
      ((string= ext "go") (all-the-icons-alltheicon "go" :face 'font-lock-keyword-face))
+     ((string= ext "svelte") (all-the-icons-fileicon "svelte" :face 'font-lock-type-face))
      ((string= ext "rs") (all-the-icons-fileicon "rust" :face 'font-lock-type-face))
      ((string= ext "php") (all-the-icons-fileicon "php" :face 'font-lock-function-name-face))
      ((string= ext "el") (all-the-icons-fileicon "elisp" :face 'font-lock-variable-name-face))
@@ -367,19 +368,50 @@
     actions))
 
 (defun universal-launcher--parse-org-bookmarks (file)
-  "Parse bookmarks from an org FILE."
+  "Parse bookmarks from an org FILE with support for various formats."
   (let ((bookmarks '()))
     (when (file-exists-p file)
       (with-temp-buffer
         (insert-file-contents file)
+        (org-mode)
         (goto-char (point-min))
-        (while (re-search-forward "\\[\\[\\(https?:[^]]+\\)\\]\\(?:\\[\\([^]]*\\)\\]\\)?\\]" nil t)
-          (let* ((url (match-string 1))
-                 (desc (match-string 2)))
-            (when (or (null desc) (string= desc ""))
-              (setq desc url))
-            (push (cons desc url) bookmarks)))))
-    (nreverse bookmarks)))
+
+        ;; Parse standard org links
+        (while (re-search-forward org-link-any-re nil t)
+          (let* ((link (match-string-no-properties 0))
+                 (parsed (org-element-link-parser)))
+            (when parsed
+              (let* ((type (org-element-property :type parsed))
+                     (path (org-element-property :path parsed))
+                     (desc (or (org-element-property :contents-begin parsed)
+                               (org-element-property :raw-link parsed))))
+                (when (member type '("http" "https"))
+                  (push (cons (or desc path)
+                              (concat type ":" path))
+                        bookmarks))))))
+
+        ;; Also parse plain URLs
+        (goto-char (point-min))
+        (while (re-search-forward "\\bhttps?://[^ \t\n]+" nil t)
+          (let ((url (match-string-no-properties 0)))
+            (unless (assoc url bookmarks)
+              (push (cons (universal-launcher--extract-domain url) url)
+                    bookmarks))))))
+
+    ;; Sort by description and remove duplicates
+    (cl-remove-duplicates
+     (sort bookmarks (lambda (a b) (string< (car a) (car b))))
+     :test (lambda (a b) (string= (cdr a) (cdr b)))
+     :from-end t)))
+
+(defun universal-launcher--extract-domain (url)
+  "Extract readable domain name from URL."
+  (if (string-match "https?://\\([^/]+\\)" url)
+      (let ((domain (match-string 1 url)))
+        (if (string-match "^www\\." domain)
+            (substring domain 4)
+          domain))
+    url))
 
 (defun universal-launcher--focus-running-application (app-info)
   "Focus running application using APP-INFO."
@@ -418,18 +450,47 @@
   (start-process command nil command))
 
 ;; Web search function
+(defcustom universal-launcher-default-search-engine "DuckDuckGo"
+  "Default search engine for web searches."
+  :type 'string
+  :group 'universal-launcher)
+
+(defvar universal-launcher--last-search-engine nil
+  "Last used search engine.")
+
 (defun universal-launcher--web-search (query)
   "Search the web with QUERY using default browser."
   (let* ((search-engines
           '(("Google" . "https://www.google.com/search?q=")
-            ("Youtube" . "https://www.youtube.com/results?search_query=")
-            ("Perplexity" . "https://www.perplexity.ai/search/new?q=")
             ("DuckDuckGo" . "https://duckduckgo.com/?q=")
-            ("Bing" . "https://www.bing.com/search?q=")
-            ("Wikipedia" . "https://en.wikipedia.org/w/index.php?search=")))
-         (engine (completing-read "Search with: " (mapcar #'car search-engines) nil t))
+            ("Wikipedia" . "https://en.wikipedia.org/w/index.php?search=")
+            ("DevDocs.io" . "https://devdocs.io/#q=")
+            ("Doom discourse" . "https://discourse.doomemacs.org/search?q=")
+            ("Doom issues" . "https://github.com/doomemacs/doomemacs/issues?q=")
+            ("GitHub" . "https://github.com/search?q=")
+            ("Google Images" . "https://www.google.com/search?tbm=isch&q=")
+            ("Google Maps" . "https://www.google.com/maps/search/")
+            ("Internet Archive" . "https://archive.org/search.php?query=")
+            ("Kagi" . "https://kagi.com/search?q=")
+            ("MDN" . "https://developer.mozilla.org/en-US/search?q=")
+            ("Project Gutenberg" . "https://www.gutenberg.org/ebooks/search/?query=")
+            ("Rust Docs" . "https://doc.rust-lang.org/std/?search=")
+            ("SourceGraph" . "https://sourcegraph.com/search?q=")
+            ("StackOverflow" . "https://stackoverflow.com/search?q=")
+            ("Wolfram Alpha" . "https://www.wolframalpha.com/input/?i=")
+            ("YouTube" . "https://www.youtube.com/results?search_query=")
+            ("Perplexity" . "https://www.perplexity.ai/search/new?q=")
+            ("Bing" . "https://www.bing.com/search?q=")))
+         (default-engine (or universal-launcher--last-search-engine
+                             universal-launcher-default-search-engine
+                             "Google"))
+         (engine (completing-read
+                  (format "Search with (default %s): " default-engine)
+                  (mapcar #'car search-engines)
+                  nil t nil nil default-engine))
          (url-base (cdr (assoc engine search-engines)))
          (encoded-query (url-hexify-string query)))
+    (setq universal-launcher--last-search-engine engine)
     (browse-url (concat url-base encoded-query))))
 
 ;; Insert emoji function
