@@ -129,7 +129,7 @@
 **** [[https://www.youtube.com/feeds/videos.xml?channel_id=UC2eYFnH61tmytImy1mTYvhA][Luke Smith]]
 **** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCsnGwSIHyoYN0kiINAGUKxg][Wolfgang]]
 **** [[https://www.youtube.com/feeds/videos.xml?channel_id=UC7YOGHUfC1Tb6E4pudI9STA][MentalOutlaw]]
-**** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCVls1GmFKf6WlTraIb_IaJg][DT]]
+**** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCVls1GmFKf6WlTraIb_IaJg][DistroTube]]
 **** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCgTNupxATBfWmfehv21ym-g][Null Byte]]
 **** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCTjPBE9BNsmv44wgxWEy2zw][Will Kwan]]
 **** [[https://www.youtube.com/feeds/videos.xml?channel_id=UC8ENHE5xdFSwx71u3fDH5Xw][ThePrimegean]]
@@ -150,14 +150,19 @@
 **** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCr613nJgA50o8DUUT00qHvw][Wulff Den]]
 **** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCwgKmJM4ZJQRJ-U5NjvR2dg][George Hotz]]
 **** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCWQaM7SpSECp9FELz-cHzuQ][Dreams of Code]]
-**** Dreams of Autonomy
+**** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCEEVcDuBRDiwxfXAgQjLGug][Dreams of Autonomy]]
 **** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCZ1y-iH9Hsp83vh6graA7Zw][Josh Medeski]]
 **** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCC_NjLEb2Sley94py4vSYTA][Andreas Vidoza]]
 **** [[https://www.youtube.com/feeds/videos.xml?channel_id=UC2WHjPDvbE6O328n17ZGcfg][Forrest Knight]]
+**** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCovagaiL6pBYWfvThaXVniA][Samuel Nam]]
+**** [[https://www.youtube.com/feeds/videos.xml?channel_id=UClb90NQQcskPUGDIXsQEz5Q][Developedbyed]]
+**** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCZXW8E1__d5tZb-wLFOt8TQ][Bog]]
 
 *** Vibes
 **** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCSLeoz5odIGS2GdlbHbCAUg][Matthew Encina]]
 **** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCRZ1OquIwGiUjJS7SXW4Fdg][Life of Riza]]
+**** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCrdWRLq10OHuy7HmSckV3Vg][Nathanial Drew]]
+**** [[https://www.youtube.com/feeds/videos.xml?channel_id=UC9Uej_tQ-kXssFR4eSjeXCg][Georgine Loh]]
 
 *** Cooking :cooking:
 **** [[https://www.youtube.com/feeds/videos.xml?channel_id=UC5qRAYQmCLx8hFGIiTWSQvA][Aaron and Claire]]
