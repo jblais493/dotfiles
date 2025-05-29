@@ -57,24 +57,33 @@
 ;; Icon cache with category-specific icons
 (defvar universal-launcher--icon-cache
   (let ((cache (make-hash-table :test 'equal)))
-    (puthash 'buffer (all-the-icons-fileicon "elisp" :face 'font-lock-string-face) cache)
-    (puthash 'running (all-the-icons-octicon "device-desktop" :face 'font-lock-keyword-face) cache)
-    (puthash 'app (all-the-icons-faicon "rocket" :face 'font-lock-function-name-face) cache)
-    (puthash 'flatpak (all-the-icons-octicon "package" :face 'font-lock-variable-name-face) cache)
-    (puthash 'firefox (all-the-icons-faicon "firefox" :face 'font-lock-type-face) cache)
-    (puthash 'bookmark (all-the-icons-faicon "bookmark" :face 'font-lock-constant-face) cache)
-    (puthash 'file (all-the-icons-faicon "file" :face 'font-lock-doc-face) cache)
-    (puthash 'command (all-the-icons-alltheicon "terminal" :face 'font-lock-builtin-face) cache)
-    (puthash 'emoji (all-the-icons-faicon "smile-o" :face 'font-lock-comment-face) cache)
-    (puthash 'calculator (all-the-icons-faicon "calculator" :face 'font-lock-preprocessor-face) cache)
-    ;; Category icons
-    (puthash "Active" (all-the-icons-material "dashboard" :face 'font-lock-keyword-face) cache)
-    (puthash "Files & Apps" (all-the-icons-material "apps" :face 'font-lock-function-name-face) cache)
-    (puthash "Web" (all-the-icons-material "language" :face 'font-lock-type-face) cache)
-    (puthash "System" (all-the-icons-material "settings" :face 'font-lock-constant-face) cache)
-    (puthash "Tools" (all-the-icons-material "build" :face 'font-lock-variable-name-face) cache)  ; Added tools category
+    ;; Type icons with consistent styling
+    (puthash 'buffer (all-the-icons-octicon "file-code" :face '(:foreground "#61afef" :height 0.9)) cache)
+    (puthash 'running (all-the-icons-material "desktop_windows" :face '(:foreground "#98c379" :height 0.9)) cache)
+    (puthash 'app (all-the-icons-faicon "cube" :face '(:foreground "#c678dd" :height 0.9)) cache)
+    (puthash 'flatpak (all-the-icons-material "layers" :face '(:foreground "#56b6c2" :height 0.9)) cache)
+    (puthash 'firefox (all-the-icons-faicon "firefox" :face '(:foreground "#e06c75" :height 0.9)) cache)
+    (puthash 'bookmark (all-the-icons-octicon "bookmark" :face '(:foreground "#d19a66" :height 0.9)) cache)
+    (puthash 'file (all-the-icons-octicon "file" :face '(:foreground "#abb2bf" :height 0.9)) cache)
+    (puthash 'command (all-the-icons-octicon "terminal" :face '(:foreground "#98c379" :height 0.9)) cache)
+    (puthash 'emoji (all-the-icons-material "insert_emoticon" :face '(:foreground "#e5c07b" :height 0.9)) cache)
+    (puthash 'calculator (all-the-icons-material "calculate" :face '(:foreground "#56b6c2" :height 0.9)) cache)
+    ;; Category icons with matching style
+    (puthash "Active" (all-the-icons-material "dashboard" :face '(:foreground "#61afef" :weight bold :height 1.0)) cache)
+    (puthash "Files & Apps" (all-the-icons-material "apps" :face '(:foreground "#c678dd" :weight bold :height 1.0)) cache)
+    (puthash "Web" (all-the-icons-material "public" :face '(:foreground "#e06c75" :weight bold :height 1.0)) cache)
+    (puthash "System" (all-the-icons-material "settings_applications" :face '(:foreground "#98c379" :weight bold :height 1.0)) cache)
+    (puthash "Tools" (all-the-icons-material "build" :face '(:foreground "#d19a66" :weight bold :height 1.0)) cache)
     cache)
-  "Pre-loaded icon cache.")
+  "Pre-loaded icon cache with consistent styling.")
+
+;; Add fallback icon function
+(defun universal-launcher--get-icon-safe (type)
+  "Get icon for TYPE with fallback."
+  (condition-case nil
+      (or (gethash type universal-launcher--icon-cache)
+          (all-the-icons-octicon "dash" :face '(:foreground "#abb2bf" :height 0.9)))
+    (error "")))
 
 (defun universal-launcher--get-file-icon (filename)
   "Get appropriate icon for FILENAME based on its extension."
