@@ -766,10 +766,15 @@ This sets up k-j as an evil escape sequence. Not used anymore due to setting esc
 #+end_src
 
 ** Web mode
-Add Astro files to web-mode automatically:
+Add Astro, templ, and svelte files to web-mode automatically:
 #+begin_src elisp
 (add-to-list 'auto-mode-alist '("\\.astro\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.templ\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.svelte\\'" . web-mode))
+
 (set-file-template! "\\.astro$" :trigger "__astro" :mode 'web-mode)
+(set-file-template! "\\.templ$" :trigger "__templ" :mode 'web-mode)
+(set-file-template! "\\.svelte$" :trigger "__svelte" :mode 'web-mode)
 #+end_src
 
 ** Treesitter

@@ -667,7 +667,12 @@
         lsp-ui-peek-enable t))
 
 (add-to-list 'auto-mode-alist '("\\.astro\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.templ\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.svelte\\'" . web-mode))
+
 (set-file-template! "\\.astro$" :trigger "__astro" :mode 'web-mode)
+(set-file-template! "\\.templ$" :trigger "__templ" :mode 'web-mode)
+(set-file-template! "\\.svelte$" :trigger "__svelte" :mode 'web-mode)
 
 ;; Enable Treesitter for Go in org
 (after! tree-sitter

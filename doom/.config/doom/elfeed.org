@@ -124,6 +124,7 @@
 
 ** YouTube :youtube:
 *** Technology :tech:
+**** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCwHwDuNd9lCdA7chyyquDXw][BreadOnPenguins]]
 **** [[https://www.youtube.com/feeds/videos.xml?channel_id=UC2eYFnH61tmytImy1mTYvhA][Luke Smith]]
 **** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCsnGwSIHyoYN0kiINAGUKxg][Wolfgang]]
 **** [[https://www.youtube.com/feeds/videos.xml?channel_id=UC7YOGHUfC1Tb6E4pudI9STA][MentalOutlaw]]
@@ -141,7 +142,7 @@
 **** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCrUL8K81R4VBzm-KOYwrcxQ][Engineerman]]
 **** [[https://www.youtube.com/feeds/videos.xml?channel_id=UC9-y-6csu5WGm29I7JiwpnA][Computerphile]]
 **** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCYeiozh-4QwuC1sjgCmB92w][Devops Toolbox]]
-
+**** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCbDmEdLs-SB3FjrDFQJ4TDg][Reysu]]
 *** Cooking :cooking:
 **** [[https://www.youtube.com/feeds/videos.xml?channel_id=UC5qRAYQmCLx8hFGIiTWSQvA][Aaron and Claire]]
 **** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCPzFLpOblZEaIx2lpym1l1A][Alex]]
@@ -158,6 +159,7 @@
 **** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCweCc7bSMX5J4jEH7HFImng][GMHikaru]]
 
 *** Fitness :fitness:
+**** [[https://www.youtube.com/feeds/videos.xml?channel_id=UC68TLK0mAEzUyHx5x5k-S1Q][Jeff Nippard]]
 **** [[https://www.youtube.com/feeds/videos.xml?channel_id=UC_7lEuEKvFt63jtvZYwlHMQ][Eugene Teo]]
 **** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCzGLDaTu81nJDtWK10MniGg][Mike Thurston]]
 **** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCoR7CHkMETs3ByOv74OAbFw][More plates more dates]]
