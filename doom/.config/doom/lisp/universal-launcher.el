@@ -301,20 +301,33 @@
 (defun universal-launcher--get-flatpak-applications ()
   "Get list of installed Flatpak applications."
   (let ((apps '()))
-    (with-temp-buffer
-      (when (= 0 (call-process "flatpak" nil t nil "list" "--app" "--columns=name,application"))
-        (goto-char (point-min))
-        (while (not (eobp))
-          (let* ((line (buffer-substring-no-properties (line-beginning-position) (line-end-position)))
-                 (parts (split-string line "\t"))
-                 (name (nth 0 parts))
-                 (app-id (nth 1 parts)))
-            (when (and name app-id)
-              (push (cons (format "%s (Flatpak)" name)
-                          (concat "flatpak run " app-id))
-                    apps)))
-          (forward-line 1))))
-    apps))
+    (when (executable-find "flatpak")
+      (with-temp-buffer
+        ;; Try both user and system installations
+        (dolist (scope '("--user" "--system"))
+          (erase-buffer)
+          (when (= 0 (call-process "flatpak" nil t nil "list" "--app" scope "--columns=name,application"))
+            (goto-char (point-min))
+            ;; Skip the header line
+            (when (looking-at "Name.*Application ID")
+              (forward-line 1))
+            (while (not (eobp))
+              (let* ((line (buffer-substring-no-properties (line-beginning-position) (line-end-position)))
+                     ;; Split on multiple spaces (2 or more) to handle column alignment
+                     (parts (split-string line "[ \t]\\{2,\\}" t))
+                     (name (when (>= (length parts) 1) (string-trim (nth 0 parts))))
+                     (app-id (when (>= (length parts) 2) (string-trim (nth 1 parts)))))
+                (when (and name app-id
+                           (not (string-empty-p name))
+                           (not (string-empty-p app-id))
+                           ;; Ensure it looks like a proper app ID
+                           (string-match-p "^[a-zA-Z][a-zA-Z0-9._-]*\\.[a-zA-Z][a-zA-Z0-9._-]*" app-id))
+                  (push (cons (format "%s (Flatpak)" name)
+                              (concat "flatpak run " app-id))
+                        apps)))
+              (forward-line 1))))))
+    ;; Remove duplicates (in case app appears in both user and system)
+    (cl-remove-duplicates apps :test (lambda (a b) (string= (cdr a) (cdr b))))))
 
 ;; TODO Calculator Module
 ;; Calculator Module
@@ -492,8 +505,11 @@
   (let* ((exec-parts (split-string exec-string))
          (cmd (car exec-parts))
          (proc (apply #'start-process cmd nil exec-parts)))
+    ;; Capture cmd in a closure to avoid void-variable error
     (run-with-timer 0.5 nil
-                    (lambda () (call-process "wmctrl" nil nil nil "-a" cmd)))))
+                    (lambda (command-name)
+                      (call-process "wmctrl" nil nil nil "-a" command-name))
+                    cmd)))
 
 (defun universal-launcher--handle-firefox-action (action)
   "Handle firefox ACTION."

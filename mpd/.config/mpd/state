@@ -3,7 +3,6 @@ audio_device_state:1:Pulse Audio
 audio_device_state:1:album_art
 audio_device_state:1:HTTP Stream
 state: stop
-current: 2
 random: 0
 repeat: 0
 single: 0
