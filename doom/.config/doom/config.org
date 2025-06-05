@@ -1673,21 +1673,35 @@ WHERE tablename = '%s';" table-name)))
 
 ** Elfeed
 #+begin_src elisp
+;; Load elfeed-download package
+(load! "lisp/elfeed-download")
+
 (make-directory "~/.elfeed" t)
+
 ;; Force load elfeed-org
 (require 'elfeed-org)
 (elfeed-org)
+
 ;; Set org feed file
 (setq rmh-elfeed-org-files '("~/.config/doom/elfeed.org"))
-;; Configure elfeed
+
+;; Configure elfeed - consolidate all elfeed config in one after! block
 (after! elfeed
   (setq elfeed-db-directory "~/.elfeed")
   (setq elfeed-search-filter "@1-week-ago +unread -4chan -news -Reddit")
+
+  ;; Set up elfeed-download
+  (elfeed-download-setup)
+
+  ;; Key bindings
   (map! :map elfeed-search-mode-map
+        :n "d" #'elfeed-download-current-entry
         :n "O" #'elfeed-search-browse-url))
 
-(run-at-time nil (* 60 60) #'elfeed-update)  ; Update hourly
+;; Update hourly
+(run-at-time nil (* 60 60) #'elfeed-update)
 
+;; Elfeed-tube configuration
 (use-package! elfeed-tube
   :after elfeed
   :config
