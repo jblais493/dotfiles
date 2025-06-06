@@ -1497,21 +1497,35 @@ WHERE tablename = '%s';" table-name)))
       (load mu4e-config)))
   )
 
+;; Load elfeed-download package
+(load! "lisp/elfeed-download")
+
 (make-directory "~/.elfeed" t)
+
 ;; Force load elfeed-org
 (require 'elfeed-org)
 (elfeed-org)
+
 ;; Set org feed file
 (setq rmh-elfeed-org-files '("~/.config/doom/elfeed.org"))
-;; Configure elfeed
+
+;; Configure elfeed - consolidate all elfeed config in one after! block
 (after! elfeed
   (setq elfeed-db-directory "~/.elfeed")
   (setq elfeed-search-filter "@1-week-ago +unread -4chan -news -Reddit")
+
+  ;; Set up elfeed-download
+  (elfeed-download-setup)
+
+  ;; Key bindings
   (map! :map elfeed-search-mode-map
+        :n "d" #'elfeed-download-current-entry
         :n "O" #'elfeed-search-browse-url))
 
-(run-at-time nil (* 60 60) #'elfeed-update)  ; Update hourly
+;; Update hourly
+(run-at-time nil (* 60 60) #'elfeed-update)
 
+;; Elfeed-tube configuration
 (use-package! elfeed-tube
   :after elfeed
   :config
@@ -1529,6 +1543,25 @@ WHERE tablename = '%s';" table-name)))
 ;; Open dirvish
 (map! :leader
       :desc "Dirvish in current dir" "d" #'dirvish)
+
+(defun my/dired-copy-file-directory ()
+  "Copy directory of file at point and switch to workspace 2"
+  (interactive)
+  (let ((file (dired-get-filename)))
+    ;; Copy directory
+    (call-process "~/.config/scripts/upload-helper.sh" nil 0 nil file)
+    ;; Switch workspace using shell command (like your working binding)
+    (shell-command "hyprctl dispatch workspace 2")
+    (message "File's directory copied, switched to workspace 2")))
+
+;; Bind to "yu"
+(after! dired
+  (map! :map dired-mode-map
+        :n "yu" #'my/dired-copy-file-directory))
+
+(after! dirvish
+  (map! :map dirvish-mode-map
+        :n "yu" #'my/dired-copy-file-directory))
 
 ;; Open file manager in place dirvish/dired
 (defun open-thunar-here ()

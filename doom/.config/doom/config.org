@@ -1732,6 +1732,28 @@ I use org mode for calendaring, but I export and sync to my google calendar so I
 ** Graphical File management
 Sometimes, we need to drag and drop files to GUIs - I previously was using dragon for this, but instead setup a way to just open nautilus at the dired/dirvish location in emacs, which is a better experience
 
+Attempt to get files sent to browser or thunderbird
+#+begin_src elisp
+(defun my/dired-copy-file-directory ()
+  "Copy directory of file at point and switch to workspace 2"
+  (interactive)
+  (let ((file (dired-get-filename)))
+    ;; Copy directory
+    (call-process "~/.config/scripts/upload-helper.sh" nil 0 nil file)
+    ;; Switch workspace using shell command (like your working binding)
+    (shell-command "hyprctl dispatch workspace 2")
+    (message "File's directory copied, switched to workspace 2")))
+
+;; Bind to "yu"
+(after! dired
+  (map! :map dired-mode-map
+        :n "yu" #'my/dired-copy-file-directory))
+
+(after! dirvish
+  (map! :map dirvish-mode-map
+        :n "yu" #'my/dired-copy-file-directory))
+#+end_src
+
 #+begin_src elisp
 ;; Open file manager in place dirvish/dired
 (defun open-thunar-here ()
