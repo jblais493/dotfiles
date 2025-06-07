@@ -31,6 +31,7 @@
 *** [[https://raphlinus.github.io/feed.xml][RaphLinus]]
 *** [[https://susam.net/feed.xml][Susam.net]]
 *** [[https://battlepenguin.com/feed.xml][BattlePenguin]]
+*** [[https://www.lifeintech.com/feed.xml][LifeinTech]]
 ** Emacs
 *** [[https://sachachua.com/blog/category/emacs/feed/][Sacha Chua]] :emacs:
 *** [[https://irreal.org/blog/?feed=rss2][Irreal]] :emacs:
