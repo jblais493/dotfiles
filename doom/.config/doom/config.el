@@ -317,7 +317,7 @@
     :hook
     (org-mode . org-fancy-priorities-mode)
     :config
-    (setq org-fancy-priorities-list '("⚡" "⬆" "⬇" "☕"))))
+    (setq org-fancy-priorities-list '("HIGH" "MID" "LOW" "FUTURE"))))
 
 ;; Prevent clock from stopping when marking subtasks as done
 (setq org-clock-out-when-done nil)

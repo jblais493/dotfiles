@@ -379,7 +379,7 @@ We set the visual line wrapping and relative line numbers (then we can just go u
     :hook
     (org-mode . org-fancy-priorities-mode)
     :config
-    (setq org-fancy-priorities-list '("⚡" "⬆" "⬇" "☕"))))
+    (setq org-fancy-priorities-list '("HIGH" "MID" "LOW" "FUTURE"))))
 
 ;; Prevent clock from stopping when marking subtasks as done
 (setq org-clock-out-when-done nil)
