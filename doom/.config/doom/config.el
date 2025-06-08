@@ -312,12 +312,12 @@
             (visual-line-mode -1)
             (setq truncate-lines 1)))
 
-(after! org
-  (use-package! org-fancy-priorities
-    :hook
-    (org-mode . org-fancy-priorities-mode)
-    :config
-    (setq org-fancy-priorities-list '("HIGH" "MID" "LOW" "FUTURE"))))
+;; (after! org
+;;   (use-package! org-fancy-priorities
+;;     :hook
+;;     (org-mode . org-fancy-priorities-mode)
+;;     :config
+;;     (setq org-fancy-priorities-list '("HIGH" "MID" "LOW" "FUTURE"))))
 
 ;; Prevent clock from stopping when marking subtasks as done
 (setq org-clock-out-when-done nil)
