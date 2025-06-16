@@ -716,7 +716,7 @@
 
 (use-package! gptel
   :custom
-  (gptel-model "claude-3-7-sonnet-20250219")
+  (gptel-model 'claude-sonnet-4-20250514)
   :config
   (defun gptel-api-key ()
     "Read API key from file and ensure it's clean."
@@ -724,31 +724,33 @@
      (with-temp-buffer
        (insert-file-contents "~/secrets/claude_key")
        (buffer-string))))
-
   (setq gptel-backend
         (gptel-make-anthropic "Claude"
                              :stream t
-                             :key #'gptel-api-key)))
+                             :key #'gptel-api-key
+                             :models '(claude-sonnet-4-20250514
+                                     claude-opus-4-20250514
+                                     claude-3-7-sonnet-20250219))))
 
 ;; Elysium provides a nicer UI for gptel
 (use-package! elysium
   :after gptel
   :custom
   (elysium-window-size 0.33)
-  (elysium-window-style 'vertical)
-  :config
-  ;; Fix for buffer-read-only error
-  (advice-add 'elysium :before
-              (lambda (&rest _)
-                (when (eq major-mode 'doom-mode)
-                  (other-buffer (current-buffer) t)))))
+  (elysium-window-style 'vertical))
 
 ;; Aider for code editing
 (use-package! aider
-  :after gptel
-  :custom
-  (aider-chat-model "claude-3-7-sonnet-20250219")
-  (aider-api-key-function #'gptel-api-key))
+  :config
+  ;; Use Claude Sonnet 4 (latest)
+  (setq aider-args '("--model" "claude-sonnet-4-20250514" "--no-auto-accept-architect"))
+
+  ;; Set the API key using your existing function
+  (setenv "ANTHROPIC_API_KEY" (gptel-api-key))
+
+  ;; Optional: Set a key binding for the transient menu
+  (map! :leader
+        :desc "Aider menu" "a" #'aider-transient-menu))
 
 (defun my/magit-stage-commit-push ()
   "Stage all, commit with quick message, and push with no questions"
@@ -1083,6 +1085,14 @@ WHERE tablename = '%s';" table-name)))
         :desc "List tables" "t" #'pg-list-tables
         :desc "Connect to SQL" "s" #'pg-connect
         :desc "Execute SQL query" "q" #'pg-query-to-orgtable)))
+
+;; LSP support for SQL files
+(use-package lsp-sqls
+  :after lsp-mode
+  :hook (sql-mode . lsp-deferred)
+  :config
+  ;; Let sqls use the config file instead of hardcoded connections
+  (setq lsp-sqls-workspace-config-path nil)) ; This tells it to look for .sqls.yml
 
 (setq docker-command "podman")
 (setq docker-compose-command "podman-compose")

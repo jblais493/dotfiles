@@ -177,7 +177,6 @@ alias sshl="ssh_fzf"
 alias oo="cd ~/Vaults"
 alias bills="nvim ~/Vaults/Personal/bills.md"
 alias godir="cd ~/go/src/github.com/jblais493/"
-alias dev="cd ~/Development"
 alias photos="cd ~/Photos"
 alias f="nautilus . &"
 alias revere="cd /mnt/nomad/TrueNAS/Revere"
@@ -393,3 +392,12 @@ hugo() {
   fi
   "${hugo_bin}" "$@"
 }
+
+# Add in direnv hook
+echo 'eval "$(direnv hook zsh)"' >> ~/.zshrc
+eval "$(direnv hook zsh)"
+eval "$(direnv hook zsh)"
+eval "$(direnv hook zsh)"
+eval "$(direnv hook zsh)"
+eval "$(direnv hook zsh)"
+eval "$(direnv hook zsh)"
