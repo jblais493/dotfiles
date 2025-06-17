@@ -394,10 +394,4 @@ hugo() {
 }
 
 # Add in direnv hook
-echo 'eval "$(direnv hook zsh)"' >> ~/.zshrc
-eval "$(direnv hook zsh)"
-eval "$(direnv hook zsh)"
-eval "$(direnv hook zsh)"
-eval "$(direnv hook zsh)"
-eval "$(direnv hook zsh)"
 eval "$(direnv hook zsh)"
