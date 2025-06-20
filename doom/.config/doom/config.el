@@ -622,6 +622,38 @@
     (with-current-buffer buf
       (call-interactively #'+vterm/here))))
 
+(defun my-open-vterm-at-point ()
+  "Open vterm in the directory of the currently selected window's buffer.
+This function is designed to be called via `emacsclient -e`."
+  (interactive)
+  (let* ((selected-window (selected-window))
+         ;; Ensure selected-window is not nil before trying to get its buffer
+         (buffer-in-window (and selected-window (window-buffer selected-window)))
+         dir)
+
+    (when buffer-in-window
+      (setq dir
+            ;; Temporarily switch to the target buffer to evaluate its context
+            (with-current-buffer buffer-in-window
+              (cond ((buffer-file-name buffer-in-window)
+                     (file-name-directory (buffer-file-name buffer-in-window)))
+                    ((and (eq major-mode 'dired-mode)
+                          (dired-current-directory))
+                     (dired-current-directory))
+                    (t default-directory)))))
+
+    ;; Fallback to the server's default-directory if no specific directory was found
+    (unless dir (setq dir default-directory))
+
+    (message "Opening vterm in directory: %s" dir) ; For debugging, check *Messages* buffer
+
+    ;; Now, crucially, set 'default-directory' for the vterm call itself
+    (let ((default-directory dir))
+      ;; Call the plain 'vterm' function, which should respect 'default-directory'.
+      ;; We are *not* passing 'dir' as an argument to 'vterm' here,
+      ;; as it's often designed to pick up the current 'default-directory'.
+      (vterm))))
+
 ;; Emmet remap
 (add-hook 'sgml-mode-hook 'emmet-mode) ;; Auto-start on any markup modes
 (add-hook 'css-mode-hook  'emmet-mode) ;; enable Emmet's css abbreviation.
