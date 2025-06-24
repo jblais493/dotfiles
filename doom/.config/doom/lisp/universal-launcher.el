@@ -111,7 +111,6 @@
      ((string= ext "json") (all-the-icons-fileicon "jsonld" :face 'font-lock-constant-face))
      ((string= ext "md") (all-the-icons-octicon "markdown" :face 'markdown-header-face))
      ((string= ext "yml") (all-the-icons-fileicon "jsonld" :face 'font-lock-variable-name-face))
-     ((string= ext "xml") (all-the-icons-fileicon "xml" :face 'font-lock-constant-face))
      ((string= ext "pdf") (all-the-icons-faicon "file-pdf-o" :face 'font-lock-doc-face))
      ((member ext '("jpg" "jpeg" "png" "gif" "svg")) (all-the-icons-faicon "file-image-o" :face 'font-lock-string-face))
      ((member ext '("zip" "tar" "gz" "rar" "7z")) (all-the-icons-faicon "file-archive-o" :face 'font-lock-preprocessor-face))
