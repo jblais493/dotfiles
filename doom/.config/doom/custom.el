@@ -19,6 +19,9 @@
    '(company company dart-mode elpher emacs-everywhere flycheck hover jabber
      lsp-dart lsp-mode lsp-treemacs lsp-ui multi-vterm org-gtasks org-roam-ui
      protobuf-mode sqlite3 templ-ts-mode))
+ '(send-mail-function 'smtpmail-send-it)
+ '(smtpmail-smtp-server "mail.joshblais.com")
+ '(smtpmail-smtp-service 25)
  '(warning-suppress-types
    '(((copilot copilot-no-mode-indent)) ((copilot copilot-no-mode-indent))
      ((copilot copilot-no-mode-indent)) ((copilot copilot-no-mode-indent))
