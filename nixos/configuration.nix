@@ -143,6 +143,7 @@
     playerctl
     xdg-utils
     brightnessctl
+    tlp
 	  networkmanager
 	  networkmanagerapplet
 	  coreutils
