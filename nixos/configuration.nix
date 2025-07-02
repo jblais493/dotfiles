@@ -190,6 +190,8 @@
 	  gnupg
 	  fastfetch
     flatpak
+    # nix formatting LSP
+    nixd
 
     # Music and media
     mpd
