@@ -2,9 +2,14 @@ sw_volume: 100
 audio_device_state:1:Pulse Audio
 audio_device_state:1:album_art
 audio_device_state:1:HTTP Stream
+<<<<<<< HEAD
 state: play
 current: 19
 time: 98.23700000000001
+=======
+state: stop
+current: 0
+>>>>>>> 4a34ad8659a2267acb921297e90d337dc637644c
 random: 0
 repeat: 0
 single: 0
@@ -14,6 +19,7 @@ mixrampdb: 0
 mixrampdelay: -1
 lastloadedplaylist: 
 playlist_begin
+<<<<<<< HEAD
 0:1638 - Miserere Mei.mp3
 1:Caleb Laurenson - It Ain't Right.mp3
 2:Casiopea/Mint Jams/Casiopea - Various.mp3
@@ -43,4 +49,9 @@ playlist_begin
 26:royalty free/karl casey - hackers.mp3
 27:royalty free/password-infinity-123276.mp3
 28:夜のフライト - Shinjuku 1980.mp3
+=======
+0:3LAU/3LAU, Justin Caruso, Iselin - Better With You.mp3
+1:3LAU/3LAU, Justin Caruso, Iselin - Better With You.mp3
+2:3LAU/3LAU, Justin Caruso, Iselin - Better With You.mp3
+>>>>>>> 4a34ad8659a2267acb921297e90d337dc637644c
 playlist_end

@@ -177,7 +177,6 @@ alias sshl="ssh_fzf"
 alias oo="cd ~/Vaults"
 alias bills="nvim ~/Vaults/Personal/bills.md"
 alias godir="cd ~/go/src/github.com/jblais493/"
-alias dev="cd ~/Development"
 alias photos="cd ~/Photos"
 alias f="nautilus . &"
 alias revere="cd /mnt/nomad/TrueNAS/Revere"
@@ -276,7 +275,7 @@ alias qutebrowser="cd ~/.config/qutebrowser"
 alias shell="cd ~/.config/shell"
 alias scripts="cd ~/.config/scripts"
 alias books="cd ~/.config/scripts/bookmarks"
-alias kmon="kmonad ~/.config/kmonad/x230.kbd &"
+alias kmon="kmonad ~/.config/kmonad/config.kbd &"
 
 # Development
 alias work="arttime --nolearn -a eye -t 'For I consider that the sufferings of this present time are not worth comparing with the glory that is going to be revealed to us - Romans 8:18' -g 4h"
@@ -315,6 +314,7 @@ alias te="~/.config/scripts/edit_task.sh"
 alias tc="~/.config/scripts/add_contact.sh"
 alias rem="remind ~/.reminders/reminders.rem"
 alias ytmp3="~/.config/scripts/Media/ytmp3.sh"
+alias aa="python ~/.config/scripts/Media/albumartwork.py"
 alias mpdupdate="~/.config/scripts/Media/mpdupdate.sh"
 
 bindkey -v
@@ -392,3 +392,6 @@ hugo() {
   fi
   "${hugo_bin}" "$@"
 }
+
+# Add in direnv hook
+eval "$(direnv hook zsh)"

@@ -11,14 +11,17 @@
      "7ea883b13485f175d3075c72fceab701b5bf76b2076f024da50dff4107d0db25" default))
  '(magit-todos-insert-after '(bottom) nil nil "Changed by setter of obsolete option `magit-todos-insert-at'")
  '(org-agenda-files
-   '("~/org/notes.org" "/home/joshua/org/projects.org"
+   '("~/org/done.org" "/home/joshua/org/projects.org" "/home/joshua/org/inbox.org"
+     "/home/joshua/org/tracking.org" "/home/joshua/org/notes.org"
      "/home/joshua/org/contacts.org" "/home/joshua/org/calendar.org"
-     "/home/joshua/org/inbox.org"
      "/home/joshua/org/journal/2025/Week 13/March 25, 2025.org"))
  '(package-selected-packages
    '(company company dart-mode elpher emacs-everywhere flycheck hover jabber
      lsp-dart lsp-mode lsp-treemacs lsp-ui multi-vterm org-gtasks org-roam-ui
      protobuf-mode sqlite3 templ-ts-mode))
+ '(send-mail-function 'smtpmail-send-it)
+ '(smtpmail-smtp-server "mail.joshblais.com")
+ '(smtpmail-smtp-service 25)
  '(warning-suppress-types
    '(((copilot copilot-no-mode-indent)) ((copilot copilot-no-mode-indent))
      ((copilot copilot-no-mode-indent)) ((copilot copilot-no-mode-indent))
@@ -29,4 +32,8 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- )
+ '(emms-browser-album-face ((t (:foreground "#88C0D0" :height 1.0))))
+ '(emms-browser-artist-face ((t (:foreground "#ECEFF4" :height 1.1))))
+ '(emms-browser-track-face ((t (:foreground "#A3BE8C" :height 1.0))))
+ '(emms-playlist-selected-face ((t (:foreground "#BF616A" :weight bold))))
+ '(emms-playlist-track-face ((t (:foreground "#D8DEE9" :height 1.0)))))

@@ -85,7 +85,7 @@
 
 ;; Setup custom splashscreen
 (remove-hook '+doom-dashboard-functions #'doom-dashboard-widget-shortmenu)
-(setq fancy-splash-image "~/Pictures/Nord/emacsdoom.jpg")
+(setq fancy-splash-image "~/Pictures/Wallpapers/emacsdoom.jpg")
 (add-hook! '+doom-dashboard-functions :append
   (insert "\n" (+doom-dashboard--center +doom-dashboard--width "Welcome Home, Joshua.")))
 
@@ -312,12 +312,12 @@
             (visual-line-mode -1)
             (setq truncate-lines 1)))
 
-(after! org
-  (use-package! org-fancy-priorities
-    :hook
-    (org-mode . org-fancy-priorities-mode)
-    :config
-    (setq org-fancy-priorities-list '("⚡" "⬆" "⬇" "☕"))))
+;; (after! org
+;;   (use-package! org-fancy-priorities
+;;     :hook
+;;     (org-mode . org-fancy-priorities-mode)
+;;     :config
+;;     (setq org-fancy-priorities-list '("HIGH" "MID" "LOW" "FUTURE"))))
 
 ;; Prevent clock from stopping when marking subtasks as done
 (setq org-clock-out-when-done nil)
@@ -622,6 +622,38 @@
     (with-current-buffer buf
       (call-interactively #'+vterm/here))))
 
+(defun my-open-vterm-at-point ()
+  "Open vterm in the directory of the currently selected window's buffer.
+This function is designed to be called via `emacsclient -e`."
+  (interactive)
+  (let* ((selected-window (selected-window))
+         ;; Ensure selected-window is not nil before trying to get its buffer
+         (buffer-in-window (and selected-window (window-buffer selected-window)))
+         dir)
+
+    (when buffer-in-window
+      (setq dir
+            ;; Temporarily switch to the target buffer to evaluate its context
+            (with-current-buffer buffer-in-window
+              (cond ((buffer-file-name buffer-in-window)
+                     (file-name-directory (buffer-file-name buffer-in-window)))
+                    ((and (eq major-mode 'dired-mode)
+                          (dired-current-directory))
+                     (dired-current-directory))
+                    (t default-directory)))))
+
+    ;; Fallback to the server's default-directory if no specific directory was found
+    (unless dir (setq dir default-directory))
+
+    (message "Opening vterm in directory: %s" dir) ; For debugging, check *Messages* buffer
+
+    ;; Now, crucially, set 'default-directory' for the vterm call itself
+    (let ((default-directory dir))
+      ;; Call the plain 'vterm' function, which should respect 'default-directory'.
+      ;; We are *not* passing 'dir' as an argument to 'vterm' here,
+      ;; as it's often designed to pick up the current 'default-directory'.
+      (vterm))))
+
 ;; Emmet remap
 (add-hook 'sgml-mode-hook 'emmet-mode) ;; Auto-start on any markup modes
 (add-hook 'css-mode-hook  'emmet-mode) ;; enable Emmet's css abbreviation.
@@ -666,6 +698,14 @@
         lsp-ui-sideline-enable nil
         lsp-ui-peek-enable t))
 
+(add-to-list 'auto-mode-alist '("\\.astro\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.templ\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.svelte\\'" . web-mode))
+
+(set-file-template! "\\.astro$" :trigger "__astro" :mode 'web-mode)
+(set-file-template! "\\.templ$" :trigger "__templ" :mode 'web-mode)
+(set-file-template! "\\.svelte$" :trigger "__svelte" :mode 'web-mode)
+
 ;; Enable Treesitter for Go in org
 (after! tree-sitter
   (require 'tree-sitter-langs)
@@ -708,7 +748,7 @@
 
 (use-package! gptel
   :custom
-  (gptel-model "claude-3-7-sonnet-20250219")
+  (gptel-model 'claude-sonnet-4-20250514)
   :config
   (defun gptel-api-key ()
     "Read API key from file and ensure it's clean."
@@ -716,31 +756,33 @@
      (with-temp-buffer
        (insert-file-contents "~/secrets/claude_key")
        (buffer-string))))
-
   (setq gptel-backend
         (gptel-make-anthropic "Claude"
                              :stream t
-                             :key #'gptel-api-key)))
+                             :key #'gptel-api-key
+                             :models '(claude-sonnet-4-20250514
+                                     claude-opus-4-20250514
+                                     claude-3-7-sonnet-20250219))))
 
 ;; Elysium provides a nicer UI for gptel
 (use-package! elysium
   :after gptel
   :custom
   (elysium-window-size 0.33)
-  (elysium-window-style 'vertical)
-  :config
-  ;; Fix for buffer-read-only error
-  (advice-add 'elysium :before
-              (lambda (&rest _)
-                (when (eq major-mode 'doom-mode)
-                  (other-buffer (current-buffer) t)))))
+  (elysium-window-style 'vertical))
 
 ;; Aider for code editing
 (use-package! aider
-  :after gptel
-  :custom
-  (aider-chat-model "claude-3-7-sonnet-20250219")
-  (aider-api-key-function #'gptel-api-key))
+  :config
+  ;; Use Claude Sonnet 4 (latest)
+  (setq aider-args '("--model" "claude-sonnet-4-20250514" "--no-auto-accept-architect"))
+
+  ;; Set the API key using your existing function
+  (setenv "ANTHROPIC_API_KEY" (gptel-api-key))
+
+  ;; Optional: Set a key binding for the transient menu
+  (map! :leader
+        :desc "Aider menu" "a" #'aider-transient-menu))
 
 (defun my/magit-stage-commit-push ()
   "Stage all, commit with quick message, and push with no questions"
@@ -1076,6 +1118,14 @@ WHERE tablename = '%s';" table-name)))
         :desc "Connect to SQL" "s" #'pg-connect
         :desc "Execute SQL query" "q" #'pg-query-to-orgtable)))
 
+;; LSP support for SQL files
+(use-package lsp-sqls
+  :after lsp-mode
+  :hook (sql-mode . lsp-deferred)
+  :config
+  ;; Let sqls use the config file instead of hardcoded connections
+  (setq lsp-sqls-workspace-config-path nil)) ; This tells it to look for .sqls.yml
+
 (setq docker-command "podman")
 (setq docker-compose-command "podman-compose")
 
@@ -1288,7 +1338,7 @@ WHERE tablename = '%s';" table-name)))
 (emms-playing-time-mode 1)
 
 ;; Basic settings
-(setq emms-source-file-default-directory "~/Music"
+(setq emms-source-file-default-directory "~/MusicOrganized"
       emms-browser-covers #'emms-browser-cache-thumbnail-async
       emms-browser-thumbnail-small-size 64
       emms-browser-thumbnail-medium-size 128
@@ -1348,6 +1398,7 @@ WHERE tablename = '%s';" table-name)))
     (set-window-buffer (selected-window) (current-buffer))))
 
 ;; Set dark Nord background and center layout
+
 (add-hook 'emms-browser-mode-hook
           (lambda ()
             (face-remap-add-relative 'default '(:background "#2E3440"))  ;; Nord Polar Night (dark blue-gray)
@@ -1367,9 +1418,9 @@ WHERE tablename = '%s';" table-name)))
 
 ;; Ensure browser functionality
 (setq emms-browser-default-browse-type 'artist)
-(add-to-list 'emms-info-functions 'emms-info-mp3info)
+;; (add-to-list 'emms-info-functions 'emms-info-mp3info)
 (add-to-list 'emms-info-functions 'emms-info-ogginfo)
-(add-to-list 'emms-info-functions 'emms-info-metaflac)
+;; (add-to-list 'emms-info-functions 'emms-info-metaflac)
 (add-to-list 'emms-info-functions 'emms-info-tinytag)
 
 ;; Ensure tracks play when selected
@@ -1488,21 +1539,35 @@ WHERE tablename = '%s';" table-name)))
       (load mu4e-config)))
   )
 
+;; Load elfeed-download package
+(load! "lisp/elfeed-download")
+
 (make-directory "~/.elfeed" t)
+
 ;; Force load elfeed-org
 (require 'elfeed-org)
 (elfeed-org)
+
 ;; Set org feed file
 (setq rmh-elfeed-org-files '("~/.config/doom/elfeed.org"))
-;; Configure elfeed
+
+;; Configure elfeed - consolidate all elfeed config in one after! block
 (after! elfeed
   (setq elfeed-db-directory "~/.elfeed")
-  (setq elfeed-search-filter "@1-week-ago +unread -4chan -Reddit")
+  (setq elfeed-search-filter "@1-week-ago +unread -4chan -news -Reddit")
+
+  ;; Set up elfeed-download
+  (elfeed-download-setup)
+
+  ;; Key bindings
   (map! :map elfeed-search-mode-map
+        :n "d" #'elfeed-download-current-entry
         :n "O" #'elfeed-search-browse-url))
 
-(run-at-time nil (* 60 60) #'elfeed-update)  ; Update hourly
+;; Update hourly
+(run-at-time nil (* 60 60) #'elfeed-update)
 
+;; Elfeed-tube configuration
 (use-package! elfeed-tube
   :after elfeed
   :config
@@ -1515,13 +1580,30 @@ WHERE tablename = '%s';" table-name)))
          ([remap save-buffer] . elfeed-tube-save)))
 
 ;; Load private org-gcal credentials if the file exists
-(let ((private-config (expand-file-name "private/org-gcal-credentials.el" doom-private-dir)))
-  (when (file-exists-p private-config)
-    (load private-config)))
+(load! "lisp/org-gcal-credentials")
 
 ;; Open dirvish
 (map! :leader
       :desc "Dirvish in current dir" "d" #'dirvish)
+
+(defun my/dired-copy-file-directory ()
+  "Copy directory of file at point and switch to workspace 2"
+  (interactive)
+  (let ((file (dired-get-filename)))
+    ;; Copy directory
+    (call-process "~/.config/scripts/upload-helper.sh" nil 0 nil file)
+    ;; Switch workspace using shell command (like your working binding)
+    (shell-command "hyprctl dispatch workspace 2")
+    (message "File's directory copied, switched to workspace 2")))
+
+;; Bind to "yu"
+(after! dired
+  (map! :map dired-mode-map
+        :n "yu" #'my/dired-copy-file-directory))
+
+(after! dirvish
+  (map! :map dirvish-mode-map
+        :n "yu" #'my/dired-copy-file-directory))
 
 ;; Open file manager in place dirvish/dired
 (defun open-thunar-here ()

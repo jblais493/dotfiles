@@ -143,17 +143,26 @@
     playerctl
     xdg-utils
     brightnessctl
+    tlp
 	  networkmanager
 	  networkmanagerapplet
 	  coreutils
 	  gnumake
     sdbus-cpp
+    jq
+    imagemagick
+    atomicparsley
+    python312Packages.eyed3
 
     # Emacs
 	  emacs
 	  texliveFull
     wmctrl
     vips # for dirvish thumbnails
+
+    # Networking
+    mullvad-vpn
+    mullvad
 
     # shell and terminal
 	  kitty

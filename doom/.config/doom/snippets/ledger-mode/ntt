@@ -1,6 +1,6 @@
 # -*- mode: snippet -*-
 # name: New Transaction (Double Entry)
-# key: nt
+# key: ntt
 # --
 `(format-time-string "%Y/%m/%d")` * ${1:Payee}
     ; ${2:Description}

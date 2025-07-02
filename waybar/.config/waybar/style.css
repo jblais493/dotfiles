@@ -9,7 +9,7 @@ window#waybar {
     46,
     52,
     64,
-    0.7
+    0.02
   ); /* Nord dark background with transparency */
   color: #eceff4; /* Nord snow storm (light color) */
   transition-property: background-color;
@@ -35,7 +35,7 @@ button:hover {
 }
 
 #workspaces {
-  background: rgba(59, 66, 82, 0.5); /* Nord polar night medium shade */
+  background: rgba(59, 66, 82, 0.8); /* Nord polar night medium shade */
   border-radius: 10px;
   margin: 5px;
   padding: 0 5px;
@@ -70,10 +70,10 @@ button:hover {
 }
 
 .modules-right {
-  background: rgba(59, 66, 82, 0.5);
+  background: rgba(59, 66, 82, 0.8);
   border-radius: 10px;
   margin: 5px;
-  padding: 0 5px;
+  padding: 0 8px;
 }
 
 #mode {
@@ -115,7 +115,7 @@ button:hover {
 #network:hover,
 #pulseaudio:hover,
 #tray:hover {
-  background: rgba(59, 66, 82, 0.7); /* Slightly darker on hover */
+  background: rgba(59, 66, 82, 0.5); /* Slightly darker on hover */
 }
 
 #window,
@@ -145,7 +145,7 @@ button:hover {
 }
 
 #tray {
-  background-color: rgba(59, 66, 82, 0.7); /* Nord polar night medium shade */
+  background: transparent;
 }
 
 #tray > .passive {
