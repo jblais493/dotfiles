@@ -1129,6 +1129,14 @@ WHERE tablename = '%s';" table-name)))
 (setq docker-command "podman")
 (setq docker-compose-command "podman-compose")
 
+(use-package! agenix
+  :config
+  (setq agenix-secrets-file "~/nixos-config/secrets.nix")
+
+  ;; Override the command to always use your identity
+  (defun agenix--age-command (action file &rest args)
+    (append (list "age" action "--identity" (expand-file-name "~/.ssh/joshuakey") file) args)))
+
 ;; Spelling
 (setq ispell-program-name "aspell")
 (setq ispell-extra-args '("--sug-mode=ultra" "--lang=en_US"))

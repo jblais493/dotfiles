@@ -45,7 +45,7 @@
 ;; TODO (package! prescient)
 ;; TODO (package! vertico-prescient)
 (package! gptel)
-;; (package! elysium :recipe (:host github :repo "lanceberge/elysium" :branch "master"))
+(package! elysium :recipe (:host github :repo "lanceberge/elysium" :branch "master"))
 (package! aider :recipe (:host github :repo "tninja/aider.el" :files ("*.el")))
 
 ;; Trying to get mu4e nano working

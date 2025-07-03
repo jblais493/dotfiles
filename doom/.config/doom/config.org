@@ -1270,6 +1270,18 @@ go install github.com/sqls-server/sqls@latest
 (setq docker-compose-command "podman-compose")
 #+end_src
 
+* Nix
+** Agenix
+#+begin_src elisp
+(use-package! agenix
+  :config
+  (setq agenix-secrets-file "~/nixos-config/secrets.nix")
+
+  ;; Override the command to always use your identity
+  (defun agenix--age-command (action file &rest args)
+    (append (list "age" action "--identity" (expand-file-name "~/.ssh/joshuakey") file) args)))
+#+end_src
+
 * Writing
 ** Spelling
 #+begin_src elisp
