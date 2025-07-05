@@ -452,3 +452,5 @@
 2025-05-01T21:22:06 player: played "Jay Pryor - Aside.mp3"
 2025-05-01T21:22:08 player: played "House of Blow/Banger.mp3"
 2025-05-01T21:25:05 player: played "Godsmack/When Legends Rise/Godsmack - Bulletproof.mp3"
+2025-07-05T07:20:20 state_file: Unrecognized line in state file: <<<<<<< HEAD
+2025-07-05T07:20:20 exception: Malformed playlist line in state file
