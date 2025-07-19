@@ -71,6 +71,7 @@
 
 ** Blogs :blog:
 *** [[https://joshblais.com/index.xml][Joshua Blais]]
+*** [[https://adactio.com/rss/][Jeremy Keith]] :tech:indieweb:
 *** [[https://wrongthink.link/posts/index.xml][Wrong Think]] :tech:security:
 *** [[https://www.rousette.org.uk/index.xml][Rousette]]
 *** [[https://randomgeekery.org/index.xml][Random Geekery]]
